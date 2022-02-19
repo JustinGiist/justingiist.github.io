@@ -1,0 +1,562 @@
+.basicNavButton {
+  display: flex;
+  padding: 4px 16px;
+  .navButtonIcon {
+    width: fit-content;
+    height: 16px;
+    margin: auto 8px;
+    color: var(--theme-primary);
+  }
+
+  .navButtonLabel {
+    font-size: var(--font-medium);
+    font-weight: bold;
+    margin: auto 2px;
+  }
+  .navButtonDropdownArrow {
+    padding: 4px 6px;
+    margin: auto 0 auto 8px;
+    border-radius: var(--round-small);
+    display: flex;
+    svg {
+      font-size: 16px;
+      margin: auto;
+      fill: var(--theme-text-primary);
+    }
+  }
+}
+.basicNavButton.open {
+  background-color: var(--theme-teritary);
+  .navButtonLabel {
+    color: var(--theme-white);
+  }
+  .navButtonDropdownArrow {
+    svg {
+      fill: var(--theme-white);
+    }
+  }
+}
+.navButtonContextContainer {
+  position: absolute;
+  z-index: 99;
+  transition: all 0.167s forwards;
+  animation: fadeIn 0.167s ease-in-out;
+  background-color: var(--theme-secondary-background);
+}
+
+.basicNavButton:hover {
+  cursor: pointer;
+  .navButtonDropdownArrow:hover {
+    border: 2px solid var(--theme-primary);
+    padding: 2px 4px;
+    box-shadow: var(--shadow);
+  }
+}
+.Dystopia {
+  .basicNavButton {
+    padding: 4px 8px;
+
+    .navButtonLabel {
+      font-size: var(--font-large);
+    }
+  }
+}
+.Dystopia {
+  .basicNavButton:hover {
+    transition: all 0.167s ease-in-out;
+    border-left: 10px solid var(--theme-teritary);
+    cursor: pointer;
+    background-color: var(--theme-secondary-background);
+    animation: glitch 0.1s infinite;
+    .navButtonIcon svg {
+      color: var(--theme-teritary);
+    }
+    .navButtonLabel {
+      transition: padding-left 0.167s ease-in-out;
+      color: var(--theme-teritary);
+      animation: fuzzGlitch 0.05s infinite;
+    }
+  }
+  .basicNavButton.secondary:hover {
+    .navButtonLabel {
+      color: var(--theme-teritary) !important;
+    }
+  }
+}
+
+.Spooky {
+  .basicNavButton {
+    .navButtonLabel {
+      color: var(--theme-text-secondary);
+    }
+    .navButtonDropdownArrow {
+      svg {
+        fill: var(--theme-text-secondary);
+      }
+    }
+    .burst {
+      position: absolute;
+      pointer-events: none;
+    }
+    .burst .sprite {
+      color: var(--theme-secondary);
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      opacity: 0;
+    }
+    .burst .sprite:nth-child(1) {
+      animation: move 1.2s linear infinite;
+      animation-delay: 0.7s;
+      right: 0px;
+    }
+    .burst .sprite:nth-child(2) {
+      animation: move 1s linear infinite;
+      animation-delay: 0.3s;
+      right: -20px;
+    }
+    .burst .sprite:nth-child(3) {
+      animation: move 0.8s linear infinite;
+      animation-delay: 0.2s;
+      right: -45px;
+    }
+    .burst .sprite:nth-child(4) {
+      animation: move 1.1s linear infinite;
+      right: -65px;
+    }
+    .burst .sprite:nth-child(5) {
+      animation: move 0.9s linear infinite;
+      animation-delay: 0.1s;
+      right: -85px;
+    }
+    .burst .sprite:nth-child(6) {
+      animation: move 1.2s linear infinite;
+      animation-delay: 0.4s;
+      right: -110px;
+    }
+  }
+}
+.Spooky {
+  .navButtonContextContainer {
+    background-color: #0b002e;
+  }
+  .basicNavButton.open {
+    background-color: #0b002e;
+  }
+  .basicNavButton:hover {
+    background-color: #0b002e;
+
+    .navButtonIcon svg {
+      color: var(--theme-text-teritary);
+    }
+    .navButtonLabel {
+      color: var(--theme-text-teritary);
+      animation: fuzzGlitch 0.05s infinite;
+    }
+    .navButtonDropdownArrow {
+      svg {
+        fill: var(--theme-text-teritary);
+      }
+    }
+    .navButtonDropdownArrow:hover {
+      border: 2px solid var(--theme-text-teritary);
+      animation: fuzzGlitch 0.05s infinite;
+      box-shadow: var(--shadow);
+    }
+  }
+  .basicNavButton.secondary:hover {
+    .navButtonLabel {
+      color: var(--theme-text-teritary) !important;
+    }
+  }
+}
+.Safari {
+  .basicNavButton.open {
+    .burst {
+      transform: translateX(-200px);
+    }
+  }
+  .basicNavButton {
+    padding: 8px 8px;
+    .navButtonDropdownArrow {
+      height: 20px;
+      svg {
+        fill: var(--theme-primary);
+      }
+    }
+    .burst {
+      position: relative;
+      pointer-events: none;
+    }
+    .burst .line {
+      color: var(--theme-secondary);
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      opacity: 0;
+    }
+    .burst .line:nth-child(1) {
+      animation: pawEffect 4s linear infinite;
+      transform: translateY(15px) rotate(30deg);
+      right: 0px;
+    }
+    .burst .line:nth-child(2) {
+      animation: pawEffect 4s linear infinite;
+      animation-delay: 0.5s;
+      transform: translateY(5px) rotate(35deg);
+      right: -40px;
+    }
+    .burst .line:nth-child(3) {
+      animation: pawEffect 4s linear infinite;
+      animation-delay: 1s;
+      transform: translateY(-25px) rotate(25deg);
+      right: -20px;
+    }
+    .burst .line:nth-child(4) {
+      animation: pawEffect 4s linear infinite;
+      transform: translateY(20px) rotate(30deg);
+      animation-delay: 1.5s;
+      right: -130px;
+    }
+    .burst .line:nth-child(5) {
+      animation: pawEffect 4s linear infinite;
+      animation-delay: 2s;
+      transform: translateY(-10px) rotate(25deg);
+      right: -110px;
+    }
+    .burst .line:nth-child(6) {
+      animation: pawEffect 4s linear infinite;
+      animation-delay: 2.5s;
+      transform: translateY(-20px) rotate(35deg);
+      right: -160px;
+    }
+  }
+  .navButtonContextContainer {
+    transition: all 0.167s forwards;
+    background-color: var(--theme-secondary-background);
+  }
+}
+.Safari {
+  .basicNavButton:hover {
+    transition: all 0.167s ease-in-out;
+    border-left: 10px solid var(--theme-teritary);
+    background-color: var(--theme-secondary-background);
+    //animation: glitch 0.1s infinite;
+    .navButtonIcon svg {
+      color: var(--theme-teritary);
+    }
+    .navButtonLabel {
+      transition: padding-left 0.167s ease-in-out;
+      color: var(--theme-teritary);
+      animation: fuzzGlitch 0.05s infinite;
+    }
+    .navButtonDropdownArrow:hover {
+      border: 2px solid var(--theme-primary);
+
+      animation: fuzzGlitch 0.05s infinite;
+      box-shadow: var(--shadow);
+    }
+  }
+  .basicNavButton.secondary:hover {
+    .navButtonLabel {
+      color: var(--theme-teritary) !important;
+    }
+  }
+}
+.Arcade {
+  .basicNavButton.secondary {
+    border-left: 5px solid var(--theme-teritary);
+    .navButtonLabel {
+      color: var(--theme-text-secondary);
+    }
+  }
+  .basicNavButton.open {
+    border-left: 15px solid var(--theme-teritary);
+  }
+  .basicNavButton {
+    padding: 8px 8px;
+    transition: all 0.167s ease-in-out;
+    .navButtonLabel {
+      font-size: var(--font-small);
+      font-weight: bold;
+    }
+    .navButtonDropdownArrow {
+      height: 20px;
+      svg {
+        fill: var(--theme-primary);
+      }
+    }
+  }
+  .navButtonContextContainer {
+    transition: all 0.167s forwards;
+  }
+}
+.Arcade {
+  .basicNavButton.secondary:hover {
+    border-left: 15px solid var(--theme-teritary);
+  }
+  .basicNavButton:hover {
+    background-color: var(--theme-secondary-background);
+    border-top: 1px solid var(--theme-teritary);
+    border-bottom: 1px solid var(--theme-teritary);
+    padding: 7px 8px;
+    box-shadow: var(--theme-shadow-light);
+    .navButtonIcon svg {
+      color: var(--theme-teritary);
+      animation: arcadeHover 0.5s infinite;
+    }
+    .navButtonLabel {
+      transition: padding-left 0.167s ease-in-out;
+
+      color: var(--theme-teritary);
+      animation: fuzzGlitch 0.05s infinite;
+      animation: arcadeLift 1s infinite;
+    }
+    .navButtonDropdownArrow {
+      svg {
+        fill: var(--theme-teritary);
+      }
+    }
+    .navButtonDropdownArrow:hover {
+      border: 2px solid var(--theme-teritary);
+
+      animation: fuzzGlitch 0.05s infinite;
+      box-shadow: var(--shadow);
+    }
+  }
+  .basicNavButton.secondary:hover {
+    .navButtonLabel {
+      color: var(--theme-teritary) !important;
+    }
+  }
+}
+.Enterprise {
+  .basicNavButton.secondary {
+    .navButtonLabel {
+      color: var(--theme-text-secondary);
+    }
+  }
+  .basicNavButton.open {
+    background-color: var(--theme-teritary);
+  }
+  .navButtonLabel {
+    font-size: var(--font-small);
+    font-weight: bold;
+  }
+  .basicNavButton {
+    padding: 8px 8px;
+    .navButtonDropdownArrow {
+      height: 20px;
+      svg {
+        fill: var(--theme-primary);
+      }
+    }
+  }
+  .navButtonContextContainer {
+    transition: all 0.167s forwards;
+  }
+}
+.Enterprise {
+  .basicNavButton:hover {
+    transition: background-color 0.167s ease-in-out;
+    background-color: var(--theme-secondary-background);
+
+    .navButtonIcon svg {
+      color: var(--theme-secondary);
+    }
+    .navButtonLabel {
+      transition: padding-left 0.167s ease-in-out;
+      color: var(--theme-secondary);
+    }
+    .navButtonDropdownArrow {
+      svg {
+        fill: var(--theme-secondary);
+      }
+    }
+    .navButtonDropdownArrow:hover {
+      border: 2px solid var(--theme-secondary);
+      box-shadow: var(--shadow);
+    }
+  }
+  .basicNavButton.secondary:hover {
+    .navButtonLabel {
+      color: var(--theme-secondary) !important;
+    }
+  }
+}
+.Resume,
+.Projects,
+.Contact {
+  .basicNavButton {
+    padding: 4px 16px;
+
+    .navButtonDropdownArrow {
+      height: 20px;
+    }
+  }
+  .basicNavButton.secondary {
+    .navButtonLabel {
+      color: var(--theme-text-secondary);
+    }
+    .navButtonIcon {
+      border: none;
+      padding: 0px 2px;
+    }
+  }
+  .navButtonIcon {
+    border: 2px solid var(--theme-text-primary);
+    padding: 0px 2px;
+    border-radius: var(--round-small);
+    color: var(--theme-text-primary);
+  }
+  .navButtonLabel {
+    font-size: var(--font-xsmall);
+    color: var(--theme-text-primary);
+  }
+}
+.Resume,
+.Projects,
+.Contact {
+  .basicNavButton:hover {
+    background-color: var(--theme-teritary);
+    box-shadow: var(--theme-shadow-light);
+    border: none;
+    //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    .navButtonIcon svg {
+      color: var(--theme-text-teritary);
+    }
+    .navButtonIcon {
+      border: 2px solid var(--theme-text-teritary);
+    }
+    .navButtonLabel {
+      transition: padding-left 0.167s ease-in-out;
+      color: var(--theme-text-teritary);
+    }
+    .navButtonDropdownArrow {
+      svg {
+        fill: var(--theme-text-teritary);
+      }
+    }
+    .navButtonDropdownArrow:hover {
+      border: 2px solid var(--theme-text-teritary);
+
+      box-shadow: var(--shadow);
+    }
+  }
+  .basicNavButton.secondary:hover {
+    .navButtonIcon {
+      border: none;
+    }
+    .navButtonLabel {
+      color: var(--theme-text-teritary) !important;
+    }
+  }
+}
+.Sales {
+  .basicNavButton.secondary {
+    .navButtonLabel {
+      color: var(--theme-text-secondary);
+    }
+  }
+  .basicNavButton.open {
+    background-color: var(--theme-teritary);
+    color: var(--theme-white);
+    box-shadow: var(--theme-shadow-light);
+
+    .navButtonDropdownArrow {
+      svg {
+        fill: var(--theme-white);
+      }
+    }
+  }
+  .navButtonLabel {
+    font-size: var(--font-small);
+    font-weight: bold;
+  }
+  .basicNavButton {
+    padding: 8px 8px;
+    .navButtonDropdownArrow {
+      height: 20px;
+      svg {
+        fill: var(--theme-primary);
+      }
+    }
+  }
+  .navButtonContextContainer {
+    transition: all 0.167s forwards;
+    box-shadow: var(--theme-shadow-light);
+  }
+}
+.Sales {
+  .basicNavButton:hover {
+    transition: background-color 0.167s ease-in-out;
+    background-color: var(--theme-primary);
+
+    .navButtonLabel {
+      transition: padding-left 0.167s ease-in-out;
+      color: var(--theme-white);
+    }
+    .navButtonDropdownArrow {
+      svg {
+        fill: var(--theme-white);
+      }
+    }
+    .navButtonDropdownArrow:hover {
+      border: 2px solid var(--theme-white);
+    }
+  }
+  .basicNavButton.secondary:hover {
+    .navButtonLabel {
+      color: var(--theme-white) !important;
+    }
+  }
+}
+@keyframes move {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-70px);
+
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-140px);
+    color: var(--theme-primary);
+    opacity: 0;
+  }
+}
+@keyframes arcadeHover {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+@keyframes arcadeLift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-2px);
+  }
+}
+@keyframes pawEffect {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

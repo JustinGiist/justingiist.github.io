@@ -1,0 +1,17 @@
+
+<svg viewBox="0 0 500 500" width="444.762" height="468.165">
+  <path style="fill: var(--theme-secondary); " d="M 105.01 217.575 C 150.992 232.788 181.919 349.905 173.125 486.536 L 310.168 487.752 C 314.12 450.192 319.397 308.513 389.054 177.953 L 105.01 217.575 Z"></path>
+  <polygon style=" fill: var(--theme-primary);" points="32.433 234.749 454.51 173.931 272.461 26.301"></polygon>
+  <polygon style=" fill:var(--theme-secondary);" points="313.669 441.513 475.744 410.353 475.339 426.945 313.264 444.548"></polygon>
+  <polygon style="fill: var(--theme-primary); " points="446.858 487.034 442.54 401.839 465.823 395.661 458.261 486.992"></polygon>
+  <polygon style="fill: var(--theme-primary); " points="420.571 487.011 425.268 406.135 406.28 411.298 411.316 487.02"></polygon>
+  <polygon style="fill: var(--theme-primary); " points="394.708 414.181 380.237 418.025 384.845 486.956 391.344 487.04"></polygon>
+  <polygon style="fill: var(--theme-primary); " points="369.903 420.769 359.091 423.612 363.928 487.006 367.127 486.967"></polygon>
+  <polygon style="fill: var(--theme-primary); " points="349.158 426.197 341.351 428.26 343.651 486.995 346.301 486.937"></polygon>
+  <polygon style="fill: var(--theme-primary); " points="331.249 430.915 325.792 432.401 327.569 486.973 328.905 486.999"></polygon>
+  <path style=" fill: var(--theme-secondary);" d="M 167.215 486.218 L 166.025 463.274 C 163.866 446.302 141.221 444.051 142.803 464.736 L 147.846 486.21 L 167.215 486.218 Z"></path>
+  <path style=" fill: var(--theme-secondary);" d="M 140.768 432.812 L 138.629 467.064 C 135.15 491.429 98.645 494.661 101.195 464.964 L 109.323 432.812 L 140.768 432.812 Z" transform="matrix(-1, 0, 0, -1, 241.83548, 919.101501)"></path>
+  <path style="fill: var(--theme-primary); " d="M 111.949 486.37 L 108.856 438.417 C 103.824 404.306 51.027 399.782 54.716 441.357 L 66.472 486.37 L 111.949 486.37 Z"></path>
+  <text style="white-space: pre; fill: var(--theme-title-text);font-family: 'Luxurious Roman', cursive; font-size: 16.8px;" x="91.621" y="430.07" transform="matrix(1.013268, -0.246061, -0.04898, 0.998801, -5.902978, 42.393002)">RIP</text>
+  <polygon style=" fill: var(--theme-secondary);" points="40.176 486.2 30.982 423.804 34.36 407.339 43.367 420.708 58.988 486.241"></polygon>
+</svg>
