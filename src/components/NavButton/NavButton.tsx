@@ -79,7 +79,8 @@ const NavButton = ({
       className={
         " basicNavButton " +
         (options.secondary === true && " secondary") +
-        (openContext && options.contextItems ? " open" : "")
+        (openContext && options.contextItems ? " open" : "") +
+        (theme === options.route ? " active" : "")
       }
       onClick={() => {
         if (options.contextItems) {
