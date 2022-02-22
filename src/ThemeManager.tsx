@@ -6,7 +6,7 @@ function getWindowDimensions() {
     height,
   };
 }
-export const mobileWidth = 1000;
+
 export function useWindowDimensions() {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
@@ -476,7 +476,7 @@ class ThemeManager {
   mainComponentTheme: componentSchema = {
     //Primaries
     primary: this.globalColors.redNormal,
-    secondary: "#5d1ca9",
+    secondary: this.globalColors.redDark,
     teritary: "#9f8ffb",
     //Backgrounds
     primaryBackground: this.globalColors.white,

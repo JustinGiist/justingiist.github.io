@@ -1,10 +1,6 @@
 import { useContext, useMemo, useState } from "react";
 import { ThemeManagerContext } from "../../App";
-import {
-  GlobalThemes,
-  mobileWidth,
-  useWindowDimensions,
-} from "../../ThemeManager";
+import { GlobalThemes } from "../../ThemeManager";
 import NavButton, { NavButtonOptions } from "../NavButton/NavButton";
 import "./NavBar.scss";
 const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
@@ -15,7 +11,6 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
   const eightiesNavButtons: string[] = ["Atari", "Invader"];
   const dystopiaNavButtons: string[] = ["Atari", "SportsEsports"];
   const defaultNavButtons: string[] = ["Home", "Themes"];
-  const { height, width } = useWindowDimensions();
   const [label, setLabel] = useState("Webpage");
   const [openContext, setOpenContext] = useState<boolean>(false);
   const [navButtons, setNavButtons] = useState<NavButtonOptions[]>([
@@ -103,20 +98,18 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
 
   return (
     <div className={"navBar horizontal "}>
-      {width >= mobileWidth && (
+      <div
+        className="headline six navBarLabel textTitle"
+        style={{ display: "flex" }}
+      >
+        {"Portfolio - "}
         <div
-          className="headline six navBarLabel textTitle"
-          style={{ display: "flex" }}
+          style={{ marginLeft: "8px", marginBottom: "2px" }}
+          className="textSecondary headline six"
         >
-          {"Portfolio - "}
-          <div
-            style={{ marginLeft: "8px", marginBottom: "2px" }}
-            className="textSecondary headline six"
-          >
-            {theme}
-          </div>
+          {theme}
         </div>
-      )}
+      </div>
       <div className={"navBarContainer " + getTheme}>
         {navButtons.map((y) => {
           return (

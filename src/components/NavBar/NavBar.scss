@@ -29,10 +29,3 @@
 .renderContainer.horizontal {
   flex-direction: column;
 }
-@media only screen and (max-width: 1000px) {
-  .navBar.horizontal {
-    display: grid;
-    grid-template-columns: auto;
-    height: 100%;
-  }
-}
