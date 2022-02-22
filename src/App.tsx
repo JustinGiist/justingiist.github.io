@@ -55,6 +55,13 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route
+              exact
+              path="/"
+              render={() => {
+                return <RenderComponent url={GlobalThemes.Resume} />;
+              }}
+            />
+            <Route
               path={"/" + GlobalThemes.Resume}
               element={<RenderComponent url={GlobalThemes.Resume} />}
             />
