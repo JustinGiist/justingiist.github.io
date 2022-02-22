@@ -1,11 +1,10 @@
 import "./App.css";
 import "./styles.scss";
-import { Route, Redirect, Switch, BrowserRouter } from "react-router-dom";
+import { Route, Redirect, Routes, BrowserRouter } from "react-router-dom";
 import RenderComponent from "./components/RenderComponent/RenderComponent";
 import { useState } from "react";
 import ThemeManager, { GlobalThemes } from "./ThemeManager";
 import React from "react";
-import { Routes } from "react-router-dom";
 export const ThemeManagerContext = React.createContext<any>(undefined);
 const themeManagerApp = new ThemeManager();
 const App = () => {
@@ -57,9 +56,7 @@ const App = () => {
             <Route
               exact
               path="/"
-              render={() => {
-                return <RenderComponent url={GlobalThemes.Resume} />;
-              }}
+              element={<RenderComponent url={GlobalThemes.Resume} />}
             />
             <Route
               path={"/" + GlobalThemes.Resume}
