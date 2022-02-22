@@ -1,6 +1,10 @@
 import { useContext, useMemo, useState } from "react";
 import { ThemeManagerContext } from "../../App";
-import { GlobalThemes } from "../../ThemeManager";
+import {
+  GlobalThemes,
+  mobileWidth,
+  useWindowDimensions,
+} from "../../ThemeManager";
 import NavButton, { NavButtonOptions } from "../NavButton/NavButton";
 import "./NavBar.scss";
 const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
@@ -12,6 +16,7 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
   const dystopiaNavButtons: string[] = ["Atari", "SportsEsports"];
   const defaultNavButtons: string[] = ["Home", "Themes"];
   const [label, setLabel] = useState("Webpage");
+  const dimensions = useWindowDimensions();
   const [openContext, setOpenContext] = useState<boolean>(false);
   const [navButtons, setNavButtons] = useState<NavButtonOptions[]>([
     {
@@ -19,7 +24,7 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
     },
     {
       icon: "Themes",
-      label: "Themes Page",
+      label: "Themes",
       contextItems: [
         {
           icon: "Projects",
@@ -33,12 +38,12 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
         {
           icon: "Sales",
           route: GlobalThemes.Sales,
-        },
+        } /*
         {
           icon: "Test",
           route: GlobalThemes.Test,
         },
-        /*
+        
         {
           icon: "Paw",
           label: "Safari Learning",
@@ -57,7 +62,7 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
           themeChanger: GlobalThemes.Dystopia,
           route: "/dystopia",
         },
-        */
+        */,
       ],
     },
   ]);
@@ -98,18 +103,20 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
 
   return (
     <div className={"navBar horizontal "}>
-      <div
-        className="headline six navBarLabel textTitle"
-        style={{ display: "flex" }}
-      >
-        {"Portfolio - "}
+      {!dimensions.isMobile && (
         <div
-          style={{ marginLeft: "8px", marginBottom: "2px" }}
-          className="textSecondary headline six"
+          className="headline six navBarLabel textTitle"
+          style={{ display: "flex" }}
         >
-          {theme}
+          {"Portfolio - "}
+          <div
+            style={{ marginLeft: "8px", marginBottom: "2px" }}
+            className="textSecondary headline six"
+          >
+            {theme}
+          </div>
         </div>
-      </div>
+      )}
       <div className={"navBarContainer " + getTheme}>
         {navButtons.map((y) => {
           return (
@@ -120,6 +127,13 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
             />
           );
         })}
+        {dimensions.isMobile && (
+          <NavButton
+            options={{ route: GlobalThemes.Contact }}
+            openContext={openContext}
+            setOpenContext={setOpenContext}
+          />
+        )}
       </div>
     </div>
   );

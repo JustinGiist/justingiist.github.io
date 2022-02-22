@@ -6,7 +6,7 @@ function getWindowDimensions() {
     height,
   };
 }
-
+export const mobileWidth = 1000;
 export function useWindowDimensions() {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
@@ -20,7 +20,11 @@ export function useWindowDimensions() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  return windowDimensions;
+  return {
+    width: windowDimensions.width,
+    height: windowDimensions.height,
+    isMobile: windowDimensions.width <= mobileWidth,
+  };
 }
 export interface componentSchema {
   //Primaries
@@ -476,7 +480,7 @@ class ThemeManager {
   mainComponentTheme: componentSchema = {
     //Primaries
     primary: this.globalColors.redNormal,
-    secondary: this.globalColors.redDark,
+    secondary: "#5d1ca9",
     teritary: "#9f8ffb",
     //Backgrounds
     primaryBackground: this.globalColors.white,

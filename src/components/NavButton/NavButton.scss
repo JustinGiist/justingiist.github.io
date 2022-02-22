@@ -7,7 +7,9 @@
     margin: auto 8px;
     color: var(--theme-primary);
   }
-
+  &.active {
+    background-color: var(--theme-secondary);
+  }
   .navButtonLabel {
     font-size: var(--font-medium);
     font-weight: bold;
@@ -384,6 +386,7 @@
     }
   }
 }
+
 .Resume,
 .Projects,
 .Contact {

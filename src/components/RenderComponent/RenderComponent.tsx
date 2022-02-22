@@ -6,7 +6,7 @@ import DystopiaTheme from "../../pages/ThemeSwitcher/DystopiaTheme";
 import EightiesTheme from "../../pages/ThemeSwitcher/EightiesTheme";
 import SafariTheme from "../../pages/ThemeSwitcher/SafariTheme";
 import SpookyTheme from "../../pages/ThemeSwitcher/SpookyTheme";
-import { GlobalThemes } from "../../ThemeManager";
+import { GlobalThemes, useWindowDimensions } from "../../ThemeManager";
 import NavBar from "../NavBar/NavBar";
 import "./RenderComponent.scss";
 import ResumePage from "../../pages/ThemeSwitcher/ResumePage/ResumePage";
@@ -23,6 +23,7 @@ import { useNavigate } from "react-router-dom";
 const RenderComponent = ({ url }: { url: GlobalThemes }) => {
   const { themeManager, theme, setThemeContext } =
     useContext(ThemeManagerContext);
+  const dimensions = useWindowDimensions();
   const navigate = useNavigate();
   let isTopBar = true;
   const routes = new Map<string, any>([
@@ -70,7 +71,7 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
       <div
         className={"renderContainer " + url + (isTopBar ? " horizontal" : "")}
       >
-        {url !== GlobalThemes.Contact && (
+        {url !== GlobalThemes.Contact && !dimensions.isMobile && (
           <button
             className={
               "button secondary contactButton " +

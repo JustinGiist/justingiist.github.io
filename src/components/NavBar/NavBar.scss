@@ -29,3 +29,11 @@
 .renderContainer.horizontal {
   flex-direction: column;
 }
+@media only screen and (max-width: 1000px) {
+  .navBarContainer {
+    padding: 0 8px;
+  }
+  .navBar.horizontal {
+    grid-template-columns: auto;
+  }
+}
