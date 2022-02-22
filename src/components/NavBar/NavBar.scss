@@ -1,0 +1,39 @@
+.vertical {
+  min-height: 100%;
+}
+.horizontal {
+}
+.navBarContainer {
+  padding-left: 16px;
+  height: 56px;
+  color: var(--theme-primary);
+  justify-content: center;
+  column-gap: 1%;
+  display: flex;
+}
+.navBarLabel {
+  padding: 16px 16px 4px 16px;
+  box-sizing: border-box;
+  height: 48px;
+}
+.Arcade {
+  .navBarLabel {
+    font-size: var(--font-large);
+  }
+}
+.navBar.horizontal {
+  display: grid;
+  grid-template-columns: 20% auto 20%;
+  height: 100%;
+}
+.renderContainer.horizontal {
+  flex-direction: column;
+}
+@media only screen and (max-width: 1000px) {
+  .navBarContainer {
+    padding: 0 8px;
+  }
+  .navBar.horizontal {
+    grid-template-columns: auto;
+  }
+}

@@ -1,0 +1,253 @@
+.mainContent.Spooky {
+  padding: 0 !important;
+  > .headline.one {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    margin-top: 16px;
+    color: var(--theme-text-title);
+    text-shadow: 0 1px 3px var(--theme-text-teritary),
+      0 1px 4px var(--theme-secondary);
+  }
+  .spookyContent {
+    max-width: 1060px;
+    max-height: 1160px;
+    min-width: 1060px;
+    min-height: 1160px;
+    margin: auto;
+    position: relative;
+    .background {
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .circleWindow {
+      position: absolute;
+      left: 480px;
+      top: 256px;
+
+      transform: rotateZ(10deg);
+      > svg {
+        width: 160px;
+        height: 160px;
+      }
+      .headline.one {
+        position: absolute;
+        color: var(--theme-white);
+        opacity: 0;
+        font-size: 48px;
+        line-height: 48px;
+        animation: spookyTextAbove 5s infinite ease-in-out;
+      }
+    }
+    .circleWindow:hover {
+      cursor: pointer;
+      > svg {
+        > ellipse {
+          fill: var(--theme-white) !important;
+        }
+      }
+      .headline.one {
+        opacity: 1;
+      }
+    }
+    .windowContent {
+      max-width: 300px;
+      max-height: 500px;
+      position: absolute;
+      left: 356px;
+      top: 520px;
+      display: grid;
+      grid-template-rows: 250px 250px;
+      row-gap: 48px;
+      column-gap: 80px;
+      grid-template-columns: 120px 120px;
+      .window {
+        .headline.one {
+          position: absolute;
+          color: var(--theme-white);
+          opacity: 0;
+          font-size: 48px;
+          line-height: 48px;
+        }
+      }
+      .window:hover {
+        cursor: pointer;
+        .headline.one {
+          opacity: 1;
+        }
+        polygon {
+          fill: var(--theme-white) !important;
+        }
+        path {
+          fill: var(--theme-white) !important;
+        }
+        rect {
+          pointer-events: none;
+        }
+      }
+      .window.topLeft {
+        margin-top: 24px;
+        .headline.one {
+          animation: spookyTextAbove 5s infinite ease-in-out;
+        }
+        > svg {
+          min-width: 120px;
+          min-height: 200px;
+        }
+      }
+      .window.topRight {
+        .headline.one {
+          animation: spookyTextAbove 5s infinite ease-in-out;
+        }
+        > svg {
+          min-width: 140px;
+          min-height: 220px;
+        }
+      }
+      .window.bottomLeft {
+        transform: translateX(40px);
+        .headline.one {
+          animation: spookyTextLeft 5s infinite ease-in-out;
+        }
+        > svg {
+          min-width: 100px;
+          min-height: 200px;
+        }
+      }
+      .window.bottomRight {
+        .headline.one {
+          transform: rotateY(-180deg);
+          animation: spookyTextRight 5s infinite ease-in-out;
+        }
+        > svg {
+          min-width: 100px;
+          min-height: 200px;
+          transform: rotateY(180deg);
+        }
+      }
+    }
+  }
+}
+.cloud {
+  position: absolute;
+  top: -10px;
+  > svg {
+    width: 200px;
+    height: 200px;
+  }
+}
+.cloud.left {
+  left: 0;
+}
+.cloud.right {
+  right: 0;
+  transform: rotateY(180deg);
+}
+.spookyModal {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  .spookyModalContent {
+    margin: auto;
+    z-index: 99;
+    animation: grow 0.167s forwards;
+    background-color: var(--theme-secondary-background-transparent);
+    width: 600px;
+    height: 900px;
+    padding: 48px;
+    border: 2px solid var(--theme-teritary);
+    animation: spookySmoke 10s infinite both;
+    position: relative;
+    .spookyIcon {
+      position: absolute;
+
+      margin: 16px;
+      > svg {
+        fill: var(--theme-teritary);
+      }
+    }
+    .spookyIcon.left {
+      left: 0;
+      top: 0;
+    }
+    .spookyIcon.right {
+      right: 0;
+      top: 0;
+    }
+    .spookyIcon.right:hover {
+      cursor: pointer;
+      > svg {
+        fill: var(--theme-text-teritary);
+      }
+    }
+    .spookyIcon.bottomRight {
+      bottom: 0;
+      right: 0;
+    }
+    .spookyIcon.bottomLeft {
+      bottom: 0;
+      left: 0;
+    }
+    > .headline.three {
+      margin-top: 32px;
+    }
+    .headline.one {
+      text-align: center;
+      color: var(--theme-text-teritary);
+      font-size: 48px;
+    }
+    .headline.two {
+      margin-bottom: 16px;
+    }
+    .headline {
+      text-align: center;
+    }
+    .headline.five:hover {
+      cursor: pointer;
+    }
+    .context {
+      margin-top: 32px;
+      hr {
+        margin: 24px auto;
+      }
+    }
+    .bullet {
+      margin-top: 16px;
+    }
+    .ticket {
+      padding-top: 8px;
+      background-color: var(--theme-secondary);
+      margin: 0 16px;
+      margin-top: 32px;
+      pointer-events: all;
+      .headline.three {
+        margin-top: 8px;
+      }
+      .headline.five {
+        margin-top: 16px;
+        padding: 2px 0;
+        &:hover {
+          background-color: var(--theme-secondary);
+        }
+      }
+    }
+    .ticket.primary {
+      margin: 32px 0 0 0;
+      background-color: var(--theme-primary);
+    }
+    .ticket:hover {
+      background-color: var(--theme-teritary);
+      cursor: pointer;
+      animation: lift 0.167s forwards;
+    }
+  }
+}
