@@ -122,6 +122,7 @@ const EnterpriseTheme = () => {
           <div className="headline two">Bar Chart</div>
 
           <Chart
+            className="chart"
             chartType="BarChart"
             loader={<div>Loading Chart</div>}
             data={[
@@ -152,6 +153,7 @@ const EnterpriseTheme = () => {
           <div className="headline two">Line Chart</div>
 
           <Chart
+            className="chart"
             chartType="LineChart"
             loader={<div>Loading Chart</div>}
             data={[
@@ -184,6 +186,7 @@ const EnterpriseTheme = () => {
         <div className="card Left chart">
           <div className="headline two">Pie Chart</div>
           <Chart
+            className="chart"
             chartType="PieChart"
             data={[
               ["Task", "Hours per Day"],
