@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.65a00bba.chunk.css",
-    "main.js": "/static/js/main.5fadfc60.chunk.js",
-    "main.js.map": "/static/js/main.5fadfc60.chunk.js.map",
+    "main.css": "/static/css/main.3ecb9d1d.chunk.css",
+    "main.js": "/static/js/main.ba0cba13.chunk.js",
+    "main.js.map": "/static/js/main.ba0cba13.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.ed2f3d1b.js",
     "runtime-main.js.map": "/static/js/runtime-main.ed2f3d1b.js.map",
     "static/js/2.36ddd7d6.chunk.js": "/static/js/2.36ddd7d6.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.392d729b.chunk.js": "/static/js/3.392d729b.chunk.js",
     "static/js/3.392d729b.chunk.js.map": "/static/js/3.392d729b.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.65a00bba.chunk.css.map": "/static/css/main.65a00bba.chunk.css.map",
+    "static/css/main.3ecb9d1d.chunk.css.map": "/static/css/main.3ecb9d1d.chunk.css.map",
     "static/js/2.36ddd7d6.chunk.js.LICENSE.txt": "/static/js/2.36ddd7d6.chunk.js.LICENSE.txt",
     "static/media/Amazon_logo.4f66fa08.svg": "/static/media/Amazon_logo.4f66fa08.svg",
     "static/media/BottomLeftWindow.ebba0d66.svg": "/static/media/BottomLeftWindow.ebba0d66.svg",
     "static/media/CircleWindow.833c6ba9.svg": "/static/media/CircleWindow.833c6ba9.svg",
     "static/media/Clouds.26884141.svg": "/static/media/Clouds.26884141.svg",
-    "static/media/HHouse.17714b7b.svg": "/static/media/HHouse.17714b7b.svg",
+    "static/media/HHouse.9b64304a.svg": "/static/media/HHouse.9b64304a.svg",
     "static/media/LeftTopWindow.eb990e02.svg": "/static/media/LeftTopWindow.eb990e02.svg",
     "static/media/App.css": "/static/media/Nightscary Free Trial.e5bae50c.ttf",
     "static/media/RightTopWindow.768fe485.svg": "/static/media/RightTopWindow.768fe485.svg",
@@ -55,7 +55,7 @@
   "entrypoints": [
     "static/js/runtime-main.ed2f3d1b.js",
     "static/js/2.36ddd7d6.chunk.js",
-    "static/css/main.65a00bba.chunk.css",
-    "static/js/main.5fadfc60.chunk.js"
+    "static/css/main.3ecb9d1d.chunk.css",
+    "static/js/main.ba0cba13.chunk.js"
   ]
 }

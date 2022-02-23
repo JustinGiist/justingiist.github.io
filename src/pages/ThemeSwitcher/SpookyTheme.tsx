@@ -346,7 +346,10 @@ const SpookyTheme = ({}: {}) => {
                 points="271.992 153.952 250.133 81.88 257.91 78.996 275.872 152.685"
               ></polygon>
             </g>
-            <g className="window" onClick={() => changePage(SpookyPages.Tours)}>
+            <g
+              className="window one"
+              onClick={() => changePage(SpookyPages.Tours)}
+            >
               <text
                 style={{
                   whiteSpace: "pre",
@@ -377,7 +380,10 @@ const SpookyTheme = ({}: {}) => {
                 points="201.543 270.859 196.218 218.232 221.266 215.091 219.124 270.127"
               ></polygon>
             </g>
-            <g className="window" onClick={() => changePage(SpookyPages.About)}>
+            <g
+              className="window two"
+              onClick={() => changePage(SpookyPages.About)}
+            >
               <text
                 style={{
                   whiteSpace: "pre",
@@ -409,7 +415,7 @@ const SpookyTheme = ({}: {}) => {
               ></polygon>
             </g>
             <g
-              className="window"
+              className="window three"
               onClick={() => changePage(SpookyPages.Location)}
             >
               <text
@@ -464,7 +470,7 @@ const SpookyTheme = ({}: {}) => {
               ></rect>
             </g>
             <g
-              className="window"
+              className="window four"
               onClick={() => changePage(SpookyPages.Events)}
             >
               <text

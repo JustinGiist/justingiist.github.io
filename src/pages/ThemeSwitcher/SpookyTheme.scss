@@ -55,112 +55,6 @@
         }
       }
     }
-    .circleWindow {
-      position: absolute;
-      left: 480px;
-      top: 256px;
-
-      transform: rotateZ(10deg);
-      > svg {
-        width: 160px;
-        height: 160px;
-      }
-      .headline.one {
-        position: absolute;
-        color: var(--theme-white);
-        opacity: 0;
-        font-size: 48px;
-        line-height: 48px;
-        animation: spookyTextAbove 5s infinite ease-in-out;
-      }
-    }
-    .circleWindow:hover {
-      cursor: pointer;
-      > svg {
-        > ellipse {
-          fill: var(--theme-white) !important;
-        }
-      }
-      .headline.one {
-        opacity: 1;
-      }
-    }
-    .windowContent {
-      max-width: 300px;
-      max-height: 500px;
-      position: absolute;
-      left: 356px;
-      top: 520px;
-      display: grid;
-      grid-template-rows: 250px 250px;
-      row-gap: 48px;
-      column-gap: 80px;
-      grid-template-columns: 120px 120px;
-      .window {
-        .headline.one {
-          position: absolute;
-          color: var(--theme-white);
-          opacity: 0;
-          font-size: 48px;
-          line-height: 48px;
-        }
-      }
-      .window:hover {
-        cursor: pointer;
-        .headline.one {
-          opacity: 1;
-        }
-        polygon {
-          fill: var(--theme-white) !important;
-        }
-        path {
-          fill: var(--theme-white) !important;
-        }
-        rect {
-          pointer-events: none;
-        }
-      }
-      .window.topLeft {
-        margin-top: 24px;
-        .headline.one {
-          animation: spookyTextAbove 5s infinite ease-in-out;
-        }
-        > svg {
-          min-width: 120px;
-          min-height: 200px;
-        }
-      }
-      .window.topRight {
-        .headline.one {
-          animation: spookyTextAbove 5s infinite ease-in-out;
-        }
-        > svg {
-          min-width: 140px;
-          min-height: 220px;
-        }
-      }
-      .window.bottomLeft {
-        transform: translateX(40px);
-        .headline.one {
-          animation: spookyTextLeft 5s infinite ease-in-out;
-        }
-        > svg {
-          min-width: 100px;
-          min-height: 200px;
-        }
-      }
-      .window.bottomRight {
-        .headline.one {
-          transform: rotateY(-180deg);
-          animation: spookyTextRight 5s infinite ease-in-out;
-        }
-        > svg {
-          min-width: 100px;
-          min-height: 200px;
-          transform: rotateY(180deg);
-        }
-      }
-    }
   }
 }
 .cloud {
@@ -278,6 +172,34 @@
       background-color: var(--theme-teritary);
       cursor: pointer;
       animation: lift 0.167s forwards;
+    }
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .window.one {
+    text {
+      animation: spookyTextAbove 5s 4s infinite ease-in-out !important;
+    }
+  }
+  .window.two {
+    text {
+      animation: spookyTextAbove 5s 0.5s infinite ease-in-out !important;
+    }
+  }
+  .window.three {
+    text {
+      animation: spookyTextAbove 5s 2s infinite ease-in-out !important;
+    }
+  }
+  .window.four {
+    text {
+      animation: spookyTextAbove 5s 6s infinite ease-in-out !important;
+    }
+  }
+  .window,
+  .circleWindowNew {
+    text {
+      opacity: 1 !important;
     }
   }
 }
