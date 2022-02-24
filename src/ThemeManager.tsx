@@ -159,9 +159,9 @@ class ThemeManager {
   previousThemeName: GlobalThemes;
   globalSizes: ComponentSizingSchema = {
     fontXSmall: 12,
-    fontSmall: 20,
-    fontMedium: 24,
-    fontLarge: 32,
+    fontSmall: 16,
+    fontMedium: 18,
+    fontLarge: 24,
     fontXLarge: 48,
     radiusSmall: 4,
     radiusMedium: 8,

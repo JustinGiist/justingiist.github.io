@@ -175,25 +175,72 @@
     }
   }
 }
+.mobileSpookyButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: linear-gradient(var(--theme-primary), var(--theme-teritary));
+  margin-top: 16px;
+  font-size: var(--font-xlarge);
+  color: var(--theme-text-title);
+  box-shadow: var(--theme-shadow-light);
+}
 @media only screen and (max-width: 1000px) {
+  .mainContent.Spooky {
+    #TitleText {
+      margin-top: 48px;
+    }
+    .cloud {
+      svg {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+  .spookyModalContent {
+    padding: 8px !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow-y: auto;
+    .ticket {
+      margin-top: 8px !important;
+    }
+  }
+  .spookyContent {
+    .background {
+      height: 60% !important;
+      width: 80% !important;
+      margin: 0 auto;
+      position: relative;
+      margin-bottom: -16px;
+    }
+  }
+  /*
   .window.one {
     text {
-      animation: spookyTextAbove 5s 4s infinite ease-in-out !important;
+      animation: spookyTextAboveMobile 5s -4s infinite ease-in-out !important;
     }
   }
   .window.two {
     text {
-      animation: spookyTextAbove 5s 0.5s infinite ease-in-out !important;
+      animation: spookyTextAboveMobile 5s -0.5s infinite ease-in-out !important;
     }
   }
   .window.three {
     text {
-      animation: spookyTextAbove 5s 2s infinite ease-in-out !important;
+      animation: spookyTextAboveMobile 5s -2s infinite ease-in-out !important;
     }
   }
   .window.four {
     text {
-      animation: spookyTextAbove 5s 6s infinite ease-in-out !important;
+      animation: spookyTextAboveMobile 5s -6s infinite ease-in-out !important;
+    }
+  }
+  .circleWindowNew {
+    text {
+      animation: spookyTextAboveMobile 5s -3s infinite ease-in-out !important;
     }
   }
   .window,
@@ -201,5 +248,5 @@
     text {
       opacity: 1 !important;
     }
-  }
+  }*/
 }

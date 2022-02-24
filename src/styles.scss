@@ -296,6 +296,20 @@ body {
     transform: rotateZ(-1deg) translateY(-8px) translateX(-16px);
   }
 }
+@keyframes spookyTextAboveMobile {
+  0% {
+    text-shadow: 0 1px 14px var(--theme-text-teritary),
+      0 1px 16px var(--theme-secondary);
+  }
+  50% {
+    text-shadow: 0 1px 6px var(--theme-primary),
+      0 1px 6px var(--theme-text-teritary);
+  }
+  100% {
+    text-shadow: 0 2px 13px var(--theme-text-teritary),
+      0 1px 15px var(--theme-secondary);
+  }
+}
 @keyframes spookyTextTitle {
   0% {
     text-shadow: 0 1px 3px var(--theme-text-teritary),

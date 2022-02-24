@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import Icon from "../../components/Icon/Icon";
-import { GlobalThemes } from "../../ThemeManager";
+import { GlobalThemes, useWindowDimensions } from "../../ThemeManager";
 import "./SpookyTheme.scss";
 enum SpookyPages {
   Tickets,
@@ -116,7 +116,7 @@ const SpookyTheme = ({}: {}) => {
   const [spookyElement, setSpookyElement] = useState<SpookyElement | undefined>(
     undefined
   );
-  const tourRef = useRef<any>();
+  const dimensions = useWindowDimensions();
   const changePage = (page: SpookyPages | undefined) => {
     if (page === undefined) {
       setSpookyElement(undefined);
@@ -425,7 +425,7 @@ const SpookyTheme = ({}: {}) => {
                   fontFamily: "Luxurious Roman, cursive",
                   fontSize: "32px",
                 }}
-                x="148.621"
+                x="128.621"
                 y="372.07"
                 transform="matrix(1.070337, -0.25992, -0.05174, 1.055056, -23.924142, 24.221879)"
               >
@@ -528,7 +528,40 @@ const SpookyTheme = ({}: {}) => {
           </svg>
         </div>
         {spookyElement && spookyModal(spookyElement)}
-
+        {dimensions.isMobile && (
+          <>
+            <div
+              className="mobileSpookyButton"
+              onClick={() => changePage(SpookyPages.Tickets)}
+            >
+              Tickets
+            </div>
+            <div
+              className="mobileSpookyButton"
+              onClick={() => changePage(SpookyPages.Tours)}
+            >
+              Tours
+            </div>
+            <div
+              className="mobileSpookyButton"
+              onClick={() => changePage(SpookyPages.About)}
+            >
+              About
+            </div>
+            <div
+              className="mobileSpookyButton"
+              onClick={() => changePage(SpookyPages.Location)}
+            >
+              Location
+            </div>
+            <div
+              className="mobileSpookyButton"
+              onClick={() => changePage(SpookyPages.Events)}
+            >
+              Events
+            </div>
+          </>
+        )}
         {/*<div
           className="circleWindow"
           onClick={() => {
