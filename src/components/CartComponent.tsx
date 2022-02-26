@@ -1,5 +1,6 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { getRandomKey } from "../pages/ThemeSwitcher/SalesTheme/SalesTheme";
+import { useWindowDimensions } from "../ThemeManager";
 import Icon from "./Icon/Icon";
 interface iCart {
   cartItems: any[];
@@ -11,6 +12,8 @@ const CartComponent = (props: iCart) => {
   const [showCart, setShowCart] = useState<boolean>(false);
   const [cartTotal, setCartTotal] = useState<string>("");
   const [openContext, setOpenContext] = useState<boolean>(false);
+  const cartContextRef = useRef<HTMLDivElement | null>(null);
+  const dimensions = useWindowDimensions();
   useEffect(() => {
     const timeout = setTimeout(() => {
       setCartNum(props.cartItems.length);
@@ -21,6 +24,19 @@ const CartComponent = (props: iCart) => {
     }, 1170);
     return () => clearTimeout(timeout);
   }, [props.cartItems]);
+  const checkContextClose = (e: any) => {
+    if (cartContextRef.current) {
+      if (!cartContextRef.current.contains(e.target)) {
+        setOpenContext(false);
+      }
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("click", checkContextClose);
+    return () => {
+      window.removeEventListener("click", checkContextClose);
+    };
+  }, []);
   useEffect(() => {
     let total = 0;
     if (props.cartItems.length > 0) {
@@ -74,8 +90,18 @@ const CartComponent = (props: iCart) => {
         <div className="cartDropdown">
           <div className="cartHeader">
             <div className="rightPositioner">
+              {dimensions.isMobile && (
+                <div
+                  onClick={() => {
+                    setShowCart(!showCart);
+                  }}
+                >
+                  <Icon icon="Close" fontSize={24} />
+                </div>
+              )}
               <div
                 className="context"
+                ref={cartContextRef}
                 onClick={() => setOpenContext(!openContext)}
               >
                 <Icon icon="Context" />

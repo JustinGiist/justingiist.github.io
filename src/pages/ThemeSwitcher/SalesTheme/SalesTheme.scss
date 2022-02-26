@@ -627,3 +627,186 @@
 .activeImg {
   left: -400px;
 }
+.mobileCardContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: var(--round-large);
+  margin: 40px 8px 0 8px;
+  .candyCardBackground {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      #fff5e0 10px 20px,
+      #b2f7ef 20px 30px,
+      #9b753d 30px 40px,
+      #fff5e0 40px 50px,
+      #f2b5d4 50px 60px
+    );
+    padding: 8px;
+    position: relative;
+  }
+  .candyCard {
+    display: grid;
+    grid-template-rows: 216px 80px;
+    border-radius: var(--round-large);
+    box-shadow: var(--theme-shadow-dark);
+    background-color: #fffbf7;
+    min-height: 296px;
+    overflow: hidden;
+    .headline.four {
+      margin-bottom: 0 !important;
+    }
+    .gradientButtonBrown {
+      max-height: 80px;
+      margin-top: auto;
+    }
+    .addButton {
+      margin: 8px 8px 8px auto;
+      padding: 8px;
+      font-size: var(--font-xlarge);
+      font-weight: 600;
+      height: 40px;
+      display: flex;
+    }
+    .imgContainer {
+      display: flex;
+      position: relative;
+      img {
+        height: 224px;
+        max-height: 224px;
+        width: 100%;
+
+        box-shadow: var(--theme-shadow-light);
+      }
+      .readMore {
+        position: absolute;
+        text-align: center;
+        font-weight: 700;
+        color: var(--theme-white);
+        background-color: var(--theme-text-title);
+        opacity: 0.8;
+        transition: 0.167s;
+        height: 24px;
+        width: fit-content;
+        padding: 0 8px;
+        bottom: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+        .readMore {
+          opacity: 0.9;
+          box-shadow: var(--theme-shadow-dark);
+        }
+      }
+    }
+
+    .headline.two {
+      margin-top: 8px !important;
+      font-size: var(--font-large) !important;
+    }
+    .headline.three {
+      margin: auto 0;
+    }
+    .pillButton {
+      margin-top: auto;
+      margin-bottom: 16px;
+    }
+  }
+  .descriptionCardBackground {
+    width: 90%;
+    margin: auto;
+    padding: 8px;
+    border-radius: var(--round-medium);
+    box-shadow: var(--theme-shadow-light);
+
+    background-image: repeating-linear-gradient(
+      -45deg,
+      #fff5e0 10px 20px,
+      #b2f7ef 20px 30px,
+      #9b753d 30px 40px,
+      #fff5e0 40px 50px,
+      #f2b5d4 50px 60px
+    );
+  }
+  .descriptionCard {
+    padding: 32px 16px 8px 16px;
+    box-sizing: border-box;
+    height: 100%;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .mainContent.Sales {
+    .cartDropdown {
+      right: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      .rightPositioner {
+        display: flex;
+        column-gap: 16px;
+      }
+      .cartHeader {
+        .headline.two {
+          width: 100%;
+        }
+      }
+      .cartChildren {
+        max-height: 100%;
+      }
+    }
+    .headline.one {
+      font-size: var(--font-xlarge) !important;
+    }
+    .cartBall.animate {
+      left: 80% !important;
+      top: 128px !important;
+    }
+    .candyCardContainer {
+      .candyCard {
+        grid-template-columns: auto !important;
+      }
+    }
+    .cart {
+      top: 52px !important;
+      right: 8px !important;
+    }
+    .designButton {
+      padding: 16px !important;
+    }
+    .salesContent {
+      margin-top: 120px !important;
+      width: 100% !important;
+      > .flex {
+        flex-direction: column;
+      }
+    }
+    .pictureContent {
+      width: 100% !important;
+      grid-template-columns: auto !important;
+      row-gap: 16px !important;
+      img {
+        max-width: var(--width) !important;
+      }
+      img:nth-child(3) {
+        margin-top: 128px;
+      }
+    }
+    .videoContent {
+      width: 100% !important;
+      iframe {
+        width: 100% !important;
+      }
+    }
+    .salesTopBar {
+      padding-top: 8px !important;
+      transform: translateY(-1px);
+    }
+    .background {
+      svg {
+        width: 100px !important;
+      }
+    }
+  }
+}

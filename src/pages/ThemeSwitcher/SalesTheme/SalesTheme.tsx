@@ -1,5 +1,5 @@
 import Icon from "../../../components/Icon/Icon";
-import { GlobalThemes } from "../../../ThemeManager";
+import { GlobalThemes, useWindowDimensions } from "../../../ThemeManager";
 import lolipop from "../../../assets/lolipop.jpg";
 import candy from "../../../assets/candy.jpg";
 import candy2 from "../../../assets/candy2.jpg";
@@ -413,6 +413,7 @@ const CandyCard = ({
   setSelectedCandy: Dispatch<SetStateAction<string | undefined>>;
   parentSelectedCandy: string | undefined;
 }) => {
+  const dimensions = useWindowDimensions();
   const [iSelectedCandy, setInnerSC] = useState<string | undefined>();
   const setCandy = (value: string | undefined) => {
     if (iSelectedCandy != value) {
@@ -426,7 +427,7 @@ const CandyCard = ({
   useEffect(() => {
     setInnerSC(parentSelectedCandy);
   }, []);
-  return (
+  return !dimensions.isMobile ? (
     <div className="candyCardContainer" key={getRandomKey()}>
       <div className="candyCardBackground">
         <div className="candyCard">
@@ -463,6 +464,55 @@ const CandyCard = ({
           >
             <div className="headline four textPrimary">{item.title}</div>
             <div className="headline three">${item.price}</div>
+            <div className="addButton">
+              <Icon icon="Plus" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className="mobileCardContainer" key={getRandomKey()}>
+      <div className="candyCardBackground">
+        <div className="candyCard">
+          <div
+            className="imgContainer"
+            onClick={() => {
+              setCandy(item.title);
+            }}
+          >
+            <div className="descriptionCardPositioner">
+              <div className="descriptionCard">
+                <div className="headline four textSecondary">
+                  {item.description}
+                </div>
+              </div>
+            </div>
+            <img
+              src={item.img}
+              key={getRandomKey()}
+              className={`unactiveImg ${
+                iSelectedCandy === item.title ? " activeImg" : ""
+              }`}
+            />
+            <div className="readMore">
+              {iSelectedCandy === item.title
+                ? "View Image"
+                : "View Description"}
+            </div>
+          </div>
+          <div
+            className="flex gradientButtonBrown"
+            onClick={(e) => {
+              setCandy(undefined);
+              addToCart(item, e);
+            }}
+          >
+            <div className="flex column">
+              <div className="headline four textPrimary">{item.title}</div>
+              <div className="headline three">${item.price}</div>
+            </div>
+
             <div className="addButton">
               <Icon icon="Plus" />
             </div>
