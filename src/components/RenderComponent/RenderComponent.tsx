@@ -115,6 +115,7 @@ export const CalculatedScrollComponent = (props: {
   refresh: any[];
   overflowHidden?: boolean;
 }) => {
+  const dimensions = useWindowDimensions();
   const resizeRef = useRef<any>(null);
   const buttonSpacing = useRef<number>(0);
   const initialResize = (firstCall?: boolean) => {
@@ -147,9 +148,11 @@ export const CalculatedScrollComponent = (props: {
   const resizeChildrenContainer = () => {
     if (resizeRef.current) {
       const resizeContainerRect = resizeRef.current.getBoundingClientRect();
+      const calcWeight = window.innerWidth;
       const calcHeight =
         window.innerHeight - resizeContainerRect.y - 0 - buttonSpacing.current;
       resizeRef.current.style.height = calcHeight.toString() + "px";
+      resizeRef.current.style.width = calcWeight.toString() + "px";
     }
   };
   return (

@@ -787,7 +787,7 @@
       grid-template-columns: auto !important;
       row-gap: 16px !important;
       img {
-        max-width: var(--width) !important;
+        max-width: 100% !important;
         margin-right: 0 !important;
       }
       img:nth-child(3) {
