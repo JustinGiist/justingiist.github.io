@@ -4,8 +4,11 @@ import ParallaxBackground, {
   ParallaxBackgroundCircle,
   ParallaxBackgroundTriangles,
 } from "../../../components/BezierBackground/ParallaxBackground";
+import Icon from "../../../components/Icon/Icon";
+import { useWindowDimensions } from "../../../ThemeManager";
 import "./ContactPage.scss";
 const ContactPage = () => {
+  const dimensions = useWindowDimensions();
   const backgroundRef = useRef<any>(null);
   const backgroundRef2 = useRef<any>(null);
   const [values, setValues] = useState({
@@ -20,29 +23,38 @@ const ContactPage = () => {
   const handleSubmit = () => {};
   useEffect(() => {
     document.addEventListener("mousemove", parallax);
-
+    if (dimensions.isMobile) {
+      parallax({});
+    }
     //return document.removeEventListener("mousemove", parallax);
   }, []);
   const parallax = (event: any) => {
-    let scale = false;
-    if (window.innerHeight <= 1000 || window.innerWidth >= 1000) scale = true;
-    if (backgroundRef.current) {
-      //const position = backgroundRef.current.getBoundClientRect();
-      const position = 1;
-      const x = (window.innerWidth - event.pageX * position) / 100;
-      const y = (window.innerHeight - event.pageY * position) / 100;
+    if (dimensions.isMobile) {
+      if (backgroundRef.current && backgroundRef2.current) {
+        backgroundRef.current.style.transform = ` scale(1.2)`;
+        backgroundRef2.current.style.transform = ` scale(1.2)`;
+      }
+    } else {
+      let scale = false;
+      if (window.innerHeight <= 1000 || window.innerWidth >= 1000) scale = true;
+      if (backgroundRef.current) {
+        const position = 1;
+        const x = (window.innerWidth - event.pageX * position) / 100;
+        const y = (window.innerHeight - event.pageY * position) / 100;
 
-      backgroundRef.current.style.transform =
-        `translateX(${x}px) translateY(${y}px) ` + (scale ? ` scale(2)` : ``);
-    }
-    if (backgroundRef2.current) {
-      //const position = backgroundRef.current.getBoundClientRect();
-      const position = 2;
-      const x = (window.innerWidth - event.pageX * position) / 100;
-      const y = (window.innerHeight - event.pageY * position) / 100;
+        backgroundRef.current.style.transform =
+          `translateX(${x}px) translateY(${y}px) ` +
+          (scale ? ` scale(1.5)` : ``);
+      }
+      if (backgroundRef2.current) {
+        const position = 2;
+        const x = (window.innerWidth - event.pageX * position) / 100;
+        const y = (window.innerHeight - event.pageY * position) / 100;
 
-      backgroundRef2.current.style.transform =
-        `translateX(${x}px) translateY(${y}px) ` + (scale ? ` scale(2)` : ``);
+        backgroundRef2.current.style.transform =
+          `translateX(${x}px) translateY(${y}px) ` +
+          (scale ? ` scale(1.5)` : ``);
+      }
     }
   };
   return (
@@ -56,6 +68,22 @@ const ContactPage = () => {
       <div className="centerResumeContainer">
         <div className="textPrimary headline one">Contact</div>
         <div className="contactContainer">
+          <div className="contactItem">
+            <Icon icon="Email" fontSize={30} />
+            <div className="headline four">JustinGistDesigner@gmail.com</div>
+          </div>
+          <div className="contactItem">
+            <Icon icon="Linkedin" fontSize={30} />
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              href="https://linkedin.com/in/justin-gist-270862b2/"
+              className="headline four"
+            >
+              Justin Gist Linkedin Profile
+            </a>
+          </div>
+          {/*<>
           <div className="inputContainer">
             <div className="textInput slideOne">
               <TextField
@@ -121,7 +149,7 @@ const ContactPage = () => {
             onClick={() => handleSubmit()}
           >
             Submit
-          </button>
+          </button></>*/}
         </div>
       </div>
     </>

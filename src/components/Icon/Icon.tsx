@@ -52,6 +52,8 @@ import {
   Delete,
   DotsVertical,
   Facebook,
+  Linkedin,
+  Email,
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -105,6 +107,8 @@ const GetIcon: any = {
   FB: Facebook,
   AMZN: Amazon,
   TSLA: Tesla,
+  Email,
+  Linkedin,
 };
 const Icon = ({
   icon,

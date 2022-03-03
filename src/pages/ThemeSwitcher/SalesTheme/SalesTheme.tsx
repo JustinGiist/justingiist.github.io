@@ -196,6 +196,9 @@ const SalesTheme = ({}: {}) => {
             <div className="pictureContent">
               <div className="flexColumn">
                 <div className="headline one textTitle">Santa's Elves</div>
+                <div className="headline three textTeritary">
+                  Feburary 22, 2022
+                </div>
                 <div className="headline four textSecondary">
                   This week we have been visited by Santa's Elves! They've
                   brought all their favorite treats along with them!
@@ -205,6 +208,9 @@ const SalesTheme = ({}: {}) => {
               <img src={candy} />
               <div className="flexColumn">
                 <div className="headline one textTitle">Kid's Day</div>
+                <div className="headline three textTeritary">
+                  Janurary 18, 2022
+                </div>
                 <div className="headline four textSecondary">
                   Come on down with the whole family! We've setup stations for
                   all the kids to learn how candy is made and even make their
@@ -217,6 +223,9 @@ const SalesTheme = ({}: {}) => {
                 <div className="headline one textTitle">
                   Chocolate Lovers Day
                 </div>
+                <div className="headline three textTeritary">
+                  December 12, 2022
+                </div>
                 <div className="headline four textSecondary">
                   Come in and explore the world of chocolate. We've set up
                   booths with different chocolate vendors from around the world
@@ -228,6 +237,9 @@ const SalesTheme = ({}: {}) => {
               <div className="flexColumn">
                 <div className="headline one textTitle">
                   Cake Ball Decorating
+                </div>
+                <div className="headline three textTeritary">
+                  November 8, 2022
                 </div>
                 <div className="headline four textSecondary">
                   Come on in and have some fun with the whole family! We have

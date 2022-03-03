@@ -438,7 +438,7 @@ class ThemeManager {
   };
   salesComponentTheme: componentSchema = {
     //Primaries
-    primary: "#ffd5fd",
+    primary: "#ff93fa",
     secondary: "#59cdff",
     teritary: "#b0fbff",
     //Backgrounds
