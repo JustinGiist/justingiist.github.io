@@ -151,7 +151,7 @@
   .parallax_layer.one {
     > .headline.one.textTitle {
       margin-top: 20%;
-      font-size: 80px;
+      font-size: 60px;
       font-family: "Jura", sans-serif;
     }
   }
@@ -211,12 +211,9 @@
     z-index: 99;
     align-self: flex-start;
     margin-bottom: 24px;
-    color: var(--theme-white);
+    color: var(--theme-secondary);
     align-self: flex-end;
     border-radius: var(--round-small);
-    padding: 4px 16px 4px 8px;
-    background: linear-gradient(var(--theme-primary), var(--theme-secondary));
-    box-shadow: var(--theme-shadow-dark);
     transform: translateX(24px);
   }
   > .headline.three {

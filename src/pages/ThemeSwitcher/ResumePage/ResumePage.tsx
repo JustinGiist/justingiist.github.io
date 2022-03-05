@@ -60,40 +60,10 @@ const ResumePage = () => {
       ],
     },
   ];
-  const jobList: iDisplay[] = [
-    {
-      label: "StatusQuote Inc - Developer",
-      date: "January 2020 - Present",
-      context: [
-        "Constructed a React Native and React Combined Solution that could run both simultaneously. Then split Logic Codebase from the Rendering Codebase of each platform (IOS, Android, Website). This allowed the Logic Codebase to be reused for all platforms.",
-        "Developed the UI/UX Experience for an Enterprise-Level Investment app built in React Native and React. Used many common controls such as Material, Kendo and many Chart controls for Dashboards.",
-        "Exchanged communications with many top level clients, such as the Head of a Global Medical Company, to accurately create enterprise level in-house financial applications and organizational software.",
-        "Created programs that organizes financial data into Government Regulated Excel and PDF documents to be submitted easily. Simplifying a meticulous week-long process, to only a click of a button.",
-        "Worked on a multitude of projects ranging from React, Angular, .Net MVC, React Native, and many older in-house systems. I adapted quickly to new languages, new techniques and new enviornments to be successful.",
-      ],
-    },
-    {
-      label: "GhoulCode",
-      date: "2019 - Present",
-      context: [
-        "Enhanced the UI/UX Experience design of the webpage. Made it so the customers could find products and added visual enhancements that made the site more interactive and fun.",
-      ],
-    },
-    {
-      label: "ABC Fine Wine & Spirits - Team Manager",
-      date: "2017 - 2019",
-      context: [
-        "Managed and assigned daily tasks to all team members. Accepted Truck deliveries, Money deposits, and took inventory.",
-      ],
-    },
-    {
-      label: "Falcon of the Nile Water Solutions - Account Manager",
-      date: "2008 - 2017",
-      context: [
-        "Managed many commerical Bodies of Water with Clients such as Disney, Universal, Hilton and many more.",
-        "Trained many employees to abide by Government Water Regulations.",
-      ],
-    },
+  const experienceList: string[] = [
+    "Developed the UI/UX Frontend Experience for a Fintech Investment SPA. Built a combined React & React-Native Solution that ran both simultaneously & used the same logic codebase for each.",
+    "Developed solutions that organized financial data into Government Regulated Excel and PDF documents to be submitted easily. Simplifying a meticulous week-long process, to only a click of a button.",
+    "Exchanged communications with many top level clients, such as the Head of a Global Medical Company and many CEOs, to accurately gather details for controls and components, turn those into actionable tickets within Jira and delegate tasks to appropriate developers.",
   ];
   const projectList: iDisplay[] = [
     {
@@ -136,12 +106,6 @@ const ResumePage = () => {
           <DesignBackground />
           <div className="titleContainer">
             <div className="flex column">
-              {/*<div
-                className=" 
-            headline one"
-              >
-                Justin Gist
-              </div>*/}
               <div
                 className=" 
             headline two"
@@ -155,6 +119,12 @@ const ResumePage = () => {
                 UI/UX Developer
               </div>
             </div>
+          </div>
+        </div>
+        <div className="headline one textTitle">Experience</div>
+        <div className="hero-section B">
+          <div className=" center ">
+            <ExperienceElement list={experienceList} />
           </div>
         </div>
         <div className="hero-section B">
@@ -242,6 +212,19 @@ export const DisplayElement = ({ options }: { options: iDisplay }) => {
         )}
       </div>
       {options.image && <img className="jobImage " src={options.image} />}
+    </div>
+  );
+};
+const ExperienceElement = ({ list }: { list: string[] }) => {
+  return (
+    <div className="experienceContainer">
+      {list.map((str, i) => {
+        return (
+          <div className="headline four textTitle" style={{ marginTop: 24 }}>
+            {str}
+          </div>
+        );
+      })}
     </div>
   );
 };
