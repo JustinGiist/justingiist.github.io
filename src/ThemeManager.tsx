@@ -23,7 +23,9 @@ export function useWindowDimensions() {
   return {
     width: windowDimensions.width,
     height: windowDimensions.height,
-    isMobile: windowDimensions.width <= mobileWidth,
+    isMobile:
+      windowDimensions.width <= mobileWidth ||
+      windowDimensions.height <= mobileWidth,
   };
 }
 export interface componentSchema {

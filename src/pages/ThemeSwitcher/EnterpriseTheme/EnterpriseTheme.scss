@@ -256,7 +256,7 @@ hr {
     background: linear-gradient(#ffb77c, #f7903b);
   }
 }
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1000px), screen and (max-height: 1000px) {
   .card {
     .headline.two {
       margin-bottom: 0 !important;

@@ -735,8 +735,11 @@
     height: 100%;
   }
 }
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1000px), screen and (max-height: 1000px) {
   .mainContent.Sales {
+    .mobileCardContainer {
+      max-width: 360px;
+    }
     .cartDropdown {
       right: 0px;
       top: 0px;
@@ -784,11 +787,13 @@
     }
     .pictureContent {
       width: 100% !important;
+      max-width: 600px;
       grid-template-columns: auto !important;
       row-gap: 16px !important;
       img {
-        max-width: 100% !important;
+        max-width: 360px !important;
         margin-right: 0 !important;
+        justify-self: center;
       }
       img:nth-child(3) {
         margin-top: 128px;
@@ -796,6 +801,7 @@
     }
     .videoContent {
       width: 100% !important;
+      max-width: 600px;
       iframe {
         width: 100% !important;
       }

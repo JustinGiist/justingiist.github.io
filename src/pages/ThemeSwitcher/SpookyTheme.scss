@@ -188,7 +188,7 @@
   color: var(--theme-text-title);
   box-shadow: var(--theme-shadow-light);
 }
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1000px), screen and (max-height: 1000px) {
   .mainContent.Spooky {
     #TitleText {
       margin-top: 48px;
@@ -218,36 +218,4 @@
       margin-bottom: -16px;
     }
   }
-  /*
-  .window.one {
-    text {
-      animation: spookyTextAboveMobile 5s -4s infinite ease-in-out !important;
-    }
-  }
-  .window.two {
-    text {
-      animation: spookyTextAboveMobile 5s -0.5s infinite ease-in-out !important;
-    }
-  }
-  .window.three {
-    text {
-      animation: spookyTextAboveMobile 5s -2s infinite ease-in-out !important;
-    }
-  }
-  .window.four {
-    text {
-      animation: spookyTextAboveMobile 5s -6s infinite ease-in-out !important;
-    }
-  }
-  .circleWindowNew {
-    text {
-      animation: spookyTextAboveMobile 5s -3s infinite ease-in-out !important;
-    }
-  }
-  .window,
-  .circleWindowNew {
-    text {
-      opacity: 1 !important;
-    }
-  }*/
 }
