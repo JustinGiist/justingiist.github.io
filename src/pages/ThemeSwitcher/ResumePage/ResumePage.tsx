@@ -8,6 +8,7 @@ import ParallaxBackground from "../../../components/BezierBackground/ParallaxBac
 import { ThemeManagerContext } from "../../../App";
 import { GlobalThemes } from "../../../ThemeManager";
 import { useNavigate } from "react-router-dom";
+import ThreeDComponent from "./ThreeD";
 export interface iDisplay {
   label: string;
   date?: string;
@@ -98,7 +99,8 @@ const ResumePage = () => {
       <div className="parallax_layer two">
         <div className="hero-section White"></div>
         <div className="hero-section White">
-          <ParallaxBackground />
+          {/*<ParallaxBackground />*/}
+          <ThreeDComponent />
         </div>
       </div>
       <div className="parallax_layer one">
