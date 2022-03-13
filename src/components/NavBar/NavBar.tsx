@@ -127,13 +127,12 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
             />
           );
         })}
-        {dimensions.isMobile && (
-          <NavButton
-            options={{ route: GlobalThemes.Contact }}
-            openContext={openContext}
-            setOpenContext={setOpenContext}
-          />
-        )}
+
+        <NavButton
+          options={{ route: GlobalThemes.Contact }}
+          openContext={openContext}
+          setOpenContext={setOpenContext}
+        />
       </div>
     </div>
   );

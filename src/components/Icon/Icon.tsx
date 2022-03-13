@@ -54,11 +54,10 @@ import {
   Facebook,
   Linkedin,
   Email,
+  Phone,
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
-import { useContext } from "react";
-import { ThemeManagerContext } from "../../App";
 const GetIcon: any = {
   Skull: Skull,
   Bat: Bat,
@@ -109,6 +108,7 @@ const GetIcon: any = {
   TSLA: Tesla,
   Email,
   Linkedin,
+  Phone,
 };
 const Icon = ({
   icon,

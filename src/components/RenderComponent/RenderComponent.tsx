@@ -71,7 +71,7 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
       <div
         className={"renderContainer " + url + (isTopBar ? " horizontal" : "")}
       >
-        {url !== GlobalThemes.Contact && !dimensions.isMobile && (
+        {/*url !== GlobalThemes.Contact && !dimensions.isMobile && (
           <button
             className={
               "button secondary contactButton " +
@@ -87,7 +87,7 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
           >
             Contact
           </button>
-        )}
+          )*/}
         <div className="topContainer">
           <NavBar isTopBar={isTopBar} />
         </div>
@@ -96,9 +96,9 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
           <CalculatedScrollComponent hasButtons={false} refresh={[]}>
             <div
               className={"mainContent " + url}
-              onScroll={(e) => {
-                setSwitchButton((e.target as any).scrollTop > 0);
-              }}
+              //onScroll={(e) => {
+              //  setSwitchButton((e.target as any).scrollTop > 0);
+              //}}
             >
               {!newPage ? <OverlayControl loading={true} /> : newPage}
             </div>

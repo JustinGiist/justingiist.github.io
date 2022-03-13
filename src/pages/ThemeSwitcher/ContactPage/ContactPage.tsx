@@ -83,6 +83,10 @@ const ContactPage = () => {
               Justin Gist Linkedin Profile
             </a>
           </div>
+          <div className="contactItem">
+            <Icon icon="Phone" fontSize={30} />
+            <div className="headline four">(407)929-3184</div>
+          </div>
           {/*<>
           <div className="inputContainer">
             <div className="textInput slideOne">

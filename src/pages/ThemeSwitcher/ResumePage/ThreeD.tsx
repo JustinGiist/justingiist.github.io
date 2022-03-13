@@ -204,7 +204,7 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       tempOrigin.y += basicCount % 2 === 0 ? 0 : 0.8;
       return (
         <CustomGeometry
-          key={1}
+          key={basicCount}
           {...tempOrigin}
           geometry={basicCount % 2 === 0 ? basic : basic2}
         />
@@ -215,9 +215,13 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       tempOrigin.y += 2.2;
       return (
         <>
-          <CustomGeometry key={1} {...tempOrigin} geometry={doubleTop} />
           <CustomGeometry
-            key={1}
+            key={newOrigin.x * 3}
+            {...tempOrigin}
+            geometry={doubleTop}
+          />
+          <CustomGeometry
+            key={newOrigin.x * 2}
             {...{ ...tempOrigin, y: tempOrigin.y + tempOrigin.y / 4 }}
             geometry={double}
           />
@@ -230,21 +234,25 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       return (
         <>
           <CustomGeometry
-            key={1}
+            key={newOrigin.x * 2}
             {...{ ...tempOrigin, y: tempOrigin.y + 6 }}
             geometry={skyscraperTop}
           />
           <CustomGeometry
-            key={1}
+            key={newOrigin.x * 3}
             {...{ ...tempOrigin, y: tempOrigin.y + 4 }}
             geometry={skyscraperMiddleTop}
           />
           <CustomGeometry
-            key={1}
+            key={newOrigin.x * 4}
             {...{ ...tempOrigin, y: tempOrigin.y + 2 }}
             geometry={skyscraperMiddleBottom}
           />
-          <CustomGeometry key={1} {...tempOrigin} geometry={skyscraperBottom} />
+          <CustomGeometry
+            key={newOrigin.x * 5}
+            {...tempOrigin}
+            geometry={skyscraperBottom}
+          />
         </>
       );
     };
