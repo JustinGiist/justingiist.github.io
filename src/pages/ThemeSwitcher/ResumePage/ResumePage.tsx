@@ -46,6 +46,7 @@ const ResumePage = () => {
         "Angular",
         "Vue.js",
         "Node.js",
+        "Three.js",
         "ASP.NET MVC",
         "Redis",
         "Docker",

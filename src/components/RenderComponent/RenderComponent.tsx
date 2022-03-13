@@ -1,10 +1,7 @@
-import { useEffect, useMemo, useRef } from "react";
-import { useContext, useState } from "react";
+import { useEffect, useRef } from "react";
+import { useContext } from "react";
 import { ThemeManagerContext } from "../../App";
 import EnterpriseTheme from "../../pages/ThemeSwitcher/EnterpriseTheme/EnterpriseTheme";
-import DystopiaTheme from "../../pages/ThemeSwitcher/DystopiaTheme";
-import EightiesTheme from "../../pages/ThemeSwitcher/EightiesTheme";
-import SafariTheme from "../../pages/ThemeSwitcher/SafariTheme";
 import SpookyTheme from "../../pages/ThemeSwitcher/SpookyTheme";
 import { GlobalThemes, useWindowDimensions } from "../../ThemeManager";
 import NavBar from "../NavBar/NavBar";
@@ -12,19 +9,13 @@ import "./RenderComponent.scss";
 import ResumePage from "../../pages/ThemeSwitcher/ResumePage/ResumePage";
 import OverlayControl from "../OverlayControl/OverlayControl";
 import ContactPage from "../../pages/ThemeSwitcher/ContactPage/ContactPage";
-import ProjectsPage from "../../pages/ThemeSwitcher/ProjectsPage/ProjectsPage";
-import BezierBackground from "../BezierBackground/Bezier-Background";
 import SideBar from "../SideBar/SideBar";
 import SalesTheme from "../../pages/ThemeSwitcher/SalesTheme/SalesTheme";
 import DesignBackground from "../BezierBackground/DesignBackground";
 import TestPage from "../../pages/testPage";
-import { Map } from "typescript";
-import { useNavigate } from "react-router-dom";
 const RenderComponent = ({ url }: { url: GlobalThemes }) => {
   const { themeManager, theme, setThemeContext } =
     useContext(ThemeManagerContext);
-  const dimensions = useWindowDimensions();
-  const navigate = useNavigate();
   let isTopBar = true;
   const routes = new Map<string, any>([
     [GlobalThemes.Resume, <ResumePage />],
@@ -35,7 +26,6 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
     [GlobalThemes.Test, <TestPage />],
   ]);
   const newPage = routes.get(url);
-  const [switchButton, setSwitchButton] = useState<Boolean>(false);
   const checkBackground = () => {
     switch (url) {
       case GlobalThemes.Resume:
@@ -71,35 +61,13 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
       <div
         className={"renderContainer " + url + (isTopBar ? " horizontal" : "")}
       >
-        {/*url !== GlobalThemes.Contact && !dimensions.isMobile && (
-          <button
-            className={
-              "button secondary contactButton " +
-              (url !== GlobalThemes.Resume
-                ? " active"
-                : switchButton
-                ? " active"
-                : "")
-            }
-            onClick={() => {
-              navigate("../" + GlobalThemes.Contact, { replace: true });
-            }}
-          >
-            Contact
-          </button>
-          )*/}
         <div className="topContainer">
           <NavBar isTopBar={isTopBar} />
         </div>
         <div className="bottomContainer">
           {showSideBar && <SideBar gooMenu={url === GlobalThemes.Enterprise} />}
           <CalculatedScrollComponent hasButtons={false} refresh={[]}>
-            <div
-              className={"mainContent " + url}
-              //onScroll={(e) => {
-              //  setSwitchButton((e.target as any).scrollTop > 0);
-              //}}
-            >
+            <div className={"mainContent " + url}>
               {!newPage ? <OverlayControl loading={true} /> : newPage}
             </div>
           </CalculatedScrollComponent>

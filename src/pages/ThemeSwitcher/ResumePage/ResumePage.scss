@@ -235,6 +235,11 @@
 .spin {
   animation: spin 10s infinite ease;
 }
+.experienceContainer {
+  .headline.four {
+    font-size: var(--font-large);
+  }
+}
 @keyframes spin {
   0% {
     transform: rotateZ(0deg);
