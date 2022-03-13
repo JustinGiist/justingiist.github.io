@@ -99,33 +99,33 @@ const ResumePage = () => {
       <div className="parallax_layer two">
         <div className="hero-section White"></div>
         <div className="hero-section White">
-          {/*<ParallaxBackground />*/}
-          <ThreeDComponent />
+          <ParallaxBackground />
         </div>
       </div>
       <div className="parallax_layer one">
-        <div className="hero-section">
-          <DesignBackground />
+        <div className="hero-section column">
           <div className="titleContainer">
             <div className="flex column">
               <div
                 className=" 
-            headline two"
+            headline one"
               >
-                Designer
+                Justin Gist
               </div>
               <div
                 className=" 
             headline two"
               >
-                UI/UX Developer
+                UI/UX Designer
               </div>
             </div>
           </div>
+          <ThreeDComponent />
         </div>
-        <div className="headline one textTitle">Experience</div>
+
         <div className="hero-section B">
           <div className=" center ">
+            <div className="headline one textTitle">Experience</div>
             <ExperienceElement list={experienceList} />
           </div>
         </div>
@@ -143,7 +143,7 @@ const ResumePage = () => {
             })}
           </div>
         </div>
-        <div className="headline one textTitle">Projects</div>
+        <div className="headline one textSecondary">Projects</div>
         <div className="hero-section B">
           <div className="center">
             <JobElement options={projectList[0]} />
@@ -189,7 +189,7 @@ export const DisplayElement = ({ options }: { options: iDisplay }) => {
       }}
     >
       <div className="displayContainer ">
-        <div className={"textSecondary headline one "}>{options.label}</div>
+        <div className={"textTitle headline one "}>{options.label}</div>
         <div className="textPrimary headline four ">{options.date ?? ""}</div>
         {options.context && (
           <div

@@ -128,10 +128,9 @@
   }
   .titleContainer {
     width: 100%;
-    position: absolute;
-    height: 250px;
     display: flex;
     bottom: 15%;
+    padding-top: 120px;
     .flex.column {
       text-align: center;
       margin: auto;
@@ -141,13 +140,13 @@
       border-radius: var(--round-large);
     }
     .headline.one {
-      font-size: 80px;
+      font-size: 60px;
       font-family: "Jura", sans-serif;
       color: var(--theme-text-title);
       font-weight: bold;
     }
     .headline.two {
-      font-size: 60px;
+      font-size: 40px;
       color: var(--theme-text-primary);
       font-weight: bold;
     }
@@ -181,6 +180,9 @@
       }
     }
   }
+}
+.hero-section.darkPurple {
+  background-color: #14001c;
 }
 .hero-section.Purple {
   height: 100%;
@@ -225,6 +227,10 @@
     border-color: var(--theme-text-secondary);
     cursor: pointer;
   }
+}
+.headline.one.textSecondary {
+  font-family: "Jura", sans-serif;
+  font-size: 80px;
 }
 .spin {
   animation: spin 10s infinite ease;

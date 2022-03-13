@@ -48,11 +48,6 @@
 
 .basicNavButton:hover {
   cursor: pointer;
-  .navButtonDropdownArrow:hover {
-    border: 2px solid var(--theme-primary);
-    padding: 2px 4px;
-    box-shadow: var(--shadow);
-  }
 }
 .Dystopia {
   .basicNavButton {
@@ -439,11 +434,6 @@
       svg {
         fill: var(--theme-text-teritary);
       }
-    }
-    .navButtonDropdownArrow:hover {
-      border: 2px solid var(--theme-text-teritary);
-
-      box-shadow: var(--shadow);
     }
   }
   .basicNavButton.secondary:hover {
