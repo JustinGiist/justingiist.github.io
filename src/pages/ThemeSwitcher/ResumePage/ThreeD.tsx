@@ -132,7 +132,7 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
   enum CityBlockType {
     Basic,
     Tiered,
-    Double,
+    Antenna,
     Skyscraper,
   }
   function getRandomInt(min: number, max: number) {
@@ -356,7 +356,7 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       switch (value) {
         case CityBlockType.Tiered:
           return <TieredCityBlock newOrigin={newOrigin} />;
-        case CityBlockType.Double:
+        case CityBlockType.Antenna:
           return <AntennaCityBlock newOrigin={newOrigin} />;
         case CityBlockType.Basic:
         default:
@@ -381,7 +381,7 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
             getCityBlockType(CityBlockType.Skyscraper, newOrigin, true)
           );
         } else {
-          newRow.push(getCityBlockType(getRandomInt(0, 2), newOrigin));
+          newRow.push(getCityBlockType(getRandomInt(0, 3), newOrigin));
         }
       }
       matrix.push(newRow);
