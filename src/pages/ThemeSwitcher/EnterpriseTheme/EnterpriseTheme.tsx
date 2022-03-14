@@ -110,6 +110,8 @@ const EnterpriseTheme = () => {
       <div className="flex">{props.logo}</div>
     </div>
   );
+  const chartColors = ["#54ff52", "#52e2ff", "#5294ff", "#ffbf52", "#ff6e52"];
+
   return (
     <>
       <div className="cardContainer threeCols">
@@ -144,6 +146,7 @@ const EnterpriseTheme = () => {
               vAxis: {
                 title: "City",
               },
+              colors: chartColors,
             }}
             // For tests
             rootProps={{ "data-testid": "3" }}
@@ -177,6 +180,7 @@ const EnterpriseTheme = () => {
               series: {
                 1: { curveType: "function" },
               },
+              colors: chartColors,
             }}
             rootProps={{ "data-testid": "2" }}
           />
@@ -199,6 +203,7 @@ const EnterpriseTheme = () => {
             options={{
               pieHole: 0.4,
               is3D: false,
+              colors: chartColors,
             }}
           />
         </div>

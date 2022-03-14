@@ -11,7 +11,15 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
 
-import { BoxGeometry, Plane, Scene, TorusGeometry, Vector2 } from "three";
+import {
+  BoxGeometry,
+  Euler,
+  Plane,
+  Scene,
+  TorusGeometry,
+  Vector2,
+  Vector3,
+} from "three";
 extend({ EffectComposer, RenderPass, UnrealBloomPass });
 
 declare global {
@@ -82,33 +90,33 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
         castShadow
         receiveShadow
       >
-        <meshStandardMaterial color={color || "#5a1ee6"} roughness={1} />
+        <meshStandardMaterial color={color || "#8ccbff"} roughness={1} />
       </mesh>
     );
   };
   const TorusElement = () => {
     const [geometry1] = useState(() =>
-      new TorusGeometry(1, 0.01, 32, 100).rotateX(190)
+      new TorusGeometry(0.8, 0.01, 32, 100).rotateX(190)
     );
     const [geometry2] = useState(() =>
-      new TorusGeometry(1.2, 0.01, 32, 100).rotateX(190)
+      new TorusGeometry(1.0, 0.01, 32, 100).rotateX(190)
     );
     const [geometry3] = useState(() =>
-      new TorusGeometry(1.4, 0.01, 32, 100).rotateX(190)
+      new TorusGeometry(1.2, 0.01, 32, 100).rotateX(190)
     );
     const [geometry4] = useState(() =>
-      new TorusGeometry(1.6, 0.01, 32, 100).rotateX(190)
+      new TorusGeometry(1.4, 0.01, 32, 100).rotateX(190)
     );
     const [geometry5] = useState(() =>
-      new TorusGeometry(1.8, 0.01, 32, 100).rotateX(190)
+      new TorusGeometry(1.6, 0.01, 32, 100).rotateX(190)
     );
     const origin = {
       x: 0,
-      y: -13,
+      y: -3,
       z: 0,
       s: 10,
     };
-    const ringColor = "#d63d00";
+    const ringColor = "#8ccbff";
     return (
       <>
         <CustomGeometry
@@ -177,7 +185,7 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
   const CityElement = () => {
     const origin = {
       x: -8,
-      y: -10,
+      y: 0,
       z: -8,
       s: 10,
     };
@@ -217,17 +225,17 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
     };
     const DoubleCityBlock = ({ newOrigin }: { newOrigin: any }) => {
       const tempOrigin = { ...newOrigin };
-      tempOrigin.y += 2.2;
+      tempOrigin.y += 0.2;
       return (
         <>
           <CustomGeometry
             key={newOrigin.x * 3}
-            {...tempOrigin}
+            {...{ ...tempOrigin, y: tempOrigin.y + 2 }}
             geometry={doubleTop}
           />
           <CustomGeometry
             key={newOrigin.x * 2}
-            {...{ ...tempOrigin, y: tempOrigin.y + tempOrigin.y / 4 }}
+            {...tempOrigin}
             geometry={double}
           />
         </>
@@ -360,14 +368,18 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
   return (
     <Canvas
       linear
-      camera={{ position: [0, 0, 40], castShadow: true }}
+      camera={{
+        rotation: new Euler(0, 0, 0),
+        position: [0, 10, 35],
+        castShadow: true,
+      }}
       shadows={true}
       style={{ minHeight: 400 }}
     >
       <Bloom>
         <ambientLight />
         <pointLight
-          position={[0, 0, 20]}
+          position={[20, 10, 20]}
           castShadow
           shadow-mapSize-height={512}
           shadow-mapSize-width={512}
@@ -382,7 +394,7 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       <Main>
         <ambientLight />
         <pointLight
-          position={[10, 0, 10]}
+          position={[20, 10, 20]}
           castShadow
           shadow-mapSize-height={512}
           shadow-mapSize-width={512}

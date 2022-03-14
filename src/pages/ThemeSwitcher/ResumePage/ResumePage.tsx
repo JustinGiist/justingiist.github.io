@@ -47,6 +47,7 @@ const ResumePage = () => {
         "Vue.js",
         "Node.js",
         "Three.js",
+        "WebGL",
         "ASP.NET MVC",
         "Redis",
         "Docker",
@@ -102,9 +103,15 @@ const ResumePage = () => {
         <div className="hero-section White">
           <ParallaxBackground />
         </div>
+        <div className="hero-section White">
+          <ParallaxBackground />
+        </div>
+        <div className="hero-section White">
+          <ParallaxBackground />
+        </div>
       </div>
       <div className="parallax_layer one">
-        <div className="hero-section column">
+        <div className="hero-section column C">
           <div className="titleContainer">
             <div className="flex column">
               <div

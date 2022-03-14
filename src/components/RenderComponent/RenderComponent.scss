@@ -197,21 +197,28 @@
 .card {
   box-shadow: var(--theme-shadow-light);
   padding: 8px 16px 32px 32px;
-  background-color: var(--theme-primary-background);
+  background: linear-gradient(var(--theme-primary), var(--theme-teritary));
   border-radius: var(--round-medium);
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
+  text {
+    fill: var(--theme-white);
+  }
+  svg {
+    > rect {
+      fill: transparent;
+    }
+  }
   > .headline.two {
     position: absolute;
     pointer-events: none;
     z-index: 99;
     align-self: flex-start;
     margin-bottom: 24px;
-    color: var(--theme-secondary);
+    color: var(--theme-white);
     align-self: flex-end;
     border-radius: var(--round-small);
     transform: translateX(24px);
@@ -293,7 +300,7 @@
     .center {
       padding: 16px !important;
       .link {
-        padding: 0px !important;
+        padding: 8px !important;
       }
     }
   }

@@ -156,7 +156,6 @@
       }
     }
     .navButtonDropdownArrow:hover {
-      border: 2px solid var(--theme-text-teritary);
       animation: fuzzGlitch 0.05s infinite;
       box-shadow: var(--shadow);
     }
@@ -248,8 +247,6 @@
       animation: fuzzGlitch 0.05s infinite;
     }
     .navButtonDropdownArrow:hover {
-      border: 2px solid var(--theme-primary);
-
       animation: fuzzGlitch 0.05s infinite;
       box-shadow: var(--shadow);
     }
@@ -315,8 +312,6 @@
       }
     }
     .navButtonDropdownArrow:hover {
-      border: 2px solid var(--theme-teritary);
-
       animation: fuzzGlitch 0.05s infinite;
       box-shadow: var(--shadow);
     }
@@ -371,7 +366,6 @@
       }
     }
     .navButtonDropdownArrow:hover {
-      border: 2px solid var(--theme-secondary);
       box-shadow: var(--shadow);
     }
   }
@@ -493,9 +487,6 @@
       svg {
         fill: var(--theme-white);
       }
-    }
-    .navButtonDropdownArrow:hover {
-      border: 2px solid var(--theme-white);
     }
   }
   .basicNavButton.secondary:hover {
