@@ -6,32 +6,12 @@ import {
   useFrame,
   useThree,
 } from "@react-three/fiber";
-import {
-  ReactNode,
-  RefObject,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
-import { GlitchPass } from "three/examples/jsm/postprocessing/GlitchPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
 
-import {
-  BoxGeometry,
-  LineSegments,
-  Material,
-  Plane,
-  PlaneGeometry,
-  Scene,
-  SphereGeometry,
-  TorusGeometry,
-  Vector2,
-  WireframeGeometry,
-} from "three";
-import zIndex from "@material-ui/core/styles/zIndex";
+import { BoxGeometry, Plane, Scene, TorusGeometry, Vector2 } from "three";
 extend({ EffectComposer, RenderPass, UnrealBloomPass });
 
 declare global {
@@ -102,7 +82,7 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
         castShadow
         receiveShadow
       >
-        <meshStandardMaterial color={color || "#5d1ca9"} roughness={1} />
+        <meshStandardMaterial color={color || "#5a1ee6"} roughness={1} />
       </mesh>
     );
   };
@@ -128,14 +108,39 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       z: 0,
       s: 10,
     };
-
+    const ringColor = "#d63d00";
     return (
       <>
-        <CustomGeometry key={1} {...origin} geometry={geometry1} />
-        <CustomGeometry key={2} {...origin} geometry={geometry2} />
-        <CustomGeometry key={3} {...origin} geometry={geometry3} />
-        <CustomGeometry key={4} {...origin} geometry={geometry4} />
-        <CustomGeometry key={5} {...origin} geometry={geometry5} />
+        <CustomGeometry
+          key={1}
+          {...origin}
+          geometry={geometry1}
+          color={ringColor}
+        />
+        <CustomGeometry
+          key={2}
+          {...origin}
+          geometry={geometry2}
+          color={ringColor}
+        />
+        <CustomGeometry
+          key={3}
+          {...origin}
+          geometry={geometry3}
+          color={ringColor}
+        />
+        <CustomGeometry
+          key={4}
+          {...origin}
+          geometry={geometry4}
+          color={ringColor}
+        />
+        <CustomGeometry
+          key={5}
+          {...origin}
+          geometry={geometry5}
+          color={ringColor}
+        />
       </>
     );
   };
