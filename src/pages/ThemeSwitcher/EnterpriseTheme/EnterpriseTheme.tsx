@@ -77,7 +77,7 @@ const investmentCardList: iInvestmentCard[] = [
     tradingAt: 189.83,
     percentChange: 2.83,
     state: InvestmentElementStates.Increase,
-    logo: AmazonLogo,
+    logo: <Icon icon="FB" fontSize={60} />,
   },
   {
     label: "AMZN",
@@ -85,7 +85,7 @@ const investmentCardList: iInvestmentCard[] = [
     tradingAt: 220.93,
     percentChange: 0.23,
     state: InvestmentElementStates.None,
-    logo: <Icon icon="FB" fontSize={60} />,
+    logo: AmazonLogo,
   },
 ];
 const EnterpriseTheme = () => {
@@ -121,30 +121,30 @@ const EnterpriseTheme = () => {
       </div>
       <div className="cardContainer">
         <div className={"card Down chart"}>
-          <div className="headline two">Bar Chart</div>
+          <div className="headline two">Overtime Comparison</div>
 
           <Chart
             className="chart"
             chartType="BarChart"
-            loader={<div>Loading Chart</div>}
+            loader={<div>Overtime Comparison</div>}
             data={[
-              ["City", "2010 Population", "2000 Population"],
-              ["New York City, NY", 8175000, 8008000],
-              ["Los Angeles, CA", 3792000, 3694000],
-              ["Chicago, IL", 2695000, 2896000],
-              ["Houston, TX", 2099000, 1953000],
-              ["Philadelphia, PA", 1526000, 1517000],
+              ["City", "Tesla", "Facebook"],
+              ["02/01/2022", 8175000, 8008000],
+              ["02/08/2022", 3792000, 3694000],
+              ["02/15/2022", 2695000, 2896000],
+              ["02/22/2022", 2099000, 1953000],
+              ["02/29/2022", 1526000, 1517000],
             ]}
             options={{
-              title: "Population of Largest U.S. Cities",
+              title: "Overtime Investment Comparison",
               chartArea: { width: "50%" },
               isStacked: true,
               hAxis: {
-                title: "Total Population",
+                title: "Investment Total",
                 minValue: 0,
               },
               vAxis: {
-                title: "City",
+                title: "Week of",
               },
               colors: chartColors,
             }}
@@ -153,14 +153,14 @@ const EnterpriseTheme = () => {
           />
         </div>
         <div className="card Left chart">
-          <div className="headline two">Line Chart</div>
+          <div className="headline two">Investment Comparison</div>
 
           <Chart
             className="chart"
             chartType="LineChart"
             loader={<div>Loading Chart</div>}
             data={[
-              ["x", "dogs", "cats"],
+              ["x", "Tesla", "Facebook"],
               [0, 0, 0],
               [1, 10, 5],
               [2, 23, 15],
@@ -188,17 +188,17 @@ const EnterpriseTheme = () => {
       </div>
       <div className="cardContainer threeCols">
         <div className="card Left chart">
-          <div className="headline two">Pie Chart</div>
+          <div className="headline two">Invested Assets</div>
           <Chart
             className="chart"
             chartType="PieChart"
             data={[
               ["Task", "Hours per Day"],
-              ["Work", 11],
-              ["Eat", 2],
-              ["Commute", 2],
-              ["Watch TV", 2],
-              ["Sleep", 7], // CSS-style declaration
+              ["Tesla", 8],
+              ["Microsoft", 4],
+              ["Facebook", 2],
+              ["Monsanto", 4],
+              ["Big Pharma", 10], // CSS-style declaration
             ]}
             options={{
               pieHole: 0.4,
