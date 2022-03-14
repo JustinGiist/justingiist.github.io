@@ -401,7 +401,7 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
     useFrame((state, delta) => {
       if (spinRef.current) {
         if (spinRef.current.rotation)
-          (spinRef.current.rotation as any).y += 0.01;
+          (spinRef.current.rotation as any).y += 0.008;
       }
     });
     return <mesh ref={spinRef}>{props.children}</mesh>;
