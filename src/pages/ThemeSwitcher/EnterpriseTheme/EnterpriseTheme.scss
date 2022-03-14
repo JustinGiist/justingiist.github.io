@@ -257,14 +257,6 @@ hr {
   }
 }
 @media only screen and (max-width: 1000px), screen and (max-height: 1000px) {
-  .card {
-    .headline.two {
-      margin-bottom: 0 !important;
-      position: relative !important;
-      align-self: flex-start !important;
-    }
-  }
-
   .cardContainer:not(.cardContainer:first-child) {
     margin-top: 0 !important;
   }

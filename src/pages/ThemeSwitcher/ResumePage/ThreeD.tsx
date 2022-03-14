@@ -96,19 +96,19 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
   };
   const TorusElement = () => {
     const [geometry1] = useState(() =>
-      new TorusGeometry(0.8, 0.01, 32, 100).rotateX(190)
+      new TorusGeometry(0.4, 0.01, 32, 100).rotateX(190)
     );
     const [geometry2] = useState(() =>
-      new TorusGeometry(1.0, 0.01, 32, 100).rotateX(190)
+      new TorusGeometry(0.6, 0.01, 32, 100).rotateX(190)
     );
     const [geometry3] = useState(() =>
-      new TorusGeometry(1.2, 0.01, 32, 100).rotateX(190)
+      new TorusGeometry(0.8, 0.01, 32, 100).rotateX(190)
     );
     const [geometry4] = useState(() =>
-      new TorusGeometry(1.4, 0.01, 32, 100).rotateX(190)
+      new TorusGeometry(1.0, 0.01, 32, 100).rotateX(190)
     );
     const [geometry5] = useState(() =>
-      new TorusGeometry(1.6, 0.01, 32, 100).rotateX(190)
+      new TorusGeometry(1.2, 0.01, 32, 100).rotateX(190)
     );
     const origin = {
       x: 0,
@@ -370,7 +370,7 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       linear
       camera={{
         rotation: new Euler(0, 0, 0),
-        position: [0, 10, 35],
+        position: [0, 10, 31],
         castShadow: true,
       }}
       shadows={true}

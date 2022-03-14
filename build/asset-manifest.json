@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.a98cfec9.chunk.css",
-    "main.js": "/static/js/main.a96a8f15.chunk.js",
-    "main.js.map": "/static/js/main.a96a8f15.chunk.js.map",
+    "main.css": "/static/css/main.0de2b8d7.chunk.css",
+    "main.js": "/static/js/main.ceee48c1.chunk.js",
+    "main.js.map": "/static/js/main.ceee48c1.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.9b56c00b.js",
     "runtime-main.js.map": "/static/js/runtime-main.9b56c00b.js.map",
     "static/js/2.8ac153eb.chunk.js": "/static/js/2.8ac153eb.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.068001d9.chunk.js": "/static/js/3.068001d9.chunk.js",
     "static/js/3.068001d9.chunk.js.map": "/static/js/3.068001d9.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.a98cfec9.chunk.css.map": "/static/css/main.a98cfec9.chunk.css.map",
+    "static/css/main.0de2b8d7.chunk.css.map": "/static/css/main.0de2b8d7.chunk.css.map",
     "static/js/2.8ac153eb.chunk.js.LICENSE.txt": "/static/js/2.8ac153eb.chunk.js.LICENSE.txt",
     "static/media/Amazon_logo.4f66fa08.svg": "/static/media/Amazon_logo.4f66fa08.svg",
     "static/media/BottomLeftWindow.ebba0d66.svg": "/static/media/BottomLeftWindow.ebba0d66.svg",
@@ -55,7 +55,7 @@
   "entrypoints": [
     "static/js/runtime-main.9b56c00b.js",
     "static/js/2.8ac153eb.chunk.js",
-    "static/css/main.a98cfec9.chunk.css",
-    "static/js/main.a96a8f15.chunk.js"
+    "static/css/main.0de2b8d7.chunk.css",
+    "static/js/main.ceee48c1.chunk.js"
   ]
 }

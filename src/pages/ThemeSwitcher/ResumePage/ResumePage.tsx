@@ -111,7 +111,7 @@ const ResumePage = () => {
         </div>
       </div>
       <div className="parallax_layer one">
-        <div className="hero-section column C">
+        <div className="hero-section column C" style={{ paddingBottom: 120 }}>
           <div className="titleContainer">
             <div className="flex column">
               <div
