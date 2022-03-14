@@ -16,6 +16,7 @@ import {
   Euler,
   Plane,
   Scene,
+  SphereGeometry,
   TorusGeometry,
   Vector2,
   Vector3,
@@ -95,21 +96,17 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
     );
   };
   const TorusElement = () => {
-    const [geometry1] = useState(() =>
-      new TorusGeometry(0.6, 0.01, 32, 100).rotateX(190)
-    );
-    const [geometry2] = useState(() =>
-      new TorusGeometry(0.8, 0.01, 32, 100).rotateX(190)
-    );
-    const [geometry3] = useState(() =>
-      new TorusGeometry(1, 0.01, 32, 100).rotateX(190)
-    );
-    const [geometry4] = useState(() =>
-      new TorusGeometry(1.2, 0.01, 32, 100).rotateX(190)
-    );
-    const [geometry5] = useState(() =>
-      new TorusGeometry(1.4, 0.01, 32, 100).rotateX(190)
-    );
+    const geometries = [
+      new TorusGeometry(0.6, 0.01, 32, 100).rotateX(190),
+      new TorusGeometry(0.7, 0.01, 32, 100).rotateX(190),
+      new TorusGeometry(0.8, 0.01, 32, 100).rotateX(190),
+      new TorusGeometry(0.9, 0.01, 32, 100).rotateX(190),
+      new TorusGeometry(1, 0.01, 32, 100).rotateX(190),
+      new TorusGeometry(1.1, 0.01, 32, 100).rotateX(190),
+      new TorusGeometry(1.2, 0.01, 32, 100).rotateX(190),
+      new TorusGeometry(1.3, 0.01, 32, 100).rotateX(190),
+      new TorusGeometry(1.4, 0.01, 32, 100).rotateX(190),
+    ];
     const origin = {
       x: 0,
       y: -3,
@@ -119,36 +116,16 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
     const ringColor = "#8ccbff";
     return (
       <>
-        <CustomGeometry
-          key={1}
-          {...origin}
-          geometry={geometry1}
-          color={ringColor}
-        />
-        <CustomGeometry
-          key={2}
-          {...origin}
-          geometry={geometry2}
-          color={ringColor}
-        />
-        <CustomGeometry
-          key={3}
-          {...origin}
-          geometry={geometry3}
-          color={ringColor}
-        />
-        <CustomGeometry
-          key={4}
-          {...origin}
-          geometry={geometry4}
-          color={ringColor}
-        />
-        <CustomGeometry
-          key={5}
-          {...origin}
-          geometry={geometry5}
-          color={ringColor}
-        />
+        {geometries.map((geometry) => {
+          return (
+            <CustomGeometry
+              key={1}
+              {...origin}
+              geometry={geometry}
+              color={ringColor}
+            />
+          );
+        })}
       </>
     );
   };
@@ -190,22 +167,36 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       s: 10,
     };
     let basicCount = 0;
-    const [basic] = useState(() => new BoxGeometry(0.2, 0.3, 0.2));
-    const [basic2] = useState(() => new BoxGeometry(0.2, 0.45, 0.2));
     const [tiered1] = useState(() => new BoxGeometry(0.1, 0.2, 0.1));
     const [tiered2] = useState(() => new BoxGeometry(0.1, 0.3, 0.1));
     const [tiered3] = useState(() => new BoxGeometry(0.1, 0.4, 0.1));
     const [tiered4] = useState(() => new BoxGeometry(0.1, 0.5, 0.1));
-    const [double] = useState(() => new BoxGeometry(0.2, 0.35, 0.2));
-    const [doubleTop] = useState(() => new BoxGeometry(0.16, 0.05, 0.16));
+    const [basicBottom] = useState(() => new BoxGeometry(0.2, 0.35, 0.2));
+    const [basicTop] = useState(() => new BoxGeometry(0.16, 0.05, 0.16));
+    const [basic2Bottom] = useState(() => new BoxGeometry(0.2, 0.25, 0.2));
+    const [basic2Top] = useState(() => new BoxGeometry(0.16, 0.05, 0.16));
     const [skyscraperBottom] = useState(() => new BoxGeometry(0.2, 0.6, 0.2));
+    const ringGeometries = [
+      new TorusGeometry(0.05, 0.01, 32, 100).rotateX(190),
+      new TorusGeometry(0.04, 0.01, 32, 100).rotateX(190),
+      new TorusGeometry(0.03, 0.01, 32, 100).rotateX(190),
+      new SphereGeometry(0.05, 30, 60, 60),
+    ];
     const [skyscraperMiddleBottom] = useState(
-      () => new BoxGeometry(0.15, 0.9, 0.15)
+      () => new BoxGeometry(0.15, 0.4, 0.15)
     );
     const [skyscraperMiddleTop] = useState(
-      () => new BoxGeometry(0.1, 1.2, 0.1)
+      () => new BoxGeometry(0.1, 0.6, 0.1)
     );
-    const [skyscraperTop] = useState(() => new BoxGeometry(0.05, 1.5, 0.05));
+    const [skyscraperTop] = useState(() => new BoxGeometry(0.02, 0.8, 0.02));
+    const [antennaBottom] = useState(() => new BoxGeometry(0.2, 0.15, 0.2));
+    const [antennaMiddleBottom] = useState(
+      () => new BoxGeometry(0.15, 0.1, 0.15)
+    );
+    const [antennaMiddleBottomSphere] = useState(
+      () => new SphereGeometry(0.1, 30, 60, 60)
+    );
+    const [antennaTop] = useState(() => new BoxGeometry(0.02, 0.4, 0.02));
     const BasicCityBlock = ({
       newOrigin,
       basicCount,
@@ -214,38 +205,86 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       basicCount: number;
     }) => {
       const tempOrigin = { ...newOrigin };
-      tempOrigin.y += basicCount % 2 === 0 ? 0 : 0.8;
-      return (
-        <CustomGeometry
-          key={basicCount}
-          {...tempOrigin}
-          geometry={basicCount % 2 === 0 ? basic : basic2}
-        />
-      );
+      if (basicCount % 2 === 0) {
+        tempOrigin.y += 0.2;
+        return (
+          <>
+            <CustomGeometry
+              key={newOrigin.x * 3}
+              {...{ ...tempOrigin, y: tempOrigin.y + 2 }}
+              geometry={basicTop}
+            />
+            <CustomGeometry
+              key={newOrigin.x * 2}
+              {...tempOrigin}
+              geometry={basicBottom}
+            />
+          </>
+        );
+      } else {
+        tempOrigin.y += -0.3;
+        return (
+          <>
+            <CustomGeometry
+              key={newOrigin.x * 3}
+              {...{ ...tempOrigin, y: tempOrigin.y + 1.5 }}
+              geometry={basic2Top}
+            />
+            <CustomGeometry
+              key={newOrigin.x * 2}
+              {...tempOrigin}
+              geometry={basic2Bottom}
+            />
+          </>
+        );
+      }
     };
-    const DoubleCityBlock = ({ newOrigin }: { newOrigin: any }) => {
+    const AntennaCityBlock = ({ newOrigin }: { newOrigin: any }) => {
       const tempOrigin = { ...newOrigin };
-      tempOrigin.y += 0.2;
+      tempOrigin.y += -0.75;
       return (
         <>
-          <CustomGeometry
-            key={newOrigin.x * 3}
-            {...{ ...tempOrigin, y: tempOrigin.y + 2 }}
-            geometry={doubleTop}
-          />
+          {ringGeometries.map((geometry, i) => {
+            return (
+              <CustomGeometry
+                key={1}
+                {...{ ...tempOrigin, y: tempOrigin.y + (i / 4 + 2.5) }}
+                geometry={geometry}
+              />
+            );
+          })}
           <CustomGeometry
             key={newOrigin.x * 2}
+            {...{ ...tempOrigin, y: tempOrigin.y + 1.5 }}
+            geometry={antennaTop}
+          />
+          <CustomGeometry
+            key={newOrigin.x * 3}
+            {...{ ...tempOrigin, y: tempOrigin.y + 0.5 }}
+            geometry={antennaMiddleBottomSphere}
+          />
+          <CustomGeometry
+            key={newOrigin.x * 5}
             {...tempOrigin}
-            geometry={double}
+            geometry={antennaBottom}
           />
         </>
       );
     };
     const SkyScraperCityBlock = ({ newOrigin }: { newOrigin: any }) => {
       const tempOrigin = { ...newOrigin };
-      tempOrigin.y += 4;
+      tempOrigin.y += 1.5;
       return (
         <>
+          {ringGeometries.map((geometry, i) => {
+            return (
+              <CustomGeometry
+                key={1}
+                {...{ ...tempOrigin, y: tempOrigin.y + 6 + (i / 2 + 2.5) }}
+                geometry={geometry}
+              />
+            );
+          })}
           <CustomGeometry
             key={newOrigin.x * 2}
             {...{ ...tempOrigin, y: tempOrigin.y + 6 }}
@@ -253,7 +292,7 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
           />
           <CustomGeometry
             key={newOrigin.x * 3}
-            {...{ ...tempOrigin, y: tempOrigin.y + 4 }}
+            {...{ ...tempOrigin, y: tempOrigin.y + 3 }}
             geometry={skyscraperMiddleTop}
           />
           <CustomGeometry
@@ -318,7 +357,7 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
         case CityBlockType.Tiered:
           return <TieredCityBlock newOrigin={newOrigin} />;
         case CityBlockType.Double:
-          return <DoubleCityBlock newOrigin={newOrigin} />;
+          return <AntennaCityBlock newOrigin={newOrigin} />;
         case CityBlockType.Basic:
         default:
           basicCount++;
@@ -337,11 +376,13 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
           z: origin.z + q * 4,
           s: origin.s,
         };
-        if (i === 2 && q === 2)
+        if (i === 2 && q === 2) {
           newRow.push(
             getCityBlockType(CityBlockType.Skyscraper, newOrigin, true)
           );
-        newRow.push(getCityBlockType(getRandomInt(0, 2), newOrigin));
+        } else {
+          newRow.push(getCityBlockType(getRandomInt(0, 2), newOrigin));
+        }
       }
       matrix.push(newRow);
     }
