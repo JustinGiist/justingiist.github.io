@@ -256,8 +256,21 @@ hr {
     background: linear-gradient(#ffb77c, #f7903b);
   }
 }
+.google-visualization-tooltip {
+  path {
+    fill: var(--theme-text-primary);
+  }
+}
 @media only screen and (max-width: 1000px), screen and (max-height: 1000px) {
   .cardContainer:not(.cardContainer:first-child) {
     margin-top: 0 !important;
+  }
+  .mainContent.Enterprise {
+    width: calc(100% - 16px);
+  }
+  .Enterprise {
+    .scrollComponent {
+      padding: 8px !important;
+    }
   }
 }
