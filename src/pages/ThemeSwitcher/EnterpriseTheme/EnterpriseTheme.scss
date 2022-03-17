@@ -261,6 +261,11 @@ hr {
     fill: var(--theme-text-primary);
   }
 }
+.mainContent.Enterprise {
+  > .headline.one {
+    color: var(--theme-white);
+  }
+}
 @media only screen and (max-width: 1000px), screen and (max-height: 1000px) {
   .cardContainer:not(.cardContainer:first-child) {
     margin-top: 0 !important;

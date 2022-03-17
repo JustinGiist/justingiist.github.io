@@ -73,8 +73,8 @@ const ResumePage = () => {
   ];
   const experienceList: string[] = [
     "Developed the UI/UX Frontend Experience for a Fintech Investment SPA. Built a combined React & React-Native Solution that ran both simultaneously & used the same logic codebase for each.",
-    "Developed solutions that organized financial data into Government Regulated Excel and PDF documents to be submitted easily. Simplifying a meticulous week-long process, to only a click of a button.",
-    "Designed entire User Interface for a PDF Editor in Angular. This included animating and developing signature menus, color customization menus, custom shape menus & much more.",
+    "Using SyncFusion XLISO excel conversion library, I converted database data into Financial Chart Data with custom math and conversion formulas according to Government Regulations. Simplifying a meticulous week-long process, to only a click of a button.",
+    "Designed entire User Interface for a PDF Editor in Angular. This included animating and developing various menus, navigational tools, and custom tool icons.",
     "Exchanged communications with many top level clients, such as the Head of a Global Medical Company and many CEOs, to accurately gather details for controls and components, turn those into actionable tickets within Jira and delegate tasks to appropriate developers.",
   ];
   const projectList: iDisplay[] = [

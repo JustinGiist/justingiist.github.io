@@ -22,7 +22,9 @@ import { ReactComponent as Clouds } from "./Clouds.svg";
 import { ReactComponent as SalesLeftBackground } from "./SalesLeftBackground.svg";
 import { ReactComponent as SalesRightBackground } from "./SalesRightBackground.svg";
 import { ReactComponent as Squiggly } from "./Squiggly.svg";
-
+import { ReactComponent as Sony } from "./sony-logo.svg";
+import { ReactComponent as MSFT } from "./microsoft-windows-22.svg";
+import { ReactComponent as AAPL } from "./apple.svg";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import {
@@ -109,6 +111,9 @@ const GetIcon: any = {
   Email,
   Linkedin,
   Phone,
+  Sony,
+  MSFT,
+  AAPL,
 };
 const Icon = ({
   icon,

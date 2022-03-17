@@ -98,7 +98,7 @@ const investmentCard2List: iInvestmentCard[] = [
     tradingAt: 102.75,
     percentChange: 4.79,
     state: InvestmentElementStates.Increase,
-    logo: <Icon icon="SONY" fontSize={60} />,
+    logo: <Icon icon="Sony" fontSize={60} viewBox={"0.996 1 498.004 87.678"} />,
   },
   {
     label: "MSFT",
@@ -106,15 +106,15 @@ const investmentCard2List: iInvestmentCard[] = [
     tradingAt: 294.39,
     percentChange: 7.24,
     state: InvestmentElementStates.Increase,
-    logo: <Icon icon="MSFT" fontSize={60} />,
+    logo: <Icon icon="MSFT" fontSize={60} viewBox={"0 0 256 257"} />,
   },
   {
     label: "AAPL",
     fullLabel: "Apple Inc",
     tradingAt: 159.59,
-    percentChange: 4.5,
-    state: InvestmentElementStates.Increase,
-    logo: <Icon icon="AAPL" fontSize={60} />,
+    percentChange: -4.5,
+    state: InvestmentElementStates.Decrease,
+    logo: <Icon icon="AAPL" fontSize={60} viewBox={"0 0 496.255 608.728"} />,
   },
 ];
 const EnterpriseTheme = () => {
@@ -214,6 +214,7 @@ const EnterpriseTheme = () => {
   ];
   return (
     <>
+      <div className="headline one">Dashboard</div>
       <div className="cardContainer threeCols">
         {investmentCardList.map((item) => {
           return <InvestmentCardElement {...item} />;
@@ -359,7 +360,8 @@ const EnterpriseTheme = () => {
           />
         </div>
       </div>
-      <TutorialControl />
+      <div style={{ minHeight: 16 }}></div>
+      {/*<TutorialControl />*/}
     </>
   );
 };

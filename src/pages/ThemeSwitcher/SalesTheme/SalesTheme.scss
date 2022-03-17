@@ -284,13 +284,12 @@
   justify-content: center;
   column-gap: 16px;
   margin-right: 32px;
-  background-color: var(--theme-primary-background);
+  background-color: #fff0f0;
 
   .topBarOptionBackground {
     .topBarOption {
       padding: 2px 16px;
-      background-color: var(--theme-primary-background);
-
+      background-color: #fff0f0;
       height: 36px;
       &:hover {
         cursor: pointer;
