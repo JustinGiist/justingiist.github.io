@@ -199,7 +199,11 @@
 .card {
   box-shadow: var(--theme-shadow-light);
   padding: 24px;
-  background: linear-gradient(#ffffff, #cdd6ff);
+  background: linear-gradient(
+    var(--theme-primary-background) 0%,
+    var(--theme-primary-background) 86%,
+    var(--theme-teritary) 110%
+  );
   border-radius: var(--round-medium);
   display: flex;
   flex-direction: column;
