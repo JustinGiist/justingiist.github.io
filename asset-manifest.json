@@ -1,17 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.be63870e.chunk.css",
-    "main.js": "/static/js/main.cf369e5e.chunk.js",
-    "main.js.map": "/static/js/main.cf369e5e.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.9b56c00b.js",
-    "runtime-main.js.map": "/static/js/runtime-main.9b56c00b.js.map",
-    "static/js/2.9eb2571b.chunk.js": "/static/js/2.9eb2571b.chunk.js",
-    "static/js/2.9eb2571b.chunk.js.map": "/static/js/2.9eb2571b.chunk.js.map",
-    "static/js/3.068001d9.chunk.js": "/static/js/3.068001d9.chunk.js",
-    "static/js/3.068001d9.chunk.js.map": "/static/js/3.068001d9.chunk.js.map",
+    "main.css": "/static/css/main.6dffe884.chunk.css",
+    "main.js": "/static/js/main.71f8288e.chunk.js",
+    "main.js.map": "/static/js/main.71f8288e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5a581fda.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5a581fda.js.map",
+    "static/js/2.25a57e86.chunk.js": "/static/js/2.25a57e86.chunk.js",
+    "static/js/2.25a57e86.chunk.js.map": "/static/js/2.25a57e86.chunk.js.map",
+    "static/js/3.afbf49c3.chunk.js": "/static/js/3.afbf49c3.chunk.js",
+    "static/js/3.afbf49c3.chunk.js.map": "/static/js/3.afbf49c3.chunk.js.map",
+    "static/js/4.8c9c059c.chunk.js": "/static/js/4.8c9c059c.chunk.js",
+    "static/js/4.8c9c059c.chunk.js.map": "/static/js/4.8c9c059c.chunk.js.map",
+    "static/js/5.f474ac40.chunk.js": "/static/js/5.f474ac40.chunk.js",
+    "static/js/5.f474ac40.chunk.js.map": "/static/js/5.f474ac40.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.be63870e.chunk.css.map": "/static/css/main.be63870e.chunk.css.map",
-    "static/js/2.9eb2571b.chunk.js.LICENSE.txt": "/static/js/2.9eb2571b.chunk.js.LICENSE.txt",
+    "static/css/main.6dffe884.chunk.css.map": "/static/css/main.6dffe884.chunk.css.map",
+    "static/js/2.25a57e86.chunk.js.LICENSE.txt": "/static/js/2.25a57e86.chunk.js.LICENSE.txt",
+    "static/js/3.afbf49c3.chunk.js.LICENSE.txt": "/static/js/3.afbf49c3.chunk.js.LICENSE.txt",
     "static/media/Amazon_logo.4f66fa08.svg": "/static/media/Amazon_logo.4f66fa08.svg",
     "static/media/BottomLeftWindow.ebba0d66.svg": "/static/media/BottomLeftWindow.ebba0d66.svg",
     "static/media/CircleWindow.833c6ba9.svg": "/static/media/CircleWindow.833c6ba9.svg",
@@ -56,9 +61,9 @@
     "static/media/textbox.cb172bda.svg": "/static/media/textbox.cb172bda.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.9b56c00b.js",
-    "static/js/2.9eb2571b.chunk.js",
-    "static/css/main.be63870e.chunk.css",
-    "static/js/main.cf369e5e.chunk.js"
+    "static/js/runtime-main.5a581fda.js",
+    "static/js/2.25a57e86.chunk.js",
+    "static/css/main.6dffe884.chunk.css",
+    "static/js/main.71f8288e.chunk.js"
   ]
 }
