@@ -13,8 +13,7 @@ const OverlayControl = ({ loading }: iOverlayControl) => {
       style={{
         width: "100%",
         height: "100%",
-        backgroundColor:
-          themeManager.currentTheme.secondaryBackgroundTransparent,
+        display: "flex",
       }}
     >
       <div style={{ margin: "auto" }}>

@@ -1,6 +1,6 @@
 .basicNavButton {
   display: flex;
-  padding: 4px 16px;
+  padding: 8px 24px;
   .navButtonIcon {
     width: fit-content;
     height: 16px;
@@ -9,6 +9,8 @@
   }
   &.active {
     background-color: var(--theme-secondary);
+    //border-bottom-left-radius: var(--round-large);
+    //border-bottom-right-radius: var(--round-large); change background color of bar to keep this, to white, when below gradient
   }
   .navButtonLabel {
     font-size: var(--font-medium);
@@ -173,7 +175,6 @@
     }
   }
   .basicNavButton {
-    padding: 8px 8px;
     .navButtonDropdownArrow {
       height: 20px;
       svg {
@@ -268,7 +269,6 @@
     border-left: 15px solid var(--theme-teritary);
   }
   .basicNavButton {
-    padding: 8px 8px;
     transition: all 0.167s ease-in-out;
     .navButtonLabel {
       font-size: var(--font-small);
@@ -336,7 +336,6 @@
     font-weight: bold;
   }
   .basicNavButton {
-    padding: 8px 8px;
     .navButtonDropdownArrow {
       height: 20px;
       svg {
@@ -380,8 +379,6 @@
 .Projects,
 .Contact {
   .basicNavButton {
-    padding: 4px 16px;
-
     .navButtonDropdownArrow {
       height: 20px;
     }
@@ -461,7 +458,6 @@
     font-weight: bold;
   }
   .basicNavButton {
-    padding: 8px 8px;
     .navButtonDropdownArrow {
       height: 20px;
       svg {

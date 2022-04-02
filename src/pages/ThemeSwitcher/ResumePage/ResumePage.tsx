@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { Suspense, useContext, useState } from "react";
 import DesignBackground from "../../../components/BezierBackground/DesignBackground";
 import "./ResumePage.scss";
 import tacoImage from "../../../assets/taco.jpg";
@@ -8,7 +8,10 @@ import ParallaxBackground from "../../../components/BezierBackground/ParallaxBac
 import { ThemeManagerContext } from "../../../App";
 import { GlobalThemes } from "../../../ThemeManager";
 import { useNavigate } from "react-router-dom";
-import ThreeDComponent from "./ThreeD";
+import React from "react";
+import { CircularProgress } from "@material-ui/core";
+import OverlayControl from "../../../components/OverlayControl/OverlayControl";
+const ThreeDComponentLazy = React.lazy(() => import("./ThreeD"));
 export interface iDisplay {
   label: string;
   date?: string;
@@ -19,6 +22,8 @@ export interface iDisplay {
 }
 const ResumePage = () => {
   const navigate = useNavigate();
+  const { themeManager, theme, setThemeContext } =
+    useContext(ThemeManagerContext);
   const languagesList: iDisplay[] = [
     {
       label: "Languages",
@@ -62,12 +67,11 @@ const ResumePage = () => {
         "Xamarin-Forms",
         "MySQL",
         "Ableton Live",
-        "Google Charts",
+        "Google API",
         "Chart.js",
         "Syncfusion",
         "PDF.js",
-        "Excel Conversion",
-        "Azure DevOps",
+        "Azure",
         "XlsIO",
       ],
     },
@@ -121,47 +125,54 @@ const ResumePage = () => {
         </div>
       </div>
       <div className="parallax_layer one">
-        <div className="hero-section column C" style={{ paddingBottom: 120 }}>
-          <div className="titleContainer">
-            <div className="flex column">
-              <div
-                className=" 
+        <div className="hero-section column" style={{ background: "black" }}>
+          <Suspense fallback={<OverlayControl loading />}>
+            <div className="titleContainer">
+              <div className="flex column">
+                <div
+                  className=" 
             headline one"
-              >
-                Justin Gist
-              </div>
-              <div
-                className=" 
+                >
+                  Justin Gist
+                </div>
+                <div
+                  className=" 
             headline two"
-              >
-                UI/UX Designer
+                >
+                  UI/UX Designer
+                </div>
               </div>
             </div>
-          </div>
-          <ThreeDComponent />
-        </div>
 
+            <ThreeDComponentLazy />
+          </Suspense>
+        </div>
+        <div className="heroGradient" />
         <div className="hero-section B">
           <div className=" center ">
-            <div className="headline one textTitle">Experience</div>
+            <div className="headline one textSecondary">Experience</div>
             <ExperienceElement list={experienceList} />
           </div>
         </div>
         <div className="hero-section B">
           <div className="center ">
             {languagesList.map((job, i) => {
-              return <DisplayElement options={job} />;
+              return (
+                <DisplayElement options={job} themeManager={themeManager} />
+              );
             })}
           </div>
         </div>
         <div className="hero-section B">
           <div className=" center">
             {techList.map((job, i) => {
-              return <DisplayElement options={job} />;
+              return (
+                <DisplayElement options={job} themeManager={themeManager} />
+              );
             })}
           </div>
         </div>
-        <div className="headline one textSecondary">Projects</div>
+        <div className="headline one textTitle">Projects</div>
         <div className="hero-section B">
           <div className="center">
             <JobElement options={projectList[0]} />
@@ -195,7 +206,13 @@ const ResumePage = () => {
   );
 };
 export default ResumePage;
-export const DisplayElement = ({ options }: { options: iDisplay }) => {
+export const DisplayElement = ({
+  options,
+  themeManager,
+}: {
+  options: iDisplay;
+  themeManager: any;
+}) => {
   return (
     <div
       style={{ display: "flex" }}
@@ -207,7 +224,7 @@ export const DisplayElement = ({ options }: { options: iDisplay }) => {
       }}
     >
       <div className="displayContainer ">
-        <div className={"textTitle headline one "}>{options.label}</div>
+        <div className={"textSecondary headline one "}>{options.label}</div>
         <div className="textPrimary headline four ">{options.date ?? ""}</div>
         {options.context && (
           <div
@@ -221,6 +238,10 @@ export const DisplayElement = ({ options }: { options: iDisplay }) => {
                   <li
                     style={{
                       marginBottom: options.isBulletContext ? "4px" : "16px",
+                      justifyContent:
+                        i % 2 === 0 && themeManager.isMobile
+                          ? "flex-end"
+                          : "flex-start",
                     }}
                     key={i}
                   >
@@ -260,10 +281,8 @@ export const JobElement = ({ options }: { options: iDisplay }) => {
       }}
     >
       <div className="jobElementContainer ">
-        <div className={"textTitle headline one "}>{options.label}</div>
-        <div className="textSecondary headline three ">
-          {options.date ?? ""}
-        </div>
+        <div className={"textSecondary headline one "}>{options.label}</div>
+        <div className="textTitle headline three ">{options.date ?? ""}</div>
         {options.context && (
           <div
             className={
@@ -276,6 +295,7 @@ export const JobElement = ({ options }: { options: iDisplay }) => {
                   <li
                     style={{
                       marginBottom: options.isBulletContext ? "4px" : "16px",
+                      justifyContent: i % 2 === 0 ? "flex-end" : "flex-start",
                     }}
                     key={i}
                   >

@@ -118,7 +118,7 @@
   .centerResumeContainer {
     max-width: 900px;
     margin: auto;
-    background-color: var(--theme-secondary-background);
+    background: linear-gradient(var(--theme-secondary), #130040);
     padding: 32px 0;
     border-radius: var(--round-medium);
     animation: fadeSlideLeft 0.167s forwards;
@@ -201,7 +201,7 @@
   padding: 24px;
   background: linear-gradient(
     var(--theme-primary-background) 0%,
-    var(--theme-primary-background) 86%,
+    var(--theme-primary-background) 92%,
     var(--theme-teritary) 110%
   );
   border-radius: var(--round-medium);

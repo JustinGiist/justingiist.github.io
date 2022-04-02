@@ -6,197 +6,100 @@ import {
   useFrame,
   useThree,
 } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
-
 import {
+  EffectComposer,
+  DepthOfField,
+  Bloom,
+  Noise,
+  Vignette,
+} from "@react-three/postprocessing";
+import THREE, {
   BoxGeometry,
+  BufferGeometry,
   Euler,
+  ExtrudeBufferGeometry,
   Plane,
   Scene,
+  Shape,
   SphereGeometry,
   TorusGeometry,
   Vector2,
   Vector3,
 } from "three";
+import { Loading } from "mdi-material-ui";
+import { CircularProgress } from "@material-ui/core";
 extend({ EffectComposer, RenderPass, UnrealBloomPass });
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      effectComposer: ReactThreeFiber.Object3DNode<
-        EffectComposer,
-        typeof EffectComposer
-      >;
-      renderPass: ReactThreeFiber.Object3DNode<RenderPass, typeof RenderPass>;
-      unrealBloomPass: ReactThreeFiber.Object3DNode<
-        UnrealBloomPass,
-        typeof UnrealBloomPass
-      >;
-      plane: ReactThreeFiber.Object3DNode<Plane, typeof Plane>;
-    }
-  }
-}
 interface ThreeDComponentProps {}
+const smoothness = 2;
+const radius0 = 0.02;
+const torusTublarSegments = 75;
+const torusRadialSegments = 64;
 const ThreeDComponent = (props: ThreeDComponentProps) => {
-  const Bloom = ({ children }: { children: any }) => {
-    const { gl, camera, size } = useThree();
-    const [scene, setScene] = useState<Scene>();
-    const sceneRef = useRef<Scene>();
-    const composer = useRef<EffectComposer>();
-    useEffect(
-      () =>
-        void scene &&
-        (composer.current as any).setSize(size.width, size.height),
-      [size]
-    );
-    useFrame(() => scene && (composer.current as any).render(), 1);
-    return (
-      <>
-        <scene ref={sceneRef}>{children}</scene>
-        <effectComposer ref={composer} args={[gl]}>
-          <renderPass
-            attachArray="passes"
-            scene={sceneRef.current}
-            camera={camera}
-          />
-          <unrealBloomPass
-            attachArray="passes"
-            args={[new Vector2(0, 0), 1.5, 1, 0]}
-          />
-        </effectComposer>
-      </>
-    );
+  const origin = {
+    x: -8,
+    y: 0,
+    z: -8,
+    s: 10,
   };
-  const Main = ({ children }: { children: any }) => {
-    const scene = useRef<Scene>();
-    const { gl, camera } = useThree();
-    useFrame(() => {
-      gl.autoClear = false;
-      gl.clearDepth();
-      if (scene.current) gl.render(scene.current, camera);
-    }, 2);
-
-    return <scene ref={scene}>{children}</scene>;
-  };
-  const CustomGeometry = ({ geometry, x, y, z, s, color }: any) => {
-    return (
-      <mesh
-        //ref={ref}
-        position={[x, y, z]}
-        scale={[s, s, s]}
-        geometry={geometry}
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial color={color || "#8ccbff"} roughness={1} />
-      </mesh>
-    );
-  };
-  const TorusElement = () => {
-    const geometries = [
-      new TorusGeometry(0.6, 0.01, 32, 100).rotateX(190),
-      new TorusGeometry(0.7, 0.01, 32, 100).rotateX(190),
-      new TorusGeometry(0.8, 0.01, 32, 100).rotateX(190),
-      new TorusGeometry(0.9, 0.01, 32, 100).rotateX(190),
-      new TorusGeometry(1, 0.01, 32, 100).rotateX(190),
-      new TorusGeometry(1.1, 0.01, 32, 100).rotateX(190),
-      new TorusGeometry(1.2, 0.01, 32, 100).rotateX(190),
-      new TorusGeometry(1.3, 0.01, 32, 100).rotateX(190),
-      new TorusGeometry(1.4, 0.01, 32, 100).rotateX(190),
-    ];
-    const origin = {
-      x: 0,
-      y: -3,
-      z: 0,
-      s: 10,
-    };
-    const ringColor = "#8ccbff";
-    return (
-      <>
-        {geometries.map((geometry) => {
-          return (
-            <CustomGeometry
-              key={1}
-              {...origin}
-              geometry={geometry}
-              color={ringColor}
-            />
-          );
-        })}
-      </>
-    );
-  };
-  enum CityBlockType {
-    Basic,
-    Tiered,
-    Antenna,
-    Skyscraper,
-  }
-  function getRandomInt(min: number, max: number) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-  const getTieredCoords = (index: number, newOrigin: any) => {
-    const coords = { ...newOrigin, x: newOrigin.x + 0.5, z: newOrigin.z + 0.5 };
-    switch (index) {
-      case 1:
-        coords.x += -1;
-        break;
-      case 2:
-        coords.z += -1;
-        break;
-      case 3:
-        coords.x += -1;
-        coords.z += -1;
-        break;
-      case 0:
-      default:
-        break;
-    }
-    return coords;
-  };
+  let basicCount = 0;
+  //Tiered buildings
+  const [tiered1] = useState(() =>
+    createBoxWithRoundedEdges(0.1, 0.2, 0.1, radius0, smoothness)
+  );
+  const [tiered2] = useState(() =>
+    createBoxWithRoundedEdges(0.1, 0.3, 0.1, radius0, smoothness)
+  );
+  const [tiered3] = useState(() =>
+    createBoxWithRoundedEdges(0.1, 0.4, 0.1, radius0, smoothness)
+  );
+  const [tiered4] = useState(() =>
+    createBoxWithRoundedEdges(0.1, 0.5, 0.1, radius0, smoothness)
+  );
+  //Basic buildings
+  const [basicBottomRounded] = useState(() =>
+    createBoxWithRoundedEdges(0.2, 0.35, 0.2, radius0, smoothness)
+  );
+  const [basicTopRounded] = useState(() =>
+    createBoxWithRoundedEdges(0.16, 0.05, 0.16, radius0, smoothness)
+  );
+  const [basic2BottomRounded] = useState(() =>
+    createBoxWithRoundedEdges(0.2, 0.25, 0.2, radius0, smoothness)
+  );
+  const [basic2TopRounded] = useState(() =>
+    createBoxWithRoundedEdges(0.16, 0.05, 0.16, radius0, smoothness)
+  );
+  //Skyscraper
+  const [skyscraperBottom] = useState(() =>
+    createBoxWithRoundedEdges(0.2, 0.6, 0.2, radius0, smoothness)
+  );
+  const [skyscraperMiddleBottom] = useState(() =>
+    createBoxWithRoundedEdges(0.15, 0.4, 0.1, radius0, smoothness)
+  );
+  const [skyscraperMiddleTop] = useState(() =>
+    createBoxWithRoundedEdges(0.1, 0.6, 0.1, radius0, smoothness)
+  );
+  const [skyscraperTop] = useState(() => new BoxGeometry(0.02, 0.8, 0.02));
+  const [skyscraperSphere] = useState(
+    () => new SphereGeometry(0.05, 30, 60, 60)
+  );
+  //Antenna
+  const [antennaBottom] = useState(() =>
+    createBoxWithRoundedEdges(0.2, 0.15, 0.2, radius0, smoothness)
+  );
+  const [antennaMiddleBottomSphere] = useState(
+    () => new SphereGeometry(0.09, 30, 60, 60)
+  );
+  const [antennaTop] = useState(() => new BoxGeometry(0.02, 0.4, 0.02));
+  const ringGeometries = [
+    new TorusGeometry(0.05, 0.01, torusRadialSegments, 100).rotateX(190),
+    new TorusGeometry(0.04, 0.01, torusRadialSegments, 100).rotateX(190),
+    new SphereGeometry(0.05, 30, 60, 60),
+  ];
   const CityElement = () => {
-    const origin = {
-      x: -8,
-      y: 0,
-      z: -8,
-      s: 10,
-    };
-    let basicCount = 0;
-    const [tiered1] = useState(() => new BoxGeometry(0.1, 0.2, 0.1));
-    const [tiered2] = useState(() => new BoxGeometry(0.1, 0.3, 0.1));
-    const [tiered3] = useState(() => new BoxGeometry(0.1, 0.4, 0.1));
-    const [tiered4] = useState(() => new BoxGeometry(0.1, 0.5, 0.1));
-    const [basicBottom] = useState(() => new BoxGeometry(0.2, 0.35, 0.2));
-    const [basicTop] = useState(() => new BoxGeometry(0.16, 0.05, 0.16));
-    const [basic2Bottom] = useState(() => new BoxGeometry(0.2, 0.25, 0.2));
-    const [basic2Top] = useState(() => new BoxGeometry(0.16, 0.05, 0.16));
-    const [skyscraperBottom] = useState(() => new BoxGeometry(0.2, 0.6, 0.2));
-    const ringGeometries = [
-      new TorusGeometry(0.05, 0.01, 32, 100).rotateX(190),
-      new TorusGeometry(0.04, 0.01, 32, 100).rotateX(190),
-      new TorusGeometry(0.03, 0.01, 32, 100).rotateX(190),
-      new SphereGeometry(0.05, 30, 60, 60),
-    ];
-    const [skyscraperMiddleBottom] = useState(
-      () => new BoxGeometry(0.15, 0.4, 0.15)
-    );
-    const [skyscraperMiddleTop] = useState(
-      () => new BoxGeometry(0.1, 0.6, 0.1)
-    );
-    const [skyscraperTop] = useState(() => new BoxGeometry(0.02, 0.8, 0.02));
-    const [antennaBottom] = useState(() => new BoxGeometry(0.2, 0.15, 0.2));
-    const [antennaMiddleBottom] = useState(
-      () => new BoxGeometry(0.15, 0.1, 0.15)
-    );
-    const [antennaMiddleBottomSphere] = useState(
-      () => new SphereGeometry(0.1, 30, 60, 60)
-    );
-    const [antennaTop] = useState(() => new BoxGeometry(0.02, 0.4, 0.02));
     const BasicCityBlock = ({
       newOrigin,
       basicCount,
@@ -212,12 +115,12 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
             <CustomGeometry
               key={newOrigin.x * 3}
               {...{ ...tempOrigin, y: tempOrigin.y + 2 }}
-              geometry={basicTop}
+              geometry={basicTopRounded}
             />
             <CustomGeometry
               key={newOrigin.x * 2}
               {...tempOrigin}
-              geometry={basicBottom}
+              geometry={basicBottomRounded}
             />
           </>
         );
@@ -228,12 +131,12 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
             <CustomGeometry
               key={newOrigin.x * 3}
               {...{ ...tempOrigin, y: tempOrigin.y + 1.5 }}
-              geometry={basic2Top}
+              geometry={basic2TopRounded}
             />
             <CustomGeometry
               key={newOrigin.x * 2}
               {...tempOrigin}
-              geometry={basic2Bottom}
+              geometry={basic2BottomRounded}
             />
           </>
         );
@@ -276,15 +179,11 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       tempOrigin.y += 1.5;
       return (
         <>
-          {ringGeometries.map((geometry, i) => {
-            return (
-              <CustomGeometry
-                key={1}
-                {...{ ...tempOrigin, y: tempOrigin.y + 6 + (i / 2 + 2.5) }}
-                geometry={geometry}
-              />
-            );
-          })}
+          <CustomGeometry
+            key={1}
+            {...{ ...tempOrigin, y: tempOrigin.y + 6 + 3.5 }}
+            geometry={skyscraperSphere}
+          />
           <CustomGeometry
             key={newOrigin.x * 2}
             {...{ ...tempOrigin, y: tempOrigin.y + 6 }}
@@ -386,62 +285,57 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       }
       matrix.push(newRow);
     }
-    return (
-      <>
-        {matrix.map((row) => {
-          return row.map((element) => {
-            return element;
-          });
-        })}
-      </>
-    );
+    const mapElement = useMemo(() => {
+      return matrix.map((row) => {
+        return row.map((element) => {
+          return element;
+        });
+      });
+    }, [matrix]);
+    return <>{mapElement}</>;
   };
-  const Spinner = (props: any) => {
-    const spinRef = useRef<MeshProps>();
-    useFrame((state, delta) => {
-      if (spinRef.current) {
-        if (spinRef.current.rotation)
-          (spinRef.current.rotation as any).y += 0.008;
-      }
-    });
-    return <mesh ref={spinRef}>{props.children}</mesh>;
-  };
+
   return (
     <Canvas
+      id="threeD"
       linear
       camera={{
         rotation: new Euler(0, 0, 0),
-        position: [0, 10, 33],
+        position: [0, 10, 37],
         castShadow: true,
       }}
       shadows={true}
-      style={{ minHeight: 400 }}
+      style={{ minHeight: 400, background: "#000000" }}
     >
-      <Bloom>
-        <ambientLight />
-        <pointLight
-          position={[20, 10, 20]}
-          castShadow
-          shadow-mapSize-height={512}
-          shadow-mapSize-width={512}
-          color={"#fff8a6"}
-          intensity={2}
-        />
-        <Spinner>
-          <TorusElement />
-          <CityElement />
-        </Spinner>
-      </Bloom>
       <Main>
-        <ambientLight />
-        <pointLight
-          position={[20, 10, 20]}
-          castShadow
+        <directionalLight
+          position={[40, 10, 20]}
+          castShadow={true}
           shadow-mapSize-height={512}
           shadow-mapSize-width={512}
-          color={"#fff8a6"}
-          intensity={2}
+          color={"#000ce8"}
+          intensity={0.8}
         />
+        <directionalLight
+          position={[-40, 10, 20]}
+          castShadow={true}
+          shadow-mapSize-height={512}
+          shadow-mapSize-width={512}
+          color={"#9c008c"}
+          intensity={1}
+        />
+        <directionalLight
+          position={[0, 10, -40]}
+          castShadow={false}
+          shadow-mapSize-height={512}
+          shadow-mapSize-width={512}
+          color={"#173dfc"}
+          intensity={0.5}
+        />
+        {/*
+      
+        */}
+
         <Spinner>
           <TorusElement />
           <CityElement />
@@ -451,3 +345,195 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
   );
 };
 export default ThreeDComponent;
+const Spinner = (props: any) => {
+  const spinRef = useRef<MeshProps>();
+  useFrame((state, delta) => {
+    if (spinRef.current) {
+      if (spinRef.current.rotation)
+        (spinRef.current.rotation as any).y += 0.004;
+    }
+  });
+  return <mesh ref={spinRef}>{props.children}</mesh>;
+};
+const particleSystem = () => {
+  const particleGeometry = new BufferGeometry();
+  const particleCount = 5000;
+};
+const Main = ({ children }: { children: any }) => {
+  const scene = useRef<Scene>();
+  const { gl, camera } = useThree();
+  useFrame(() => {
+    gl.autoClear = false;
+    gl.clearDepth();
+    if (scene.current) gl.render(scene.current, camera);
+  }, 2);
+
+  return <scene ref={scene}>{children}</scene>;
+};
+const CustomGeometry = ({ geometry, x, y, z, s, color }: any) => {
+  return (
+    <mesh
+      //ref={ref}
+      position={[x, y, z]}
+      scale={[s, s, s]}
+      geometry={geometry}
+      castShadow
+      receiveShadow
+    >
+      {/*<meshPhongMaterial
+        color={color || "#c7e6ff"}
+        shininess={100}
+        specular={"#a38aff"}
+      envMap={Reflection()}
+      />*/}
+      <meshStandardMaterial
+        color={color || "#c7e6ff"}
+        roughness={0.5}
+        metalness={1}
+      />
+    </mesh>
+  );
+};
+const TorusElement = () => {
+  const [geometries] = useState([
+    new TorusGeometry(
+      0.6,
+      0.01,
+      torusRadialSegments,
+      torusTublarSegments
+    ).rotateX(190),
+    new TorusGeometry(
+      0.7,
+      0.01,
+      torusRadialSegments,
+      torusTublarSegments
+    ).rotateX(190),
+    new TorusGeometry(
+      0.8,
+      0.01,
+      torusRadialSegments,
+      torusTublarSegments
+    ).rotateX(190),
+    new TorusGeometry(
+      0.9,
+      0.01,
+      torusRadialSegments,
+      torusTublarSegments
+    ).rotateX(190),
+    new TorusGeometry(
+      1,
+      0.01,
+      torusRadialSegments,
+      torusTublarSegments
+    ).rotateX(190),
+    new TorusGeometry(
+      1.1,
+      0.01,
+      torusRadialSegments,
+      torusTublarSegments
+    ).rotateX(190),
+    new TorusGeometry(
+      1.2,
+      0.01,
+      torusRadialSegments,
+      torusTublarSegments
+    ).rotateX(190),
+    new TorusGeometry(
+      1.3,
+      0.01,
+      torusRadialSegments,
+      torusTublarSegments
+    ).rotateX(190),
+    new TorusGeometry(
+      1.4,
+      0.01,
+      torusRadialSegments,
+      torusTublarSegments
+    ).rotateX(190),
+  ]);
+  const origin = {
+    x: 0,
+    y: -3,
+    z: 0,
+    s: 10,
+  };
+  const ringColor = "#8ccbff";
+  const mapElement = useMemo(() => {
+    return geometries.map((geometry) => {
+      return (
+        <CustomGeometry
+          key={1}
+          {...origin}
+          geometry={geometry}
+          color={ringColor}
+        />
+      );
+    });
+  }, [geometries]);
+  return <>{mapElement}</>;
+};
+enum CityBlockType {
+  Basic,
+  Tiered,
+  Antenna,
+  Skyscraper,
+}
+function getRandomInt(min: number, max: number) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+const getTieredCoords = (index: number, newOrigin: any) => {
+  const coords = { ...newOrigin, x: newOrigin.x + 0.5, z: newOrigin.z + 0.5 };
+  switch (index) {
+    case 1:
+      coords.x += -1;
+      break;
+    case 2:
+      coords.z += -1;
+      break;
+    case 3:
+      coords.x += -1;
+      coords.z += -1;
+      break;
+    case 0:
+    default:
+      break;
+  }
+  return coords;
+};
+function createBoxWithRoundedEdges(
+  width: number,
+  height: number,
+  depth: number,
+  radius0: number,
+  smoothness: number
+) {
+  let shape = new Shape();
+  let eps = 0.00001;
+  let radius = radius0 - eps;
+  shape.absarc(eps, eps, eps, -Math.PI / 2, -Math.PI, true);
+  shape.absarc(eps, height - radius * 2, eps, Math.PI, Math.PI / 2, true);
+  shape.absarc(
+    width - radius * 2,
+    height - radius * 2,
+    eps,
+    Math.PI / 2,
+    0,
+    true
+  );
+  shape.absarc(width - radius * 2, eps, eps, 0, -Math.PI / 2, true);
+  let geometry = new ExtrudeBufferGeometry(shape, {
+    depth: depth - radius0 * 2,
+    bevelEnabled: true,
+    bevelSegments: smoothness * 2,
+    steps: 1,
+    bevelSize: radius,
+    bevelThickness: radius0,
+    curveSegments: smoothness,
+  });
+
+  geometry.center();
+
+  return geometry;
+}

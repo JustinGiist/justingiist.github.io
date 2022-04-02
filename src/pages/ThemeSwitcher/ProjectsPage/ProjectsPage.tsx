@@ -4,7 +4,11 @@ import hallowImage from "../../../assets/hallow.jpg";
 import spaceImage from "../../../assets/spaceBackground.png";
 
 import "./ProjectsPage.scss";
+import { ThemeManagerContext } from "../../../App";
+import { useContext } from "react";
 const ProjectsPage = () => {
+  const { themeManager, theme, setThemeContext } =
+    useContext(ThemeManagerContext);
   const jobList: iDisplay[] = [
     {
       label: "The Asteroid Dome",
@@ -35,7 +39,6 @@ const ProjectsPage = () => {
   ];
   return (
     <div className="centerResumeContainer">
-      {" "}
       <div
         className="textTitle 
             headline one"
@@ -44,7 +47,7 @@ const ProjectsPage = () => {
       </div>
       <div className="displayContainer">
         {jobList.map((job, i) => {
-          return <DisplayElement options={job} />;
+          return <DisplayElement options={job} themeManager={themeManager} />;
         })}
       </div>
     </div>

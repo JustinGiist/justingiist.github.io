@@ -144,7 +144,7 @@ body {
 }
 @keyframes fadeSlideUp {
   0% {
-    transform: translateY(200px);
+    transform: translateY(20px);
     opacity: 0;
   }
   100% {
@@ -154,7 +154,7 @@ body {
 }
 @keyframes fadeSlideDown {
   0% {
-    transform: translateY(-200px);
+    transform: translateY(-20px);
     opacity: 0;
   }
   100% {
@@ -165,7 +165,7 @@ body {
 
 @keyframes fadeSlideLeft {
   0% {
-    transform: translateX(200px);
+    transform: translateX(20px);
     opacity: 0;
   }
   100% {
@@ -175,7 +175,7 @@ body {
 }
 @keyframes fadeSlideRight {
   0% {
-    transform: translateX(-200px);
+    transform: translateX(-20px);
     opacity: 0;
   }
   100% {
