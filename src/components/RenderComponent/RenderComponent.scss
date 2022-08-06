@@ -1,6 +1,15 @@
 :root {
   --theme-white-gradient: linear-gradient(#ffffff, rgba(255, 255, 255, 0));
 }
+
+.animationOverlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
 .renderContainer {
   display: grid;
   grid-template-rows: 56px auto;
@@ -13,12 +22,10 @@
   .bottomContainer {
     display: flex;
     height: 100%;
-    .scrollComponent {
-      overflow-y: auto;
-      .mainContent {
-        width: 100%;
-        height: 100%;
-      }
+    overflow: hidden;
+    .mainContent {
+      width: 100%;
+      height: 100%;
     }
   }
 }
@@ -60,11 +67,10 @@
   * {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
-  .scrollComponent {
+  .bottomContainer {
     background: linear-gradient(var(--theme-primary), var(--theme-secondary));
-    padding: 16px;
     .mainContent {
-      max-width: 1000px;
+      max-width: 900px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -85,9 +91,8 @@
     background: var(--theme-secondary);
     animation: creepyNav 10s infinite;
   }
-  .scrollComponent {
+  .bottomContainer {
     background: var(--background-secondary);
-    padding: 16px;
   }
 }
 .Safari {
@@ -187,13 +192,6 @@
 .threeCols {
   grid-template-columns: auto auto auto;
 }
-.animationOverlay {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-}
 .card {
   box-shadow: var(--shadow-light);
   padding: 24px;
@@ -259,13 +257,13 @@
   width: 100%;
   height: 100%;
 }
-@media only screen and (max-width: 1000px), screen and (max-height: 600px) {
+@media only screen and (max-width: 900px), screen and (max-height: 600px) {
   .parallax_layer.two {
     transform: translateZ(-1px) scale(2);
   }
 }
-@media only screen and (max-width: 1000px), screen and (max-height: 600px) {
-  .scrollComponent {
+@media only screen and (max-width: 900px), screen and (max-height: 600px) {
+  .bottomContainer {
     padding: 0px !important;
   }
   .cardContainer {

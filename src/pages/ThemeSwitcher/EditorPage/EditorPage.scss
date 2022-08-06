@@ -566,7 +566,7 @@ $tp-blue-gradient: linear-gradient(-45deg, $tp-light-blue, $tp-blue);
                     box-shadow: var(--shadow-dark);
                     display: flex;
                     flex-direction: column;
-                    max-width: 1000px;
+                    max-width: 900px;
                     .MuiDataGrid-columnHeaders, .MuiDataGrid-footerContainer {
                         background: var(--background-account);
                         color: var(--light);
@@ -587,7 +587,7 @@ $tp-blue-gradient: linear-gradient(-45deg, $tp-light-blue, $tp-blue);
                     }
                 }
                 .inputsSection {
-                    max-width: 1000px;
+                    max-width: 900px;
                     row-gap: 32px;
                     margin-top: 16px;
                 }

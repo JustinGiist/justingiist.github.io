@@ -17,26 +17,64 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
   const [label, setLabel] = useState("Webpage");
   const dimensions = useWindowDimensions();
   const [openContext, setOpenContext] = useState<boolean>(false);
-  const [navButtons, setNavButtons] = useState<NavButtonOptions[]>([
-    {
-      route: GlobalThemes.Resume,
-    },
-    {
-      icon: "Themes",
-      label: "Themes",
-      contextItems: [
-        {
-          icon: "Projects",
-          route: GlobalThemes.Enterprise,
-        },
-        {
-          icon: "Bat",
-          route: GlobalThemes.Spooky,
-        },
-        {
-          icon: "Sales",
-          route: GlobalThemes.Sales,
-        },
+  const [navButtons, setNavButtons] = useState<NavButtonOptions[]>([]);
+
+  const setIcons = (icons: string[]) => {
+    if (!navButtons || navButtons.length === 0) return;
+    let tempButtons = navButtons;
+    icons.forEach((icon, i) => {
+      tempButtons[i]["icon"] = icon;
+    });
+    setNavButtons(tempButtons);
+  };
+  
+  useEffect(() => {
+    const model = [
+      {
+        route: GlobalThemes.Resume,
+      },
+      {
+        icon: "Themes",
+        label: "Themes",
+        contextItems: [
+          {
+            icon: "Projects",
+            route: GlobalThemes.Enterprise,
+          },
+          {
+            icon: "Bat",
+            route: GlobalThemes.Spooky,
+          },
+          {
+            icon: "Sales",
+            route: GlobalThemes.Sales,
+          } 
+          /*
+          
+          {
+            icon: "Paw",
+            label: "Safari Learning",
+            themeChanger: GlobalThemes.Safari,
+            route: "/safari",
+          },
+          {
+            icon: "SportsEsports",
+            label: "80s Arcade",
+            themeChanger: GlobalThemes.Arcade,
+            route: "/arcade",
+          },
+          {
+            icon: "Skull",
+            label: "Dystopia",
+            themeChanger: GlobalThemes.Dystopia,
+            route: "/dystopia",
+          },
+          */,
+        ],
+      },
+    ];
+    if (!dimensions.isMobile) {
+      model[1].contextItems?.push(...[
         {
           icon: "Test",
           route: GlobalThemes.Test,
@@ -44,37 +82,12 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
         {
           icon: "D20",
           route: GlobalThemes.Fragments,
-        } /*
-        
-        {
-          icon: "Paw",
-          label: "Safari Learning",
-          themeChanger: GlobalThemes.Safari,
-          route: "/safari",
-        },
-        {
-          icon: "SportsEsports",
-          label: "80s Arcade",
-          themeChanger: GlobalThemes.Arcade,
-          route: "/arcade",
-        },
-        {
-          icon: "Skull",
-          label: "Dystopia",
-          themeChanger: GlobalThemes.Dystopia,
-          route: "/dystopia",
-        },
-        */,
-      ],
-    },
-  ]);
-  const setIcons = (icons: string[]) => {
-    let tempButtons = navButtons;
-    icons.forEach((icon, i) => {
-      tempButtons[i]["icon"] = icon;
-    });
-    setNavButtons(tempButtons);
-  };
+        }
+      ]);
+    }
+    setNavButtons(model);
+  }, [dimensions.isMobile]);
+
   useEffect(() => {
     switch (theme) {
       case GlobalThemes.Spooky:
@@ -104,7 +117,7 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
 
   return (
     <div className={"navBar horizontal "}>
-      {dimensions.isMobile ? <div/> : (
+      {dimensions.isMobile ? null : (
         <div
           className="headline five navBarLabel text-headline"
           style={{ display: "flex" }}
@@ -134,7 +147,7 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
           setOpenContext={setOpenContext}
         />
       </div>
-      <div />
+      {dimensions.isMobile ? null : <div />}
     </div>
   );
 };

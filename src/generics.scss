@@ -1,7 +1,6 @@
 @import './color-variables.scss';
-
 h1, h2, h3, h4, h5,.headline {
-  margin: 0 !important;
+  margin: 0;
 }
 body {
   overflow: hidden;
@@ -392,7 +391,7 @@ h5, .headline.five {
 .pushToBottom {
   margin-top: auto;
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px), screen and (max-height: 600px) {
   .flexFull {
     grid-template-columns: auto;
     &.threeColumns {
@@ -419,6 +418,14 @@ h5, .headline.five {
     width: 100%;
     > .button {
       width: 100%;
+    }
+  }
+}
+@media only screen and (max-width: 600px), screen and (max-height: 400px) {
+  .flexFull {
+    &.threeColumns {
+      display: flex;
+      flex-direction: column;
     }
   }
 }

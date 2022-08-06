@@ -218,8 +218,8 @@ export const DisplayElement = ({
       }}
     >
       <div className="displayContainer ">
-        <h1 className="text-body">{options.label}</h1>
-        <h4 className="text-sub-headline">{options.date ?? ""}</h4>
+        <h3>{options.label}</h3>
+        <div className="text-sub-headline">{options.date ?? ""}</div>
         {options.context && (
           <div
             className={
@@ -275,8 +275,8 @@ export const JobElement = ({ options }: { options: iDisplay }) => {
       }}
     >
       <div className="jobElementContainer ">
-        <h1 className="text-body">{options.label}</h1>
-        <h3 className="text-headline">{options.date ?? ""}</h3>
+        <h2 className="text-body">{options.label}</h2>
+        <div className="text-sub-headline">{options.date ?? ""}</div>
         {options.context && (
           <div
             className={

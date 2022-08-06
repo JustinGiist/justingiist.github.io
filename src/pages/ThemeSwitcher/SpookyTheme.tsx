@@ -558,7 +558,7 @@ const SpookyTheme = ({}: {}) => {
             >
               Events
             </div>
-            {dimensions.isMobile && <div style={{ padding: 32 }} />}
+            {dimensions.isMobile && <div style={{ padding: 16 }} />}
           </>
         )}
       </div>

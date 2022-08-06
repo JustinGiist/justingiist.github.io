@@ -7,6 +7,7 @@
   overflow: hidden !important;
   .salesContainer {
     height: 100%;
+    width: 100%;
   }
   .bodyContainer {
     z-index: 10;
@@ -723,8 +724,11 @@
     height: 100%;
   }
 }
-@media only screen and (max-width: 1000px), screen and (max-height: 600px) {
+@media only screen and (max-width: 900px), screen and (max-height: 600px) {
   .mainContent.Sales {
+    .shop {
+      margin: 0 auto;
+    }
     .mobileCardContainer {
       max-width: 360px;
     }
@@ -748,7 +752,10 @@
       }
     }
     h1, .headline.one {
-      font-size: var(--font-xlarge) !important;
+      font-size: 60px !important;
+    }
+    h2, .headline.two {
+      font-size: 48px !important;
     }
     .cartBall.animate {
       left: 80% !important;
@@ -761,7 +768,7 @@
     }
     .cart {
       top: 52px !important;
-      right: 8px !important;
+      right: 16px !important;
     }
     .designButton {
       padding: 16px !important;
