@@ -146,24 +146,24 @@ const SpookyTheme = ({}: {}) => {
         <div className="spookyIcon bottomRight">
           <Icon icon={options.iconRight} />
         </div>
-        <div className="headline one textTitle">{options.label}</div>
-        <div className="headline four textPrimary">{options.bodyText}</div>
+        <h1 className="text-headline">{options.label}</h1>
+        <h4 className="text-sub-headline">{options.bodyText}</h4>
         {options.context &&
           options.context.map((item, i) => {
             return (
-              <div className="context">
-                <div className="headline two textTitle">{item.label}</div>
-                <div className="headline four textSecondary">
+              <div key={`spooky-context-item-${item.label}`} className="context">
+                <h2 className="text-headline">{item.label}</h2>
+                <h4 className="text-body">
                   {item.bodyText}
-                </div>
+                </h4>
                 {options.context && i != options.context.length - 1 && <hr />}
                 {item.bulletList &&
                   item.bulletList.map((item) => {
                     return (
-                      <div className="bullet">
-                        <div className="headline three textSecondary">
+                      <div key={`bullet-item-${item}`} className="bullet">
+                        <h3 className="text-body">
                           {item}
-                        </div>
+                        </h3>
                       </div>
                     );
                   })}
@@ -173,48 +173,46 @@ const SpookyTheme = ({}: {}) => {
         {options.bulletList &&
           options.bulletList.map((item) => {
             return (
-              <div className="">
-                <div className="headline one">{item}</div>
-              </div>
+                <h1 key={`spooky-bullet-item-${item}`} className="">{item}</h1>
             );
           })}
         {options.label === "Tickets" && (
           <div className="ticketContainer">
             <div className="ticket">
-              <div className="headline three textPrimary">Spooky Tour</div>
-              <div className="headline one textTitle">19.95</div>
-              <div
-                className="headline five textSecondary"
+              <h3 className="text-sub-headline">Spooky Tour</h3>
+              <h1 className="text-headline">19.95</h1>
+              <h5
+                className="text-body"
                 onClick={() => {
                   changePage(SpookyPages.Tours);
                 }}
               >
                 Read More
-              </div>
+              </h5>
             </div>
             <div className="ticket primary">
-              <div className="headline three textPrimary">Ghoul Tour</div>
-              <div className="headline one textTitle">49.95</div>
-              <div
-                className="headline five textSecondary"
+              <h3 className="text-sub-headline">Ghoul Tour</h3>
+              <h1 className="text-headline">49.95</h1>
+              <h5
+                className="text-body"
                 onClick={() => {
                   changePage(SpookyPages.Tours);
                 }}
               >
                 Read More
-              </div>
+              </h5>
             </div>
             <div className="ticket">
-              <div className="headline three textPrimary">Nightmare Tour</div>
-              <div className="headline one textTitle">29.95</div>
-              <div
-                className="headline five textSecondary"
+              <h3 className="text-sub-headline">Nightmare Tour</h3>
+              <h1 className="text-headline">29.95</h1>
+              <h5
+                className="text-body"
                 onClick={() => {
                   changePage(SpookyPages.Tours);
                 }}
               >
                 Read More
-              </div>
+              </h5>
             </div>
           </div>
         )}
@@ -229,9 +227,9 @@ const SpookyTheme = ({}: {}) => {
       <div className="cloud right">
         <Icon icon="Clouds" viewBox="0 0 130 120" />
       </div>
-      <div id="TitleText" className="headline one">
+      <h1 id="TitleText">
         Grimm's Haunted House
-      </div>
+      </h1>
       <div className="spookyContent">
         <div className="background">
           <svg viewBox="0 0 500 500" width="500" height="500">
@@ -287,7 +285,7 @@ const SpookyTheme = ({}: {}) => {
             <text
               style={{
                 whiteSpace: "pre",
-                fill: "var(--theme-text-title)",
+                fill: "var(--text-headline)",
                 fontFamily: "Luxurious Roman, cursive",
                 fontSize: "16.8px",
               }}
@@ -308,7 +306,7 @@ const SpookyTheme = ({}: {}) => {
               <text
                 style={{
                   whiteSpace: "pre",
-                  fill: "var(--theme-text-title)",
+                  fill: "var(--text-headline)",
                   fontFamily: "Luxurious Roman, cursive",
                   fontSize: "32px",
                 }}
@@ -320,7 +318,7 @@ const SpookyTheme = ({}: {}) => {
               </text>
               <ellipse
                 style={{
-                  fill: "var(--theme-teritary)",
+                  fill: "var(--theme-primary)",
                   stroke: "var(--theme-secondary)",
                   strokeWidth: "8px",
                 }}
@@ -331,7 +329,7 @@ const SpookyTheme = ({}: {}) => {
               ></ellipse>
               <polygon
                 style={{
-                  stroke: "var(--theme-black)",
+                  stroke: "var(--dark)",
                   strokeWidth: "0px",
                   fill: "var(--theme-secondary)",
                 }}
@@ -339,7 +337,7 @@ const SpookyTheme = ({}: {}) => {
               ></polygon>
               <polygon
                 style={{
-                  stroke: "var(--theme-black)",
+                  stroke: "var(--dark)",
                   strokeWidth: "0px",
                   fill: "var(--theme-secondary)",
                 }}
@@ -353,7 +351,7 @@ const SpookyTheme = ({}: {}) => {
               <text
                 style={{
                   whiteSpace: "pre",
-                  fill: "var(--theme-text-title)",
+                  fill: "var(--text-headline)",
                   fontFamily: "Luxurious Roman, cursive",
                   fontSize: "32px",
                 }}
@@ -364,19 +362,19 @@ const SpookyTheme = ({}: {}) => {
                 Tours
               </text>
               <polygon
-                style={{ fill: "var(--theme-teritary)" }}
+                style={{ fill: "var(--theme-primary)" }}
                 points="166.388 221.839 180.494 272.056 195.637 271.31 188.276 219.338"
               ></polygon>
               <polygon
-                style={{ fill: "var(--theme-teritary)" }}
+                style={{ fill: "var(--theme-primary)" }}
                 points="181.66 276.555 193.28 314.225 203.022 313.888 196.625 277.03"
               ></polygon>
               <polygon
-                style={{ fill: "var(--theme-teritary)" }}
+                style={{ fill: "var(--theme-primary)" }}
                 points="206.245 313.722 202.006 277.177 218.96 277.739 218.358 313.381"
               ></polygon>
               <polygon
-                style={{ fill: "var(--theme-teritary)" }}
+                style={{ fill: "var(--theme-primary)" }}
                 points="201.543 270.859 196.218 218.232 221.266 215.091 219.124 270.127"
               ></polygon>
             </g>
@@ -387,7 +385,7 @@ const SpookyTheme = ({}: {}) => {
               <text
                 style={{
                   whiteSpace: "pre",
-                  fill: "var(--theme-text-title)",
+                  fill: "var(--text-headline)",
                   fontFamily: "Luxurious Roman, cursive",
                   fontSize: "32px",
                 }}
@@ -398,19 +396,19 @@ const SpookyTheme = ({}: {}) => {
                 About
               </text>
               <polygon
-                style={{ fill: "var(--theme-teritary)" }}
+                style={{ fill: "var(--theme-primary)" }}
                 points="264.35 208.236 261.781 267.592 279.624 266.192 287.473 204.58"
               ></polygon>
               <polygon
-                style={{ fill: "var(--theme-teritary)" }}
+                style={{ fill: "var(--theme-primary)" }}
                 points="261.834 271.766 261.301 313.228 273.654 311.751 278.935 271.783"
               ></polygon>
               <polygon
-                style={{ fill: "var(--theme-teritary)" }}
+                style={{ fill: "var(--theme-primary)" }}
                 points="278.882 311.064 285.894 272.201 312.406 271.823 302.186 307.458"
               ></polygon>
               <polygon
-                style={{ fill: "var(--theme-teritary)" }}
+                style={{ fill: "var(--theme-primary)" }}
                 points="287.352 265.671 300.383 203.029 335.54 197.07 314.556 263.325"
               ></polygon>
             </g>
@@ -421,7 +419,7 @@ const SpookyTheme = ({}: {}) => {
               <text
                 style={{
                   whiteSpace: "pre",
-                  fill: "var(--theme-text-title)",
+                  fill: "var(--text-headline)",
                   fontFamily: "Luxurious Roman, cursive",
                   fontSize: "32px",
                 }}
@@ -432,7 +430,7 @@ const SpookyTheme = ({}: {}) => {
                 Location
               </text>
               <path
-                style={{ fill: "var(--theme-teritary)" }}
+                style={{ fill: "var(--theme-primary)" }}
                 d="M 196.556 442.847 L 188.201 384.326 C 185.155 360.259 222.252 351.815 226.253 383.421 L 223.968 442.523 L 196.556 442.847 Z"
               ></path>
               <rect
@@ -476,7 +474,7 @@ const SpookyTheme = ({}: {}) => {
               <text
                 style={{
                   whiteSpace: "pre",
-                  fill: "var(--theme-text-title)",
+                  fill: "var(--text-headline)",
                   fontFamily: "Luxurious Roman, cursive",
                   fontSize: "32px",
                 }}
@@ -487,7 +485,7 @@ const SpookyTheme = ({}: {}) => {
                 Events
               </text>
               <path
-                style={{ fill: "var(--theme-teritary)" }}
+                style={{ fill: "var(--theme-primary)" }}
                 d="M 268.187 362.216 L 259.832 420.737 C 256.786 444.804 293.883 453.248 297.884 421.642 L 295.599 362.54 L 268.187 362.216 Z"
                 transform="matrix(-1, 0, 0, -1, 557.538469, 804.428308)"
               ></path>
@@ -563,53 +561,6 @@ const SpookyTheme = ({}: {}) => {
             {dimensions.isMobile && <div style={{ padding: 32 }} />}
           </>
         )}
-        {/*<div
-          className="circleWindow"
-          onClick={() => {
-            changePage(SpookyPages.Tickets);
-          }}
-        >
-          <div className="headline one textTitle">Tickets</div>
-          <Icon icon="CircleWindow" viewBox="0 0 89 89" />
-        </div>
-        <div className="windowContent">
-          <div
-            className="window topLeft"
-            onClick={() => {
-              changePage(SpookyPages.Tours);
-            }}
-          >
-            <div className="headline one textTitle">Tours</div>
-            <Icon icon="LeftTopWindow" viewBox="0 0 56 103" />
-          </div>
-          <div
-            className="window topRight"
-            onClick={() => {
-              changePage(SpookyPages.About);
-            }}
-          >
-            <div className="headline one textTitle">About</div>
-            <Icon icon="RightTopWindow" viewBox="0 0 76 120" />
-          </div>
-          <div
-            className="window bottomLeft"
-            onClick={() => {
-              changePage(SpookyPages.Location);
-            }}
-          >
-            <div className="headline one textTitle">Location</div>
-            <Icon icon="BottomLeftWindow" viewBox="0 0 40 82" />
-          </div>
-          <div
-            className="window bottomRight"
-            onClick={() => {
-              changePage(SpookyPages.Events);
-            }}
-          >
-            <div className="headline one textTitle">Events</div>
-            <Icon icon="BottomLeftWindow" viewBox="0 0 40 82" />
-          </div>
-          </div>*/}
       </div>
     </>
   );

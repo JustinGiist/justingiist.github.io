@@ -23,7 +23,7 @@ const BezierBackground = () => {
         >
           <linearGradient id="gradient" x1="0" x2="1" y1="0" y2="0">
             <stop stopColor="#333" offset="0"></stop>
-            <stop stopColor="var(--theme-teritary)" offset=".5"></stop>
+            <stop stopColor="var(--theme-secondary)" offset=".5"></stop>
             <stop stopColor="var(--theme-primary)" offset=".9"></stop>
           </linearGradient>
           <path id="glowPath" fill="url(#gradient)" className="pathAttribute">

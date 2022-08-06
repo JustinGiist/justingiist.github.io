@@ -590,7 +590,7 @@ const DesignBackground = () => {
         </g>
 
         <text
-          fill="var(--theme-white)"
+          fill="var(--light)"
           fontFamily="'Jura', sans-serif"
           fontSize={24}
           x="180"
@@ -599,7 +599,7 @@ const DesignBackground = () => {
           Justin Gist
         </text>
         {/*<text
-          fill="var(--theme-white)"
+          fill="var(--light)"
           fontFamily="'Jura', sans-serif"
           fontSize={18}
           x="230"
@@ -608,7 +608,7 @@ const DesignBackground = () => {
           Designer
         </text>
         <text
-          fill="var(--theme-white)"
+          fill="var(--light)"
           fontFamily="'Jura', sans-serif"
           fontSize={18}
           x="170"

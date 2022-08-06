@@ -6,7 +6,6 @@
 .navBarContainer {
   padding-left: 16px;
   height: 56px;
-  color: var(--theme-primary);
   justify-content: center;
   column-gap: 1%;
   display: flex;
@@ -22,14 +21,14 @@
   }
 }
 .navBar.horizontal {
-  display: grid;
-  grid-template-columns: 20% auto 20%;
+  display: flex;
+  justify-content: space-between;
   height: 100%;
 }
 .renderContainer.horizontal {
   flex-direction: column;
 }
-@media only screen and (max-width: 1000px), screen and (max-height: 1000px) {
+@media only screen and (max-width: 1000px), screen and (max-height: 600px) {
   .navBarContainer {
     padding: 0 8px;
   }

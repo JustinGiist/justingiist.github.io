@@ -14,6 +14,7 @@
     display: flex;
     height: 100%;
     .scrollComponent {
+      overflow-y: auto;
       .mainContent {
         width: 100%;
         height: 100%;
@@ -27,17 +28,17 @@
   padding: 32px;
   display: flex;
   flex-direction: column;
-  .headline.one {
+  h1, .headline.one {
     padding: 32px 24px 12px 12px;
     padding: 8px 24px;
-    background-color: var(--theme-primary-background);
+    background: var(--background-primary);
     border-radius: var(--round-small);
-    box-shadow: var(--theme-shadow-light);
+    box-shadow: var(--shadow-light);
   }
 }
 .contentBackground {
-  background-color: var(--theme-primary-background);
-  box-shadow: var(--theme-shadow-light);
+  background: var(--background-primary);
+  box-shadow: var(--shadow-light);
   margin: 0 auto;
   width: 80%;
   max-width: 700px;
@@ -45,7 +46,7 @@
   animation: fadeSlideLeft 0.167s forwards;
 }
 .contentContainer.Dystopia {
-  background-color: var(--theme-secondary-background);
+  background: var(--background-secondary);
   height: 100%;
   padding: 30px;
   .pageLabelGlitch {
@@ -76,16 +77,16 @@
     font-family: "Nightscary Free Trial";
 
     .button,
-    .headline {
+    h1, h2, h3, h4, h5, .headline {
       font-family: "Luxurious Roman", cursive;
     }
   }
   .horizontal {
-    background-color: var(--theme-secondary);
+    background: var(--theme-secondary);
     animation: creepyNav 10s infinite;
   }
   .scrollComponent {
-    background-color: var(--theme-secondary-background);
+    background: var(--background-secondary);
     padding: 16px;
   }
 }
@@ -149,7 +150,7 @@
   overflow-x: hidden;
 
   .parallax_layer.one {
-    > .headline.one.textTitle {
+    > h1.text-headline {
       margin-top: 20%;
       font-size: 60px;
       font-family: "Jura", sans-serif;
@@ -178,9 +179,6 @@
 }
 .cardContainer {
   width: 100%;
-  display: grid;
-  grid-template-columns: auto;
-  column-gap: 32px;
   row-gap: 16px;
 }
 .twoCols {
@@ -197,12 +195,12 @@
   z-index: 9999;
 }
 .card {
-  box-shadow: var(--theme-shadow-light);
+  box-shadow: var(--shadow-light);
   padding: 24px;
   background: linear-gradient(
-    var(--theme-primary-background) 0%,
-    var(--theme-primary-background) 92%,
-    var(--theme-teritary) 110%
+    var(--background-primary) 0%,
+    var(--background-primary) 92%,
+    var(--theme-secondary) 110%
   );
   border-radius: var(--round-medium);
   display: flex;
@@ -215,22 +213,21 @@
       fill: transparent;
     }
   }
-  > .headline.two {
+  > h2, .headline.two {
     pointer-events: none;
     z-index: 99;
     align-self: flex-start;
-    color: var(--theme-text-title);
     border-radius: var(--round-small);
   }
-  > .headline.three {
+  > h3, .headline.three {
     align-self: flex-start;
     margin: 16px 0 16px 8px;
     font-weight: 600;
   }
-  .headline.four {
+  h4, .headline.four {
     font-weight: 600;
   }
-  .headline.five.textSecondary {
+  h5.text-body {
     margin-top: auto;
     width: 62px;
     text-align: center;
@@ -240,9 +237,9 @@
     padding: 8px 16px;
     transition: 0.167s ease-in-out;
   }
-  .headline.five.textSecondary:hover {
-    background-color: var(--theme-primary);
-    color: var(--theme-white);
+  h5.text-body:hover {
+    background: var(--theme-primary);
+    color: var(--light);
     cursor: pointer;
   }
 }
@@ -262,12 +259,12 @@
   width: 100%;
   height: 100%;
 }
-@media only screen and (max-width: 1000px), screen and (max-height: 1000px) {
+@media only screen and (max-width: 1000px), screen and (max-height: 600px) {
   .parallax_layer.two {
     transform: translateZ(-1px) scale(2);
   }
 }
-@media only screen and (max-width: 1000px), screen and (max-height: 1000px) {
+@media only screen and (max-width: 1000px), screen and (max-height: 600px) {
   .scrollComponent {
     padding: 0px !important;
   }

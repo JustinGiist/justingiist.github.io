@@ -5,7 +5,7 @@
   display: inline-flex;
   textarea,
   input {
-    color: var(--theme-white);
+    color: var(--light);
   }
 }
 .inputContainer {
@@ -28,11 +28,11 @@
     justify-content: flex-start;
     align-items: center;
     svg {
-      fill: var(--theme-white);
+      fill: var(--light);
     }
-    .headline.four {
+    h4, .headline.four {
       margin-left: 8px;
-      color: var(--theme-white);
+      color: var(--light);
     }
   }
   .button {

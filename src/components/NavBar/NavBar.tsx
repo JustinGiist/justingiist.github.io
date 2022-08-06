@@ -1,8 +1,7 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { ThemeManagerContext } from "../../App";
 import {
   GlobalThemes,
-  mobileWidth,
   useWindowDimensions,
 } from "../../ThemeManager";
 import NavButton, { NavButtonOptions } from "../NavButton/NavButton";
@@ -34,15 +33,18 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
           icon: "Bat",
           route: GlobalThemes.Spooky,
         },
-
         {
           icon: "Sales",
           route: GlobalThemes.Sales,
-        } /*
+        },
         {
           icon: "Test",
           route: GlobalThemes.Test,
         },
+        {
+          icon: "D20",
+          route: GlobalThemes.Fragments,
+        } /*
         
         {
           icon: "Paw",
@@ -73,7 +75,7 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
     });
     setNavButtons(tempButtons);
   };
-  const getTheme = useMemo(() => {
+  useEffect(() => {
     switch (theme) {
       case GlobalThemes.Spooky:
         setLabel("Haunted House Tours");
@@ -98,42 +100,41 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
         setIcons(defaultNavButtons);
         break;
     }
-    return theme;
   }, [theme]);
 
   return (
     <div className={"navBar horizontal "}>
-      {!dimensions.isMobile && (
+      {dimensions.isMobile ? <div/> : (
         <div
-          className="headline six navBarLabel textTitle"
+          className="headline five navBarLabel text-headline"
           style={{ display: "flex" }}
         >
           {"Portfolio - "}
-          <div
+          <h5
             style={{ marginLeft: "8px", marginBottom: "2px" }}
-            className="textSecondary headline six"
           >
             {theme}
-          </div>
+          </h5>
         </div>
       )}
-      <div className={"navBarContainer " + getTheme}>
+      <div className={"navBarContainer " + theme}>
         {navButtons.map((y) => {
           return (
             <NavButton
+              key={`nav-button-${y.label}`}
               options={y}
               openContext={openContext}
               setOpenContext={setOpenContext}
             />
           );
         })}
-
         <NavButton
           options={{ route: GlobalThemes.Contact }}
           openContext={openContext}
           setOpenContext={setOpenContext}
         />
       </div>
+      <div />
     </div>
   );
 };

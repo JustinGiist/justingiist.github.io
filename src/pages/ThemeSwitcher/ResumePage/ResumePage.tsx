@@ -129,18 +129,12 @@ const ResumePage = () => {
           <Suspense fallback={<OverlayControl loading />}>
             <div className="titleContainer">
               <div className="flex column">
-                <div
-                  className=" 
-            headline one"
-                >
+                <h1>
                   Justin Gist
-                </div>
-                <div
-                  className=" 
-            headline two"
-                >
+                </h1>
+                <h2>
                   UI/UX Designer
-                </div>
+                </h2>
               </div>
             </div>
 
@@ -150,7 +144,7 @@ const ResumePage = () => {
         <div className="heroGradient" />
         <div className="hero-section B">
           <div className=" center ">
-            <div className="headline one textSecondary">Experience</div>
+            <h1 className="text-body">Experience</h1>
             <ExperienceElement list={experienceList} />
           </div>
         </div>
@@ -158,7 +152,7 @@ const ResumePage = () => {
           <div className="center ">
             {languagesList.map((job, i) => {
               return (
-                <DisplayElement options={job} themeManager={themeManager} />
+                <DisplayElement key={`display-element-${job}`} options={job} themeManager={themeManager} />
               );
             })}
           </div>
@@ -167,12 +161,12 @@ const ResumePage = () => {
           <div className=" center">
             {techList.map((job, i) => {
               return (
-                <DisplayElement options={job} themeManager={themeManager} />
+                <DisplayElement key={`display-element-${job}`}  options={job} themeManager={themeManager} />
               );
             })}
           </div>
         </div>
-        <div className="headline one textTitle">Projects</div>
+        <h1 className="text-headline">Projects</h1>
         <div className="hero-section B">
           <div className="center">
             <JobElement options={projectList[0]} />
@@ -190,7 +184,7 @@ const ResumePage = () => {
         </div>
         <div className="hero-section C" style={{ padding: 0 }}>
           <div className="center">
-            <div className="headline one textTitle">Like my designs?</div>
+            <h1 className="text-headline">Like my designs?</h1>
             <button
               className={"button secondary"}
               onClick={() => {
@@ -224,8 +218,8 @@ export const DisplayElement = ({
       }}
     >
       <div className="displayContainer ">
-        <div className={"textSecondary headline one "}>{options.label}</div>
-        <div className="textPrimary headline four ">{options.date ?? ""}</div>
+        <h1 className="text-body">{options.label}</h1>
+        <h4 className="text-sub-headline">{options.date ?? ""}</h4>
         {options.context && (
           <div
             className={
@@ -243,9 +237,9 @@ export const DisplayElement = ({
                           ? "flex-end"
                           : "flex-start",
                     }}
-                    key={i}
+                    key={`options-${job}`}
                   >
-                    <div className={"textTeritary headline three "}>{job}</div>
+                    <h3 className="text-sub-headline">{job}</h3>
                   </li>
                 );
               })}
@@ -261,9 +255,9 @@ const ExperienceElement = ({ list }: { list: string[] }) => {
     <div className="experienceContainer">
       {list.map((str, i) => {
         return (
-          <div className="headline four textTitle" style={{ marginTop: 24 }}>
+          <h4 key={`experience-${str}`} className="text-headline" style={{ marginTop: 24 }}>
             {str}
-          </div>
+          </h4>
         );
       })}
     </div>
@@ -281,8 +275,8 @@ export const JobElement = ({ options }: { options: iDisplay }) => {
       }}
     >
       <div className="jobElementContainer ">
-        <div className={"textSecondary headline one "}>{options.label}</div>
-        <div className="textTitle headline three ">{options.date ?? ""}</div>
+        <h1 className="text-body">{options.label}</h1>
+        <h3 className="text-headline">{options.date ?? ""}</h3>
         {options.context && (
           <div
             className={
@@ -297,9 +291,9 @@ export const JobElement = ({ options }: { options: iDisplay }) => {
                       marginBottom: options.isBulletContext ? "4px" : "16px",
                       justifyContent: i % 2 === 0 ? "flex-end" : "flex-start",
                     }}
-                    key={i}
+                    key={`options-li-${job}`}
                   >
-                    <div className={"textTeritary headline four "}>{job}</div>
+                    <h4 className="text-sub-headline">{job}</h4>
                   </li>
                 );
               })}

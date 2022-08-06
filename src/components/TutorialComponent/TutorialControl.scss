@@ -5,28 +5,28 @@
   right: -160px;
   bottom: 56px;
   height: 56px;
-  background-color: var(--theme-button-primary);
+  background: var(--action-primary);
   width: 200px;
   display: grid;
   grid-template-columns: 40px auto;
   grid-template-rows: auto;
   border-top-left-radius: var(--round-medium);
   border-bottom-left-radius: var(--round-medium);
-  box-shadow: var(--theme-shadow-light);
+  box-shadow: var(--shadow-light);
   > svg {
     margin: auto;
-    fill: var(--theme-white);
+    fill: var(--light);
   }
   .tutorialTextContainer {
-    background-color: var(--theme-button-secondary);
+    background: var(--action-secondary);
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    > .headline.two {
+    > h2, .headline.two {
       margin: auto;
-      color: var(--theme-white);
+      color: var(--light);
     }
   }
 }
@@ -34,5 +34,5 @@
 .tutorialControl:hover {
   cursor: pointer;
   right: 0;
-  box-shadow: var(--theme-shadow-dark);
+  box-shadow: var(--shadow-dark);
 }

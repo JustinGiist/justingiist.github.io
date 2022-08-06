@@ -64,7 +64,7 @@ const NavButton = ({
           item.secondary = true;
           return (
             <NavButton
-              key={i}
+              key={`context-item-${item.route}`}
               options={item}
               openContext={openContext}
               setOpenContext={setOpenContext}
@@ -77,7 +77,7 @@ const NavButton = ({
     <div
       ref={ref}
       className={
-        " basicNavButton " +
+        " navButton " +
         (options.secondary === true && " secondary") +
         (openContext && options.contextItems ? " open" : "") +
         (theme == options.route ? " active" : "")

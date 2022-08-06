@@ -13,9 +13,9 @@ const EightiesTheme = ({}: {}) => {
         </div>
         <div className="middle">
           <div className="arcadeTitleContainer noiseWrapper">
-            <div className="headline two textPrimary">Welcome to</div>
-            <div className="headline one textTitle">Vincent's</div>
-            <div className="headline one textTitle">Arcade</div>
+            <h2 className="text-sub-headline">Welcome to</h2>
+            <h1 className=" text-headline">Vincent's</h1>
+            <h1 className=" text-headline">Arcade</h1>
             <div className="noise"></div>
           </div>
         </div>
@@ -38,7 +38,7 @@ const EightiesTheme = ({}: {}) => {
           </div>
         </div>
         <div className="middle">
-          <div className="headline two textTitle">Upcoming Events:</div>
+          <h2 className="text-headline">Upcoming Events:</h2>
           <EventElement title={"Event 1"} />
           <EventElement title={"Event 2"} />
           <EventElement title={"Event 3"} />
@@ -62,26 +62,26 @@ const EightiesTheme = ({}: {}) => {
       <div className="bottom">
         <div className="left">
           <Icon icon="Invader" />
-          <div className="headline three textPrimary">Title</div>
-          <div className="headline five textSecondary">
+          <h3 className="text-sub-headline">Title</h3>
+          <h5 className="text-body">
             Lorem ipsum blah blah blah blah blah blah blah blah blah blah blah
             blah blah blah blah blah blah blah blah blah blah blah blah blah
             blah blah blah blah blah blah blah blah blah blah blah blah blah
             blah blah blah blah blah blah blah
-          </div>
+          </h5>
         </div>
         <div className="right">
           <div className="flex">
             <Icon icon="Invader" />
-            <div className="headline three textPrimary">Blog 1</div>
+            <h3 className="text-sub-headline">Blog 1</h3>
           </div>
           <div className="flex">
             <Icon icon="Pacman" viewBox="0 0 32 32" />
-            <div className="headline three textPrimary">Blog 2</div>
+            <h3 className="text-sub-headline">Blog 2</h3>
           </div>
           <div className="flex">
             <Icon icon="Atari" />
-            <div className="headline three textPrimary">Blog 3</div>
+            <h3 className="text-sub-headline">Blog 3</h3>
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@ const EventElement = ({ title }: { title: string }) => (
   <>
     <div className="eventElement">
       <Icon icon="Textbox" fontSize={60} viewBox="0 0 265 40" />
-      <div className="headline three textPrimary">{title}</div>
+      <h3 className="text-sub-headline">{title}</h3>
     </div>
   </>
 );

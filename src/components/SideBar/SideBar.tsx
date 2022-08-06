@@ -218,14 +218,14 @@ const SideBar = (props: { gooMenu?: boolean }) => {
         {primarySelected && (
           <>
             <div className="sideBarHeader">
-              <div className={"headline two"}>{primarySelected.label}</div>
+              <h2>{primarySelected.label}</h2>
             </div>
             <hr />
             <div className="sideBarItemsContainer">
               {primarySelected.subButtons &&
                 primarySelected.subButtons.map((button) => {
                   return (
-                    <div className={"sideNavButton "}>
+                    <div key={`sub-button-${button.label}`} className={"sideNavButton "}>
                       <div className="navButtonIcon">
                         <Icon icon={button.icon} />
                       </div>
@@ -252,6 +252,7 @@ const SideBar = (props: { gooMenu?: boolean }) => {
           {buttons.map((button) => {
             return (
               <div
+                key={`side-nav-button-${button.label}`}
                 className={
                   "sideNavButton " +
                   (primarySelected && primarySelected.label === button.label

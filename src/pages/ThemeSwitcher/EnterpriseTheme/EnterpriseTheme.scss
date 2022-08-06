@@ -11,8 +11,8 @@
     padding: 0 8px;
     display: flex;
     flex-direction: column;
-    background-color: var(--theme-secondary-background);
-    box-shadow: var(--theme-shadow-light);
+    background: var(--background-secondary);
+    box-shadow: var(--shadow-light);
     animation: fadeInSecondary 0.167s forwards;
     & .sideNavButton {
       width: 100%;
@@ -22,14 +22,14 @@
       .navButtonIcon {
         margin: auto 16px;
         svg {
-          fill: var(--theme-text-primary);
+          fill: var(--text-headline-secondary);
         }
       }
       .navButtonLabel {
         animation: fadeIn 0.167s forwards;
         animation-delay: 0.2s;
         opacity: 0;
-        color: var(--theme-text-primary);
+        color: var(--text-headline-secondary);
       }
     }
   }
@@ -50,8 +50,8 @@
     padding: 0 8px;
     display: flex;
     flex-direction: column;
-    background-color: var(--theme-primary-background);
-    box-shadow: var(--theme-shadow-light);
+    background: var(--background-primary);
+    box-shadow: var(--shadow-light);
   }
 }
 .sideBarHeader {
@@ -67,7 +67,7 @@
     height: 48px;
     margin: 8px auto;
   }
-  > .headline {
+  > h1, h2, h3, h4, h5, .headline {
     text-align: center;
     color: var(--theme-primary);
     padding: 0 16px;
@@ -106,7 +106,7 @@
         animation: fadeIn 0.167s forwards;
         animation-delay: 0s;
         opacity: 0;
-        color: var(--theme-text-primary);
+        color: var(--text-headline-secondary);
       }
     }
   }
@@ -132,8 +132,8 @@
   top: 112px;
   transition: all 0.167s ease-in-out;
   border-radius: 50%;
-  background-color: var(--theme-primary-background);
-  box-shadow: var(--theme-shadow-light);
+  background: var(--background-primary);
+  box-shadow: var(--shadow-light);
   padding: 4px;
   height: 24px;
   width: 24px;
@@ -144,7 +144,7 @@
     fill: var(--theme-primary);
   }
   &:hover {
-    background-color: var(--theme-secondary-background);
+    background: var(--background-secondary);
     cursor: pointer;
   }
 }
@@ -158,19 +158,19 @@
   left: 148px !important;
 }
 hr {
-  border-top: 1px solid var(--theme-border);
+  border-top: 1px solid var(--input-border);
   width: 70%;
   margin: 16px auto;
 }
 .sideNavButton.selected {
-  background-color: var(--theme-text-placeholder);
+  background: var(--text-placeholder);
   .navButtonIcon {
     svg {
-      fill: var(--theme-text-primary);
+      fill: var(--text-headline-secondary);
     }
   }
   .navButtonLabel {
-    color: var(--theme-text-primary);
+    color: var(--text-headline-secondary);
   }
 }
 .sideNavButton {
@@ -183,27 +183,27 @@ hr {
     transition: all 0.167s ease-in-out;
     margin: auto;
     svg {
-      fill: var(--theme-text-placeholder);
+      fill: var(--text-placeholder);
     }
   }
   .navButtonLabel {
     transition: all 0.167s ease-in-out;
     margin: auto 0;
     height: fit-content;
-    color: var(--theme-text-placeholder);
+    color: var(--text-placeholder);
   }
 }
 
 .sideNavButton:hover {
   cursor: pointer;
-  background-color: var(--theme-button-success) !important;
+  background: var(--action-success) !important;
   .navButtonIcon {
     svg {
-      fill: var(--theme-button-success-text) !important;
+      fill: var(--light) !important;
     }
   }
   .navButtonLabel {
-    color: var(--theme-button-success-text) !important;
+    color: var(--light) !important;
   }
 }
 .cardScrollContent {
@@ -212,12 +212,11 @@ hr {
 }
 .newsContent {
   display: flex;
-  margin-bottom: 24px;
   padding: 8px;
   border-radius: var(--round-small);
 }
 .newsContent:hover {
-  border: 2px solid var(--theme-teritary);
+  border: 2px solid var(--theme-secondary);
   padding: 6px;
   cursor: pointer;
 }
@@ -229,22 +228,22 @@ hr {
 
 .investmentCard {
   padding: 16px 24px 24px 24px;
-  box-shadow: var(--theme-shadow-light);
+  box-shadow: var(--shadow-light);
   border-radius: var(--round-medium);
   display: flex;
   flex-direction: column;
   min-height: 320px;
   min-width: 280px;
   svg {
-    fill: var(--theme-white) !important;
+    fill: var(--light) !important;
     margin-left: auto;
     margin-top: auto;
   }
   .one {
     margin-top: 16px;
   }
-  .headline {
-    color: var(--theme-white);
+  h1, h2, h3, h4, h5, .headline {
+    color: var(--light);
   }
   &.Increase {
     background: linear-gradient(#a3ff87, #55e22a);
@@ -258,15 +257,10 @@ hr {
 }
 .google-visualization-tooltip {
   path {
-    fill: var(--theme-text-primary);
+    fill: var(--text-headline-secondary);
   }
 }
-.mainContent.Enterprise {
-  > .headline.one {
-    color: var(--theme-white);
-  }
-}
-@media only screen and (max-width: 1000px), screen and (max-height: 1000px) {
+@media only screen and (max-width: 1000px), screen and (max-height: 600px) {
   .cardContainer:not(.cardContainer:first-child) {
     margin-top: 0 !important;
   }

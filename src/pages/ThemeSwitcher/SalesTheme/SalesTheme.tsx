@@ -147,7 +147,7 @@ const SalesTheme = ({}: {}) => {
           }
           onClick={() => setSubPage(SalesPage.Welcome)}
         >
-          <div className="topBarOption headline four textPrimary">Welcome</div>
+          <h4 className="topBarOption text-sub-headline">Welcome</h4>
         </div>
         <div
           className={
@@ -156,9 +156,9 @@ const SalesTheme = ({}: {}) => {
           }
           onClick={() => setSubPage(SalesPage.Selection)}
         >
-          <div className="topBarOption headline four textPrimary">
+          <h4 className="topBarOption text-sub-headline">
             Selection
-          </div>
+          </h4>
         </div>
         <div
           className={
@@ -167,7 +167,7 @@ const SalesTheme = ({}: {}) => {
           }
           onClick={() => setSubPage(SalesPage.About)}
         >
-          <div className="topBarOption headline four textPrimary">Story</div>
+          <h4 className="topBarOption text-sub-headline">Story</h4>
         </div>
       </div>
       {subPage === SalesPage.Welcome && (
@@ -179,13 +179,13 @@ const SalesTheme = ({}: {}) => {
           <div className="bodyContainer">
             <div className="salesContent" style={{ marginTop: 240 }}>
               <div className="flex">
-                <div className="headline one candy">Candy</div>
+                <h1 className=" candy">Candy</h1>
                 <div className="shop">
-                  <div className="headline one ">Shop</div>
+                  <h1 className=" ">Shop</h1>
                 </div>
               </div>
 
-              <div className="headline two">Bringing you more candy!</div>
+              <h2>Bringing you more candy!</h2>
               <a
                 className="designButton funButton"
                 onClick={() => setSubPage(SalesPage.Selection)}
@@ -195,64 +195,64 @@ const SalesTheme = ({}: {}) => {
             </div>
             <div className="pictureContent">
               <div className="flexColumn">
-                <div className="headline one textTitle">Santa's Elves</div>
-                <div className="headline three textTeritary">
+                <h1 className="text-headline">Santa's Elves</h1>
+                <h3 className="text-sub-headline">
                   Feburary 22, 2022
-                </div>
-                <div className="headline four textSecondary">
+                </h3>
+                <h4 className="text-body">
                   This week we have been visited by Santa's Elves! They've
                   brought all their favorite treats along with them!
-                </div>
+                </h4>
               </div>
               <img src={lolipop} />
               <img src={candy} />
               <div className="flexColumn">
-                <div className="headline one textTitle">Kid's Day</div>
-                <div className="headline three textTeritary">
+                <h1 className="text-headline">Kid's Day</h1>
+                <h3 className="text-sub-headline">
                   Janurary 18, 2022
-                </div>
-                <div className="headline four textSecondary">
+                </h3>
+                <h4 className="text-body">
                   Come on down with the whole family! We've setup stations for
                   all the kids to learn how candy is made and even make their
                   own!
-                </div>
+                </h4>
               </div>
             </div>
             <div className="pictureContent">
               <div className="flexColumn">
-                <div className="headline one textTitle">
+                <h1 className="text-headline">
                   Chocolate Lovers Day
-                </div>
-                <div className="headline three textTeritary">
+                </h1>
+                <h3 className="text-sub-headline">
                   December 12, 2022
-                </div>
-                <div className="headline four textSecondary">
+                </h3>
+                <h4 className="text-body">
                   Come in and explore the world of chocolate. We've set up
                   booths with different chocolate vendors from around the world
                   for you to come in and taste!
-                </div>
+                </h4>
               </div>
               <img src={chocolate} />
               <img src={cakeBalls} />
               <div className="flexColumn">
-                <div className="headline one textTitle">
+                <h1 className="text-headline">
                   Cake Ball Decorating
-                </div>
-                <div className="headline three textTeritary">
+                </h1>
+                <h3 className="text-sub-headline">
                   November 8, 2022
-                </div>
-                <div className="headline four textSecondary">
+                </h3>
+                <h4 className="text-body">
                   Come on in and have some fun with the whole family! We have
                   many different flavors and materials to decorate with so bring
                   the kids!
-                </div>
+                </h4>
               </div>
             </div>
             <div className="videoContent">
-              <div className="headline four">
+              <h4>
                 Check out this candy making video we made to show you the
                 dedication we take to the whole process!
-              </div>
+              </h4>
               <iframe
                 width="560"
                 height="315"
@@ -263,9 +263,9 @@ const SalesTheme = ({}: {}) => {
               ></iframe>
             </div>
             <div className="videoContent">
-              <div className="headline four textPlaceholder">
+              <h4 className="text-placeholder">
                 Come check out our fine selection of candies and chocolates!
-              </div>
+              </h4>
               <a
                 className="designButton funButton"
                 onClick={() => setSubPage(SalesPage.Selection)}
@@ -286,37 +286,40 @@ const SalesTheme = ({}: {}) => {
           <div className="bodyContainer">
             <div className="salesContent" style={{ marginTop: 240 }}>
               <div className="flex">
-                <div className="headline one candy">Our</div>
+                <h1 className=" candy">Our</h1>
                 <div className="shop">
-                  <div className="headline one ">Selection</div>
+                  <h1 className=" ">Selection</h1>
                 </div>
               </div>
-              <div className="headline one textTitle">Chocolates</div>
-              {chocolates.map((item) => {
-                return (
-                  <CandyCard
-                    item={item}
-                    key={getRandomKey()}
-                    addToCart={addToCart}
-                    setSelectedCandy={setSelectedCandy}
-                    parentSelectedCandy={selectedCandy}
-                  />
-                );
-              })}
-              <div className="headline one textPrimary">Candy</div>
-              {candies.map((item) => {
-                return (
-                  <CandyCard
-                    item={item}
-                    key={getRandomKey()}
-                    addToCart={addToCart}
-                    setSelectedCandy={setSelectedCandy}
-                    parentSelectedCandy={selectedCandy}
-                  />
-                );
-              })}
+              <h1 className="text-headline">Chocolates</h1>
+              <div className="flexFull">
+                {chocolates.map((item) => {
+                  return (
+                    <CandyCard
+                      item={item}
+                      key={`chocolate-${item.title}`}
+                      addToCart={addToCart}
+                      setSelectedCandy={setSelectedCandy}
+                      parentSelectedCandy={selectedCandy}
+                    />
+                  );
+                })}
+              </div>
+              <h1 className=" text-sub-headline">Candy</h1>
+              <div className="flexFull">
+                {candies.map((item) => {
+                  return (
+                    <CandyCard
+                      item={item}
+                      key={`candy-item-${item.title}`}
+                      addToCart={addToCart}
+                      setSelectedCandy={setSelectedCandy}
+                      parentSelectedCandy={selectedCandy}
+                    />
+                  );
+                })}
+              </div>
             </div>
-
             <div className="footer"></div>
           </div>
         </div>
@@ -330,25 +333,25 @@ const SalesTheme = ({}: {}) => {
           <div className="bodyContainer">
             <div className="salesContent" style={{ marginTop: 240 }}>
               <div className="flex">
-                <div className="headline one candy">Our</div>
+                <h1 className=" candy">Our</h1>
                 <div className="shop">
-                  <div className="headline one ">Story</div>
+                  <h1 className=" ">Story</h1>
                 </div>
               </div>
 
               <div className="quote">
-                <div className="headline two">
+                <h2>
                   "It's about hardwork and dedication."{" "}
-                </div>
-                <div className="headline four textPlaceholder">
+                </h2>
+                <h4 className="text-placeholder">
                   - Granddad Keber
-                </div>
+                </h4>
               </div>
             </div>
             <div className="pictureContent">
               <img src={candyShop} />
               <div className="flexColumn">
-                <div className="headline four textSecondary">
+                <h4 className="text-body">
                   In November 2008, Karen Keber opened up Candy Shop in Market
                   Square downtown Houlton, ME. The store was named for Karen's
                   late husband, Willy, and the idea for the candy store was
@@ -357,45 +360,45 @@ const SalesTheme = ({}: {}) => {
                   while they were at school and when they were home from school,
                   they helped out in the shoppe. It was a great way for the
                   family to be together while they made their living.
-                </div>
+                </h4>
               </div>
 
               <div className="flexColumn">
-                <div className="headline four textSecondary">
+                <h4 className="text-body">
                   When opening the store, Karen wanted customers to feel as
                   though they were traveling back in time to an old-fashioned,
                   specialty candy store. Aside from making much of the candy
                   herself, she stocked the shop with candy that most people
                   haven't seen in years and with other kinds of candy that most
                   people don't even know exist.
-                </div>
+                </h4>
               </div>
               <img src={candyShop2} />
               <img src={candyShop3} />
               <div className="flexColumn">
-                <div className="headline four textSecondary">
+                <h4 className="text-body">
                   In August of 2014, Karen and her new husband Matt Sutton
                   purchased a building at 57 Bay View Street in the charming
                   downtown area of Camden, ME. The building was completely
                   renovated and turned into a beautiful candy shoppe that opened
                   its doors on July 4, 2015.
-                </div>
+                </h4>
               </div>
             </div>
             <div className="salesContent" style={{ marginTop: 240 }}>
               <div className="quote">
-                <div className="headline two">
+                <h2>
                   "A job isn't finished until it's done."{" "}
-                </div>
-                <div className="headline four textPlaceholder">
+                </h2>
+                <h4 className="text-placeholder">
                   - Granddad Keber
-                </div>
+                </h4>
               </div>
             </div>
             <div className="videoContent">
-              <div className="headline four textPlaceholder">
+              <h4 className="text-placeholder">
                 Come check out our fine selection of candies and chocolates!
-              </div>
+              </h4>
               <a
                 className="designButton funButton"
                 onClick={() => setSubPage(SalesPage.Selection)}
@@ -451,9 +454,9 @@ const CandyCard = ({
           >
             <div className="descriptionCardPositioner">
               <div className="descriptionCard">
-                <div className="headline four textSecondary">
+                <h4 className="text-body">
                   {item.description}
-                </div>
+                </h4>
               </div>
             </div>
             <img
@@ -474,8 +477,8 @@ const CandyCard = ({
               addToCart(item, e);
             }}
           >
-            <div className="headline four textPrimary">{item.title}</div>
-            <div className="headline three">${item.price}</div>
+            <h4 className="text-sub-headline">{item.title}</h4>
+            <h3>${item.price}</h3>
             <div className="addButton">
               <Icon icon="Plus" />
             </div>
@@ -495,9 +498,9 @@ const CandyCard = ({
           >
             <div className="descriptionCardPositioner">
               <div className="descriptionCard">
-                <div className="headline four textSecondary">
+                <h4 className="text-body">
                   {item.description}
-                </div>
+                </h4>
               </div>
             </div>
             <img
@@ -521,8 +524,8 @@ const CandyCard = ({
             }}
           >
             <div className="flex column">
-              <div className="headline four textPrimary">{item.title}</div>
-              <div className="headline three">${item.price}</div>
+              <h4 className="text-sub-headline">{item.title}</h4>
+              <h3>${item.price}</h3>
             </div>
 
             <div className="addButton">

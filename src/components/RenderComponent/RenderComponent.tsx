@@ -13,6 +13,7 @@ import SideBar from "../SideBar/SideBar";
 import SalesTheme from "../../pages/ThemeSwitcher/SalesTheme/SalesTheme";
 import DesignBackground from "../BezierBackground/DesignBackground";
 import TestPage from "../../pages/testPage";
+import FragmentsPage from "../../pages/ThemeSwitcher/FragmentsPage/FragmentsPage";
 const RenderComponent = ({ url }: { url: GlobalThemes }) => {
   const { themeManager, theme, setThemeContext } =
     useContext(ThemeManagerContext);
@@ -24,6 +25,7 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
     [GlobalThemes.Enterprise, <EnterpriseTheme />],
     [GlobalThemes.Spooky, <SpookyTheme />],
     [GlobalThemes.Test, <TestPage />],
+    [GlobalThemes.Fragments, <FragmentsPage />]
   ]);
   const newPage = routes.get(url);
   const checkBackground = () => {
@@ -44,6 +46,7 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
       case GlobalThemes.Spooky:
       case GlobalThemes.Sales:
       case GlobalThemes.Test:
+      case GlobalThemes.Fragments:
         return false;
       default:
         return true;
@@ -57,9 +60,9 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
   return (
     <>
       {showBackground && <DesignBackground />}
-      <div id="animationOverlay" className="animationOverlay"></div>
+      <div id="animationOverlay" className={`animationOverlay ${theme}`}></div>
       <div
-        className={"renderContainer " + url + (isTopBar ? " horizontal" : "")}
+        className={`renderContainer ${isTopBar ? " horizontal " : " "} ${theme}`}
       >
         <div className="topContainer">
           <NavBar isTopBar={isTopBar} />

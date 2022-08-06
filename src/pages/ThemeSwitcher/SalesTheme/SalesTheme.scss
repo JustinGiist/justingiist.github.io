@@ -25,7 +25,7 @@
       top: 8px;
 
       > svg {
-        fill: var(--theme-white);
+        fill: var(--light);
         background-image: linear-gradient(
           to right,
           var(--theme-secondary) 0%,
@@ -57,10 +57,10 @@
       align-items: center;
       > img {
         max-width: 292px;
-        box-shadow: var(--theme-shadow-light);
+        box-shadow: var(--shadow-light);
         border-radius: var(--round-medium);
       }
-      .headline {
+      h1, h2, h3, h4, h5, .headline {
         text-align: center;
       }
     }
@@ -72,35 +72,33 @@
     .videoContent,
     .salesContent {
       height: fit-content;
-      width: 600px;
+      width: 900px;
       margin: 128px auto;
       position: relative;
       display: flex;
       flex-direction: column;
+      gap: 16px;
       align-items: center;
-      .headline {
+      h1, h2, h3, h4, h5, .headline {
         text-align: center;
       }
-      .headline.four {
-        margin-bottom: 24px;
-      }
-      > .headline.one {
+      > h1, .headline.one {
         margin-top: 120px;
       }
-      .headline.one {
+      h1, .headline.one {
         font-size: 80px;
+        line-height: 88px;
         .blue {
           color: var(--theme-secondary);
         }
       }
-      .headline.two {
+      h2, .headline.two {
         font-size: 64px;
+        line-height: 64px;
         margin-top: 64px;
-        color: var(--theme-teritary);
       }
       a {
         margin-top: 128px;
-        margin-bottom: 48px;
         animation: fadeSlideLeft 0.167s forwards;
       }
     }
@@ -112,7 +110,7 @@
   text-decoration: none;
   font-weight: 800;
   font-size: var(--font-large);
-  text-shadow: var(--theme-shadow-dark);
+  text-shadow: var(--shadow-dark);
   text-transform: uppercase;
   border-radius: 6px;
   margin: 8px auto;
@@ -120,7 +118,7 @@
   width: fit-content;
   background-size: 300% 300%;
   color: white;
-  box-shadow: var(--theme-shadow-dark);
+  box-shadow: var(--shadow-dark);
   transition: 0.5s;
   &:hover {
     cursor: pointer;
@@ -132,14 +130,14 @@
   text-decoration: none;
   font-weight: 800;
   font-size: var(--font-xlarge);
-  text-shadow: var(--theme-shadow-dark);
+  text-shadow: var(--shadow-dark);
   text-transform: uppercase;
   border-radius: 6px;
   margin: 8px;
   padding: 16px 48px;
   background-size: 300% 300%;
   color: white;
-  box-shadow: var(--theme-shadow-dark);
+  box-shadow: var(--shadow-dark);
   transition: 0.5s;
   &:hover {
     cursor: pointer;
@@ -176,13 +174,15 @@
   background-size: 300% 300%;
   transition: 0.5s;
   padding: 16px 8px;
+  align-items: flex-end;
   background-image: linear-gradient(
     to right,
     #fff5e0 0%,
     #fffeff 50%,
     #fff5e0 100%
   );
-  .headline {
+  flex: 0.8;
+  h1, h2, h3, h4, h5, .headline {
     pointer-events: none;
   }
   .addButton {
@@ -197,7 +197,7 @@
   background-image: linear-gradient(
     to right,
     var(--theme-secondary) 0%,
-    var(--theme-teritary) 50%,
+    var(--theme-secondary) 50%,
     var(--theme-secondary) 100%
   );
 }
@@ -224,13 +224,13 @@
   column-gap: 24px;
 }
 .candy {
-  color: rgb(255, 213, 253);
-  text-shadow: var(--theme-shadow-light);
+  color: var(--theme-primary);
+  text-shadow: var(--shadow-light);
 }
 .shop {
   padding: 8px;
-  color: var(--theme-white);
-  box-shadow: var(--theme-shadow-dark);
+  color: var(--light);
+  box-shadow: var(--shadow-light);
   background-position: left center;
   font-weight: bolder;
   min-width: 240px;
@@ -245,21 +245,13 @@
     #f2b5d4 90px 110px
   );
   background-position: right center;
-  > .headline.one {
-    background-color: var(--theme-primary-background);
+  > h1, .headline.one {
+    background: var(--background-primary);
     color: var(--theme-secondary);
     border-radius: var(--round-medium);
-    text-shadow: var(--theme-shadow-light);
-    box-shadow: var(--theme-shadow-dark);
+    text-shadow: var(--shadow-light);
+    box-shadow: var(--shadow-light);
     padding: 0 8px;
-  }
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
 @keyframes slideRight {
@@ -284,12 +276,12 @@
   justify-content: center;
   column-gap: 16px;
   margin-right: 32px;
-  background-color: #fff0f0;
+  background: #fff0f0;
 
   .topBarOptionBackground {
     .topBarOption {
       padding: 2px 16px;
-      background-color: #fff0f0;
+      background: #fff0f0;
       height: 36px;
       &:hover {
         cursor: pointer;
@@ -326,9 +318,13 @@
   }
 }
 .quote {
-  .headline.two {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  h2, .headline.two {
   }
-  .headline.four {
+  h4, .headline.four {
   }
 }
 .flex {
@@ -354,38 +350,39 @@
     position: relative;
   }
   .candyCard {
-    display: grid;
-    grid-template-columns: 400px 200px;
-    row-gap: 24px;
+    display: flex;
+    flex-wrap: nowrap;
     border-radius: var(--round-large);
-    box-shadow: var(--theme-shadow-dark);
-    background-color: #fffbf7;
-    min-height: 225px;
+    box-shadow: var(--shadow-dark);
+    background: #fffbf7;
+    min-height: 160px;
     overflow: hidden;
     .addButton {
-      margin: 8px 8px 8px auto;
-      padding: 8px;
+      width: 40px;
+      height: 40px;
+      padding: 4px;
       font-size: var(--font-xlarge);
       font-weight: 600;
-      height: 24px;
       display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .imgContainer {
       display: flex;
       flex-direction: column;
       position: relative;
+      flex: 2;
       img {
         max-height: 225px;
         width: 100%;
-
-        box-shadow: var(--theme-shadow-light);
+        box-shadow: var(--shadow-light);
       }
       .readMore {
         position: absolute;
         text-align: center;
         font-weight: 700;
-        color: var(--theme-white);
-        background-color: var(--theme-text-title);
+        color: var(--light);
+        background: var(--text-headline);
         opacity: 0;
         transition: 0.167s;
         height: 24px;
@@ -397,21 +394,20 @@
         cursor: pointer;
         .readMore {
           opacity: 0.9;
-          box-shadow: var(--theme-shadow-dark);
+          box-shadow: var(--shadow-dark);
         }
       }
     }
 
-    .headline.two {
+    h2, .headline.two {
       margin-top: 8px !important;
       font-size: var(--font-large) !important;
     }
-    .headline.three {
-      margin: auto 0;
+    h3, .headline.three {
+      margin: 4px 0;
     }
     .pillButton {
       margin-top: auto;
-      margin-bottom: 16px;
     }
   }
   .descriptionCardPositioner {
@@ -419,14 +415,14 @@
     height: 100%;
     width: 100%;
     display: flex;
-    background-color: rgba(51, 51, 51, 0.3);
+    background: rgba(51, 51, 51, 0.3);
   }
   .descriptionCardBackground {
     width: 90%;
     margin: auto;
     padding: 8px;
     border-radius: var(--round-medium);
-    box-shadow: var(--theme-shadow-light);
+    box-shadow: var(--shadow-light);
 
     background-image: repeating-linear-gradient(
       -45deg,
@@ -447,9 +443,6 @@
       #fffeff 50%,
       #fff5e0 100%
     );
-    .headline.four {
-      margin-bottom: 0 !important;
-    }
   }
 }
 
@@ -459,8 +452,8 @@
   height: 32px;
   border-radius: 50%;
   padding: 4px;
-  color: var(--theme-white);
-  background-color: var(--theme-text-primary);
+  color: var(--light);
+  background: var(--theme-primary);
   opacity: 1;
   transition: all 0.67s ease-in;
   animate: grow 0.167s forwards;
@@ -475,17 +468,17 @@
   position: absolute;
   right: 48px;
   padding: 8px;
-  background-color: var(--theme-text-primary);
+  background: var(--text-headline-secondary);
   border-radius: var(--round-medium);
   transition: 0.3s;
   z-index: 9999;
   top: 12px;
-  .headline.four {
+  h4, .headline.four {
     margin-right: 8px;
-    color: var(--theme-white);
+    color: var(--light);
   }
   > svg {
-    fill: var(--theme-white);
+    fill: var(--light);
   }
   background-size: 300% 300%;
   background-image: linear-gradient(
@@ -506,8 +499,8 @@
   right: 24px;
   top: 72px;
   position: absolute;
-  background-color: var(--theme-secondary-background);
-  box-shadow: var(--theme-shadow-light);
+  background: var(--background-secondary);
+  box-shadow: var(--shadow-light);
   max-height: 400px;
   width: 400px;
   z-index: 9999;
@@ -519,10 +512,10 @@
   .cartHeader {
     position: relative;
     height: 64px;
-    .headline.two {
+    h2, .headline.two {
       box-sizing: border-box;
       padding: 8px 16px;
-      box-shadow: var(--theme-shadow-dark);
+      box-shadow: var(--shadow-dark);
       z-index: 2;
       position: absolute;
       width: 400px;
@@ -535,7 +528,7 @@
   .cartChildren {
     min-height: 80px;
     max-height: 256px;
-    background-color: var(--theme-primary-background);
+    background: var(--background-primary);
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -567,7 +560,7 @@
         top: 8px;
       }
     }
-    .headline.four {
+    h4, .headline.four {
       padding: 2px 8px;
       max-width: 128px;
     }
@@ -591,28 +584,28 @@
     .button {
       border-radius: 25px;
     }
-    .headline.three {
+    h3, .headline.three {
       float: right;
     }
   }
   .contextMenu {
     position: absolute;
-    background-color: var(--theme-primary-background);
+    background: var(--background-primary);
     padding: 8px;
     display: flex;
     flex-direction: column;
     min-width: 120px;
     right: 8px;
     border-radius: var(--round-small);
-    box-shadow: var(--theme-shadow-light);
+    box-shadow: var(--shadow-light);
     animation: fadeSlideLeft 0.167s forwards;
     .contextMenuItem {
       padding: 4px 8px;
       text-transform: uppercase;
       min-width: max-content;
       &:hover {
-        background-color: var(--theme-secondary);
-        color: var(--theme-white);
+        background: var(--theme-secondary);
+        color: var(--light);
         cursor: pointer;
       }
     }
@@ -630,8 +623,8 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+  margin: 0 auto;
   border-radius: var(--round-large);
-  margin: 40px 8px 0 8px;
   .candyCardBackground {
     background-image: repeating-linear-gradient(
       -45deg,
@@ -648,13 +641,10 @@
     display: grid;
     grid-template-rows: 216px 80px;
     border-radius: var(--round-large);
-    box-shadow: var(--theme-shadow-dark);
-    background-color: #fffbf7;
+    box-shadow: var(--shadow-dark);
+    background: #fffbf7;
     min-height: 296px;
     overflow: hidden;
-    .headline.four {
-      margin-bottom: 0 !important;
-    }
     .gradientButtonBrown {
       max-height: 80px;
       margin-top: auto;
@@ -675,14 +665,14 @@
         max-height: 224px;
         width: 100%;
 
-        box-shadow: var(--theme-shadow-light);
+        box-shadow: var(--shadow-light);
       }
       .readMore {
         position: absolute;
         text-align: center;
         font-weight: 700;
-        color: var(--theme-white);
-        background-color: var(--theme-text-title);
+        color: var(--light);
+        background: var(--text-headline);
         opacity: 0.8;
         transition: 0.167s;
         height: 24px;
@@ -695,21 +685,20 @@
         cursor: pointer;
         .readMore {
           opacity: 0.9;
-          box-shadow: var(--theme-shadow-dark);
+          box-shadow: var(--shadow-dark);
         }
       }
     }
 
-    .headline.two {
+    h2, .headline.two {
       margin-top: 8px !important;
       font-size: var(--font-large) !important;
     }
-    .headline.three {
+    h3, .headline.three {
       margin: auto 0;
     }
     .pillButton {
       margin-top: auto;
-      margin-bottom: 16px;
     }
   }
   .descriptionCardBackground {
@@ -717,7 +706,7 @@
     margin: auto;
     padding: 8px;
     border-radius: var(--round-medium);
-    box-shadow: var(--theme-shadow-light);
+    box-shadow: var(--shadow-light);
 
     background-image: repeating-linear-gradient(
       -45deg,
@@ -734,7 +723,7 @@
     height: 100%;
   }
 }
-@media only screen and (max-width: 1000px), screen and (max-height: 1000px) {
+@media only screen and (max-width: 1000px), screen and (max-height: 600px) {
   .mainContent.Sales {
     .mobileCardContainer {
       max-width: 360px;
@@ -750,7 +739,7 @@
         column-gap: 16px;
       }
       .cartHeader {
-        .headline.two {
+        h2, .headline.two {
           width: 100%;
         }
       }
@@ -758,7 +747,7 @@
         max-height: 100%;
       }
     }
-    .headline.one {
+    h1, .headline.one {
       font-size: var(--font-xlarge) !important;
     }
     .cartBall.animate {

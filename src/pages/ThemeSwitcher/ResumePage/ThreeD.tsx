@@ -107,18 +107,20 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       newOrigin: any;
       basicCount: number;
     }) => {
+      const originKey = `origin-${newOrigin.x}-${newOrigin.y}-${newOrigin.z}`;
       const tempOrigin = { ...newOrigin };
+      const key = `basic-block-${originKey}`;
       if (basicCount % 2 === 0) {
         tempOrigin.y += 0.2;
         return (
           <>
             <CustomGeometry
-              key={newOrigin.x * 3}
+              key={`${key}-top`}
               {...{ ...tempOrigin, y: tempOrigin.y + 2 }}
               geometry={basicTopRounded}
             />
             <CustomGeometry
-              key={newOrigin.x * 2}
+              key={`${key}-bottom`}
               {...tempOrigin}
               geometry={basicBottomRounded}
             />
@@ -129,12 +131,12 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
         return (
           <>
             <CustomGeometry
-              key={newOrigin.x * 3}
+              key={`${key}-top`}
               {...{ ...tempOrigin, y: tempOrigin.y + 1.5 }}
               geometry={basic2TopRounded}
             />
             <CustomGeometry
-              key={newOrigin.x * 2}
+              key={`${key}-bottom`}
               {...tempOrigin}
               geometry={basic2BottomRounded}
             />
@@ -143,31 +145,33 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       }
     };
     const AntennaCityBlock = ({ newOrigin }: { newOrigin: any }) => {
+      const originKey = `origin-${newOrigin.x}-${newOrigin.y}-${newOrigin.z}`;
       const tempOrigin = { ...newOrigin };
       tempOrigin.y += -0.75;
       return (
         <>
           {ringGeometries.map((geometry, i) => {
+            const innerOriginKey = `origin-${geometry.uuid}`;
             return (
               <CustomGeometry
-                key={1}
+                key={`ring-geo-${innerOriginKey}`}
                 {...{ ...tempOrigin, y: tempOrigin.y + (i / 4 + 2.5) }}
                 geometry={geometry}
               />
             );
           })}
           <CustomGeometry
-            key={newOrigin.x * 2}
+            key={`city-block-antennaTop-${originKey}`}
             {...{ ...tempOrigin, y: tempOrigin.y + 1.5 }}
             geometry={antennaTop}
           />
           <CustomGeometry
-            key={newOrigin.x * 3}
+            key={`city-block-antennaMiddleBottomSphere-${originKey}`}
             {...{ ...tempOrigin, y: tempOrigin.y + 0.5 }}
             geometry={antennaMiddleBottomSphere}
           />
           <CustomGeometry
-            key={newOrigin.x * 5}
+            key={`city-block-antennaBottom-${originKey}`}
             {...tempOrigin}
             geometry={antennaBottom}
           />
@@ -175,32 +179,33 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       );
     };
     const SkyScraperCityBlock = ({ newOrigin }: { newOrigin: any }) => {
+      const originKey = `origin-${newOrigin.x}-${newOrigin.y}-${newOrigin.z}`;
       const tempOrigin = { ...newOrigin };
       tempOrigin.y += 1.5;
       return (
         <>
           <CustomGeometry
-            key={1}
+            key={`sky-scraper-sphere-${originKey}`}
             {...{ ...tempOrigin, y: tempOrigin.y + 6 + 3.5 }}
             geometry={skyscraperSphere}
           />
           <CustomGeometry
-            key={newOrigin.x * 2}
+            key={`sky-scraper-skyscraperTop-${originKey}`}
             {...{ ...tempOrigin, y: tempOrigin.y + 6 }}
             geometry={skyscraperTop}
           />
           <CustomGeometry
-            key={newOrigin.x * 3}
+            key={`sky-scraper-skyscraperMiddleTop-${originKey}`}
             {...{ ...tempOrigin, y: tempOrigin.y + 3 }}
             geometry={skyscraperMiddleTop}
           />
           <CustomGeometry
-            key={newOrigin.x * 4}
+            key={`sky-scraper-skyscraperMiddleBottom-${originKey}`}
             {...{ ...tempOrigin, y: tempOrigin.y + 2 }}
             geometry={skyscraperMiddleBottom}
           />
           <CustomGeometry
-            key={newOrigin.x * 5}
+            key={`sky-scraper-skyscraperBottom-${originKey}`}
             {...tempOrigin}
             geometry={skyscraperBottom}
           />
@@ -221,18 +226,20 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
     const TieredCityBlock = ({ newOrigin }: { newOrigin: any }) => {
       const sortArray = shuffle([0, 1, 2, 3]);
       const getGeometry = (i: number, origin: any) => {
+        const originKey = `origin-${origin.x}-${origin.y}-${origin.z}`;
+        const key = `tiered-city-block-${originKey}`;
         switch (i) {
           case 0:
             origin.y += -0.5;
-            return <CustomGeometry key={i} {...origin} geometry={tiered1} />;
+            return <CustomGeometry key={key} {...origin} geometry={tiered1} />;
           case 1:
-            return <CustomGeometry key={i} {...origin} geometry={tiered2} />;
+            return <CustomGeometry key={key} {...origin} geometry={tiered2} />;
           case 2:
             origin.y += 0.5;
-            return <CustomGeometry key={i} {...origin} geometry={tiered3} />;
+            return <CustomGeometry key={key} {...origin} geometry={tiered3} />;
           case 3:
             origin.y += 1;
-            return <CustomGeometry key={i} {...origin} geometry={tiered4} />;
+            return <CustomGeometry key={key} {...origin} geometry={tiered4} />;
         }
       };
       return (
@@ -250,18 +257,19 @@ const ThreeDComponent = (props: ThreeDComponentProps) => {
       newOrigin: any,
       skyscraperOverride?: boolean
     ) => {
+      const originKey = `origin-${newOrigin.x}-${newOrigin.y}-${newOrigin.z}`;
       if (!!skyscraperOverride)
-        return <SkyScraperCityBlock newOrigin={newOrigin} />;
+        return <SkyScraperCityBlock key={`sky-scraper-city-block-${originKey}`} newOrigin={newOrigin} />;
       switch (value) {
         case CityBlockType.Tiered:
-          return <TieredCityBlock newOrigin={newOrigin} />;
+          return <TieredCityBlock key={`tiered-city-block-${originKey}`} newOrigin={newOrigin} />;
         case CityBlockType.Antenna:
-          return <AntennaCityBlock newOrigin={newOrigin} />;
+          return <AntennaCityBlock key={`antenna-city-block-${originKey}`} newOrigin={newOrigin} />;
         case CityBlockType.Basic:
         default:
           basicCount++;
           return (
-            <BasicCityBlock newOrigin={newOrigin} basicCount={basicCount} />
+            <BasicCityBlock key={`basic-city-block-${originKey}`} newOrigin={newOrigin} basicCount={basicCount} />
           );
       }
     };
@@ -460,9 +468,10 @@ const TorusElement = () => {
   const ringColor = "#8ccbff";
   const mapElement = useMemo(() => {
     return geometries.map((geometry) => {
+      const originKey = `origin-${geometry.uuid}`;
       return (
         <CustomGeometry
-          key={1}
+          key={originKey}
           {...origin}
           geometry={geometry}
           color={ringColor}

@@ -39,15 +39,14 @@ const ProjectsPage = () => {
   ];
   return (
     <div className="centerResumeContainer">
-      <div
-        className="textTitle 
-            headline one"
+      <h1
+        className="text-headline"
       >
         Projects
-      </div>
+      </h1>
       <div className="displayContainer">
         {jobList.map((job, i) => {
-          return <DisplayElement options={job} themeManager={themeManager} />;
+          return <DisplayElement key={`display-element-${job.label}`} options={job} themeManager={themeManager} />;
         })}
       </div>
     </div>

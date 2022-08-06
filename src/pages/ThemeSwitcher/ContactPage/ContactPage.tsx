@@ -66,11 +66,11 @@ const ContactPage = () => {
         <ParallaxBackgroundCircle />
       </div>
       <div className="centerResumeContainer">
-        <div className="textPrimary headline one">Contact</div>
+        <h1 className="text-sub-headline">Contact</h1>
         <div className="contactContainer">
           <div className="contactItem">
             <Icon icon="Email" fontSize={30} />
-            <div className="headline four">JustinGistDesigner@gmail.com</div>
+            <h4>JustinGistDesigner@gmail.com</h4>
           </div>
           <div className="contactItem">
             <Icon icon="Linkedin" fontSize={30} />
@@ -85,25 +85,25 @@ const ContactPage = () => {
           </div>
           <div className="contactItem">
             <Icon icon="Phone" fontSize={30} />
-            <div className="headline four">(407)929-3184</div>
+            <h4>(407)929-3184</h4>
           </div>
           {/*<>
           <div className="inputContainer"> 
-            <div className="textInput slideOne">
+            <div className="input-text-color slideOne">
               <TextField
                 label="First Name:"
                 value={values.firstName}
                 onChange={handleChange("firstName")}
                 InputLabelProps={{
                   style: {
-                    color: "var(--theme-text-placeholder)",
+                    color: "var(--text-placeholder)",
                   },
                 }}
                 variant={"filled"}
                 fullWidth={true}
               />
             </div>
-            <div className="textInput slideTwo">
+            <div className="input-text-color slideTwo">
               <TextField
                 label="Last Name:"
                 value={values.lastName}
@@ -111,14 +111,14 @@ const ContactPage = () => {
                 variant={"filled"}
                 InputLabelProps={{
                   style: {
-                    color: "var(--theme-text-placeholder)",
+                    color: "var(--text-placeholder)",
                   },
                 }}
                 fullWidth={true}
               />
             </div>
           </div>
-          <div className="textInput slideThree">
+          <div className="input-text-color slideThree">
             <TextField
               label="Email Address:"
               value={values.email}
@@ -126,13 +126,13 @@ const ContactPage = () => {
               variant={"filled"}
               InputLabelProps={{
                 style: {
-                  color: "var(--theme-text-placeholder)",
+                  color: "var(--text-placeholder)",
                 },
               }}
               fullWidth={true}
             />
           </div>
-          <div className="textInput slideFour">
+          <div className="input-text-color slideFour">
             <TextField
               label="Brief Message:"
               value={values.message}
@@ -143,7 +143,7 @@ const ContactPage = () => {
               fullWidth={true}
               InputLabelProps={{
                 style: {
-                  color: "var(--theme-text-placeholder)",
+                  color: "var(--text-placeholder)",
                 },
               }}
             />

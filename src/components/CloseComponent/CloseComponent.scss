@@ -1,0 +1,41 @@
+.closePositioner {
+  z-index: 10;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  &.tiny {
+    right: -4px;
+    top: -8px;
+    .close {
+      background: var(--action-error);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+  .close {
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--round-small);
+    transition: all 0.267s ease;
+    svg {
+      fill: var(--light);
+    }
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 2px 8px var(--shadow-light);
+      background: var(--action-error);
+      svg {
+        fill: var(--light);
+      }
+    }
+  }
+}
+.dark {
+  .close {
+    svg {
+      fill: var(--light);
+    }
+  }
+}

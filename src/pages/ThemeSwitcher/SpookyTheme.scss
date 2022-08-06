@@ -1,11 +1,11 @@
 .mainContent.Spooky {
   padding: 0 !important;
-  > .headline.one {
+  > h1, .headline.one {
     position: absolute;
     z-index: 10;
     text-align: center;
-    color: var(--theme-text-title);
-    text-shadow: 0 1px 3px var(--theme-text-teritary),
+    color: var(--text-headline);
+    text-shadow: 0 1px 3px var(--text-body),
       0 1px 4px var(--theme-secondary);
   }
   .spookyContent {
@@ -34,10 +34,10 @@
           transition: 0.267s ease;
         }
         polygon {
-          fill: var(--theme-white) !important;
+          fill: var(--light) !important;
         }
         path {
-          fill: var(--theme-white) !important;
+          fill: var(--light) !important;
         }
       }
     }
@@ -52,7 +52,7 @@
           animation: spookyTextAbove 5s infinite ease-in-out;
         }
         ellipse {
-          fill: var(--theme-white) !important;
+          fill: var(--light) !important;
         }
       }
     }
@@ -85,11 +85,11 @@
     margin: auto;
     z-index: 99;
     animation: grow 0.167s forwards;
-    background-color: var(--theme-secondary-background-transparent);
+    background: var(--background-modal);
     width: 600px;
     height: 900px;
     padding: 48px;
-    border: 2px solid var(--theme-teritary);
+    border: 2px solid var(--theme-secondary);
     animation: spookySmoke 10s infinite both;
     position: relative;
     .spookyIcon {
@@ -97,7 +97,7 @@
 
       margin: 16px;
       > svg {
-        fill: var(--theme-teritary);
+        fill: var(--theme-secondary);
       }
     }
     .spookyIcon.left {
@@ -111,7 +111,7 @@
     .spookyIcon.right:hover {
       cursor: pointer;
       > svg {
-        fill: var(--theme-text-teritary);
+        fill: var(--text-body);
       }
     }
     .spookyIcon.bottomRight {
@@ -122,21 +122,17 @@
       bottom: 0;
       left: 0;
     }
-    > .headline.three {
+    > h3, .headline.three {
       margin-top: 32px;
     }
-    .headline.one {
+    h1, .headline.one {
       text-align: center;
-      color: var(--theme-text-teritary);
       font-size: 48px;
     }
-    .headline.two {
-      margin-bottom: 16px;
-    }
-    .headline {
+    h1, h2, h3, h4, h5, .headline {
       text-align: center;
     }
-    .headline.five:hover {
+    h5:hover {
       cursor: pointer;
     }
     .context {
@@ -150,29 +146,30 @@
     }
     .ticket {
       padding-top: 8px;
-      background-color: var(--theme-secondary);
+      background: var(--theme-secondary);
       margin: 0 16px;
       margin-top: 32px;
       pointer-events: all;
-      .headline.three {
+      transition: all 0.267s ease;
+      h3, .headline.three {
         margin-top: 8px;
       }
-      .headline.five {
+      h5, .headline.five {
         margin-top: 16px;
         padding: 2px 0;
         &:hover {
-          background-color: var(--theme-secondary);
+          background: var(--theme-secondary);
         }
       }
     }
     .ticket.primary {
       margin: 32px 0 0 0;
-      background-color: var(--theme-primary);
+      background: var(--theme-primary);
     }
     .ticket:hover {
-      background-color: var(--theme-teritary);
+      background: var(--action-primary);
       cursor: pointer;
-      animation: lift 0.167s forwards;
+      transform: translateY(-2px);
     }
   }
 }
@@ -182,13 +179,13 @@
   align-items: center;
   justify-content: center;
   padding: 8px;
-  background: linear-gradient(var(--theme-primary), var(--theme-teritary));
+  background: linear-gradient(var(--theme-primary), var(--theme-secondary));
   margin-top: 16px;
   font-size: var(--font-xlarge);
-  color: var(--theme-text-title);
-  box-shadow: var(--theme-shadow-light);
+  color: var(--text-headline);
+  box-shadow: var(--shadow-light);
 }
-@media only screen and (max-width: 1000px), screen and (max-height: 1000px) {
+@media only screen and (max-width: 1000px), screen and (max-height: 600px) {
   .mainContent.Spooky {
     #TitleText {
       margin-top: 48px;
@@ -215,7 +212,6 @@
       width: 80% !important;
       margin: 0 auto;
       position: relative;
-      margin-bottom: -16px;
     }
   }
 }

@@ -83,7 +83,7 @@ const CartComponent = (props: iCart) => {
         className={"cart " + (animate ? " pop" : "")}
         onClick={() => setShowCart(!showCart)}
       >
-        <span className="headline four">{cartNum ?? ""}</span>
+        <h4>{cartNum ?? ""}</h4>
         <Icon icon="Cart" />
       </div>
       {showCart && (
@@ -111,6 +111,7 @@ const CartComponent = (props: iCart) => {
                   {contextOptions.map((item) => {
                     return (
                       <div
+                        key={`context-option-${item.label}`}
                         className="contextMenuItem headline six"
                         onClick={() => {
                           setOpenContext(false);
@@ -124,27 +125,27 @@ const CartComponent = (props: iCart) => {
                 </div>
               )}
             </div>
-            <div className="headline two textTitle">My Cart</div>
+            <h2 className="text-headline">My Cart</h2>
           </div>
           <div className="cartChildren">
             {props.cartItems.length > 0 ? (
               props.cartItems.map((item, i) => {
                 return (
-                  <div key={getRandomKey()} className="cartItem">
+                  <div key={`cart=items-${item.title}`} className="cartItem">
                     <div className="rightPositioner">
                       <div className="delete" onClick={() => deleteItem(item)}>
                         <Icon icon="Delete" />
                       </div>
                     </div>
                     <img src={item.img} />
-                    <div className="headline four">{item.title}</div>
+                    <h4>{item.title}</h4>
                   </div>
                 );
               })
             ) : (
               <div className="center">
                 <Icon icon="NoItems" fontSize={80} />
-                <div className="headline four">No items in cart</div>
+                <h4>No items in cart</h4>
               </div>
             )}
           </div>
@@ -152,7 +153,7 @@ const CartComponent = (props: iCart) => {
             <button className="button success" style={{ height: 54 }}>
               Checkout
             </button>
-            <div className="headline three textPrimary">${cartTotal}</div>
+            <h3 className="text-sub-headline">${cartTotal}</h3>
           </div>
         </div>
       )}

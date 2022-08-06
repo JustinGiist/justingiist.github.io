@@ -40,6 +40,7 @@ import {
   AcUnit,
   Close,
   PlusOne,
+  PriorityHigh
 } from "@material-ui/icons";
 import {
   HomeOutline,
@@ -57,6 +58,24 @@ import {
   Linkedin,
   Email,
   Phone,
+  InformationOutline,
+  ChevronRight,
+  ChevronLeft,
+  Account,
+  LockOpen,
+  Lock,
+  Check,
+  WeatherNight,
+  FileTableBoxMultipleOutline,
+  FileChart,
+  ShieldCrownOutline,
+  ChartTree,
+  ChevronDoubleLeft,
+  ChevronDoubleRight,
+  Eye,
+  EyeOff,
+  CameraOutline,
+  FolderUploadOutline,
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -114,6 +133,28 @@ const GetIcon: any = {
   Sony,
   MSFT,
   AAPL,
+  Info: InformationOutline,
+  ChevronRight,
+  ChevronLeft,
+  Account,
+  LockOpen,
+  Lock,
+  Warning: PriorityHigh,
+  Check,
+  Moon: WeatherNight,
+  Customers: HomeOutline,
+  Templates: FileTableBoxMultipleOutline,
+  Campaigns: ChartTree,
+  Reports: FileChart,
+  Admin: ShieldCrownOutline,
+  X: Close,
+  SidebarClose: ChevronDoubleLeft,
+  SidebarOpen: ChevronDoubleRight,
+  Eye,
+  EyeOff,
+  Upload: FolderUploadOutline,
+  Camera: CameraOutline,
+
 };
 const Icon = ({
   icon,
@@ -123,6 +164,7 @@ const Icon = ({
   viewBox,
   width,
   height,
+  className,
 }: {
   icon?: string;
   onclick?: (e: any) => void;
@@ -131,6 +173,7 @@ const Icon = ({
   viewBox?: string;
   width?: string;
   height?: string;
+  className?: string;
 }) => {
   const myIcon = GetIcon[icon as string];
   if (!myIcon) return <div></div>;
@@ -147,6 +190,7 @@ const Icon = ({
         fontSize: fontSize ?? 24,
         color: color ?? "",
       }}
+      className={className}
       component={myIcon}
     />
   );

@@ -8,7 +8,7 @@ const TutorialControl = ({}: {}) => {
       <div className="tutorialControl">
         <Icon icon="QuestionMark" />
         <div className="tutorialTextContainer">
-          <div className="headline two">Tutorial?</div>
+          <h2>Tutorial?</h2>
         </div>
       </div>
       <div className="modal" style={{ display: "none" }}>

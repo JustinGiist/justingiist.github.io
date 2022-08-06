@@ -1,6 +1,6 @@
-import Icon from "../components/Icon/Icon";
 import "./testPage.scss";
+import EditorPage from "./ThemeSwitcher/EditorPage/EditorPage";
 const TestPage = () => {
-  return <div></div>;
+  return <EditorPage />
 };
 export default TestPage;

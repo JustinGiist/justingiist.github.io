@@ -1,5 +1,6 @@
 import "./App.css";
 import "./styles.scss";
+import "./generics.scss";
 import { Route, Redirect, Routes, BrowserRouter } from "react-router-dom";
 import RenderComponent from "./components/RenderComponent/RenderComponent";
 import { useState } from "react";
@@ -24,11 +25,10 @@ const App = () => {
   };
   //findMedianSortedArrays([2, 3], [1, 4, 10]);
 
-  const [themeManager, setThemeManager] =
+  const [themeManager] =
     useState<ThemeManager>(themeManagerApp);
   const [theme, setTheme] = useState(GlobalThemes.Resume);
   const setThemeContext = (incomingTheme: GlobalThemes) => {
-    themeManager.setTheme(incomingTheme);
     setTheme(incomingTheme);
   };
 
@@ -48,6 +48,7 @@ const App = () => {
         href="https://fonts.googleapis.com/css2?family=Jura:wght@700&display=swap"
         rel="stylesheet"
       ></link>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet"></link>
       <ThemeManagerContext.Provider
         value={{ themeManager, theme, setThemeContext }}
       >
@@ -77,6 +78,10 @@ const App = () => {
             <Route
               path={"/" + GlobalThemes.Enterprise}
               element={<RenderComponent url={GlobalThemes.Enterprise} />}
+            />
+            <Route
+              path={"/" + GlobalThemes.Fragments}
+              element={<RenderComponent url={GlobalThemes.Fragments} />}
             />
             <Route
               path={"/" + GlobalThemes.Test}
