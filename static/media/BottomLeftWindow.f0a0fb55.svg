@@ -1,0 +1,7 @@
+
+<svg viewBox="0 0 40 82" width="38.23" height="79.996">
+  <path style=" fill: var(--theme-secondary);" d="M 9.283 80.728 L 0.928 22.207 C -2.118 -1.86 34.979 -10.304 38.98 21.302 L 36.695 80.404 L 9.283 80.728 Z"></path>
+  <rect x="209.451" y="378.776" width="36.213" height="3.714" style="stroke: var(--theme-secondary); fill: var(--theme-primary);" transform="matrix(0.999436, -0.033589, 0.033589, 0.999436, -219.86057, -344.654976)"></rect>
+  <rect x="175.06" y="378.776" width="30.266" height="3.714" style="stroke:var(--theme-secondary); fill: var(--theme-primary);" transform="matrix(0.999852, -0.017222, 0.017222, 0.999852, -174.757801, -316.429297)"></rect>
+  <rect x="457.131" y="378.776" width="79.036" height="3.714" style="stroke: var(--theme-secondary); fill: var(--theme-primary);" transform="matrix(0.050931, 0.998702, -0.998702, 0.050931, 376.327767, -474.750224)"></rect>
+</svg>
