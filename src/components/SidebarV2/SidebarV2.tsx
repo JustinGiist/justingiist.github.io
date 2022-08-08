@@ -50,9 +50,9 @@ const SidebarV2 = ({
                     <h4>{option}</h4>
                 </div>
             ))}
-            <div className='tprc-sidebar-button pushToBottom' onClick={() => setIsCollapsed(!isCollapsed)}>
+            {!dimensions.isMobile && <div className='tprc-sidebar-button pushToBottom' onClick={() => setIsCollapsed(!isCollapsed)}>
                 <Icon icon={isCollapsed ? 'SidebarOpen' : 'SidebarClose'} fontSize={20}/>
-            </div>
+            </div>}
         </div>
     )
 }

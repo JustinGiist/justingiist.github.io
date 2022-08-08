@@ -127,7 +127,7 @@ export const CalculatedScrollComponent = (props: {
   }, [props.hasButtons]);
   useEffect(() => {
     resizeChildrenContainer();
-  }, [resizeRef, ...props.refresh, buttonSpacing.current, props.sidebarCollapsed, dimensions.isMobile]);
+  }, [resizeRef, ...props.refresh, buttonSpacing.current, props.sidebarCollapsed, dimensions]);
   const resizeChildrenContainer = () => {
     if (resizeRef.current) {
       const resizeContainerRect = resizeRef.current.getBoundingClientRect();
