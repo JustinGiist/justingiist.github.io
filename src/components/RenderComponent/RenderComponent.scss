@@ -11,17 +11,19 @@
   overflow: hidden;
 }
 .renderContainer {
-  display: grid;
-  grid-template-rows: 56px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   height: 100vh;
-  .topContainer {
-    z-index: 20;
-    width: 100%;
-    height: 56px;
+  .leftContainer {
+    width: fit-content;
+    flex: 0;
   }
-  .bottomContainer {
+  .rightContainer {
     display: flex;
     height: 100%;
+    flex-direction: column;
+    width: 100%;
     overflow: hidden;
     .mainContent {
       width: 100%;
@@ -67,7 +69,7 @@
   * {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
-  .bottomContainer {
+  .rightContainer {
     background: linear-gradient(var(--theme-primary), var(--theme-secondary));
     .mainContent {
       max-width: 900px;
@@ -80,18 +82,18 @@
 }
 .Spooky {
   * {
-    font-family: "Nightscary Free Trial";
+    font-family: "Nightscary Free Trial" !important;
 
     .button,
     h1, h2, h3, h4, h5, .headline {
-      font-family: "Luxurious Roman", cursive;
+      font-family: "Luxurious Roman", cursive !important;
     }
   }
   .horizontal {
     background: var(--theme-secondary);
     animation: creepyNav 10s infinite;
   }
-  .bottomContainer {
+  .rightContainer {
     background: var(--background-secondary);
   }
 }
@@ -263,7 +265,7 @@
   }
 }
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {
-  .bottomContainer {
+  .rightContainer {
     padding: 0px !important;
   }
   .cardContainer {

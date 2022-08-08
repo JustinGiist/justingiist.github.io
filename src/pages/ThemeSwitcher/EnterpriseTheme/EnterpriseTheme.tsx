@@ -359,6 +359,7 @@ const EnterpriseTheme = () => {
           />
         </div>
       </div>
+      <div style={{ padding: 8 }} />
       {/*<TutorialControl />*/}
     </>
   );

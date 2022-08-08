@@ -2,8 +2,9 @@ import "./App.css";
 import "./styles.scss";
 import "./generics.scss";
 import { Route, Redirect, Routes, BrowserRouter } from "react-router-dom";
+import ReactTooltip from 'react-tooltip';
 import RenderComponent from "./components/RenderComponent/RenderComponent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ThemeManager, { GlobalThemes } from "./ThemeManager";
 import React from "react";
 export const ThemeManagerContext = React.createContext<any>(undefined);
@@ -32,6 +33,10 @@ const App = () => {
     setTheme(incomingTheme);
   };
 
+  useEffect(() => {
+    ReactTooltip.rebuild();
+  })
+
   return (
     <>
       <link rel="preconnect" href="https://fonts.googleapis.com"></link>
@@ -54,11 +59,6 @@ const App = () => {
       >
         <BrowserRouter>
           <Routes>
-            <Route
-              exact
-              path="/"
-              element={<RenderComponent url={GlobalThemes.Resume} />}
-            />
             <Route
               path={"/" + GlobalThemes.Resume}
               element={<RenderComponent url={GlobalThemes.Resume} />}
@@ -84,8 +84,13 @@ const App = () => {
               element={<RenderComponent url={GlobalThemes.Fragments} />}
             />
             <Route
-              path={"/" + GlobalThemes.Test}
-              element={<RenderComponent url={GlobalThemes.Test} />}
+              path={"/" + GlobalThemes.Editor}
+              element={<RenderComponent url={GlobalThemes.Editor} />}
+            />
+            <Route
+              exact
+              path="/"
+              element={<RenderComponent url={GlobalThemes.Resume} />}
             />
             <Route
               path="*"
@@ -94,6 +99,7 @@ const App = () => {
           </Routes>
         </BrowserRouter>
       </ThemeManagerContext.Provider>
+      <ReactTooltip effect="solid"/>
     </>
   );
 };

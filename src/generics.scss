@@ -403,11 +403,8 @@ h5, .headline.five {
         grid-column-end: span 2;
       }
     }
-  }
-  .flexSB{
-    flex-direction: column;
-    > .button {
-      width: 100%;
+    &.noCollapse {
+      grid-template-columns: repeat(auto-fit, minmax(calc(50% - 4px), 1fr) ) !important;
     }
   }
   .flex > .button {
@@ -428,4 +425,5 @@ h5, .headline.five {
       flex-direction: column;
     }
   }
+
 }

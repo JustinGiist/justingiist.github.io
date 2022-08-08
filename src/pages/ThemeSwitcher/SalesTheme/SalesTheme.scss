@@ -176,6 +176,8 @@
   transition: 0.5s;
   padding: 16px 8px;
   align-items: flex-end;
+  display: flex;
+  flex-direction: column;
   background-image: linear-gradient(
     to right,
     #fff5e0 0%,
@@ -277,16 +279,16 @@
   justify-content: center;
   column-gap: 16px;
   margin-right: 32px;
-  background: #fff0f0;
+  background: white;
 
   .topBarOptionBackground {
     .topBarOption {
-      padding: 2px 16px;
-      background: #fff0f0;
-      height: 36px;
+      padding: 4px 16px;
+      background: transparent;
+      text-align: center;
+      color: var(--text-menu);
       &:hover {
         cursor: pointer;
-        text-decoration: underline;
       }
     }
     &.selected {
@@ -299,9 +301,8 @@
         #f2b5d4 50px 60px
       );
       border-radius: var(--round-medium);
-      height: 36px;
       .topBarOption {
-        height: 32px;
+        color: var(--dark);
       }
     }
   }
@@ -335,7 +336,6 @@
 }
 .candyCardContainer {
   position: relative;
-  margin-top: 40px;
   overflow: hidden;
   border-radius: var(--round-large);
   .candyCardBackground {
@@ -513,16 +513,16 @@
   .cartHeader {
     position: relative;
     height: 64px;
+    box-shadow: var(--shadow-dark);
+    border: 2px solid #9b753d;
+    border-top-left-radius: var(--round-large);
+    border-top-right-radius: var(--round-large);
+    padding: 8px 16px;
     h2, .headline.two {
-      box-sizing: border-box;
-      padding: 8px 16px;
-      box-shadow: var(--shadow-dark);
-      z-index: 2;
-      position: absolute;
-      width: 400px;
-      border: 2px solid #9b753d;
-      border-top-left-radius: var(--round-large);
-      border-top-right-radius: var(--round-large);
+      flex: 1;
+    }
+    .flex.noWrap {
+      flex: 0;
     }
   }
 
@@ -582,6 +582,9 @@
     border: 2px solid #9b753d;
     border-bottom-left-radius: var(--round-large);
     border-bottom-right-radius: var(--round-large);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     .button {
       border-radius: 25px;
     }
@@ -726,6 +729,13 @@
 }
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {
   .mainContent.Sales {
+    
+    .flex.gradientButtonBrown {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap !important;
+      align-items: center;
+    }
     .shop {
       margin: 0 auto;
     }
@@ -743,7 +753,7 @@
         column-gap: 16px;
       }
       .cartHeader {
-        h2, .headline.two {
+        h3, .headline.three {
           width: 100%;
         }
       }

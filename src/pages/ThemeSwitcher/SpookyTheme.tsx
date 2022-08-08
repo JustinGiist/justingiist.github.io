@@ -527,7 +527,7 @@ const SpookyTheme = ({}: {}) => {
         </div>
         {spookyElement && spookyModal(spookyElement)}
         {dimensions.isMobile && (
-          <>
+          <div className="spooky-button-container flexFull noCollapse">
             <div
               className="mobileSpookyButton"
               onClick={() => changePage(SpookyPages.Tickets)}
@@ -559,7 +559,7 @@ const SpookyTheme = ({}: {}) => {
               Events
             </div>
             {dimensions.isMobile && <div style={{ padding: 16 }} />}
-          </>
+          </div>
         )}
       </div>
     </>

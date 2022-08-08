@@ -139,6 +139,7 @@ export enum GlobalThemes {
   Arcade = "Arcade",
   Sales = "Sales",
   Test = "Test",
+  Editor = "Editor",
   Fragments = "Fragments"
 }
 export interface ComponentSizingSchema {

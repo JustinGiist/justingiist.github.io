@@ -88,8 +88,10 @@ const CartComponent = (props: iCart) => {
       </div>
       {showCart && (
         <div className="cartDropdown">
-          <div className="cartHeader">
-            <div className="rightPositioner">
+          <div className="cartHeader flexSB">
+            <h2 className="text-headline">My Cart</h2>
+            
+            <div className="flex noWrap">
               {dimensions.isMobile && (
                 <div
                   onClick={() => {
@@ -125,7 +127,6 @@ const CartComponent = (props: iCart) => {
                 </div>
               )}
             </div>
-            <h2 className="text-headline">My Cart</h2>
           </div>
           <div className="cartChildren">
             {props.cartItems.length > 0 ? (

@@ -1,0 +1,79 @@
+.sidebar-v2 {
+    background: var(--sidebar-background);
+    padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 200px;
+    height: 100%;
+    transition: all 0.267s ease;
+    &.mobile {
+        position: fixed;
+        left: -100%;
+        z-index: var(--layer-1);
+        width: 100%;
+        &.mobileOpen {
+            left: 0%;
+        }
+    }
+    &.collapse {
+        padding: 8px;
+        width: 48px;
+        .tprc-sidebar-button {
+            width: 32px;
+            height: 32px;
+            justify-content: center;
+            align-items: center;
+            .tooltipContainer{
+                height: 20px;
+            }
+            .headline.four, h4 {
+                display: none;
+            }
+        }
+        .pushToBottom:hover {
+            transform: translateX(4px);
+        }
+    }
+    .pushToBottom {
+        justify-content: flex-end;
+        width: fit-content;
+        min-width: fit-content;
+        align-self: flex-end;
+    }
+    .tprc-sidebar-button {
+        color: var(--sidebar-button-text);
+        padding: 4px 8px;
+        border-radius: var(--round-small);
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.267s ease;
+        h4, .headline.four {
+            color: var(--sidebar-button-text);
+            transition: color 0.267s ease;
+        }
+        &:hover, &.selected {
+            background: var(--sidebar-button-hover);
+            color: var(--sidebar-button-selected-text);
+            h4, .headline.four {
+                color: var(--sidebar-button-selected-text);
+            }
+        }
+        &.selected{
+            background: var(--sidebar-button-selected);
+            color: var(--sidebar-button-selected-text);
+            h4, .headline.four {
+                color: var(--sidebar-button-selected-text);
+            }
+        }
+    }
+    .pushToBottom {
+        transition: transform 0.367s ease;
+        width: 32px;
+        height: 32px;
+        &:hover{
+            background: none;
+            transform: translateX(-4px);
+        }
+    }
+}

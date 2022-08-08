@@ -6,7 +6,6 @@ import tplogosmall from "../../../assets/tplogosmall.png";
 import './EditorPage.scss';
 import CloseComponent from '../../../components/CloseComponent/CloseComponent';
 import { TextField } from '@material-ui/core';
-import TooltipComponent from '../../../components/TooltipComponent/TooltipComponent';
 import VariationComponent from './VariationComponent/VariationComponent';
 import { DataGrid } from '@mui/x-data-grid';
 interface EditorPageProps {
@@ -21,11 +20,9 @@ interface RoundButtonProps {
 }
 const RoundButton = (props: RoundButtonProps) => {
     return (
-        <TooltipComponent tooltip={[props.tooltip]} direction={props.tooltipDirection ?? 'below'} type={props.class}>
-            <div className={'tprc-button round small ' + (props.class ?? 'cancel')}  onClick={props.action}>
-                <Icon icon={props.icon ?? 'Check'} fontSize={16} />
-            </div>
-        </TooltipComponent>
+        <div className={'tprc-button round small ' + (props.class ?? 'cancel')}  onClick={props.action} data-tip={props.tooltip}>
+            <Icon icon={props.icon ?? 'Check'} fontSize={16} />
+        </div>
     );
 };
 const EditorPage = (props: EditorPageProps) => {
@@ -299,9 +296,7 @@ const SidebarComponent = (props: SidebarProps) => {
                 onClick={() => setSelectedSidebar(option)} 
                 className={"tprc-sidebar-button flex noWrap" + (option === selectedSideBar ? ' selected' : '')}>
                     {collapse ? (
-                        <TooltipComponent tooltip={[option]} direction='right'>
-                            <Icon icon={option} fontSize={20} />
-                        </TooltipComponent>
+                        <Icon icon={option} fontSize={20} data-tip={option} />
                     ) : (
                         <Icon icon={option} fontSize={20} />
                     )}
@@ -396,12 +391,9 @@ const FacebookInputElement = (props: {
         <div className='flexColumn' key={props.label}>
             <div className='flexSB'>
                 <div className='textSubHeadline textInputLabel flex'>
-                    {props.label}{props.warning && <TooltipComponent type='warning' direction='left' className='warning' tooltip={props.warning} ><Icon icon='Warning' /></TooltipComponent>}
+                    {props.label}{props.warning && <Icon icon='Warning' data-tip={props.warning} />}
                 </div>
-                {!props.lockToggle ? <div /> :
-                <TooltipComponent className='lock' direction='above' tooltip={['This is a lock']}>
-                    <Icon icon={!props.lockValue ? 'LockOpen' : 'Lock'} />
-                </TooltipComponent>}
+                {!props.lockToggle ? <div /> : <Icon data-tip='This is a lock' icon={!props.lockValue ? 'LockOpen' : 'Lock'} />}
             </div>
             <TextField className='tprc-input' onChange={handleChange} variant='outlined' value={props.value} placeholder={props.placeholder} multiline={isMultiline}/>
         </div>
@@ -619,20 +611,14 @@ const PanelEditor = (props: V2PanelEditorProps) => {
         return (props.Inputs.map(input => (
             <div key={`left-input-${input.label}`} className='panel-editor-input-element'>
                 {input.warnings &&
-                    <TooltipComponent label='Warnings' type='warning' direction='above' tooltip={input.warnings}>
-                        <div className='circleIcon warning'><div className='bodyBold'>{input.warnings.length}</div></div>
-                    </TooltipComponent>
+                        <div className='circleIcon warning' data-tip={input.warnings}><div className='bodyBold'>{input.warnings.length}</div></div>
                 }
                 {input.errors &&
-                    <TooltipComponent label='Errors' type='error' direction='above' tooltip={input.errors}>
-                        <div className='circleIcon error'><div className='bodyBold'>{input.errors.length}</div></div>
-                    </TooltipComponent>
+                        <div className='circleIcon error' data-tip={input.errors}><div className='bodyBold'>{input.errors.length}</div></div>
                 }
                 <div className='subHeadlineBold'>{input.label}</div>
                 {!input.lockToggle ? <div /> : (
-                    <TooltipComponent className='lock' direction='above' tooltip={[`Toggle ${input.label} Lock to Allow/Unallow (Lock/Unlock) a Location or End Advertiser to be able to edit this field within their Location Control.`]}>
-                        <Icon icon={!input.lockValue ? 'LockOpen' : 'Lock'} fontSize={20}/>
-                    </TooltipComponent>
+                        <Icon icon={!input.lockValue ? 'LockOpen' : 'Lock'} fontSize={20} data-tip={`Toggle ${input.label} Lock to Allow/Unallow (Lock/Unlock) a Location or End Advertiser to be able to edit this field within their Location Control.`}/>
                 )}
             </div>
         )));
@@ -670,35 +656,32 @@ const PanelEditor = (props: V2PanelEditorProps) => {
         );
     }, [rightPanelSelected]);
     const imageMenu = AssetTypes.map(assetType => (
-        <TooltipComponent key={`tooltip-component-${assetType}`} tooltip={[`Click to use ${assetType} Asset`]} direction='above'>
             <div 
+            data-tip={`Click to use ${assetType} Asset`}
+            key={`tooltip-component-${assetType}`}
             className={`${selectedAssetType === assetType ? 'selected' : ''} tprc-pill `} 
             onClick={() => {
                 setSelectedAssetType(assetType);
             }}>
                 {assetType}
             </div>
-        </TooltipComponent>
-    ));
+   ));
     return (
         <div className={`tprc-panel-editor-v2 ${isSelected ? 'selected' : ''}`}>
             {isSelected && leftPanel}
             <div className='panel-editor-middle'>
                 {isSelected && (
                     <div className='panel-editor-header flexSB'>
-                        <TooltipComponent tooltip={[`This is the ${props.selectedFacebookPage} Section. Here you will fill out the fields to complete your facebook ad.`]} direction='above'>
-                            <div className='subHeadlineBold textHeadlineSecondary'>{props.selectedFacebookPage} Section</div>
-                        </TooltipComponent>
+                        <div  data-tip={`This is the ${props.selectedFacebookPage} Section. Here you will fill out the fields to complete your facebook ad.`} className='subHeadlineBold textHeadlineSecondary'>{props.selectedFacebookPage} Section</div>
                         {props.toggleCTA && (
-                            <TooltipComponent tooltip={showCTA ? ['Click to hide CTA field'] : ['Click to show CTA field']} direction='above'>
-                                <div 
-                                className={`${showCTA ? 'selected' : ''} tprc-pill `} 
-                                onClick={() => {
-                                    setShowCTA(!showCTA);
-                                    setCta('Apply Now');
-                                    }}>CTA <Icon icon={showCTA ? 'Eye' : 'EyeOff'} fontSize={16} />
-                                </div>
-                            </TooltipComponent>
+                            <div 
+                            data-tip={showCTA ? 'Click to hide CTA field' : 'Click to show CTA field'}
+                            className={`${showCTA ? 'selected' : ''} tprc-pill `} 
+                            onClick={() => {
+                                setShowCTA(!showCTA);
+                                setCta('Apply Now');
+                                }}>CTA <Icon icon={showCTA ? 'Eye' : 'EyeOff'} fontSize={16} />
+                            </div>
                         )}
                         {props.toggleImageMenu && (
                             <div className='flex noWrap image-menu'>
@@ -836,18 +819,13 @@ interface AssetInputElementProps {
 const AssetInputElement = (props: AssetInputElementProps) => {
     return props.isSelected ? (
         <div className='tprc-asset-input'>
-            <TooltipComponent tooltip={['Upload an image']} direction='above'>
-                <div className='upload input'>
-                    <Icon icon='Upload' fontSize={120} />
-                </div>
-            </TooltipComponent>
+            <div className='upload input' data-tip={'Upload an image'}>
+                <Icon icon='Upload' fontSize={120} />
+            </div>
             <h3 className='textBody'>OR</h3>
-            <TooltipComponent tooltip={['Take a photo']} direction='above'>
-                <div className='photo input'>
-                    <Icon icon='Camera' fontSize={120} />
-                </div>
-            </TooltipComponent>
-            
+            <div className='photo input' data-tip={'Take a photo'}>
+                <Icon icon='Camera' fontSize={120} />
+            </div>
         </div>
     ): (
         <img src={chocolate} />

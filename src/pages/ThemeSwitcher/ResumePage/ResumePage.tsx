@@ -144,7 +144,7 @@ const ResumePage = () => {
         <div className="heroGradient" />
         <div className="hero-section B">
           <div className=" center ">
-            <h1 className="text-body">Experience</h1>
+            <h1>Experience</h1>
             <ExperienceElement list={experienceList} />
           </div>
         </div>
@@ -166,7 +166,7 @@ const ResumePage = () => {
             })}
           </div>
         </div>
-        <h1 className="text-headline">Projects</h1>
+        <h1>Projects</h1>
         <div className="hero-section B">
           <div className="center">
             <JobElement options={projectList[0]} />
@@ -218,7 +218,7 @@ export const DisplayElement = ({
       }}
     >
       <div className="displayContainer ">
-        <h3>{options.label}</h3>
+        <h1>{options.label}</h1>
         <div className="text-sub-headline">{options.date ?? ""}</div>
         {options.context && (
           <div

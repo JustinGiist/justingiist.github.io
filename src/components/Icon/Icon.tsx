@@ -25,6 +25,7 @@ import { ReactComponent as Squiggly } from "./Squiggly.svg";
 import { ReactComponent as Sony } from "./sony-logo.svg";
 import { ReactComponent as MSFT } from "./microsoft-windows-22.svg";
 import { ReactComponent as AAPL } from "./apple.svg";
+import { ReactComponent as JGLogo } from "./favicon.svg";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import {
@@ -76,6 +77,12 @@ import {
   EyeOff,
   CameraOutline,
   FolderUploadOutline,
+  FileAccountOutline,
+  Candycane,
+  Domain,
+  NotebookEditOutline,
+  Sword,
+  Hamburger
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -133,6 +140,7 @@ const GetIcon: any = {
   Sony,
   MSFT,
   AAPL,
+  JGLogo,
   Info: InformationOutline,
   ChevronRight,
   ChevronLeft,
@@ -154,7 +162,13 @@ const GetIcon: any = {
   EyeOff,
   Upload: FolderUploadOutline,
   Camera: CameraOutline,
-
+  Resume: FileAccountOutline,
+  Sales: Candycane,
+  Enterprise: Domain,
+  Spooky: Skull,
+  Editor: NotebookEditOutline,
+  Fragments: Sword,
+  Hamburger
 };
 const Icon = ({
   icon,

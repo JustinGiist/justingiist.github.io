@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useContext } from "react";
 import { ThemeManagerContext } from "../../App";
 import EnterpriseTheme from "../../pages/ThemeSwitcher/EnterpriseTheme/EnterpriseTheme";
@@ -14,20 +14,25 @@ import SalesTheme from "../../pages/ThemeSwitcher/SalesTheme/SalesTheme";
 import DesignBackground from "../BezierBackground/DesignBackground";
 import TestPage from "../../pages/testPage";
 import FragmentsPage from "../../pages/ThemeSwitcher/FragmentsPage/FragmentsPage";
+import SidebarV2 from "../SidebarV2/SidebarV2";
+import TopbarV2 from "../TopbarV2/TopbarV2";
 const RenderComponent = ({ url }: { url: GlobalThemes }) => {
   const { themeManager, theme, setThemeContext } =
     useContext(ThemeManagerContext);
-  let isTopBar = true;
+  const dimensions = useWindowDimensions();
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+  const [isMobileOpen, setIsMobileOpen] = useState<boolean>(false);
+  let isTopBar = false;
   const routes = new Map<string, any>([
     [GlobalThemes.Resume, <ResumePage />],
     [GlobalThemes.Contact, <ContactPage />],
     [GlobalThemes.Sales, <SalesTheme />],
     [GlobalThemes.Enterprise, <EnterpriseTheme />],
     [GlobalThemes.Spooky, <SpookyTheme />],
-    [GlobalThemes.Test, <TestPage />],
+    [GlobalThemes.Editor, <TestPage />],
     [GlobalThemes.Fragments, <FragmentsPage />]
   ]);
-  const newPage = routes.get(url);
+  const newPage = useMemo(() => routes.get(url), [routes, url]);
   const checkBackground = () => {
     switch (url) {
       case GlobalThemes.Resume:
@@ -45,18 +50,22 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
       case GlobalThemes.Projects:
       case GlobalThemes.Spooky:
       case GlobalThemes.Sales:
-      case GlobalThemes.Test:
+      case GlobalThemes.Editor:
       case GlobalThemes.Fragments:
         return false;
       default:
         return true;
     }
   };
+  const handleMobileOpen = useCallback(() => {
+    setIsMobileOpen(!isMobileOpen)
+  }, [setIsMobileOpen, isMobileOpen]);
   const showBackground = checkBackground();
   const showSideBar = checkSideBar();
   useEffect(() => {
     setThemeContext(url);
   });
+  const memoizedTopBar = useMemo(() => <TopbarV2 route={url} handleMobileOpen={handleMobileOpen} isMobileOpen={isMobileOpen}/>, [url, handleMobileOpen, isMobileOpen]);
   return (
     <>
       {showBackground && <DesignBackground />}
@@ -64,16 +73,18 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
       <div
         className={`renderContainer ${isTopBar ? " horizontal " : " "} ${theme}`}
       >
-        <div className="topContainer">
-          <NavBar isTopBar={isTopBar} />
+        <div className="leftContainer">
+          <SidebarV2 setIsMobileOpen={setIsMobileOpen} routes={routes} isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} isMobileOpen={isMobileOpen}/>
         </div>
-        <div className="bottomContainer">
+        <div className="rightContainer">
+          {!dimensions.isMobile && memoizedTopBar}
           {showSideBar && <SideBar gooMenu={url === GlobalThemes.Enterprise} />}
-          <CalculatedScrollComponent hasButtons={false} refresh={[]}>
+          <CalculatedScrollComponent hasButtons={false} refresh={[]} sidebarCollapsed={isCollapsed}>
             <div className={"mainContent " + url}>
               {!newPage ? <OverlayControl loading={true} /> : newPage}
             </div>
           </CalculatedScrollComponent>
+          {dimensions.isMobile && memoizedTopBar}
         </div>
       </div>
     </>
@@ -85,6 +96,7 @@ export const CalculatedScrollComponent = (props: {
   hasButtons: boolean;
   refresh: any[];
   overflowHidden?: boolean;
+  sidebarCollapsed: boolean;
 }) => {
   const dimensions = useWindowDimensions();
   const resizeRef = useRef<any>(null);
@@ -115,15 +127,16 @@ export const CalculatedScrollComponent = (props: {
   }, [props.hasButtons]);
   useEffect(() => {
     resizeChildrenContainer();
-  }, [resizeRef, ...props.refresh, buttonSpacing.current]);
+  }, [resizeRef, ...props.refresh, buttonSpacing.current, props.sidebarCollapsed, dimensions.isMobile]);
   const resizeChildrenContainer = () => {
     if (resizeRef.current) {
       const resizeContainerRect = resizeRef.current.getBoundingClientRect();
-      const calcWeight = window.innerWidth;
+      const accountForSidebar = !dimensions.isMobile ? (props.sidebarCollapsed ? 48 : 200) : 0;
+      const calcWidth = window.innerWidth - accountForSidebar;
       const calcHeight =
         window.innerHeight - resizeContainerRect.y - 0 - buttonSpacing.current;
       resizeRef.current.style.height = calcHeight.toString() + "px";
-      resizeRef.current.style.width = calcWeight.toString() + "px";
+      resizeRef.current.style.width = calcWidth.toString() + "px";
     }
   };
   return (

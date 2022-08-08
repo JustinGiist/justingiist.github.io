@@ -1,0 +1,31 @@
+.top-bar-v2 {
+    background: transparent;
+    position: fixed;
+    bottom: 8px;
+    right: 16px;
+    padding: 4px 8px;
+    z-index: var(--layer-1);
+    color: var(--text-sub-body);
+    &.mobile {
+        background: var(--sidebar-background);
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        bottom: auto;
+        right: auto;
+        align-items: center;
+    }
+    .top-bar-button {
+        border-radius: var(--round-small);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        &.open {
+            background: var(--sidebar-button-selected);
+            color: var(--sidebar-button-selected-text);
+        }
+    }
+}

@@ -173,6 +173,9 @@
     }
   }
 }
+.spooky-button-container {
+  padding: 0 16px 16px 16px;
+}
 .mobileSpookyButton {
   width: 100%;
   display: flex;
@@ -180,9 +183,10 @@
   justify-content: center;
   padding: 8px;
   background: linear-gradient(var(--theme-primary), var(--theme-secondary));
-  font-size: var(--font-xlarge);
+  font-size: var(--font-huge);
   color: var(--text-headline);
   box-shadow: var(--shadow-light);
+  border-radius: var(--round-medium);
 }
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {
   .mainContent.Spooky {
@@ -198,8 +202,8 @@
   }
   .spookyModalContent {
     padding: 8px !important;
-    width: 100% !important;
-    height: 100% !important;
+    width: 90% !important;
+    height: 90% !important;
     overflow-y: auto;
     .ticket {
       margin-top: 8px !important;

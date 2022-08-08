@@ -147,7 +147,7 @@ const SalesTheme = ({}: {}) => {
           }
           onClick={() => setSubPage(SalesPage.Welcome)}
         >
-          <h4 className="topBarOption text-sub-headline">Welcome</h4>
+          <h4 className="topBarOption">Welcome</h4>
         </div>
         <div
           className={

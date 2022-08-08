@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import CloseComponent from "../../../../components/CloseComponent/CloseComponent";
 import Icon from "../../../../components/Icon/Icon";
-import TooltipComponent from "../../../../components/TooltipComponent/TooltipComponent";
 import './VariationComponent.scss';
 
 interface VariationProps {
@@ -24,9 +23,7 @@ const VariationComponent = (props: VariationProps) => {
     }
     return (
         <div className='flex noWrap tprc-editor-variations subHeadlineBold'>
-            <TooltipComponent tooltip={['This controls the ad variations for the editor. Hit the Plus to add a new variation.']} direction='above'>
-                <div className='subHeadlineBold textSubHeadline'>Variation:</div>
-            </TooltipComponent>
+            <div className='subHeadlineBold textSubHeadline' data-tip={'This controls the ad variations for the editor. Hit the Plus to add a new variation.'}>Variation:</div>
             {variationsList.map(number => (
                 <div 
                     key={`variation-${number}`}
