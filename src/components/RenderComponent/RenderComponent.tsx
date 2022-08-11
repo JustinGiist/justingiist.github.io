@@ -117,6 +117,9 @@ export const CalculatedScrollComponent = (props: {
   };
   useEffect(() => {
     window.addEventListener("resize", resizeChildrenContainer);
+    let vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
     initialResize(true);
     return () => {
       window.removeEventListener("resize", resizeChildrenContainer);
@@ -129,15 +132,8 @@ export const CalculatedScrollComponent = (props: {
     resizeChildrenContainer();
   }, [resizeRef, ...props.refresh, buttonSpacing.current, props.sidebarCollapsed, dimensions]);
   const resizeChildrenContainer = () => {
-    if (resizeRef.current) {
-      const resizeContainerRect = resizeRef.current.getBoundingClientRect();
-      const accountForSidebar = !dimensions.isMobile ? (props.sidebarCollapsed ? 48 : 200) : 0;
-      const calcWidth = window.innerWidth - accountForSidebar;
-      const calcHeight =
-        window.innerHeight - resizeContainerRect.y - 0 - buttonSpacing.current;
-      resizeRef.current.style.height = calcHeight.toString() + "px";
-      resizeRef.current.style.width = calcWidth.toString() + "px";
-    }
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
   };
   return (
     <div
@@ -146,10 +142,6 @@ export const CalculatedScrollComponent = (props: {
       className="scrollComponent"
       style={{
         overflowY: props.overflowHidden ? "hidden" : "auto",
-        overflowX: "hidden",
-        width: "100%",
-        position: "relative",
-        display: "flex",
       }}
     >
       {props.children}

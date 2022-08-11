@@ -23,7 +23,7 @@ const TopbarV2 = ({
                     className={`top-bar-button ${isMobileOpen ? 'open' : ''}`}
                     onClick={handleMobileOpen}
                 >
-                    <Icon icon='Hamburger' />
+                    <Icon icon='Hamburger' fontSize={32}/>
                 </div>
             )}
         </div>

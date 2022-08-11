@@ -27,12 +27,14 @@ const SidebarV2 = ({
         if (dimensions.isMobile) {
             return key !== 'Fragments' && key !== 'Editor';
         }
-        return key;
+        
+        return key !== 'Editor'; //Removing the editor for now
     });
     useEffect(() => {
         const sameAsUrl = window.location.href.toLocaleLowerCase().indexOf(selectedSideBar.toLocaleLowerCase()) !== -1;
         if (!sameAsUrl) {
             setIsMobileOpen(false);
+            window.scrollTo(0,0);
             navigate(`/${selectedSideBar}`);
         }
     }, [selectedSideBar])

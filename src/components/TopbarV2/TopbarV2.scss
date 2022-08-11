@@ -8,12 +8,12 @@
     color: var(--text-sub-body);
     &.mobile {
         background: var(--sidebar-background);
-        position: relative;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        bottom: auto;
-        right: auto;
+        bottom: 0px;
+        right: 0px;
+        width: 100%;
         align-items: center;
     }
     .top-bar-button {
@@ -21,8 +21,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 28px;
-        height: 28px;
+        width: 40px;
+        height: 40px;
         &.open {
             background: var(--sidebar-button-selected);
             color: var(--sidebar-button-selected-text);
