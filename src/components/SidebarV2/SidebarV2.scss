@@ -10,7 +10,7 @@
     &.mobile {
         position: fixed;
         left: -100%;
-        z-index: var(--layer-1);
+        z-index: var(--layer-4);
         width: 100%;
         &.mobileOpen {
             left: 0%;
@@ -75,5 +75,8 @@
             background: none;
             transform: translateX(-4px);
         }
+    }
+    > text {
+        font-family: 'Jura', sans-serif !important;
     }
 }

@@ -140,7 +140,8 @@ export enum GlobalThemes {
   Sales = "Sales",
   Test = "Test",
   Editor = "Editor",
-  Fragments = "Fragments"
+  Fragments = "Fragments",
+  BlackRed = "BlackRed"
 }
 export interface ComponentSizingSchema {
   fontXSmall: number;

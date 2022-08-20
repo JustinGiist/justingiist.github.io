@@ -442,51 +442,7 @@ const CandyCard = ({
   useEffect(() => {
     setInnerSC(parentSelectedCandy);
   }, []);
-  return !dimensions.isMobile ? (
-    <div className="candyCardContainer" key={getRandomKey()}>
-      <div className="candyCardBackground">
-        <div className="candyCard">
-          <div
-            className="imgContainer"
-            onClick={() => {
-              setCandy(item.title);
-            }}
-          >
-            <div className="descriptionCardPositioner">
-              <div className="descriptionCard">
-                <h4 className="text-body">
-                  {item.description}
-                </h4>
-              </div>
-            </div>
-            <img
-              src={item.img}
-              key={getRandomKey()}
-              className={`unactiveImg ${
-                iSelectedCandy === item.title ? " activeImg" : ""
-              }`}
-            />
-            <div className="readMore">
-              {iSelectedCandy === item.title ? "Close" : "Read More"}
-            </div>
-          </div>
-          <div
-            className="flex column gradientButtonBrown"
-            onClick={(e) => {
-              setCandy(undefined);
-              addToCart(item, e);
-            }}
-          >
-            <h4 className="text-sub-headline">{item.title}</h4>
-            <h3>${item.price}</h3>
-            <div className="addButton">
-              <Icon icon="Plus" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  ) : (
+  return (
     <div className="mobileCardContainer" key={getRandomKey()}>
       <div className="candyCardBackground">
         <div className="candyCard">

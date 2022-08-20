@@ -171,16 +171,16 @@
 }
 @keyframes spookySmoke {
   0% {
-    box-shadow: 0 0 20px 10px var(--theme-secondary),
-      0 0 40px 5px var(--theme-primary), 0 0 80px 10px var(--theme-secondary);
+    box-shadow: 0 0 20px 10px #1bffc6,
+      0 0 40px 5px #8bffe2, 0 0 80px 10px #57caad;
   }
   50% {
-    box-shadow: 0 0 10px 0px var(--theme-secondary),
-      0 0 70px 15px var(--theme-secondary), 0 0 60px 5px var(--theme-secondary);
+    box-shadow: 0 0 10px 0px #1bf0ff,
+      0 0 70px 15px #8bfbff, 0 0 60px 5px #57c2ca;
   }
   100% {
-    box-shadow: 0 0 20px 10px var(--theme-secondary),
-      0 0 40px 5px var(--theme-primary), 0 0 80px 10px var(--theme-secondary);
+    box-shadow: 0 0 20px 10px #1bffc6,
+      0 0 40px 5px #8bffe2, 0 0 80px 10px #57caad;
   }
 }
 @keyframes creepyNav {

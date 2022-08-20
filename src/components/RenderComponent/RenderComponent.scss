@@ -1,7 +1,6 @@
 :root {
   --theme-white-gradient: linear-gradient(#ffffff, rgba(255, 255, 255, 0));
 }
-
 .animationOverlay {
   position: fixed;
   width: 100%;
@@ -14,20 +13,23 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  height: 100vh;
   .leftContainer {
     width: fit-content;
     flex: 0;
   }
   .rightContainer {
     display: flex;
-    height: 100%;
-    flex-direction: column;
-    width: 100%;
     overflow: hidden;
-    .mainContent {
+    .scrollComponent {
+      overflow-x: hidden;
       width: 100%;
-      height: 100%;
+      position: relative;
+      display: flex;
+      .mainContent {
+        width: 100%;
+        height: 100%;
+        background: var(--background-secondary);
+      }
     }
   }
 }
@@ -77,12 +79,13 @@
       display: flex;
       flex-direction: column;
       row-gap: 16px;
+      background: none !important;
     }
   }
 }
 .Spooky {
   * {
-    font-family: "Nightscary Free Trial" !important;
+    font-family: "Nightscary Free Trial";
 
     .button,
     h1, h2, h3, h4, h5, .headline {
@@ -140,11 +143,6 @@
   }
   * {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    svg {
-      text {
-        font-family: "Jura", Tahoma, Geneva, Verdana, sans-serif !important;
-      }
-    }
   }
 }
 .mainContent.Resume,
@@ -221,7 +219,6 @@
   }
   > h3, .headline.three {
     align-self: flex-start;
-    margin: 16px 0 16px 8px;
     font-weight: 600;
   }
   h4, .headline.four {
@@ -300,12 +297,4 @@
       }
     }
   }
-}
-.scrollComponent {
-  overflow-x: hidden;
-  width: 100%;
-  position: relative;
-  display: flex;
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
 }

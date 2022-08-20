@@ -82,7 +82,10 @@ import {
   Domain,
   NotebookEditOutline,
   Sword,
-  Hamburger
+  Hamburger,
+  TestTube,
+  Play,
+  Pause
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -168,7 +171,11 @@ const GetIcon: any = {
   Spooky: Skull,
   Editor: NotebookEditOutline,
   Fragments: Sword,
-  Hamburger
+  Hamburger,
+  Test: TestTube,
+  BlackRed: TestTube,
+  Play,
+  Pause
 };
 const Icon = ({
   icon,

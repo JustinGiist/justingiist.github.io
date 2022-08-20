@@ -41,13 +41,13 @@
 
 
         /* SIDEBAR */
-        --sidebar-button: #000000;
-        --sidebar-button-text: #9e9999;
+        --sidebar-button: #34004b;
+        --sidebar-button-text: #5da9ff;
         --sidebar-button-hover: linear-gradient(-90deg, #000000, --theme-secondary);
         --sidebar-button-hover-text: #fff;
         --sidebar-button-selected: var(--theme-gradient);
         --sidebar-button-selected-text: #fff;
-        --sidebar-background: #15001e;
+        --sidebar-background: #34004b;
 
         /* TEXT COLORS */
         --text-headline: #346081;
@@ -95,7 +95,7 @@
     .Enterprise {
         // Generic colors
         --font: "Poppins", sans-serif;
-        --theme-primary: #3db8ff;
+        --theme-primary: #56c1ff;
         --theme-secondary: #a1ecff;
         --theme-gradient: linear-gradient(-45deg, var(--theme-primary), var(--theme-secondary));
         --dark: #333;
@@ -120,13 +120,13 @@
 
 
         /* SIDEBAR */
-        --sidebar-button: #000000;
-        --sidebar-button-text: #9e9999;
+        --sidebar-button: #daf1ff;
+        --sidebar-button-text: #333;
         --sidebar-button-hover: linear-gradient(-90deg, #000000, --theme-secondary);
         --sidebar-button-hover-text: #fff;
         --sidebar-button-selected: var(--theme-gradient);
-        --sidebar-button-selected-text: #fff;
-        --sidebar-background: #000000;
+        --sidebar-button-selected-text: rgb(0, 95, 119);
+        --sidebar-background: #3db8ff;
 
         /* TEXT COLORS */
         --text-headline: #7dfbff;
@@ -199,13 +199,13 @@
 
 
         /* SIDEBAR */
-        --sidebar-button: #000000;
-        --sidebar-button-text: #9e9999;
+        --sidebar-button: #d86dff;
+        --sidebar-button-text: #333;
         --sidebar-button-hover: linear-gradient(-90deg, #000000, --theme-secondary);
         --sidebar-button-hover-text: #fff;
         --sidebar-button-selected: var(--theme-gradient);
         --sidebar-button-selected-text: #fff;
-        --sidebar-background: #000000;
+        --sidebar-background: #d86dff;
 
         /* TEXT COLORS */
         --text-headline: #ffecfb;
@@ -278,13 +278,13 @@
 
 
         /* SIDEBAR */
-        --sidebar-button: #000000;
+        --sidebar-button: #ffd5fd;
         --sidebar-button-text: #9e9999;
         --sidebar-button-hover: linear-gradient(-90deg, #000000, --theme-secondary);
         --sidebar-button-hover-text: #fff;
         --sidebar-button-selected: var(--theme-gradient);
-        --sidebar-button-selected-text: #fff;
-        --sidebar-background: #000000;
+        --sidebar-button-selected-text: rgb(74, 0, 83);
+        --sidebar-background: #ffd5fd;
 
         /* TEXT COLORS */
         --text-headline: #ffa6c3;
@@ -411,14 +411,14 @@
     .Fragments {
         // Generic colors
         --font: "Poppins", sans-serif;
-        --theme-primary: #63d8db;
-        --theme-secondary: #4953ff;
+        --theme-primary: #e49fff;
+        --theme-secondary: #c46bcf;
         --theme-gradient: linear-gradient(-45deg, var(--theme-primary), var(--theme-secondary));
         --dark: #333;
         --light: #f3f3f3;
 
         /* ACTIONS */
-        --action-primary: #00355e;
+        --action-primary: #b547ff;
         --action-secondary: #006abc;
         --action-option: #585858;
         --action-success: #37e666;
@@ -451,7 +451,7 @@
         --text-body: #ffffff;
         --text-sub-body: #e0e0e0;
         --text-placeholder: #929292;
-        --text-menu: rgb(174, 144, 196);
+        --text-menu: rgb(234, 205, 255);
 
         /* INPUT */
         --input-label: #002745;
@@ -464,7 +464,86 @@
         /* BACKGROUNDS */
         --background-primary: #22364e;
         --background-secondary: #0a2547;
-        --background-teritary: linear-gradient(0deg, #0c1622,#00152e 40%);
+        --background-teritary: linear-gradient(0deg, #00295c,#00152e 40%);
+        --background-modal: #000000f5;
+        --background-modal-overlay: #00000033;
+        --background-account: var(--theme-gradient);
+        --background-panel: #ffffff;
+
+        /* MISCELLANEOUS */
+        --hover-brightness: 1.2;
+        --shadow-light: #63636333 0px 2px 8px 0px;
+        --shadow-dark: #32325d40 0px 30px 60px -12px, #0000004d 0px 18px 36px -18px;
+        --shadow-inset: #2c2c2c1c 1px 1px 6px 0px inset, #ffffff1a -1px -1px 6px 1px inset;
+        --hr: #333;
+        --misc-0: #90fc7d;
+        --misc-1: #5bceff;
+        --misc-2: #edaa2d;
+        --misc-3: #dc7cff;
+        --misc-4: #ff3a75;
+        --misc-5: #7560ff;
+        --misc-6: #f25b35;
+        --misc-7: #2cdfdf;
+        --misc-8: #edaa2d;
+        --misc-9: #dc7cff;
+    }
+    .BlackRed {
+        // Generic colors
+        --font: "Poppins", sans-serif;
+        --theme-primary: #63d8db;
+        --theme-secondary: #4953ff;
+        --theme-gradient: linear-gradient(-45deg, var(--theme-primary), var(--theme-secondary));
+        --dark: #333;
+        --light: #f3f3f3;
+
+        /* ACTIONS */
+        --action-primary: #29a2ff;
+        --action-secondary: #006abc;
+        --action-option: #585858;
+        --action-success: #37e666;
+        --action-info: #50d6ff;
+        --action-warning: #fddd48;
+        --action-error: #f15555;
+        --action-cancel: #5b5b5b;
+        --action-disabled: #cdcdcd;
+
+        /* SELECTED */
+        --selected-primary: #75b2e1;
+        --selected-secondary: #ffad42;
+        --selected-menu: var(--theme-secondary);
+        --selected-menu-gradient: var(--theme-gradient);
+
+
+        /* SIDEBAR */
+        --sidebar-button: #000000;
+        --sidebar-button-text: #9e9999;
+        --sidebar-button-hover: linear-gradient(-90deg, #000000, --theme-secondary);
+        --sidebar-button-hover-text: #fff;
+        --sidebar-button-selected: var(--theme-gradient);
+        --sidebar-button-selected-text: #fff;
+        --sidebar-background: #2a0000;
+
+        /* TEXT COLORS */
+        --text-headline: #ffa2a2;
+        --text-headline-secondary: #ff4646;
+        --text-sub-headline: #00566c;
+        --text-body: #333;
+        --text-sub-body: #7b7b7b;
+        --text-placeholder: #929292;
+        --text-menu: #626262;
+
+        /* INPUT */
+        --input-label: #ff7474;
+        --input-border: #ff7474;
+        --input-placeholder: #b4bdc5;
+        --input-text-color: #ffffff;
+        --input-background: #f8fcff16;
+        --input-hover: #ff6e6e;
+
+        /* BACKGROUNDS */
+        --background-primary: rgb(34, 0, 0);
+        --background-secondary: #000000;
+        --background-teritary: linear-gradient(0deg, #74e2ff,#d8f6ff 40%);
         --background-modal: #000000f5;
         --background-modal-overlay: #00000033;
         --background-account: var(--theme-gradient);

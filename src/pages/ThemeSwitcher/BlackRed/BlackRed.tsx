@@ -1,6 +1,7 @@
 import { useState } from "react";
-import PageLayout, { iPageLayout } from "../components/PageLayout/PageLayout";
-import { InputProps, InputTypes } from "../components/PageLayout/SwitchInput";
+import PageLayout, { iPageLayout } from "../../../components/PageLayout/PageLayout";
+import { InputTypes } from "../../../components/PageLayout/SwitchInput";
+import './BlackRed.scss';
 const pageLayout: iPageLayout = {
     id: 'test',
     label: 'Page Label',
@@ -160,7 +161,7 @@ const pageLayout: iPageLayout = {
     ]
 };
 
-const TestPage = () => {
+const BlackRed = () => {
   const [pageData, setPageData] = useState<any>({});
   const [disabledFields, setDisabledFields] = useState<any>({});
   const [errorFields, setErrorFields] = useState<any>({});
@@ -176,4 +177,4 @@ const TestPage = () => {
     />
   );
 };
-export default TestPage;
+export default BlackRed;

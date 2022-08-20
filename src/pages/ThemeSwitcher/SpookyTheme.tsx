@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import Icon from "../../components/Icon/Icon";
+import Rainimation from "../../components/Rainimation/Rainimation";
 import { GlobalThemes, useWindowDimensions } from "../../ThemeManager";
 import "./SpookyTheme.scss";
 enum SpookyPages {
@@ -227,9 +228,9 @@ const SpookyTheme = ({}: {}) => {
       <div className="cloud right">
         <Icon icon="Clouds" viewBox="0 0 130 120" />
       </div>
-      <h1 id="TitleText">
+      {!dimensions.isMobile && <h1 id="TitleText">
         Grimm's Haunted House
-      </h1>
+      </h1>}
       <div className="spookyContent">
         <div className="background">
           <svg viewBox="0 0 500 500" width="500" height="500">
@@ -527,41 +528,46 @@ const SpookyTheme = ({}: {}) => {
         </div>
         {spookyElement && spookyModal(spookyElement)}
         {dimensions.isMobile && (
-          <div className="spooky-button-container flexFull noCollapse">
-            <div
-              className="mobileSpookyButton"
-              onClick={() => changePage(SpookyPages.Tickets)}
-            >
-              Tickets
-            </div>
-            <div
-              className="mobileSpookyButton"
-              onClick={() => changePage(SpookyPages.Tours)}
-            >
-              Tours
-            </div>
-            <div
-              className="mobileSpookyButton"
-              onClick={() => changePage(SpookyPages.About)}
-            >
-              About
-            </div>
-            <div
-              className="mobileSpookyButton"
-              onClick={() => changePage(SpookyPages.Location)}
-            >
-              Location
-            </div>
-            <div
-              className="mobileSpookyButton"
-              onClick={() => changePage(SpookyPages.Events)}
-            >
-              Events
-            </div>
-            {dimensions.isMobile && <div style={{ padding: 16 }} />}
-          </div>
+          <>
+              <h1 id="TitleText">
+                Grimm's Haunted House
+              </h1>
+              <div className="spooky-button-container flexFull noCollapse">
+                <div
+                  className="mobileSpookyButton"
+                  onClick={() => changePage(SpookyPages.Tickets)}
+                >
+                  Tickets
+                </div>
+                <div
+                  className="mobileSpookyButton"
+                  onClick={() => changePage(SpookyPages.Tours)}
+                >
+                  Tours
+                </div>
+                <div
+                  className="mobileSpookyButton"
+                  onClick={() => changePage(SpookyPages.About)}
+                >
+                  About
+                </div>
+                <div
+                  className="mobileSpookyButton"
+                  onClick={() => changePage(SpookyPages.Location)}
+                >
+                  Location
+                </div>
+                <div
+                  className="mobileSpookyButton"
+                  onClick={() => changePage(SpookyPages.Events)}
+                >
+                  Events
+                </div>
+              </div>
+          </>
         )}
       </div>
+      <Rainimation />
     </>
   );
 };

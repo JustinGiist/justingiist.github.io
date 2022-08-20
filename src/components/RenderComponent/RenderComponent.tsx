@@ -4,7 +4,6 @@ import { ThemeManagerContext } from "../../App";
 import EnterpriseTheme from "../../pages/ThemeSwitcher/EnterpriseTheme/EnterpriseTheme";
 import SpookyTheme from "../../pages/ThemeSwitcher/SpookyTheme";
 import { GlobalThemes, useWindowDimensions } from "../../ThemeManager";
-import NavBar from "../NavBar/NavBar";
 import "./RenderComponent.scss";
 import ResumePage from "../../pages/ThemeSwitcher/ResumePage/ResumePage";
 import OverlayControl from "../OverlayControl/OverlayControl";
@@ -16,6 +15,8 @@ import TestPage from "../../pages/testPage";
 import FragmentsPage from "../../pages/ThemeSwitcher/FragmentsPage/FragmentsPage";
 import SidebarV2 from "../SidebarV2/SidebarV2";
 import TopbarV2 from "../TopbarV2/TopbarV2";
+import EditorPage from "../../pages/ThemeSwitcher/EditorPage/EditorPage";
+import BlackRed from "../../pages/ThemeSwitcher/BlackRed/BlackRed";
 const RenderComponent = ({ url }: { url: GlobalThemes }) => {
   const { themeManager, theme, setThemeContext } =
     useContext(ThemeManagerContext);
@@ -29,7 +30,9 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
     [GlobalThemes.Sales, <SalesTheme />],
     [GlobalThemes.Enterprise, <EnterpriseTheme />],
     [GlobalThemes.Spooky, <SpookyTheme />],
-    [GlobalThemes.Editor, <TestPage />],
+    [GlobalThemes.Editor, <EditorPage />],
+    [GlobalThemes.Test, <TestPage />],
+    [GlobalThemes.BlackRed, <BlackRed />],
     [GlobalThemes.Fragments, <FragmentsPage />]
   ]);
   const newPage = useMemo(() => routes.get(url), [routes, url]);
@@ -45,16 +48,10 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
   };
   const checkSideBar = () => {
     switch (url) {
-      case GlobalThemes.Resume:
-      case GlobalThemes.Contact:
-      case GlobalThemes.Projects:
-      case GlobalThemes.Spooky:
-      case GlobalThemes.Sales:
-      case GlobalThemes.Editor:
-      case GlobalThemes.Fragments:
-        return false;
-      default:
+      case GlobalThemes.Enterprise:
         return true;
+      default:
+        return false;
     }
   };
   const handleMobileOpen = useCallback(() => {
@@ -117,9 +114,7 @@ export const CalculatedScrollComponent = (props: {
   };
   useEffect(() => {
     window.addEventListener("resize", resizeChildrenContainer);
-    let vh = window.innerHeight * 0.01;
-    // Then we set the value in the --vh custom property to the root of the document
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    resizeChildrenContainer();
     initialResize(true);
     return () => {
       window.removeEventListener("resize", resizeChildrenContainer);
@@ -134,6 +129,14 @@ export const CalculatedScrollComponent = (props: {
   const resizeChildrenContainer = () => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
+    if (resizeRef && resizeRef.current) {
+      resizeRef.current.style.height = window.innerHeight + 'px';
+      let width = window.innerWidth;
+      if (!dimensions.isMobile) {
+        width = width - (props.sidebarCollapsed ? 48 : 200);
+      }
+      resizeRef.current.style.width = width + 'px';
+    }
   };
   return (
     <div

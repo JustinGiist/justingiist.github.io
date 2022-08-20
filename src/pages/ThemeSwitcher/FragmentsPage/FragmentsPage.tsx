@@ -1,33 +1,34 @@
 import './FragmentsPage.scss';
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import ComboList from './CombosList';
 import { AcolyteClassPage, AlchemistClassPage, BrawlerClassPage, Class, Combo, ComboLevel, CombosMap, CorsairClassPage, HunterClassPage, iClassPage, RunesmithClassPage, SubClassCombos, TearDivinerClassPage } from './FragmentsEnumsAndI';
+import TabsComponent from '../../../components/TabsComponent/TabsComponent';
 interface FragmentsPageProps {
 
 }
 
 const FragmentsPage = (props: FragmentsPageProps) => {
-    const [tab, setTab] = useState(Class.Corsair);
-    const tabsArray = useCallback(() => Object.keys(Class).filter((v) => isNaN(Number(v))).map((key: string) => {
-        var classTab : Class = Class[key as keyof typeof Class]; 
-        const tabName = key === 'TearDiviner' ? 'Tear Diviner' : key;       
-        return <div key={`tab-item-${tabName}`} onClick={() => setTab(classTab)} className={'tab subHeadlineBold ' + (Class[tab] === key ? 'selected' : '')}>{tabName}</div>
-    }), [tab]);
+    const [tab, setTab] = useState(Class[Class.Corsair]);
+    const tabs = useMemo(() => Object.keys(Class).filter((v) => isNaN(Number(v))).map((key, index) => Class[index]), []);
     return (
         <div className='fragmentsContent'>
             <h1 className='text-headline'>Fragments</h1>
             <h2 className='text-sub-headline'>Tears of the Stone Obelisks</h2>
             <div className='tabs'>
-                {tabsArray()}
+                {<TabsComponent 
+                    tabs={tabs}
+                    selectedTab={tab}
+                    setSelectedTab={setTab}
+                />}
             </div>
             <div className='content'>
-                {tab === Class.Corsair && <ClassPage classPage={CorsairClassPage} />}
-                {tab === Class.Brawler && <ClassPage classPage={BrawlerClassPage} />}
-                {tab === Class.Hunter && <ClassPage classPage={HunterClassPage} />}
-                {tab === Class.Alchemist && <ClassPage classPage={AlchemistClassPage} />}
-                {tab === Class.Runesmith && <ClassPage classPage={RunesmithClassPage} />}
-                {tab === Class.TearDiviner && <ClassPage classPage={TearDivinerClassPage} />}
-                {tab === Class.Acolyte && <ClassPage classPage={AcolyteClassPage} />}
+                {tab === Class[Class.Corsair] && <ClassPage classPage={CorsairClassPage} />}
+                {tab === Class[Class.Brawler] && <ClassPage classPage={BrawlerClassPage} />}
+                {tab === Class[Class.Hunter] && <ClassPage classPage={HunterClassPage} />}
+                {tab === Class[Class.Alchemist] && <ClassPage classPage={AlchemistClassPage} />}
+                {tab === Class[Class.Runesmith] && <ClassPage classPage={RunesmithClassPage} />}
+                {tab === Class[Class.TearDiviner] && <ClassPage classPage={TearDivinerClassPage} />}
+                {tab === Class[Class.Acolyte] && <ClassPage classPage={AcolyteClassPage} />}
             </div>
         </div>
     );

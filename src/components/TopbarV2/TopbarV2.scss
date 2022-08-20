@@ -4,10 +4,13 @@
     bottom: 8px;
     right: 16px;
     padding: 4px 8px;
-    z-index: var(--layer-1);
+    z-index: var(--layer-5);
     color: var(--text-sub-body);
+    h5, .headline.five {
+        color: var(--sidebar-button-text);
+    }
     &.mobile {
-        background: var(--sidebar-background);
+        background: var(--sidebar-button);
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -23,6 +26,8 @@
         justify-content: center;
         width: 40px;
         height: 40px;
+        background: var(--sidebar-button);
+        color: var(--sidebar-button-text);
         &.open {
             background: var(--sidebar-button-selected);
             color: var(--sidebar-button-selected-text);

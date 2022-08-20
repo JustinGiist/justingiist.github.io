@@ -233,7 +233,7 @@ hr {
   display: flex;
   flex-direction: column;
   min-height: 320px;
-  min-width: 280px;
+  width: 100%;
   svg {
     fill: var(--light) !important;
     margin-left: auto;
@@ -244,9 +244,10 @@ hr {
   }
   h1, h2, h3, h4, h5, .headline {
     color: var(--light);
+    word-wrap: normal;
   }
   &.Increase {
-    background: linear-gradient(#a3ff87, #55e22a);
+    background: linear-gradient(#5ae630, #3dbb16);
   }
   &.Decrease {
     background: linear-gradient(#fa9292, #f82f2f);
@@ -270,6 +271,18 @@ hr {
   .Enterprise {
     .scrollComponent {
       padding: 8px !important;
+    }
+  }
+  .investmentCard {
+    min-height: auto;
+    padding: 12px;
+    .flex {
+      svg {
+        height: 48px;
+      }
+    }
+    h1 {
+      font-size: var(--font-xlarge);
     }
   }
 }

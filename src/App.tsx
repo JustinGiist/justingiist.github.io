@@ -88,6 +88,14 @@ const App = () => {
               element={<RenderComponent url={GlobalThemes.Editor} />}
             />
             <Route
+              path={"/" + GlobalThemes.Test}
+              element={<RenderComponent url={GlobalThemes.Test} />}
+            />
+            <Route
+              path={"/" + GlobalThemes.BlackRed}
+              element={<RenderComponent url={GlobalThemes.BlackRed} />}
+            />
+            <Route
               exact
               path="/"
               element={<RenderComponent url={GlobalThemes.Resume} />}

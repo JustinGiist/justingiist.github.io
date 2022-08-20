@@ -60,6 +60,7 @@
 }
 .cloud {
   position: absolute;
+  z-index: var(--layer-1);
   top: -10px;
   > svg {
     width: 200px;
@@ -75,7 +76,7 @@
 }
 .spookyModal {
   position: fixed;
-  z-index: 99;
+  z-index: var(--layer-2);
   top: 0;
   left: 0;
   height: 100%;
@@ -84,20 +85,18 @@
   .spookyModalContent {
     margin: auto;
     z-index: 99;
-    animation: grow 0.167s forwards;
     background: var(--background-modal);
     width: 600px;
     height: 900px;
     padding: 48px;
     border: 2px solid var(--theme-secondary);
-    animation: spookySmoke 10s infinite both;
+    animation: grow 0.167s forwards, spookySmoke 10s infinite both;
     position: relative;
     .spookyIcon {
       position: absolute;
-
       margin: 16px;
       > svg {
-        fill: var(--theme-secondary);
+        fill: #8bffe2;
       }
     }
     .spookyIcon.left {
@@ -128,6 +127,9 @@
     h1, .headline.one {
       text-align: center;
       font-size: 48px;
+      &.text-headline {
+        color: #8bfbff;
+      }
     }
     h1, h2, h3, h4, h5, .headline {
       text-align: center;
@@ -191,7 +193,8 @@
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {
   .mainContent.Spooky {
     #TitleText {
-      margin-top: 48px;
+      font-size: 40px;
+      text-align: center;
     }
     .cloud {
       svg {
@@ -205,6 +208,7 @@
     width: 90% !important;
     height: 90% !important;
     overflow-y: auto;
+    margin-top: 16px !important;
     .ticket {
       margin-top: 8px !important;
     }
@@ -214,7 +218,7 @@
     flex-direction: column;
     gap: 8px;
     .background {
-      height: 50% !important;
+      height: 40% !important;
       width: 80% !important;
       margin: 0 auto;
       position: relative;

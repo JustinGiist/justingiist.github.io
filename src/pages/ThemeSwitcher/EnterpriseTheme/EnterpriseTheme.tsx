@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, useMemo } from "react";
 import Chart from "react-google-charts";
 import ThemeManager, {
   GlobalThemes,
@@ -133,7 +133,7 @@ const EnterpriseTheme = () => {
     <div className={"investmentCard " + InvestmentElementStates[props.state]}>
       <h2>{props.label}</h2>
       <h4>{props.fullLabel}</h4>
-      <h1 className="">{props.tradingAt}</h1>
+      <h1>{props.tradingAt}</h1>
       <h3>
         {getPercentSymbolValue(props.percentChange)}
       </h3>
@@ -211,11 +211,44 @@ const EnterpriseTheme = () => {
     ["France", 6480500],
     ["RU", 7800045],
   ];
+  const investments1 = useMemo(() => {
+    if (dimensions.isMobile) {
+      return [
+        ...investmentCardList,
+        {
+          label: "SPKY",
+          fullLabel: "Spooky, Inc",
+          tradingAt: 666.66,
+          percentChange: -0.1,
+          state: InvestmentElementStates.Decrease,
+          logo: <Icon icon="Skull" fontSize={60} />,
+        }
+      ]
+    }
+    return investmentCardList;
+  }, [dimensions, investmentCardList]);
+
+  const investments2 = useMemo(() => {
+    if (dimensions.isMobile) {
+      return [
+        ...investmentCard2List,
+        {
+          label: "WYNE",
+          fullLabel: "Wayne Corp",
+          tradingAt: 345.67,
+          percentChange: 0.01,
+          state: InvestmentElementStates.None,
+          logo: <Icon icon="Bat" fontSize={60} />,
+        }
+      ]
+    }
+    return investmentCard2List;
+  }, [dimensions, investmentCard2List]);
   return (
     <>
       <h1 className="text-headline">Dashboard</h1>
-      <div className="cardContainer flexFull threeColumns">
-        {investmentCardList.map((item) => {
+      <div className="flexFull threeColumns">
+        {investments1.map((item) => {
           return <InvestmentCardElement key={`investment-card-${item.label}`} {...item} />;
         })}
       </div>
@@ -228,7 +261,7 @@ const EnterpriseTheme = () => {
             loader={<div>Overtime Comparison</div>}
             data={barChart1Data}
             width={"100%"}
-            height={"320px"}
+            height={"240px"}
             options={{
               title: "Overtime Investment Comparison",
               chartArea: { width: "50%" },
@@ -254,7 +287,7 @@ const EnterpriseTheme = () => {
             loader={<div>Loading Chart</div>}
             data={lineChartData}
             width={"100%"}
-            height={"320px"}
+            height={"240px"}
             options={{
               hAxis: {
                 title: "Time",
@@ -278,7 +311,7 @@ const EnterpriseTheme = () => {
             className="chart"
             chartType="Bar"
             width={"100%"}
-            height={"320px"}
+            height={"240px"}
             data={barChartData}
             options={{
               colors: chartColors,
@@ -290,8 +323,8 @@ const EnterpriseTheme = () => {
           />
         </div>
       </div>
-      <div className="cardContainer flexFull threeColumns">
-        {investmentCard2List.map((item) => {
+      <div className="flexFull threeColumns">
+        {investments2.map((item) => {
           return <InvestmentCardElement key={`investment-card-two-${item.label}`} {...item} />;
         })}
       </div>
@@ -312,7 +345,7 @@ const EnterpriseTheme = () => {
               },
             }}
             width={"100%"}
-            height={"320px"}
+            height={"240px"}
           />
         </div>
         <div className="card Left chart">
@@ -320,7 +353,7 @@ const EnterpriseTheme = () => {
           <Chart
             chartType="ComboChart"
             width="100%"
-            height="320px"
+            height="240px"
             data={comboChartData}
             options={{
               colors: chartColors,
@@ -354,12 +387,12 @@ const EnterpriseTheme = () => {
             ]}
             chartType="GeoChart"
             width="100%"
-            height="320px"
+            height="240px"
             data={geoChartData}
           />
         </div>
       </div>
-      <div style={{ padding: 8 }} />
+      <div style={{ padding: dimensions.isMobile ? 24 : 8 }} />
       {/*<TutorialControl />*/}
     </>
   );

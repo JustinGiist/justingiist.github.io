@@ -19,6 +19,7 @@
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    padding: 0 32px;
     .left {
       position: absolute;
       display: flex;
@@ -73,7 +74,6 @@
     .videoContent,
     .salesContent {
       height: fit-content;
-      width: 900px;
       margin: 128px auto;
       position: relative;
       display: flex;
@@ -270,7 +270,7 @@
 }
 .salesTopBar {
   width: 100%;
-  position: fixed;
+  position: absolute;
   z-index: 15;
   padding-top: 24px;
   padding-bottom: 4px;

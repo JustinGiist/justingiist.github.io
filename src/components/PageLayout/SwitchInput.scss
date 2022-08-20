@@ -1,0 +1,58 @@
+.jdgd-input {
+    width: 100%;
+    .MuiFormControl-root {
+        width: 100%;
+        label {
+            color: var(--input-label);
+        }
+        .MuiInputBase-root {
+            background: var(--input-background);
+            .MuiSelect-select, input, textarea, select {
+                color: var(--input-text-color);
+
+            }
+            .MuiInputAdornment-root {
+                p {
+                    color: var(--input-placeholder);
+                }
+                svg {
+                    fill: var(--input-placeholder);
+                }
+            }
+        }
+    }
+    .MuiToggleButtonGroup-root {
+        .MuiToggleButton-root {
+            background: var(--input-background);
+            color: var(--input-text-color);
+            &:hover {
+                background: var(--input-hover);
+            }
+            &.Mui-selected {
+                background: var(--input-hover);
+            }
+        }
+    }
+    .MuiFormControlLabel-root {
+        .MuiCheckbox-root {
+            .MuiSvgIcon-root {
+                fill: var(--input-border);
+            }
+        }
+        .MuiTypography-root {
+            color: var(--input-label);
+        }
+        .MuiRadio-root {
+            .MuiSvgIcon-root {
+                fill: var(--input-border);
+            }
+        }
+    }
+    .MuiRating-root {
+        .MuiRating-icon {
+            svg {
+                fill: var(--input-border);
+            }
+        }
+    }
+}
