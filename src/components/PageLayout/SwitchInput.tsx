@@ -1,5 +1,6 @@
 import { Checkbox, FormControlLabel, InputAdornment, MenuItem, Radio, RadioGroup, Rating, Slider, Switch, TextField, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { useCallback, useMemo } from "react";
+import { useWindowDimensions } from "../../ThemeManager";
 import ErrorBoundary from "./ErrorBoundary";
 import { ChangeType, fallbackComponent } from "./PageLayout";
 import "./SwitchInput.scss";
@@ -56,6 +57,7 @@ const SwitchInput = ({
     errorFields,
     disabledFields
 }: SwitchInputProps) => {
+    const dimensions = useWindowDimensions();
     let value = useMemo(() => !input.field ? null : !input.valueTo ? pageData[input.field] : input.valueTo(pageData[input.field]), [pageData, input]);
     const error = useMemo(() => !input.field ? null : errorFields[input.field], [errorFields, input]);
     const disabled = useMemo(() => !input.field ? null : disabledFields[input.field], [disabledFields, input]);
@@ -77,6 +79,7 @@ const SwitchInput = ({
     if (input.valueFrom) value = input.valueFrom(value);
     const style = input.inputProps ? input.inputProps.style : null;
     const className = input.inputProps ? input.inputProps.className : null;
+    const message = error ?? disabled ?? input.tooltip ?? null;
     const inputElement = useMemo(() => {
         switch (input.type) {
             case InputTypes.radio:
@@ -143,6 +146,7 @@ const SwitchInput = ({
                         type={'number'}
                         variant="filled"
                         disabled={!!disabled}
+                        helperText={dimensions.isMobile ? message : null}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }}
@@ -164,6 +168,7 @@ const SwitchInput = ({
                         type={'number'}
                         variant="filled"
                         disabled={!!disabled}
+                        helperText={dimensions.isMobile ? message : ''}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }}
@@ -179,6 +184,7 @@ const SwitchInput = ({
                         type={'number'}
                         variant="filled"
                         disabled={!!disabled}
+                        helperText={dimensions.isMobile ? message : ''}
                         { ...input.inputProps }
                     />
                 );
@@ -221,6 +227,7 @@ const SwitchInput = ({
                         multiline={isTextArea}
                         minRows={isTextArea ? 2 : 1}
                         maxRows={4}
+                        helperText={dimensions.isMobile ? message : ''}
                     />
                 );
             default:
@@ -253,7 +260,7 @@ const SwitchInput = ({
             key={inputKey}
             fallback={fallbackComponent(input)}
         >
-            <div className={`jdgd-input ${InputTypes[input.type].toString()} ${!!disabled ? 'Mui-disabled' : ''}`} data-tip={error ?? disabled ?? input.tooltip}>
+            <div className={`jdgd-input ${InputTypes[input.type].toString()} ${!!disabled ? 'Mui-disabled' : ''}`} data-tip={message}>
                 {inputElement}
             </div>
         </ErrorBoundary>
