@@ -17,6 +17,7 @@ import SidebarV2 from "../SidebarV2/SidebarV2";
 import TopbarV2 from "../TopbarV2/TopbarV2";
 import EditorPage from "../../pages/ThemeSwitcher/EditorPage/EditorPage";
 import BlackRed from "../../pages/ThemeSwitcher/BlackRed/BlackRed";
+import ReactTooltip from "react-tooltip";
 const RenderComponent = ({ url }: { url: GlobalThemes }) => {
   const { themeManager, theme, setThemeContext } =
     useContext(ThemeManagerContext);
@@ -76,10 +77,8 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
         <div className="rightContainer">
           {!dimensions.isMobile && memoizedTopBar}
           {showSideBar && <SideBar gooMenu={url === GlobalThemes.Enterprise} />}
-          <CalculatedScrollComponent hasButtons={false} refresh={[]} sidebarCollapsed={isCollapsed}>
-            <div className={"mainContent " + url}>
-              {!newPage ? <OverlayControl loading={true} /> : newPage}
-            </div>
+          <CalculatedScrollComponent className={"mainContent " + url} hasButtons={false} refresh={[]} sidebarCollapsed={isCollapsed}>
+            {!newPage ? <OverlayControl loading={true} /> : newPage}
           </CalculatedScrollComponent>
           {dimensions.isMobile && memoizedTopBar}
         </div>
@@ -94,6 +93,7 @@ export const CalculatedScrollComponent = (props: {
   refresh: any[];
   overflowHidden?: boolean;
   sidebarCollapsed: boolean;
+  className?: string;
 }) => {
   const dimensions = useWindowDimensions();
   const resizeRef = useRef<any>(null);
@@ -142,12 +142,17 @@ export const CalculatedScrollComponent = (props: {
     <div
       ref={resizeRef}
       id="scrollComponent"
-      className="scrollComponent"
+      className={`scrollComponent ${props.className}`}
       style={{
         overflowY: props.overflowHidden ? "hidden" : "auto",
       }}
     >
       {props.children}
+      <ReactTooltip
+        effect='solid'
+        delayShow={400}
+        delayUpdate={400}
+      />
     </div>
   );
 };

@@ -1,3 +1,7 @@
 .mainContent.BlackRed {
-    
+    background: var(--background-secondary);
+    .card {
+        background: var(--background-primary);
+        height: 100%;
+    }
 }

@@ -87,6 +87,9 @@ h5, .headline.five {
 .text-menu {
   color: var(--text-menu);
 }
+.input-text-label {
+  color: var(--input-label);
+}
 .button {
   padding: 4px 24px;
   min-width: 98px;
@@ -398,8 +401,16 @@ h5, .headline.five {
 .pushToBottom {
   margin-top: auto;
 }
-
+.noSelect {
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {
+  .flex-block {
+    grid-template-columns: auto;
+  }
   .flexFull {
     grid-template-columns: auto;
     &.threeColumns {

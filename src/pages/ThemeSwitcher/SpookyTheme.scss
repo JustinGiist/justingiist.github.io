@@ -2,8 +2,9 @@
   padding: 0 !important;
   > h1, .headline.one {
     position: absolute;
-    z-index: 10;
+    z-index: var(--layer-2);
     text-align: center;
+    padding-left: 16px;
     color: var(--text-headline);
     text-shadow: 0 1px 3px var(--text-body),
       0 1px 4px var(--theme-secondary);
@@ -11,9 +12,10 @@
   .spookyContent {
     width: 100%;
     height: 100%;
+    
     margin: auto;
     position: relative;
-
+    z-index: var(--layer-3);
     .background {
       width: 100%;
       height: 100%;
@@ -194,6 +196,7 @@
   .mainContent.Spooky {
     #TitleText {
       font-size: 40px;
+      line-height: 40px;
       text-align: center;
     }
     .cloud {
@@ -217,6 +220,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    padding-bottom: 40px;
     .background {
       height: 40% !important;
       width: 80% !important;

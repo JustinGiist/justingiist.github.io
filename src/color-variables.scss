@@ -490,8 +490,8 @@
     .BlackRed {
         // Generic colors
         --font: "Poppins", sans-serif;
-        --theme-primary: #63d8db;
-        --theme-secondary: #4953ff;
+        --theme-primary: #7a0000;
+        --theme-secondary: #7b1dff;
         --theme-gradient: linear-gradient(-45deg, var(--theme-primary), var(--theme-secondary));
         --dark: #333;
         --light: #f3f3f3;
@@ -504,8 +504,8 @@
         --action-info: #50d6ff;
         --action-warning: #fddd48;
         --action-error: #f15555;
-        --action-cancel: #5b5b5b;
-        --action-disabled: #cdcdcd;
+        --action-cancel: #848484;
+        --action-disabled: rgb(69, 69, 69);
 
         /* SELECTED */
         --selected-primary: #75b2e1;
@@ -526,7 +526,7 @@
         /* TEXT COLORS */
         --text-headline: #ffa2a2;
         --text-headline-secondary: #ff4646;
-        --text-sub-headline: #00566c;
+        --text-sub-headline: #7b1dff;
         --text-body: #333;
         --text-sub-body: #7b7b7b;
         --text-placeholder: #929292;
@@ -537,11 +537,11 @@
         --input-border: #ff7474;
         --input-placeholder: #b4bdc5;
         --input-text-color: #ffffff;
-        --input-background: #f8fcff16;
+        --input-background: #f8fcff2b;
         --input-hover: #ff6e6e;
 
         /* BACKGROUNDS */
-        --background-primary: rgb(34, 0, 0);
+        --background-primary: rgb(50, 0, 0);
         --background-secondary: #000000;
         --background-teritary: linear-gradient(0deg, #74e2ff,#d8f6ff 40%);
         --background-modal: #000000f5;
@@ -551,9 +551,9 @@
 
         /* MISCELLANEOUS */
         --hover-brightness: 1.2;
-        --shadow-light: #63636333 0px 2px 8px 0px;
-        --shadow-dark: #32325d40 0px 30px 60px -12px, #0000004d 0px 18px 36px -18px;
-        --shadow-inset: #2c2c2c1c 1px 1px 6px 0px inset, #ffffff1a -1px -1px 6px 1px inset;
+        --shadow-light: rgba(91, 0, 0, 0.6) 0px 2px 8px 0px;
+        --shadow-dark: rgba(50, 0, 0, 0.251) 0px 30px 60px -12px, rgba(0, 0, 0, 0.302) 0px 18px 36px -18px;
+        --shadow-inset: rgba(44, 44, 44, 0.11) 1px 1px 6px 0px inset, rgba(255, 255, 255, 0.102) -1px -1px 6px 1px inset;
         --hr: #333;
         --misc-0: #90fc7d;
         --misc-1: #5bceff;

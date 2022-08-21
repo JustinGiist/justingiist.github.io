@@ -101,15 +101,19 @@
   }
 }
 .Down {
+  opacity: 0;
   animation: fadeSlideDown 0.167s forwards;
 }
 .Left {
+  opacity: 0;
   animation: fadeSlideLeft 0.167s forwards;
 }
 .Up {
+  opacity: 0;
   animation: fadeSlideUp 0.167s forwards;
 }
 .Right {
+  opacity: 0;
   animation: fadeSlideRight 0.167s forwards;
 }
 @keyframes fadeIn {

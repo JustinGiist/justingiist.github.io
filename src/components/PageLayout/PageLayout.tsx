@@ -7,6 +7,7 @@ export interface iPageLayout {
     subLabel?: string;
     layoutClassName?: string;
     style?: any;
+    animationClass?: string;
     inputs?: InputProps[];
 }
 export interface PageLayoutProps {
@@ -66,18 +67,20 @@ const PageLayout = ({
             className={`jdgd-page-layout flexColumn`}
             style={pageLayout.style}
         >
-            {pageLayout.label && <h1>{pageLayout.label}</h1>}
-            {pageLayout.subLabel && <h5>{pageLayout.subLabel}</h5>}
+            {pageLayout.label && <h1 className="noSelect">{pageLayout.label}</h1>}
+            {pageLayout.subLabel && <h5 className="noSelect">{pageLayout.subLabel}</h5>}
             <div className={`${pageLayout.layoutClassName ?? 'flexColumn'}`}>
-                {pageLayout.inputs && pageLayout.inputs.map(input => (
-                    <SwitchInput
-                        key={`switch-input-${input.id}`}
-                        input={input}
-                        pageData={pageData}
-                        handleReducerChange={handleReducerChange}
-                        disabledFields={disabledFields}
-                        errorFields={errorFields}
-                    />
+                {pageLayout.inputs && pageLayout.inputs.map((input, i) => (
+                    <div className={`${pageLayout.animationClass ?? ''}`} style={{ animationDelay: `${(i + 1) * 0.1}s`}}>
+                        <SwitchInput
+                            key={`switch-input-${input.id}`}
+                            input={input}
+                            pageData={pageData}
+                            handleReducerChange={handleReducerChange}
+                            disabledFields={disabledFields}
+                            errorFields={errorFields}
+                        />
+                    </div>
                 ))}
             </div>
         </form>

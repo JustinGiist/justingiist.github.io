@@ -22,7 +22,8 @@ export enum InputTypes {
     toggleButtonGroup,
     rating,
     slider,
-    radio
+    radio,
+    card
 }
 
 export interface InputProps {
@@ -81,11 +82,10 @@ const SwitchInput = ({
             case InputTypes.radio:
                 return (
                     <>
-                        {input.label && <div className="text-sub-headline">{input.label}</div>}
+                        {input.label && <div className="input-text-label">{input.label}</div>}
                         <RadioGroup
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="female"
-                            name="radio-buttons-group"
+                            defaultValue={input.options && input.options[0].value}
+                            name={input.id}
                         >
                             {input.options && input.options.map((item) => (
                                 <FormControlLabel value={item.value} control={<Radio />} label={item.label} />
@@ -95,19 +95,22 @@ const SwitchInput = ({
                 );
             case InputTypes.slider:
                 return (
-                    <Slider
-                        size="small"
-                        defaultValue={70}
-                        aria-label="Small"
-                        valueLabelDisplay="auto"
-                        value={value}
-                        onChange={onChange}
-                    />
+                    <>
+                        {input.label && <div className="input-text-label">{input.label}</div>}
+                        <Slider
+                            size="small"
+                            defaultValue={70}
+                            aria-label="Small"
+                            valueLabelDisplay="auto"
+                            value={value}
+                            onChange={onChange}
+                        />
+                    </>
                 );
             case InputTypes.rating:
                 return (
                     <>
-                        {input.label && <div className="text-sub-headline">{input.label}</div>}
+                        {input.label && <div className="input-text-label">{input.label}</div>}
                         <Rating
                             name={input.id}
                             value={value}
@@ -140,7 +143,6 @@ const SwitchInput = ({
                         type={'number'}
                         variant="filled"
                         disabled={!!disabled}
-                        tooltip={disabled ?? input.tooltip}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }}
@@ -162,7 +164,6 @@ const SwitchInput = ({
                         type={'number'}
                         variant="filled"
                         disabled={!!disabled}
-                        tooltip={disabled ?? input.tooltip}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }}
@@ -178,7 +179,6 @@ const SwitchInput = ({
                         type={'number'}
                         variant="filled"
                         disabled={!!disabled}
-                        tooltip={disabled ?? input.tooltip}
                         { ...input.inputProps }
                     />
                 );
@@ -191,7 +191,7 @@ const SwitchInput = ({
                             onChange={onChange}
                             disabled={!!disabled}
                         />} 
-                        label={disabled ?? input.label} 
+                        label={input.label} 
                     />
                 );
             case InputTypes.checkbox:
@@ -203,7 +203,7 @@ const SwitchInput = ({
                             onChange={onChange}
                             disabled={!!disabled}
                         />} 
-                        label={disabled ?? input.label} 
+                        label={input.label} 
                     />
                 );
             case InputTypes.textarea:
@@ -214,42 +214,46 @@ const SwitchInput = ({
                         onChange={onChange}
                         label={input.label}
                         value={value}
+                        error={!!error}
                         variant="filled"
                         { ... input.inputProps }
                         disabled={!!disabled}
                         multiline={isTextArea}
                         minRows={isTextArea ? 2 : 1}
                         maxRows={4}
-                        tooltip={disabled ?? input.tooltip}
                     />
                 );
-            case InputTypes.view:
             default:
-                return (
-                    <div className="flexColumn" style={style}>
-                        {input.label && <h3 className="text-sub-headline">{input.label}</h3>}
-                        {input.subLabel && <div className="text-body">{input.subLabel}</div>}
-                        <div className={className ?? 'flexColumn'}>
-                            {input.inputs && input.inputs.map(child => (
-                                <SwitchInput
-                                    input={child}
-                                    pageData={pageData}
-                                    handleReducerChange={handleReducerChange}
-                                    disabledFields={disabledFields}
-                                    errorFields={errorFields}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                );
+                return input.label;
+                
         }
     }, [pageData, disabledFields, disabled, handleReducerChange, input, onChange, value]);
+    if (input.type === InputTypes.view || input.type === InputTypes.card) {
+        return (
+            <div className={`flexColumn ${InputTypes[input.type].toString()}`} style={style}>
+                {input.label && <h3 className="text-sub-headline">{input.label}</h3>}
+                {input.subLabel && <div className="text-body">{input.subLabel}</div>}
+                <div className={className ?? 'flexColumn'}>
+                    {input.inputs && input.inputs.map(child => (
+                        <SwitchInput
+                            key={`child-switch-input-${child.id}`}
+                            input={child}
+                            pageData={pageData}
+                            handleReducerChange={handleReducerChange}
+                            disabledFields={disabledFields}
+                            errorFields={errorFields}
+                        />
+                    ))}
+                </div>
+            </div>
+        );
+    }
     return (
         <ErrorBoundary
             key={inputKey}
             fallback={fallbackComponent(input)}
         >
-            <div className="jdgd-input" data-tip={disabled ?? input.tooltip}>
+            <div className={`jdgd-input ${InputTypes[input.type].toString()} ${!!disabled ? 'Mui-disabled' : ''}`} data-tip={error ?? disabled ?? input.tooltip}>
                 {inputElement}
             </div>
         </ErrorBoundary>

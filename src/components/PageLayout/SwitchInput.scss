@@ -1,5 +1,59 @@
+.jdgd-page-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 16px;
+}
 .jdgd-input {
     width: 100%;
+    &.Mui-disabled {
+        .MuiFormControl-root {
+            pointer-events: none;
+            label {
+                color: var(--input-placeholder);
+            }
+            .MuiInputBase-root {
+                background: var(--action-disabled);
+            }
+        }
+        .MuiToggleButtonGroup-root {
+            pointer-events: none;
+            .MuiToggleButton-root {
+                background: var(--action-disabled);
+            }
+        }
+        .MuiFormControlLabel-root {
+            pointer-events: none;
+            .MuiCheckbox-root {
+                .MuiSvgIcon-root {
+                    fill: var(--action-disabled);
+                }
+            }
+            .MuiRadio-root {
+                .MuiSvgIcon-root {
+                    fill: var(--action-disabled);
+                }
+            }
+        }
+        .MuiRating-root {
+            pointer-events: none;
+            .MuiRating-icon {
+                svg {
+                    fill: var(--action-disabled);
+                }
+            }
+        }
+        .MuiSwitch-root {
+            pointer-events: none;
+            .MuiSwitch-track {
+                background: var(--action-disabled);
+            }
+        }
+        .MuiSlider-root {
+            pointer-events: none;
+            color: var(--action-disabled);
+        }
+    }
     .MuiFormControl-root {
         width: 100%;
         label {
@@ -18,6 +72,9 @@
                 svg {
                     fill: var(--input-placeholder);
                 }
+            }
+            .MuiSelect-icon {
+                fill: var(--input-placeholder);
             }
         }
     }
@@ -40,19 +97,38 @@
             }
         }
         .MuiTypography-root {
-            color: var(--input-label);
+            color: var(--input-placeholder) !important;
         }
         .MuiRadio-root {
             .MuiSvgIcon-root {
-                fill: var(--input-border);
+                fill: var(--input-text-color);
             }
         }
     }
     .MuiRating-root {
         .MuiRating-icon {
             svg {
-                fill: var(--input-border);
+                fill: var(--input-text-color);
             }
         }
+    }
+    .MuiSwitch-root {
+        .Mui-checked {
+            color: var(--input-hover);
+        }
+        .Mui-checked + .MuiSwitch-track {
+            background: var(--input-hover);
+        }
+        .MuiSwitch-track {
+            background: var(--input-background);
+        }
+    }
+    .MuiSlider-root {
+        color: var(--input-text-color);
+    }
+}
+@media only screen and (max-width: 900px), screen and (max-height: 600px) {
+    .jdgd-page-layout {
+        padding-bottom: 56px !important;
     }
 }

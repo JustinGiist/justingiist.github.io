@@ -246,6 +246,9 @@ hr {
     color: var(--light);
     word-wrap: normal;
   }
+  .flex {
+    margin-top: auto;
+  }
   &.Increase {
     background: linear-gradient(#5ae630, #3dbb16);
   }
