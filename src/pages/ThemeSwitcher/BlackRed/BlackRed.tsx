@@ -164,20 +164,20 @@ const pageLayout: iPageLayout = {
 const BlackRed = () => {
   const [pageData, setPageData] = useState<any>({});
   const [disabledFields, setDisabledFields] = useState<any>({
-    text: 'disabled',
-    toggleGroup: 'disabled',
-    switch: 'disabled',
-    checkbox: 'disabled',
-    textarea: 'disabled',
-    number: 'disabled',
-    currency: 'disabled',
-    select: 'disabled',
-    rating: 'disabled',
-    slider: 'disabled',
-    radio: 'disabled',
+    
   });
   const [errorFields, setErrorFields] = useState<any>({
-    text2: 'This cannot be blank'
+    text: 'This cannot be blank',
+    toggleGroup: 'This cannot be blank',
+    switch: 'This cannot be blank',
+    checkbox: 'This cannot be blank',
+    textarea: 'This cannot be blank',
+    number: 'This cannot be blank',
+    currency: 'This cannot be blank',
+    select: 'This cannot be blank',
+    rating: 'This cannot be blank',
+    slider: 'This cannot be blank',
+    radio: 'This cannot be blank'
   });
 
   return (

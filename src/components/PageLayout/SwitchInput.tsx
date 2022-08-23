@@ -24,7 +24,8 @@ export enum InputTypes {
     rating,
     slider,
     radio,
-    card
+    card,
+    element
 }
 
 export interface InputProps {
@@ -40,6 +41,7 @@ export interface InputProps {
     inputProps?: any;
     options?: { value: any, label: string }[];
     optionsSource?: (search: string) => { value: any, label: string }[];
+    element?: JSX.Element;
     inputs?: InputProps[];
 }
 export interface SwitchInputProps {
@@ -151,6 +153,7 @@ const SwitchInput = ({
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }}
                         { ...input.inputProps }
+                        error={!!error}
                     >
                         {input.options && input.options.map((option) => (
                             <MenuItem key={option.value} value={option.value}>
@@ -172,6 +175,7 @@ const SwitchInput = ({
                         InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }}
+                        error={!!error}
                         { ...input.inputProps }
                     />
                 );
@@ -185,6 +189,7 @@ const SwitchInput = ({
                         variant="filled"
                         disabled={!!disabled}
                         helperText={dimensions.isMobile ? message : ''}
+                        error={!!error}
                         { ...input.inputProps }
                     />
                 );
@@ -235,35 +240,40 @@ const SwitchInput = ({
                 
         }
     }, [pageData, disabledFields, disabled, handleReducerChange, input, onChange, value]);
-    if (input.type === InputTypes.view || input.type === InputTypes.card) {
-        return (
-            <div className={`flexColumn ${InputTypes[input.type].toString()}`} style={style}>
-                {input.label && <h3 className="text-sub-headline">{input.label}</h3>}
-                {input.subLabel && <div className="text-body">{input.subLabel}</div>}
-                <div className={className ?? 'flexColumn'}>
-                    {input.inputs && input.inputs.map(child => (
-                        <SwitchInput
-                            key={`child-switch-input-${child.id}`}
-                            input={child}
-                            pageData={pageData}
-                            handleReducerChange={handleReducerChange}
-                            disabledFields={disabledFields}
-                            errorFields={errorFields}
-                        />
-                    ))}
+    switch (input.type) {
+        case InputTypes.view:
+        case InputTypes.card:
+        case InputTypes.element:
+            return (
+                <div className={`flexColumn ${InputTypes[input.type].toString()}`} style={style}>
+                    {input.label && <h3 className="text-sub-headline">{input.label}</h3>}
+                    {input.subLabel && <div className="text-body">{input.subLabel}</div>}
+                    <div className={className ?? 'flexColumn'}>
+                        {input.type === InputTypes.element && input.element}
+                        {input.type !== InputTypes.element && input.inputs && input.inputs.map(child => (
+                            <SwitchInput
+                                key={`child-switch-input-${child.id}`}
+                                input={child}
+                                pageData={pageData}
+                                handleReducerChange={handleReducerChange}
+                                disabledFields={disabledFields}
+                                errorFields={errorFields}
+                            />
+                        ))}
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        default:
+            return (
+                <ErrorBoundary
+                    key={inputKey}
+                    fallback={fallbackComponent(input)}
+                >
+                    <div className={`jdgd-input ${InputTypes[input.type].toString()} ${!!disabled ? 'Mui-disabled' : ''} ${!!error ? 'Mui-error' : ''}`} data-tip={message}>
+                        {inputElement}
+                    </div>
+                </ErrorBoundary>
+            );                
     }
-    return (
-        <ErrorBoundary
-            key={inputKey}
-            fallback={fallbackComponent(input)}
-        >
-            <div className={`jdgd-input ${InputTypes[input.type].toString()} ${!!disabled ? 'Mui-disabled' : ''}`} data-tip={message}>
-                {inputElement}
-            </div>
-        </ErrorBoundary>
-    );
 }
 export default SwitchInput;

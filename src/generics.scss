@@ -407,6 +407,9 @@ h5, .headline.five {
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
 }
+.jdgd-page-layout {
+  background: var(--background-secondary);
+}
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {
   .flex-block {
     grid-template-columns: auto;

@@ -85,7 +85,8 @@ import {
   Hamburger,
   TestTube,
   Play,
-  Pause
+  Pause,
+  MusicCircleOutline
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -174,6 +175,7 @@ const GetIcon: any = {
   Hamburger,
   Test: TestTube,
   BlackRed: TestTube,
+  Music: MusicCircleOutline,
   Play,
   Pause
 };

@@ -18,6 +18,7 @@ import TopbarV2 from "../TopbarV2/TopbarV2";
 import EditorPage from "../../pages/ThemeSwitcher/EditorPage/EditorPage";
 import BlackRed from "../../pages/ThemeSwitcher/BlackRed/BlackRed";
 import ReactTooltip from "react-tooltip";
+import MusicPage from "../../pages/ThemeSwitcher/MusicPage/MusicPage";
 const RenderComponent = ({ url }: { url: GlobalThemes }) => {
   const { themeManager, theme, setThemeContext } =
     useContext(ThemeManagerContext);
@@ -34,6 +35,7 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
     [GlobalThemes.Editor, <EditorPage />],
     [GlobalThemes.Test, <TestPage />],
     [GlobalThemes.BlackRed, <BlackRed />],
+    [GlobalThemes.Music, <MusicPage />],
     [GlobalThemes.Fragments, <FragmentsPage />]
   ]);
   const newPage = useMemo(() => routes.get(url), [routes, url]);

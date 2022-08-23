@@ -96,6 +96,10 @@ const App = () => {
               element={<RenderComponent url={GlobalThemes.BlackRed} />}
             />
             <Route
+              path={"/" + GlobalThemes.Music}
+              element={<RenderComponent url={GlobalThemes.Music} />}
+            />
+            <Route
               exact
               path="/"
               element={<RenderComponent url={GlobalThemes.Resume} />}
