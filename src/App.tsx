@@ -1,12 +1,12 @@
+import React from "react";
 import "./App.css";
 import "./styles.scss";
 import "./generics.scss";
-import { Route, Redirect, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, HashRouter } from "react-router-dom";
 import ReactTooltip from 'react-tooltip';
 import RenderComponent from "./components/RenderComponent/RenderComponent";
 import { useEffect, useState } from "react";
 import ThemeManager, { GlobalThemes } from "./ThemeManager";
-import React from "react";
 export const ThemeManagerContext = React.createContext<any>(undefined);
 const themeManagerApp = new ThemeManager();
 const App = () => {
@@ -57,12 +57,8 @@ const App = () => {
       <ThemeManagerContext.Provider
         value={{ themeManager, theme, setThemeContext }}
       >
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
-            <Route
-              path={"/" + GlobalThemes.Resume}
-              element={<RenderComponent url={GlobalThemes.Resume} />}
-            />
             <Route
               path={"/" + GlobalThemes.Contact}
               element={<RenderComponent url={GlobalThemes.Contact} />}
@@ -109,7 +105,7 @@ const App = () => {
               element={<RenderComponent url={GlobalThemes.Resume} />}
             />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </ThemeManagerContext.Provider>
       <ReactTooltip effect="solid"/>
     </>
