@@ -1,6 +1,0 @@
-
-<svg viewBox="0 0 89 89" width="79.496" height="79.496">
-  <ellipse style="fill: var(--theme-primary); stroke: var(--theme-secondary); stroke-width: 8px;" cx="44.744" cy="44.467" rx="39.748" ry="39.748"></ellipse>
-  <polygon style="stroke: rgb(0, 0, 0); stroke-width: 0px; fill: var(--theme-secondary);" points="8.237 56.725 75.591 23.892 80.111 33.764 9.46 59.849"></polygon>
-  <polygon style="stroke: rgb(0, 0, 0); stroke-width: 0px; fill: var(--theme-secondary);" points="50.01 81.787 28.151 9.715 35.928 6.831 53.89 80.52"></polygon>
-</svg>

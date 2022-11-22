@@ -1,0 +1,6 @@
+
+<svg viewBox="30.21 3.45 139.95 294.327" width="139.95" height="294.327">
+  <ellipse style="fill: var(--theme-secondary);" cx="100.185" cy="73.425" rx="69.975" ry="69.975"></ellipse>
+  <ellipse style="fill:var(--theme-secondary);" cx="101.147" cy="279.983" rx="46.89" ry="17.794"></ellipse>
+  <rect x="87.922" y="116.468" width="23.565" height="161.592" style="fill: var(--theme-secondary);stroke-width: 3px; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-miterlimit: 7;" rx="8.98" ry="8.98"></rect>
+</svg>
