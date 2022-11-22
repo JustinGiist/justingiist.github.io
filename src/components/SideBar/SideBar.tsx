@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import "./SideBar.scss";
-import sampleLogo from "../../assets/sampleLogo.png";
 import Icon from "../Icon/Icon";
 import { ThemeManagerContext } from "../../App";
 import { GlobalThemes } from "../../ThemeManager";
@@ -11,7 +10,7 @@ interface iNavButton {
   subButtons?: iNavButton[];
 }
 const SideBar = (props: { gooMenu?: boolean }) => {
-  const { themeManager, theme, setThemeContext } =
+  const { theme } =
     useContext(ThemeManagerContext);
   const [pageTitle, setPageTitle] = useState<string>("");
   const [pageIcon, setPageIcon] = useState<string>("");
@@ -68,13 +67,6 @@ const SideBar = (props: { gooMenu?: boolean }) => {
   const [primarySelected, setPrimarySelected] = useState<
     iNavButton | undefined
   >(undefined);
-  const secondaryButtons: iNavButton[] = [
-    { icon: "HomeOutline", label: "SubOption 1" },
-    { icon: "AccountCircleOutline", label: "SubOption 2" },
-    { icon: "WalletOutline", label: "SubOption 3" },
-    { icon: "CalculatorVariantOutline", label: "SubOption 4" },
-    { icon: "ToolboxOutline", label: "SubOption 5" },
-  ];
 
   const togglePrimarySelected = (newButton: iNavButton) => {
     if (!primarySelected) {
@@ -132,18 +124,18 @@ const SideBar = (props: { gooMenu?: boolean }) => {
             <span className="hamburger hamburger-3"></span>
           </label>
 
-          <a href="#" className="menu-item">
+          <button className="menu-item">
             <Icon icon="HomeOutline" fontSize={40} />
-          </a>
-          <a href="#" className="menu-item">
+          </button>
+          <button className="menu-item">
             <Icon icon="AccountCircleOutline" fontSize={40} />
-          </a>
-          <a href="#" className="menu-item">
+          </button>
+          <button className="menu-item">
             <Icon icon="WalletOutline" fontSize={40} />
-          </a>
-          <a href="#" className="menu-item">
+          </button>
+          <button className="menu-item">
             <Icon icon="CalculatorVariantOutline" fontSize={40} />
-          </a>
+          </button>
         </nav>
         <svg
           xmlns="http://www.w3.org/2000/svg"

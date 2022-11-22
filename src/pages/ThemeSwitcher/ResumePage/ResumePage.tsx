@@ -1,5 +1,4 @@
-import { Suspense, useContext, useState } from "react";
-import DesignBackground from "../../../components/BezierBackground/DesignBackground";
+import { Suspense, useContext } from "react";
 import "./ResumePage.scss";
 import tacoImage from "../../../assets/taco.jpg";
 import hallowImage from "../../../assets/hallow.jpg";
@@ -9,7 +8,6 @@ import { ThemeManagerContext } from "../../../App";
 import { GlobalThemes } from "../../../ThemeManager";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import { CircularProgress } from "@material-ui/core";
 import OverlayControl from "../../../components/OverlayControl/OverlayControl";
 const ThreeDComponentLazy = React.lazy(() => import("./ThreeD"));
 export interface iDisplay {
@@ -22,7 +20,7 @@ export interface iDisplay {
 }
 const ResumePage = () => {
   const navigate = useNavigate();
-  const { themeManager, theme, setThemeContext } =
+  const { themeManager } =
     useContext(ThemeManagerContext);
   const languagesList: iDisplay[] = [
     {
@@ -126,7 +124,7 @@ const ResumePage = () => {
       </div>
       <div className="parallax_layer one">
         <div className="hero-section column" style={{ background: "black" }}>
-          <Suspense fallback={<OverlayControl loading />}>
+          <Suspense fallback={<OverlayControl />}>
             <div className="titleContainer">
               <div className="flex column">
                 <h1>
@@ -210,7 +208,7 @@ export const DisplayElement = ({
   return (
     <div
       style={{ display: "flex" }}
-      className={options.link ? "link" : ""}
+      className={options.link ? "resume-link" : ""}
       onClick={() => {
         if (options.link) {
           window.open(options.link, "_blank");
@@ -246,7 +244,7 @@ export const DisplayElement = ({
           </div>
         )}
       </div>
-      {options.image && <img className="jobImage " src={options.image} />}
+      {options.image && <img alt="jobImage" className="jobImage " src={options.image} />}
     </div>
   );
 };
@@ -267,7 +265,7 @@ export const JobElement = ({ options }: { options: iDisplay }) => {
   return (
     <div
       style={{ display: "flex" }}
-      className={options.link ? "link" : ""}
+      className={options.link ? "resume-link" : ""}
       onClick={() => {
         if (options.link) {
           window.open(options.link, "_blank");
@@ -299,7 +297,7 @@ export const JobElement = ({ options }: { options: iDisplay }) => {
               })}
           </div>
         )}
-        {options.image && <img className="jobImage " src={options.image} />}
+        {options.image && <img alt="jobImage2" className="jobImage " src={options.image} />}
       </div>
     </div>
   );

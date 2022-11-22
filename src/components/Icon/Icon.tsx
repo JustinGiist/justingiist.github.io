@@ -3,7 +3,6 @@ import { ReactComponent as Skull } from "./skull.svg";
 import { ReactComponent as Bat } from "./bat.svg";
 import { ReactComponent as Pumpkin } from "./pumpkin.svg";
 import { ReactComponent as Atari } from "./atari.svg";
-import { ReactComponent as Maze } from "./maze.svg";
 import { ReactComponent as Amazon } from "./Amazon_logo.svg";
 import { ReactComponent as Tesla } from "./Tesla_Motors.svg";
 import { ReactComponent as Tama } from "./tama.svg";
@@ -40,7 +39,6 @@ import {
   ContactPhone,
   AcUnit,
   Close,
-  PlusOne,
   PriorityHigh
 } from "@material-ui/icons";
 import {
@@ -86,7 +84,13 @@ import {
   TestTube,
   Play,
   Pause,
-  MusicCircleOutline
+  MusicCircleOutline,
+  Note,
+  NoteEdit,
+  StarOutline,
+  ContentSave,
+  UndoVariant,
+  RedoVariant
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -177,7 +181,14 @@ const GetIcon: any = {
   BlackRed: TestTube,
   Music: MusicCircleOutline,
   Play,
-  Pause
+  Pause,
+  List: Note,
+  Edit: NoteEdit,
+  Star: StarOutline,
+  Cancel: Close,
+  Save: ContentSave,
+  Undo: UndoVariant,
+  Redo: RedoVariant
 };
 const Icon = ({
   icon,

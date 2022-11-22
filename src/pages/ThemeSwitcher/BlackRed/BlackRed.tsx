@@ -1,5 +1,6 @@
-import { useState } from "react";
-import PageLayout, { iPageLayout } from "../../../components/PageLayout/PageLayout";
+import { useCallback, useContext, useMemo, useState } from "react";
+import ModalContext from "../../../components/Modal/ModalContext";
+import PageLayout, { iPageLayout, mapInitialFormData } from "../../../components/PageLayout/PageLayout";
 import { InputTypes } from "../../../components/PageLayout/SwitchInput";
 import './BlackRed.scss';
 const tempOptions = [
@@ -20,21 +21,28 @@ const tempOptions = [
     label: 'Three'
   }
 ];
-const pageLayout: iPageLayout = {
-    id: 'test',
+const pageLayout = (openTestModal: () => void) => ({
+    id: 'test-0',
     label: 'Page Label',
     subLabel: 'This is a page description that will describe what to do on this page, or what this page is about',
     layoutClassName: 'flex-block',
     animationClass: 'Down',
     inputs: [
       {
-        id: 'test',
+        id: 'test-1',
         type: InputTypes.card,
         label: 'Card 1',
         inputProps: {
           className: 'flexColumn'
         },
         inputs: [
+          {
+            id: 'button-modal-test',
+            field: 'button-modal-test',
+            type: InputTypes.button,
+            label: 'button Modal Test',
+            onClick: openTestModal
+          },
           {
             id: 'text',
             field: 'text',
@@ -63,7 +71,7 @@ const pageLayout: iPageLayout = {
         ]
       },
       {
-        id: 'test',
+        id: 'test-2',
         type: InputTypes.card,
         label: 'Card 2',
         inputProps: {
@@ -159,36 +167,31 @@ const pageLayout: iPageLayout = {
         ]
       }
     ]
-};
+});
 
 const BlackRed = () => {
-  const [pageData, setPageData] = useState<any>({});
-  const [disabledFields, setDisabledFields] = useState<any>({
-    
-  });
-  const [errorFields, setErrorFields] = useState<any>({
-    text: 'This cannot be blank',
-    toggleGroup: 'This cannot be blank',
-    switch: 'This cannot be blank',
-    checkbox: 'This cannot be blank',
-    textarea: 'This cannot be blank',
-    number: 'This cannot be blank',
-    currency: 'This cannot be blank',
-    select: 'This cannot be blank',
-    rating: 'This cannot be blank',
-    slider: 'This cannot be blank',
-    radio: 'This cannot be blank'
-  });
+  const { openModal, closeModal } = useContext(ModalContext);
+  const openTestModal = useCallback(async () => {
+      const result = await openModal(<div>Hello World</div>);
+  }, [openModal]);
+  const memoizedPageLayout = useMemo(() => {
+    return pageLayout(openTestModal);
+  }, [openTestModal]);
+  const [formData, setFormData] = useState<any>(mapInitialFormData(memoizedPageLayout, {}));
+  const [undoState] = useState<any>({});
+  const [disabledFields, setDisabledFields] = useState<any>({});
+  const [errorFields, setErrorFields] = useState<any>({});
 
   return (
     <PageLayout 
-      pageLayout={pageLayout}
-      pageData={pageData}
-      handlePageData={setPageData}
+      pageLayout={memoizedPageLayout}
+      formData={formData}
+      handleFormData={setFormData}
       disabledFields={disabledFields}
-      handleDisabledFields={setDisabledFields}
+      handleDisabled={setDisabledFields}
       errorFields={errorFields}
-      handleErrorFields={setErrorFields}
+      handleError={setErrorFields}
+      undoState={undoState}
     />
   );
 };

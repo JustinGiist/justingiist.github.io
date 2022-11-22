@@ -1,7 +1,6 @@
 import './FragmentsPage.scss';
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
-import ComboList from './CombosList';
-import { AcolyteClassPage, AlchemistClassPage, BrawlerClassPage, Class, Combo, ComboLevel, CombosMap, CorsairClassPage, HunterClassPage, iClassPage, RunesmithClassPage, SubClassCombos, TearDivinerClassPage } from './FragmentsEnumsAndI';
+import { useState, useCallback, useMemo } from 'react';
+import { AcolyteClassPage, AlchemistClassPage, BrawlerClassPage, Class, ComboLevel, CorsairClassPage, HunterClassPage, iClassPage, RunesmithClassPage, SubClassCombos, TearDivinerClassPage } from './FragmentsEnumsAndI';
 import TabsComponent from '../../../components/TabsComponent/TabsComponent';
 interface FragmentsPageProps {
 
@@ -89,7 +88,9 @@ const ClassPage = ({ classPage }:{ classPage: iClassPage }) => {
             return <div className='image noImage' />
         }
         return <div className='image'>{classPage.img}</div>
-    }, []);
+    }, [
+        classPage.img
+    ]);
     return (
         <div className='classPage'>
             <div className='flexFull'>

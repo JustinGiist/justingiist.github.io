@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "./App.css";
 import "./styles.scss";
 import "./generics.scss";
@@ -7,9 +7,12 @@ import ReactTooltip from 'react-tooltip';
 import RenderComponent from "./components/RenderComponent/RenderComponent";
 import { useEffect, useState } from "react";
 import ThemeManager, { GlobalThemes } from "./ThemeManager";
+import useModal from "./components/Modal/Modal";
+import ModalContext from "./components/Modal/ModalContext";
 export const ThemeManagerContext = React.createContext<any>(undefined);
 const themeManagerApp = new ThemeManager();
 const App = () => {
+  /*
   const findMedianSortedArrays = (nums1: number[], nums2: number[]): number => {
     let mergeArray = [...nums1, ...nums2];
     let sortedArray = mergeArray.sort();
@@ -24,6 +27,7 @@ const App = () => {
       return mergeArray[length / 2 - 0.5];
     }
   };
+  */
   //findMedianSortedArrays([2, 3], [1, 4, 10]);
 
   const [themeManager] =
@@ -32,6 +36,8 @@ const App = () => {
   const setThemeContext = (incomingTheme: GlobalThemes) => {
     setTheme(incomingTheme);
   };
+  const { openModal, closeModal, modalRoot } = useModal();
+  const modalContextValue = useMemo(() => ({ openModal, closeModal }), [openModal, closeModal]);
 
   useEffect(() => {
     ReactTooltip.rebuild();
@@ -57,6 +63,7 @@ const App = () => {
       <ThemeManagerContext.Provider
         value={{ themeManager, theme, setThemeContext }}
       >
+        <ModalContext.Provider value={modalContextValue}>
         <HashRouter>
           <Routes>
             <Route
@@ -96,6 +103,10 @@ const App = () => {
               element={<RenderComponent url={GlobalThemes.Music} />}
             />
             <Route
+              path={"/" + GlobalThemes.List}
+              element={<RenderComponent url={GlobalThemes.List} />}
+            />
+            <Route
               exact
               path="/"
               element={<RenderComponent url={GlobalThemes.Resume} />}
@@ -106,6 +117,8 @@ const App = () => {
             />
           </Routes>
         </HashRouter>
+        {modalRoot}
+        </ModalContext.Provider>
       </ThemeManagerContext.Provider>
       <ReactTooltip effect="solid"/>
     </>

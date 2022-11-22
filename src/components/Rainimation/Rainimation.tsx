@@ -1,5 +1,4 @@
-import { LegacyRef, useCallback, useEffect, useRef, useState } from 'react';
-import ReactDOM from 'react-dom';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import './Rainimation.scss';
 
 function removeAllChildNodes(parent: any) {
@@ -37,12 +36,19 @@ const Rainimation = () => {
             setFrontDrops(drops);
             setBackDrops(backDrops);
         }
-    }, [frontRow, backRow])
+    }, [
+        frontRow, 
+        backRow
+    ]);
     useEffect(() => {
         if (frontRow && backRow && frontRow.current && backRow.current) {
             makeItRain();
         }
-    }, [frontRow, backRow]);
+    }, [
+        frontRow, 
+        backRow, 
+        makeItRain
+    ]);
     return (
         <>
             <div ref={frontRow} className="rain front-row" dangerouslySetInnerHTML={{ __html: frontDrops }} />

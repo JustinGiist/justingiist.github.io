@@ -1,10 +1,10 @@
-import { useState } from "react";
+import CardCalculator from "../components/CardCalculator/CardCalculator";
+import CurveLayout from "../components/CurveLayout/CurveLayout";
 import Visualizer from "../components/Visualizer/Visualizer";
-
 
 const TestPage = () => {
   return (
-    <Visualizer />
+    <CardCalculator />
   )
 };
 export default TestPage;

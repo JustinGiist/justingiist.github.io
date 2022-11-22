@@ -2,8 +2,6 @@ import { useWindowDimensions } from "../../ThemeManager";
 import "./Bezier-Background.scss";
 
 const BezierBackground = () => {
-  const { height, width } = useWindowDimensions();
-
   return (
     <div className="wrap">
       <svg

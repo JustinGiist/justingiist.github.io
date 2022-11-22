@@ -1,34 +1,25 @@
-import { TextField, Button } from "@material-ui/core";
-import { useEffect, useRef, useState } from "react";
-import ParallaxBackground, {
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
   ParallaxBackgroundCircle,
   ParallaxBackgroundTriangles,
 } from "../../../components/BezierBackground/ParallaxBackground";
 import Icon from "../../../components/Icon/Icon";
+import PageLayout, { iPageLayout, mapInitialFormData } from "../../../components/PageLayout/PageLayout";
+import { InputTypes } from "../../../components/PageLayout/SwitchInput";
 import { useWindowDimensions } from "../../../ThemeManager";
 import "./ContactPage.scss";
+
+
+
 const ContactPage = () => {
+  const memoizedPageLayout = useMemo(() => {
+    return pageLayout();
+  }, []);
+  const [formData, setFormData] = useState<any>(mapInitialFormData(memoizedPageLayout, {}));
   const dimensions = useWindowDimensions();
   const backgroundRef = useRef<any>(null);
   const backgroundRef2 = useRef<any>(null);
-  const [values, setValues] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    message: "",
-  });
-  const handleChange = (prop: any) => (event: any) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-  const handleSubmit = () => {};
-  useEffect(() => {
-    document.addEventListener("mousemove", parallax);
-    if (dimensions.isMobile) {
-      parallax({});
-    }
-    //return document.removeEventListener("mousemove", parallax);
-  }, []);
-  const parallax = (event: any) => {
+  const parallax = useCallback((event: any) => {
     if (dimensions.isMobile) {
       if (backgroundRef.current && backgroundRef2.current) {
         backgroundRef.current.style.transform = ` scale(1.2)`;
@@ -56,7 +47,22 @@ const ContactPage = () => {
           (scale ? ` scale(1.5)` : ``);
       }
     }
-  };
+  }, [
+    dimensions.isMobile
+  ]);
+  useEffect(() => {
+    document.addEventListener("mousemove", parallax);
+    if (dimensions.isMobile) {
+      parallax({});
+    }
+    //return document.removeEventListener("mousemove", parallax);
+  }, [
+    dimensions.isMobile,
+    parallax
+  ]);
+
+
+  
   return (
     <>
       <div className="parallaxBackground" ref={backgroundRef}>
@@ -66,97 +72,40 @@ const ContactPage = () => {
         <ParallaxBackgroundCircle />
       </div>
       <div className="centerResumeContainer">
-        <h1 className="text-sub-headline">Contact</h1>
-        <div className="contactContainer">
-          <div className="contactItem">
-            <Icon icon="Email" fontSize={30} />
-            <h4>JustinGistDesigner@gmail.com</h4>
-          </div>
-          <div className="contactItem">
-            <Icon icon="Linkedin" fontSize={30} />
-            <a
-              rel="noopener noreferrer"
-              target="_blank"
-              href="https://linkedin.com/in/justin-gist-270862b2/"
-              className="headline four"
-            >
-              Justin Gist Linkedin Profile
-            </a>
-          </div>
-          <div className="contactItem">
-            <Icon icon="Phone" fontSize={30} />
-            <h4>(407)929-3184</h4>
-          </div>
-          {/*<>
-          <div className="inputContainer"> 
-            <div className="input-text-color slideOne">
-              <TextField
-                label="First Name:"
-                value={values.firstName}
-                onChange={handleChange("firstName")}
-                InputLabelProps={{
-                  style: {
-                    color: "var(--text-placeholder)",
-                  },
-                }}
-                variant={"filled"}
-                fullWidth={true}
-              />
-            </div>
-            <div className="input-text-color slideTwo">
-              <TextField
-                label="Last Name:"
-                value={values.lastName}
-                onChange={handleChange("lastName")}
-                variant={"filled"}
-                InputLabelProps={{
-                  style: {
-                    color: "var(--text-placeholder)",
-                  },
-                }}
-                fullWidth={true}
-              />
-            </div>
-          </div>
-          <div className="input-text-color slideThree">
-            <TextField
-              label="Email Address:"
-              value={values.email}
-              onChange={handleChange("email")}
-              variant={"filled"}
-              InputLabelProps={{
-                style: {
-                  color: "var(--text-placeholder)",
-                },
-              }}
-              fullWidth={true}
-            />
-          </div>
-          <div className="input-text-color slideFour">
-            <TextField
-              label="Brief Message:"
-              value={values.message}
-              onChange={handleChange("message")}
-              multiline={true}
-              minRows={3}
-              variant={"filled"}
-              fullWidth={true}
-              InputLabelProps={{
-                style: {
-                  color: "var(--text-placeholder)",
-                },
-              }}
-            />
-          </div>
-          <button
-            className="button secondary slideFive"
-            onClick={() => handleSubmit()}
-          >
-            Submit
-          </button></>*/}
-        </div>
+        <PageLayout formData={formData} handleFormData={(v: any) => setFormData(v)} pageLayout={memoizedPageLayout} />
       </div>
     </>
   );
 };
 export default ContactPage;
+
+const pageLayout: () => iPageLayout = () => ({
+  id: 'contact',
+  label: 'Contact',
+  className: 'background-transparent',
+  layoutStyle: { gap: 24 },
+  inputs: [
+    {
+      id: 'email',
+      type: InputTypes.textOnly,
+      icon: 'Email',
+      labelProps: { style: { alignItems: 'center'} },
+      label: 'JustinGistDesigner.com'
+    },
+    {
+      id: 'linkedIn',
+      type: InputTypes.link,
+      icon: 'Linkedin',
+      label: 'My LinkedIn Profile',
+      labelProps: { style: { alignItems: 'center'} },      
+      href: 'https://linkedin.com/in/justin-gist-270862b2/'
+    },
+    {
+      id: 'phone',
+      type: InputTypes.textOnly,
+      icon: 'Phone',
+      labelProps: { style: { alignItems: 'center'} },
+      label: '(407)-929-3184'
+    }
+  ]
+});

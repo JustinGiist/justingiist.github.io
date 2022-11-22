@@ -1,36 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 const DesignBackground = () => {
   const backRef = useRef<any>(null);
   const middleRef = useRef<any>(null);
   const frontRef = useRef<any>(null);
-  useEffect(() => {
-    //document.addEventListener("mousemove", parallax);
-    //return document.removeEventListener("mousemove", parallax);
-  }, []);
-  const parallax = (event: any) => {
-    if (backRef.current) {
-      const position = 1;
-      const x = (window.innerWidth - event.pageX * position) / 90;
-      const y = (window.innerHeight - event.pageY * position) / 90;
-
-      backRef.current.style.transform = `translateX(${x}px) translateY(${y}px)`;
-    }
-    if (middleRef.current) {
-      const position = 2;
-      const x = (window.innerWidth - event.pageX * position) / 90;
-      const y = (window.innerHeight - event.pageY * position) / 90;
-
-      middleRef.current.style.transform = `translateX(${x}px) translateY(${y}px)`;
-    }
-    if (frontRef.current) {
-      const position = 3;
-      const x = (window.innerWidth - event.pageX * position) / 90;
-      const y = (window.innerHeight - event.pageY * position) / 90;
-
-      frontRef.current.style.transform = `translateX(${x}px) translateY(${y}px)`;
-    }
-  };
   return (
     <div className="designBackgroundContainer">
       <svg
@@ -580,13 +553,6 @@ const DesignBackground = () => {
             ry="4.661"
             transform="matrix(0.635467, -0.772128, 0.766331, 0.642511, -58.520515, 141.600296)"
           ></ellipse>
-          {/*<rect
-            x="-0.29"
-            y="268.168"
-            width="500.361"
-            height="232.642"
-            fill="url(#gradient-white-clear)"
-          ></rect>*/}
         </g>
 
         <text

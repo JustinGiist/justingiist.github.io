@@ -19,14 +19,15 @@ import EditorPage from "../../pages/ThemeSwitcher/EditorPage/EditorPage";
 import BlackRed from "../../pages/ThemeSwitcher/BlackRed/BlackRed";
 import ReactTooltip from "react-tooltip";
 import MusicPage from "../../pages/ThemeSwitcher/MusicPage/MusicPage";
+import NotePage from "../../pages/ThemeSwitcher/NotePage/NotePage";
 const RenderComponent = ({ url }: { url: GlobalThemes }) => {
-  const { themeManager, theme, setThemeContext } =
+  const { theme, setThemeContext } =
     useContext(ThemeManagerContext);
   const dimensions = useWindowDimensions();
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [isMobileOpen, setIsMobileOpen] = useState<boolean>(false);
   let isTopBar = false;
-  const routes = new Map<string, any>([
+  const routes = useMemo(() => new Map<string, any>([
     [GlobalThemes.Resume, <ResumePage />],
     [GlobalThemes.Contact, <ContactPage />],
     [GlobalThemes.Sales, <SalesTheme />],
@@ -36,8 +37,9 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
     [GlobalThemes.Test, <TestPage />],
     [GlobalThemes.BlackRed, <BlackRed />],
     [GlobalThemes.Music, <MusicPage />],
-    [GlobalThemes.Fragments, <FragmentsPage />]
-  ]);
+    [GlobalThemes.Fragments, <FragmentsPage />],
+    [GlobalThemes.List, <NotePage />]
+  ]), []);
   const newPage = useMemo(() => routes.get(url), [routes, url]);
   const checkBackground = () => {
     switch (url) {
@@ -80,7 +82,7 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
           {!dimensions.isMobile && memoizedTopBar}
           {showSideBar && <SideBar gooMenu={url === GlobalThemes.Enterprise} />}
           <CalculatedScrollComponent className={"mainContent " + url} hasButtons={false} refresh={[]} sidebarCollapsed={isCollapsed}>
-            {!newPage ? <OverlayControl loading={true} /> : newPage}
+            {!newPage ? <OverlayControl /> : newPage}
           </CalculatedScrollComponent>
           {dimensions.isMobile && memoizedTopBar}
         </div>
@@ -100,7 +102,22 @@ export const CalculatedScrollComponent = (props: {
   const dimensions = useWindowDimensions();
   const resizeRef = useRef<any>(null);
   const buttonSpacing = useRef<number>(0);
-  const initialResize = (firstCall?: boolean) => {
+  const resizeChildrenContainer = useCallback(() => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    if (resizeRef && resizeRef.current) {
+      resizeRef.current.style.height = window.innerHeight + 'px';
+      let width = window.innerWidth;
+      if (!dimensions.isMobile) {
+        width = width - (props.sidebarCollapsed ? 48 : 200);
+      }
+      resizeRef.current.style.width = width + 'px';
+    }
+  }, [
+    dimensions.isMobile,
+    props.sidebarCollapsed
+  ]);
+  const initialResize = useCallback((firstCall?: boolean) => {
     if (resizeRef.current) {
       resizeChildrenContainer();
       if (firstCall) {
@@ -113,7 +130,9 @@ export const CalculatedScrollComponent = (props: {
         initialResize();
       }, 500);
     }
-  };
+  }, [
+    resizeChildrenContainer
+  ]);
   useEffect(() => {
     window.addEventListener("resize", resizeChildrenContainer);
     resizeChildrenContainer();
@@ -121,25 +140,23 @@ export const CalculatedScrollComponent = (props: {
     return () => {
       window.removeEventListener("resize", resizeChildrenContainer);
     };
-  }, []);
+  }, [
+    initialResize,
+    resizeChildrenContainer
+  ]);
   useEffect(() => {
     buttonSpacing.current = props.hasButtons ? 72 : 0;
   }, [props.hasButtons]);
   useEffect(() => {
     resizeChildrenContainer();
-  }, [resizeRef, ...props.refresh, buttonSpacing.current, props.sidebarCollapsed, dimensions]);
-  const resizeChildrenContainer = () => {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    if (resizeRef && resizeRef.current) {
-      resizeRef.current.style.height = window.innerHeight + 'px';
-      let width = window.innerWidth;
-      if (!dimensions.isMobile) {
-        width = width - (props.sidebarCollapsed ? 48 : 200);
-      }
-      resizeRef.current.style.width = width + 'px';
-    }
-  };
+  }, [
+    resizeRef, 
+    props.refresh, 
+    props.sidebarCollapsed, 
+    dimensions,
+    resizeChildrenContainer
+  ]);
+  
   return (
     <div
       ref={resizeRef}

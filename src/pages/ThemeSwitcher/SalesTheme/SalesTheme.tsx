@@ -1,5 +1,4 @@
 import Icon from "../../../components/Icon/Icon";
-import { GlobalThemes, useWindowDimensions } from "../../../ThemeManager";
 import lolipop from "../../../assets/lolipop.jpg";
 import candy from "../../../assets/candy.jpg";
 import candy2 from "../../../assets/candy2.jpg";
@@ -15,8 +14,7 @@ import chocolate3 from "../../../assets/chocolate3.jpg";
 import chocolate4 from "../../../assets/chocolate4.jpg";
 import { nanoid } from "nanoid";
 import "./SalesTheme.scss";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import CartComponent from "../../../components/CartComponent";
 export const getRandomKey = () => {
   return nanoid();
@@ -32,7 +30,7 @@ interface iPurchase {
   img: any;
   price: number;
 }
-const SalesTheme = ({}: {}) => {
+const SalesTheme = () => {
   const [subPage, setSubPage] = useState<SalesPage>(SalesPage.Welcome);
   const [cartItems, setCartItems] = useState<any[]>([]);
   const [animationOverlay, setAnimationOverlay] = useState<any>();
@@ -100,8 +98,7 @@ const SalesTheme = ({}: {}) => {
   const [selectedCandy, setSelectedCandy] = useState<string | undefined>(
     undefined
   );
-  const [ballElementList, setBallElementList] = useState<any[]>([]);
-  const [idCounter, setIdCounter] = useState<number>(0);
+  const [ballElementList] = useState<any[]>([]);
   const animateBall = (item: any, rect: any) => {
     if (rect) {
       let newBall = document.createElement("div");
@@ -116,7 +113,7 @@ const SalesTheme = ({}: {}) => {
         }, 670);
         for (let i = 0; i < animationOverlay.children.length; i++) {
           let child = animationOverlay.children[i];
-          if (child.classList.contains("animate") == false) {
+          if (child.classList.contains("animate") === false) {
             child.classList.add("animate");
             return;
           }
@@ -134,7 +131,7 @@ const SalesTheme = ({}: {}) => {
   useEffect(() => {
     if (!animationOverlay)
       setAnimationOverlay(document.getElementById("animationOverlay"));
-  });
+  }, [animationOverlay]);
 
   return (
     <>
@@ -186,12 +183,12 @@ const SalesTheme = ({}: {}) => {
               </div>
 
               <h2>Bringing you more candy!</h2>
-              <a
+              <button
                 className="designButton funButton"
                 onClick={() => setSubPage(SalesPage.Selection)}
               >
                 Get Candy!
-              </a>
+              </button>
             </div>
             <div className="pictureContent">
               <div className="flexColumn">
@@ -204,8 +201,8 @@ const SalesTheme = ({}: {}) => {
                   brought all their favorite treats along with them!
                 </h4>
               </div>
-              <img src={lolipop} />
-              <img src={candy} />
+              <img alt="lolipop" src={lolipop} />
+              <img alt="candy" src={candy} />
               <div className="flexColumn">
                 <h1 className="text-headline">Kid's Day</h1>
                 <h3 className="text-sub-headline">
@@ -232,8 +229,8 @@ const SalesTheme = ({}: {}) => {
                   for you to come in and taste!
                 </h4>
               </div>
-              <img src={chocolate} />
-              <img src={cakeBalls} />
+              <img alt="chocolate" src={chocolate} />
+              <img alt="cakeBalls" src={cakeBalls} />
               <div className="flexColumn">
                 <h1 className="text-headline">
                   Cake Ball Decorating
@@ -266,12 +263,12 @@ const SalesTheme = ({}: {}) => {
               <h4 className="text-placeholder">
                 Come check out our fine selection of candies and chocolates!
               </h4>
-              <a
+              <button
                 className="designButton funButton"
                 onClick={() => setSubPage(SalesPage.Selection)}
               >
                 Get Candy!
-              </a>
+              </button>
             </div>
             <div className="footer"></div>
           </div>
@@ -292,7 +289,7 @@ const SalesTheme = ({}: {}) => {
                 </div>
               </div>
               <h1 className="text-headline">Chocolates</h1>
-              <div className="flexFull">
+              <div className="flexFull" style={{ maxWidth: 800 }}>
                 {chocolates.map((item) => {
                   return (
                     <CandyCard
@@ -306,7 +303,7 @@ const SalesTheme = ({}: {}) => {
                 })}
               </div>
               <h1 className=" text-sub-headline">Candy</h1>
-              <div className="flexFull">
+              <div className="flexFull" style={{ maxWidth: 800 }}>
                 {candies.map((item) => {
                   return (
                     <CandyCard
@@ -349,7 +346,7 @@ const SalesTheme = ({}: {}) => {
               </div>
             </div>
             <div className="pictureContent">
-              <img src={candyShop} />
+              <img alt="candyShop" src={candyShop} />
               <div className="flexColumn">
                 <h4 className="text-body">
                   In November 2008, Karen Keber opened up Candy Shop in Market
@@ -373,8 +370,8 @@ const SalesTheme = ({}: {}) => {
                   people don't even know exist.
                 </h4>
               </div>
-              <img src={candyShop2} />
-              <img src={candyShop3} />
+              <img alt="candyShop2" src={candyShop2} />
+              <img alt="candyShop3" src={candyShop3} />
               <div className="flexColumn">
                 <h4 className="text-body">
                   In August of 2014, Karen and her new husband Matt Sutton
@@ -399,12 +396,12 @@ const SalesTheme = ({}: {}) => {
               <h4 className="text-placeholder">
                 Come check out our fine selection of candies and chocolates!
               </h4>
-              <a
+              <button
                 className="designButton funButton"
                 onClick={() => setSubPage(SalesPage.Selection)}
               >
                 Get Candy!
-              </a>
+              </button>
             </div>
             <div className="footer"></div>
           </div>
@@ -428,10 +425,9 @@ const CandyCard = ({
   setSelectedCandy: Dispatch<SetStateAction<string | undefined>>;
   parentSelectedCandy: string | undefined;
 }) => {
-  const dimensions = useWindowDimensions();
   const [iSelectedCandy, setInnerSC] = useState<string | undefined>();
   const setCandy = (value: string | undefined) => {
-    if (iSelectedCandy != value) {
+    if (iSelectedCandy !== value) {
       setSelectedCandy(value);
       setInnerSC(value);
     } else {
@@ -441,7 +437,9 @@ const CandyCard = ({
   };
   useEffect(() => {
     setInnerSC(parentSelectedCandy);
-  }, []);
+  }, [
+    parentSelectedCandy
+  ]);
   return (
     <div className="mobileCardContainer" key={getRandomKey()}>
       <div className="candyCardBackground">
@@ -462,6 +460,7 @@ const CandyCard = ({
             <img
               src={item.img}
               key={getRandomKey()}
+              alt={item.title}
               className={`unactiveImg ${
                 iSelectedCandy === item.title ? " activeImg" : ""
               }`}

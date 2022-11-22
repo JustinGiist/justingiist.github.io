@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import CloseComponent from "../../../../components/CloseComponent/CloseComponent";
 import Icon from "../../../../components/Icon/Icon";
 import './VariationComponent.scss';
@@ -30,7 +30,7 @@ const VariationComponent = (props: VariationProps) => {
                     className={'variation-option textSubBody' + (variation === number ? ' selected' : '')} 
                     onClick={() => variation === number ? null : setVariation(number)}
                 >
-                    {number != 1 && <CloseComponent tiny action={() => removeVariation(number)}/>}
+                    {number !== 1 && <CloseComponent tiny action={() => removeVariation(number)}/>}
                     {number}
                 </div>
             ))}

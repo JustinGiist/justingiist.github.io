@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Icon from "../../components/Icon/Icon";
 import Rainimation from "../../components/Rainimation/Rainimation";
-import { GlobalThemes, useWindowDimensions } from "../../ThemeManager";
+import { useWindowDimensions } from "../../ThemeManager";
 import "./SpookyTheme.scss";
 enum SpookyPages {
   Tickets,
@@ -113,7 +113,7 @@ const elementsMap: Map<SpookyPages, SpookyElement> = new Map([
     },
   ],
 ]);
-const SpookyTheme = ({}: {}) => {
+const SpookyTheme = () => {
   const [spookyElement, setSpookyElement] = useState<SpookyElement | undefined>(
     undefined
   );
@@ -157,7 +157,7 @@ const SpookyTheme = ({}: {}) => {
                 <h4 className="text-body">
                   {item.bodyText}
                 </h4>
-                {options.context && i != options.context.length - 1 && <hr />}
+                {options.context && i !== options.context.length - 1 && <hr />}
                 {item.bulletList &&
                   item.bulletList.map((item) => {
                     return (

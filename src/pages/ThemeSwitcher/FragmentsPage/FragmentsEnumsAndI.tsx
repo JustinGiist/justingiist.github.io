@@ -555,7 +555,7 @@ export const SubClassCombos = () => {
         }
     };
     Array.from( CombosMap ).map(([mapKey, value]) => {
-        value.subClasses.forEach(subClass => {
+        return value.subClasses.forEach(subClass => {
             switch (subClass) {
                 case CorsairSubClass.PirateOfTheSkye:
                     CorsairPirateOfTheSkye.push(value);

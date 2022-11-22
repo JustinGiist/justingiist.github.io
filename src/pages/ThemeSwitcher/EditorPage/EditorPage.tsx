@@ -31,7 +31,7 @@ const EditorPage = (props: EditorPageProps) => {
     const [editCampaign, setEditCampaign] = useState(false);
     const [campaignTitle, setCampaignTitle] = useState('Campaign Title');
     const [theme, setTheme] = useState('light');
-    const [isV2, setIsV2] = useState(true);
+    const [isV2] = useState(true);
     const [editorData, setEditorData] = useState({
         topHeadline: 'Get the Playbook!',
         topBody: 'Learn how Retail and Consumer Product Brands can benefit from global-to-local social advertising. Get the Playbook!',
@@ -115,7 +115,7 @@ const EditorPage = (props: EditorPageProps) => {
                                         <div className='textBody'>{editorData.topBody}</div>
                                     </div>
                                     <div className={'facebookAssets panel' + ('Asset' === selectedFacebookPage ? ' selected' : '')} onClick={() => setSelectedFacebookPage(facebookOptions[1])}>
-                                        <img src={chocolate} />
+                                        <img alt="chocolate3" src={chocolate} />
                                     </div>
                                     <div className={'facebookBottom panel' + ('Bottom' === selectedFacebookPage ? ' selected' : '')} onClick={() => setSelectedFacebookPage(facebookOptions[2])}>
                                         <div className='textSubHeadline'>{editorData.bottomHeadline}</div>
@@ -289,7 +289,7 @@ const SidebarComponent = (props: SidebarProps) => {
     const [selectedSideBar, setSelectedSidebar] = useState('Customers');
     return (
         <div className={`tprc-sidebar ${collapse ? 'collapse' : ''}`}>
-            {collapse ? <img key='tplogosmall' src={tplogosmall} className='fadeIn' style={{ marginBottom: 32}}/> : <img key='tplogo' src={tplogo} className='fadeIn' style={{ marginBottom: 32}}/>}
+            {collapse ? <img alt="tplogosmall" key='tplogosmall' src={tplogosmall} className='fadeIn' style={{ marginBottom: 32}}/> : <img alt="tplogo" key='tplogo' src={tplogo} className='fadeIn' style={{ marginBottom: 32}}/>}
             {sidebarOptions.map((option: string) => (
                 <div 
                 key={`side-bar-button-${option}`}
@@ -444,7 +444,9 @@ const EditorV2 = (props: EditorV2Props) => {
         } else {
             props.setSelectedFacebookPage(facebookOption);
         }
-    }, [props.setSelectedFacebookPage, props.selectedFacebookPage]);
+    }, [
+        props
+    ]);
     const topInputs: InputObj[] = [
         {
             label: 'Headline',
@@ -606,7 +608,12 @@ const PanelEditor = (props: V2PanelEditorProps) => {
             if (input.element) return input.element;
             return <FacebookInputElementV3 key={`content-input-${input.label}`} multiline={input.multiline} handleEditorChange={props.handleEditorChange} selectedFacebookPage={props.selectedFacebookPage} editorString={input.editorString} value={input.value} facebookOption={props.facebookOption} />
     }));
-    }, [props.Inputs]);
+    }, [
+        props.Inputs,
+        props.facebookOption,
+        props.handleEditorChange,
+        props.selectedFacebookPage
+    ]);
     const leftElements = useMemo(() => {
         return (props.Inputs.map(input => (
             <div key={`left-input-${input.label}`} className='panel-editor-input-element'>
@@ -627,7 +634,9 @@ const PanelEditor = (props: V2PanelEditorProps) => {
         <div className='panel-editor left'>
             {leftElements}
         </div>
-    ), [isSelected]);
+    ), [
+        leftElements
+    ]);
     const rightPanel = useMemo(() => {
         return (
             <div className='panel-editor right'>
@@ -748,7 +757,7 @@ const PreviewPage = (props: PreviewPageProps) => {
                     <div className='textSubBody'>{props.editorData.topBody}</div>
                 </div>
                 <div className='facebookAssets'>
-                    <img src={chocolate} />
+                    <img alt="chocolate2" src={chocolate} />
                 </div>
                 <div className='facebookBottom'>
                     <div className='flex noWrap'>
@@ -828,6 +837,6 @@ const AssetInputElement = (props: AssetInputElementProps) => {
             </div>
         </div>
     ): (
-        <img src={chocolate} />
+        <img alt="chocolate" src={chocolate} />
     );
 }

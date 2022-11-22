@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import { getRandomKey } from "../pages/ThemeSwitcher/SalesTheme/SalesTheme";
 import { useWindowDimensions } from "../ThemeManager";
 import Icon from "./Icon/Icon";
 interface iCart {
@@ -138,7 +137,7 @@ const CartComponent = (props: iCart) => {
                         <Icon icon="Delete" />
                       </div>
                     </div>
-                    <img src={item.img} />
+                    <img alt={item.title} src={item.img} />
                     <h4>{item.title}</h4>
                   </div>
                 );

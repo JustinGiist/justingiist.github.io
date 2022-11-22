@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './SidebarV2.scss';
 import Icon from '../Icon/Icon';
 import { useNavigate } from 'react-router-dom';
-import { Navigation } from '@mui/icons-material';
 import { useWindowDimensions } from '../../ThemeManager';
 
 interface SidebarV2Props {
@@ -37,7 +36,11 @@ const SidebarV2 = ({
             window.scrollTo(0,0);
             navigate(`/${selectedSideBar}`);
         }
-    }, [selectedSideBar])
+    }, [
+        selectedSideBar,
+        navigate,
+        setIsMobileOpen
+    ])
     return (
         <div
             className={`sidebar-v2 ${dimensions.isMobile ? 'mobile' : ''} ${isMobileOpen ? 'mobileOpen' : ''} ${isCollapsed ? 'collapse' : ''}`}

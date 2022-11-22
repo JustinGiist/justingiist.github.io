@@ -1,15 +1,9 @@
-import { Component, useMemo } from "react";
+import { useMemo } from "react";
 import Chart from "react-google-charts";
-import ThemeManager, {
-  GlobalThemes,
+import {
   useWindowDimensions,
 } from "../../../ThemeManager";
-import stockProfile from "../../../assets/stockProfile.jpeg";
-import news1 from "../../../assets/news1.jpg";
-import news2 from "../../../assets/news2.jpg";
-import news3 from "../../../assets/news3.png";
 import "./EnterpriseTheme.scss";
-import TutorialControl from "../../../components/TutorialComponent/TutorialControl";
 import Icon from "../../../components/Icon/Icon";
 const TeslaLogo = (
   <svg
@@ -226,7 +220,9 @@ const EnterpriseTheme = () => {
       ]
     }
     return investmentCardList;
-  }, [dimensions, investmentCardList]);
+  }, [
+    dimensions
+  ]);
 
   const investments2 = useMemo(() => {
     if (dimensions.isMobile) {
@@ -243,7 +239,9 @@ const EnterpriseTheme = () => {
       ]
     }
     return investmentCard2List;
-  }, [dimensions, investmentCard2List]);
+  }, [
+    dimensions
+  ]);
   return (
     <>
       <h1 className="text-headline">Dashboard</h1>

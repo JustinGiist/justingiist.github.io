@@ -1,13 +1,6 @@
 import { CircularProgress } from "@material-ui/core";
-import { useContext } from "react";
-import { ThemeManagerContext } from "../../App";
 
-interface iOverlayControl {
-  loading: boolean;
-}
-const OverlayControl = ({ loading }: iOverlayControl) => {
-  const { themeManager, theme, setThemeContext } =
-    useContext(ThemeManagerContext);
+const OverlayControl = () => {
   return (
     <div
       style={{

@@ -68,24 +68,45 @@ h5, .headline.five {
 }
 .text-headline {
   color: var(--text-headline);
+  * {
+    color: var(--text-headline);
+  }
 }
 .text-headline-secondary {
   color: var(--text-headline-secondary);
+  * {
+    color: var(--text-headline-secondary);
+  }
 }
 .text-sub-headline {
   color: var(--text-sub-headline);
+  * {
+    color: var(--text-sub-headline);
+  }
 }
 .text-body {
   color: var(--text-body);
+  * {
+    color: var(--text-body);
+  }
 }
 .text-sub-body {
   color: var(--text-sub-body);
+  * {
+    color: var(--text-sub-body);
+  }
 }
 .text-placeholder {
   color: var(--text-placeholder);
+  * {
+    color: var(--text-placeholder);
+  }
 }
 .text-menu {
   color: var(--text-menu);
+  * {
+    color: var(--text-menu);
+  }
 }
 .input-text-label {
   color: var(--input-label);
@@ -155,6 +176,9 @@ h5, .headline.five {
 }
 .button.warning {
   background: var(--action-warning);
+}
+.background-transparent {
+  background: transparent !important;
 }
 .disabled {
   background: var(--action-disabled);
@@ -407,9 +431,6 @@ h5, .headline.five {
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
 }
-.jdgd-page-layout {
-  background: var(--background-secondary);
-}
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {
   .flex-block {
     grid-template-columns: auto;
@@ -436,8 +457,6 @@ h5, .headline.five {
     width: 100%;
   }
   .flex{
-    flex-wrap: wrap;
-    width: 100%;
     > .button {
       width: 100%;
     }

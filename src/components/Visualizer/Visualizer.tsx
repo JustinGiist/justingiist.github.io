@@ -13,7 +13,7 @@ const Visualizer = () => {
     const [audioSource, setAudioSource] = useState<MediaElementAudioSourceNode>();
     const [audioCtx, setAudioCtx] = useState<AudioContext>();
     const [isPaused, setIsPaused] = useState(false);
-    function animate(ctx: any, ctx2: any, analyser: any, barHeight: number, barWidth: number, bufferLength: number, dataArray: any) {
+    const animate = useCallback((ctx: any, ctx2: any, analyser: any, barHeight: number, barWidth: number, bufferLength: number, dataArray: any) => {
         if (canvasRef && canvasRef2 && canvasRef.current && canvasRef2.current && !isPaused) {
             let x = 0;
             
@@ -33,7 +33,9 @@ const Visualizer = () => {
             }
         }
         requestAnimationFrame(() => animate(ctx, ctx2, analyser, barHeight, barWidth, bufferLength, dataArray));
-    }
+    }, [
+        isPaused
+    ]);
     const startAnim = useCallback(() => {
         if (canvasRef && audioRef && canvasRef2 && canvasRef.current && audioRef.current && canvasRef2.current) {
             const width = 800;
@@ -68,7 +70,14 @@ const Visualizer = () => {
 
             animate(ctx, ctx2, analyser, barHeight, barWidth, bufferLength, dataArray);
         }
-    }, [canvasRef, audioRef, audioSource, animate]);
+    }, [
+        canvasRef, 
+        audioRef, 
+        audioSource, 
+        animate,
+        audio,
+        audioCtx
+    ]);
     const playPauseButton = useCallback(() => {
         setIsPaused(prev => {
             if (!prev) audio.play();
@@ -83,8 +92,15 @@ const Visualizer = () => {
         return () => {
             audio.pause();
         }
-    }, [canvasRef, audioRef]);
-    const sound = useMemo(() => <audio ref={audioRef} id="audio" />, [audioRef, unatco]);
+    }, [
+        canvasRef, 
+        audioRef,
+        audio,
+        startAnim
+    ]);
+    const sound = useMemo(() => <audio ref={audioRef} id="audio" />, [
+        audioRef
+    ]);
     return (
         <div id="visualizer-container" className={dimensions.isMobile ? 'mobile' : ''} onClick={playPauseButton}>
             <div className="visualizer-play-pause"><Icon icon={isPaused ? 'Pause' : 'Play'} /></div>
