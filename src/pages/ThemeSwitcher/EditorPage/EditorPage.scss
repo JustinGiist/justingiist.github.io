@@ -1203,25 +1203,6 @@ $tp-blue-gradient: linear-gradient(-45deg, $tp-light-blue, $tp-blue);
         border: 2px solid var(--action-error);
     }
 }
-.tprc-pill {
-    padding: 2px 8px;
-    border-radius: 12px;
-    background: var(--action-cancel);
-    color: var(--light);
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 4px;
-    transition: all 0.267s ease;
-    box-shadow: var(--shadow-light);
-    &.selected {
-        background: var(--selected-secondary);
-    }
-    &:hover {
-        cursor: pointer;
-        background: var(--action-primary);
-    }
-}
 
 .tprc-cta {
     color: var(--text-body);

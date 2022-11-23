@@ -1,21 +1,17 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import {
   ParallaxBackgroundCircle,
   ParallaxBackgroundTriangles,
 } from "../../../components/BezierBackground/ParallaxBackground";
-import Icon from "../../../components/Icon/Icon";
-import PageLayout, { iPageLayout, mapInitialFormData } from "../../../components/PageLayout/PageLayout";
+import PageLayout, { iPageLayout } from "../../../components/PageLayout/PageLayout";
 import { InputTypes } from "../../../components/PageLayout/SwitchInput";
 import { useWindowDimensions } from "../../../ThemeManager";
 import "./ContactPage.scss";
-
-
 
 const ContactPage = () => {
   const memoizedPageLayout = useMemo(() => {
     return pageLayout();
   }, []);
-  const [formData, setFormData] = useState<any>(mapInitialFormData(memoizedPageLayout, {}));
   const dimensions = useWindowDimensions();
   const backgroundRef = useRef<any>(null);
   const backgroundRef2 = useRef<any>(null);
@@ -61,8 +57,6 @@ const ContactPage = () => {
     parallax
   ]);
 
-
-  
   return (
     <>
       <div className="parallaxBackground" ref={backgroundRef}>
@@ -71,8 +65,8 @@ const ContactPage = () => {
       <div className="parallaxBackground" ref={backgroundRef2}>
         <ParallaxBackgroundCircle />
       </div>
-      <div className="centerResumeContainer">
-        <PageLayout formData={formData} handleFormData={(v: any) => setFormData(v)} pageLayout={memoizedPageLayout} />
+      <div className="center-resume-container">
+        <PageLayout pageLayout={memoizedPageLayout} />
       </div>
     </>
   );
@@ -90,7 +84,7 @@ const pageLayout: () => iPageLayout = () => ({
       type: InputTypes.textOnly,
       icon: 'Email',
       labelProps: { style: { alignItems: 'center'} },
-      label: 'JustinGistDesigner.com'
+      label: 'JustinGistDesigner @gmail.com'
     },
     {
       id: 'linkedIn',

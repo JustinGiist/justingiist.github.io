@@ -5,55 +5,45 @@ h1, h2, h3, h4, h5,.headline {
 body {
   overflow: hidden;
 }
-@mixin fontMixin($size, $weight) {
+@mixin fontMixin($size, $weight, $color) {
   font-size: $size;
   font-weight: $weight;
   letter-spacing: 0;
   line-height: $size;
+  color: $color;
 }
 h1, .headline.one {
-  @include fontMixin(var(--font-huge), 500);
-  color: var(--text-headline);
+  @include fontMixin(var(--font-huge), 500, var(--text-headline));
 }
 h2, .headline.two {
-  @include fontMixin(var(--font-xlarge), 600);
-  color: var(--text-headline);
+  @include fontMixin(var(--font-xlarge), 600, var(--text-headline));
 }
 h3, .headline.three {
-  @include fontMixin(var(--font-large), 500);
-  color: var(--text-headline-secondary);
+  @include fontMixin(var(--font-large), 500, var(--text-headline-secondary));
 }
 h4, .headline.four {
-  @include fontMixin(var(--font-medium), 500);
-  color: var(--text-headline-secondary);
+  @include fontMixin(var(--font-medium), 500, var(--text-headline-secondary));
 }
 h5, .headline.five {
-  @include fontMixin(var(--font-medium), 500);
-  color: var(--text-headline-secondary);
+  @include fontMixin(var(--font-medium), 500, var(--text-headline-secondary));
 }
 .subHeadlineBold {
-  @include fontMixin(var(--font-small), 600);
-  color: var(--text-sub-headline);
+  @include fontMixin(var(--font-small), 600, var(--text-sub-headline));
 }
 .subHeadlineMedium {
-  @include fontMixin(var(--font-small), 500);
-  color: var(--text-sub-headline);
+  @include fontMixin(var(--font-small), 500, var(--text-sub-headline));
 }
 .subHeadlineLight {
-  @include fontMixin(var(--font-small), 400);
-  color: var(--text-sub-headline);
+  @include fontMixin(var(--font-small), 400, var(--text-sub-headline));
 }
 .bodyBold {
-  @include fontMixin(var(--font-xsmall), 600);
-  color: var(--text-body);
+  @include fontMixin(var(--font-xsmall), 600, var(--text-body));
 }
 .bodyMedium {
-  @include fontMixin(var(--font-xsmall), 500);
-  color: var(--text-body);
+  @include fontMixin(var(--font-xsmall), 500, var(--text-body));
 }
 .bodyLight {
-  @include fontMixin(var(--font-xsmall), 400);
-  color: var(--text-sub-body);
+  @include fontMixin(var(--font-xsmall), 400, var(--text-body));
 }
 
 .inputName {
@@ -66,50 +56,35 @@ h5, .headline.five {
     cursor: pointer;
   }
 }
-.text-headline {
-  color: var(--text-headline);
+@mixin textMixin($color) {
+  color: $color;
   * {
-    color: var(--text-headline);
+    color: $color;
   }
+}
+.text-headline {
+  @include textMixin(var(--text-headline));
 }
 .text-headline-secondary {
-  color: var(--text-headline-secondary);
-  * {
-    color: var(--text-headline-secondary);
-  }
+  @include textMixin(var(--text-headline-secondary));
 }
 .text-sub-headline {
-  color: var(--text-sub-headline);
-  * {
-    color: var(--text-sub-headline);
-  }
+  @include textMixin(var(--text-sub-headline));
 }
 .text-body {
-  color: var(--text-body);
-  * {
-    color: var(--text-body);
-  }
+  @include textMixin(var(--text-body));
 }
 .text-sub-body {
-  color: var(--text-sub-body);
-  * {
-    color: var(--text-sub-body);
-  }
+  @include textMixin(var(--text-sub-body));
 }
 .text-placeholder {
-  color: var(--text-placeholder);
-  * {
-    color: var(--text-placeholder);
-  }
+  @include textMixin(var(--text-placeholder));
 }
 .text-menu {
-  color: var(--text-menu);
-  * {
-    color: var(--text-menu);
-  }
+  @include textMixin(var(--text-menu));
 }
-.input-text-label {
-  color: var(--input-label);
+.text-input-label {
+  @include textMixin(var(--input-label));
 }
 .button {
   padding: 4px 24px;
@@ -185,165 +160,58 @@ h5, .headline.five {
   pointer-events: none;
   color: var(--text-placeholder);
 }
-.pill {
-  padding: 6px 12px;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: var(--round-medium);
-  width: fit-content;
-  min-width: 64px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  column-gap: 4px;
+@mixin pillColoring($color) {
+  border-color: $color !important;
+  background: $color !important;
+  color: white !important;
   &.active {
-    color: var(--light);
-    animation: flippy 0.267s forwards;
+    background: $color !important;
   }
   &:hover {
-    color: var(--light);
-    cursor: pointer;
+    background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0.02) 100%) !important;
   }
 }
 .pill.Success {
-  border-color: var(--action-success);
-  color: var(--action-success);
-  &.active {
-    background: var(--action-success);
-  }
-  &:hover {
-    background: var(--action-success);
-  }
+  @include pillColoring(var(--action-success));
 }
 .pill.Info {
-  border-color: var(--action-info);
-  color: var(--action-info);
-  &.active {
-    background: var(--action-info);
-  }
-  &:hover {
-    background: var(--action-info);
-  }
+  @include pillColoring(var(--action-info));
 }
 .pill.Warning {
-  border-color: var(--action-warning);
-  color: var(--action-warning);
-  &.active {
-    background: var(--action-warning);
-  }
-  &:hover {
-    background: var(--action-warning);
-  }
+  @include pillColoring(var(--action-warning));
 }
 .pill.Error {
-  border-color: var(--action-error);
-  color: var(--action-error);
-  &.active {
-    background: var(--action-error);
-  }
-  &:hover {
-    background: var(--action-error);
-  }
+  @include pillColoring(var(--action-error));
 }
-.pill0 {
-  border-color: var(--misc-0);
-  color: var(--misc-0);
-  &.active {
-    background: var(--misc-0);
-  }
-  &:hover {
-    background: var(--misc-0);
-  }
+.pill-0 {
+  @include pillColoring(var(--misc-0));
 }
-.pill1 {
-  border-color: var(--misc-1);
-  color: var(--misc-1);
-  &.active {
-    background: var(--misc-1);
-  }
-  &:hover {
-    background: var(--misc-1);
-  }
+.pill-1 {
+  @include pillColoring(var(--misc-1));
 }
-.pill2 {
-  border-color: var(--misc-2);
-  color: var(--misc-2);
-  &.active {
-    background: var(--misc-2);
-  }
-  &:hover {
-    background: var(--misc-2);
-  }
+.pill-2 {
+  @include pillColoring(var(--misc-2));
 }
-.pill3 {
-  border-color: var(--misc-3);
-  color: var(--misc-3);
-  &.active {
-    background: var(--misc-3);
-  }
-  &:hover {
-    background: var(--misc-3);
-  }
+.pill-3 {
+  @include pillColoring(var(--misc-3));
 }
-.pill4 {
-  border-color: var(--misc-4);
-  color: var(--misc-4);
-  &.active {
-    background: var(--misc-4);
-  }
-  &:hover {
-    background: var(--misc-4);
-  }
+.pill-4 {
+  @include pillColoring(var(--misc-4));
 }
-.pill5 {
-  border-color: var(--misc-5);
-  color: var(--misc-5);
-  &.active {
-    background: var(--misc-5);
-  }
-  &:hover {
-    background: var(--misc-5);
-  }
+.pill-5 {
+  @include pillColoring(var(--misc-5));
 }
-.pill6 {
-  border-color: var(--misc-6);
-  color: var(--misc-6);
-  &.active {
-    background: var(--misc-6);
-  }
-  &:hover {
-    background: var(--misc-6);
-  }
+.pill-6 {
+  @include pillColoring(var(--misc-6));
 }
-.pill7 {
-  border-color: var(--misc-7);
-  color: var(--misc-7);
-  &.active {
-    background: var(--misc-7);
-  }
-  &:hover {
-    background: var(--misc-7);
-  }
+.pill-7 {
+  @include pillColoring(var(--misc-7));
 }
-.pill8 {
-  border-color: var(--misc-8);
-  color: var(--misc-8);
-  &.active {
-    background: var(--misc-8);
-  }
-  &:hover {
-    background: var(--misc-8);
-  }
+.pill-8 {
+  @include pillColoring(var(--misc-8));
 }
-.pill9 {
-  border-color: var(--misc-9);
-  color: var(--misc-9);
-  &.active {
-    background: var(--misc-9);
-  }
-  &:hover {
-    background: var(--misc-9);
-  }
+.pill-9 {
+  @include pillColoring(var(--misc-9));
 }
 .hidden {
   display: none !important;

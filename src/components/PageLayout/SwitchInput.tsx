@@ -187,10 +187,12 @@ const SwitchInput = ({
         input
     ]);
     const onChange = useCallback((e: any, useSecondaryField?: boolean) => {
-        const value = inputTypeValueConversion(e);
-        const resultValue = input.valueTo ? input.valueTo(value) : value;
+        let value = inputTypeValueConversion(e);
+        value = input.valueTo ? input.valueTo(value) : value;
+        if (input.min !== undefined) value = value < input.min ? input.min : value;
+        if (input.max !== undefined) value = value > input.max ? input.max : value;
         const resultField = useSecondaryField && input.secondaryField ? input.secondaryField : input.field; // This is if we have a input that can handle two values, we can give it a secondaryField to input into. See inputTypes.numberRange
-        handleChangeReducer(ChangeType.formChange, resultField, resultValue);
+        handleChangeReducer(ChangeType.formChange, resultField, value);
     }, [
         input, 
         handleChangeReducer,
@@ -286,7 +288,7 @@ const SwitchInput = ({
             case InputTypes.radio:
                 return (
                     <>
-                        {input.label && <div className="input-text-label">{input.label}</div>}
+                        {input.label && <div className="text-input-label">{input.label}</div>}
                         <RadioGroup
                             defaultValue={input.options && input.options[0].value}
                             name={input.id}
@@ -300,7 +302,7 @@ const SwitchInput = ({
             case InputTypes.slider:
                 return (
                     <>
-                        {input.label && <div className="input-text-label">{input.label}</div>}
+                        {input.label && <div className="text-input-label">{input.label}</div>}
                         <Slider
                             size="small"
                             defaultValue={70}
@@ -314,7 +316,7 @@ const SwitchInput = ({
             case InputTypes.rating:
                 return (
                     <>
-                        {input.label && <div className="input-text-label">{input.label}</div>}
+                        {input.label && <div className="text-input-label">{input.label}</div>}
                         <Rating
                             name={input.id}
                             value={value}
@@ -383,6 +385,7 @@ const SwitchInput = ({
                     <TextField
                         onChange={onChange}
                         label={input.label}
+                        InputProps={{ inputProps: { min: input.min, max: input.max } }}
                         value={value}
                         type={'number'}
                         variant="filled"
@@ -446,7 +449,9 @@ const SwitchInput = ({
         value,
         dimensions.isMobile,
         errorMessage,
-        memoizedTooltip
+        memoizedTooltip,
+        additionalClasses,
+        label
     ]);
 
     // Creates and animated checkmark or X depending on various properties.

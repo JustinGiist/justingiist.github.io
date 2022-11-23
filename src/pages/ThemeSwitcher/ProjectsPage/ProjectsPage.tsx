@@ -38,7 +38,7 @@ const ProjectsPage = () => {
     },
   ];
   return (
-    <div className="centerResumeContainer">
+    <div className="center-resume-container">
       <h1
         className="text-headline"
       >

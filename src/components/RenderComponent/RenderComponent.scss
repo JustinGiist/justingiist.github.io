@@ -123,17 +123,20 @@
     overflow: hidden;
   }
 
-  .centerResumeContainer {
-    max-width: 900px;
+  .center-resume-container {
+    max-width: 320px;
     margin: auto;
     background: linear-gradient(var(--theme-secondary), #130040);
-    padding: 8px;
+    box-shadow: var(--shadow-dark);
+    padding: 16px 32px 32px;
     border-radius: var(--round-medium);
     animation: fadeSlideLeft 0.167s forwards;
     align-items: center;
     display: flex;
     flex-direction: column;
-
+    h3 {
+      overflow-wrap: break-word;
+    }
     .button {
       margin-top: 16px;
     }

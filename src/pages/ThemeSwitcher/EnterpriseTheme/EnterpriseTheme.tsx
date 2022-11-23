@@ -1,10 +1,10 @@
 import { useMemo } from "react";
-import Chart from "react-google-charts";
 import {
   useWindowDimensions,
 } from "../../../ThemeManager";
 import "./EnterpriseTheme.scss";
 import Icon from "../../../components/Icon/Icon";
+import { BarChart, BarChart2, ComboChart, GeoChart, LineChart, PieChart } from "./EnterpriseCharts";
 const TeslaLogo = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -46,6 +46,7 @@ const AmazonLogo = (
     </g>
   </svg>
 );
+
 enum InvestmentElementStates {
   Decrease,
   Increase,
@@ -59,58 +60,7 @@ interface iInvestmentCard {
   state: InvestmentElementStates;
   logo: JSX.Element;
 }
-const investmentCardList: iInvestmentCard[] = [
-  {
-    label: "TSLA",
-    fullLabel: "Tesla Motors, Inc",
-    tradingAt: 246.51,
-    percentChange: -1.23,
-    state: InvestmentElementStates.Decrease,
-    logo: TeslaLogo,
-  },
-  {
-    label: "FB",
-    fullLabel: "Facebook, Inc",
-    tradingAt: 189.83,
-    percentChange: 2.83,
-    state: InvestmentElementStates.Increase,
-    logo: <Icon icon="FB" fontSize={60} />,
-  },
-  {
-    label: "AMZN",
-    fullLabel: "Amazon",
-    tradingAt: 220.93,
-    percentChange: 0.23,
-    state: InvestmentElementStates.None,
-    logo: AmazonLogo,
-  },
-];
-const investmentCard2List: iInvestmentCard[] = [
-  {
-    label: "SONY",
-    fullLabel: "Sony Group Corp",
-    tradingAt: 102.75,
-    percentChange: 4.79,
-    state: InvestmentElementStates.Increase,
-    logo: <Icon icon="Sony" fontSize={60} viewBox={"0.996 1 498.004 87.678"} />,
-  },
-  {
-    label: "MSFT",
-    fullLabel: "Microsoft Corporation",
-    tradingAt: 294.39,
-    percentChange: 7.24,
-    state: InvestmentElementStates.Increase,
-    logo: <Icon icon="MSFT" fontSize={60} viewBox={"0 0 256 257"} />,
-  },
-  {
-    label: "AAPL",
-    fullLabel: "Apple Inc",
-    tradingAt: 159.59,
-    percentChange: -4.5,
-    state: InvestmentElementStates.Decrease,
-    logo: <Icon icon="AAPL" fontSize={60} viewBox={"0 0 496.255 608.728"} />,
-  },
-];
+
 const EnterpriseTheme = () => {
   const dimensions = useWindowDimensions();
   const getPercentSymbolValue = (value: number) => {
@@ -122,6 +72,84 @@ const EnterpriseTheme = () => {
     }
     return symbol + Math.abs(value) + "%";
   };
+  const investmentCardList: iInvestmentCard[] = useMemo(() => {
+    const result = [
+      {
+        label: "TSLA",
+        fullLabel: "Tesla Motors, Inc",
+        tradingAt: 246.51,
+        percentChange: -1.23,
+        state: InvestmentElementStates.Decrease,
+        logo: TeslaLogo,
+      },
+      {
+        label: "FB",
+        fullLabel: "Facebook, Inc",
+        tradingAt: 189.83,
+        percentChange: 2.83,
+        state: InvestmentElementStates.Increase,
+        logo: <Icon icon="FB" fontSize={60} />,
+      },
+      {
+        label: "AMZN",
+        fullLabel: "Amazon",
+        tradingAt: 220.93,
+        percentChange: 0.23,
+        state: InvestmentElementStates.None,
+        logo: AmazonLogo,
+      },
+    ];
+    if (dimensions.isMobile) {
+      result.push({
+        label: "WYNE",
+        fullLabel: "Wayne Corp",
+        tradingAt: 345.67,
+        percentChange: 0.01,
+        state: InvestmentElementStates.None,
+        logo: <Icon icon="Bat" fontSize={60} />,
+      });
+    }
+    return result;
+  }, [dimensions.isMobile]);
+  const investmentCard2List: iInvestmentCard[] = useMemo(() => {
+    const result = [
+      {
+        label: "SONY",
+        fullLabel: "Sony Group Corp",
+        tradingAt: 102.75,
+        percentChange: 4.79,
+        state: InvestmentElementStates.Increase,
+        logo: <Icon icon="Sony" fontSize={60} viewBox={"0.996 1 498.004 87.678"} />,
+      },
+      {
+        label: "MSFT",
+        fullLabel: "Microsoft Corporation",
+        tradingAt: 294.39,
+        percentChange: 7.24,
+        state: InvestmentElementStates.Increase,
+        logo: <Icon icon="MSFT" fontSize={60} viewBox={"0 0 256 257"} />,
+      },
+      {
+        label: "AAPL",
+        fullLabel: "Apple Inc",
+        tradingAt: 159.59,
+        percentChange: -4.5,
+        state: InvestmentElementStates.Decrease,
+        logo: <Icon icon="AAPL" fontSize={60} viewBox={"0 0 496.255 608.728"} />,
+      },
+    ];
+    if (dimensions.isMobile) {
+      result.push({
+        label: "SPKY",
+        fullLabel: "Spooky, Inc",
+        tradingAt: 666.66,
+        percentChange: -0.1,
+        state: InvestmentElementStates.Decrease,
+        logo: <Icon icon="Skull" fontSize={60} />,
+      });
+    }
+    return result;
+  }, [dimensions.isMobile]);
 
   const InvestmentCardElement = (props: iInvestmentCard) => (
     <div className={"investmentCard " + InvestmentElementStates[props.state]}>
@@ -134,264 +162,48 @@ const EnterpriseTheme = () => {
       <div className="flex">{props.logo}</div>
     </div>
   );
-  const chartColors = [
-    "#54ff52",
-    "#52e2ff",
-    "#5294ff",
-    "#ffbf52",
-    "#ff6e52",
-    "#d085ff",
-  ];
-  const barChart1Data = [
-    ["City", "Tesla", "Facebook"],
-    ["02/01/2022", 8175000, 8008000],
-    ["02/08/2022", 3792000, 3694000],
-    ["02/15/2022", 2695000, 2896000],
-    ["02/22/2022", 2099000, 1953000],
-    ["02/29/2022", 1526000, 1517000],
-  ];
-  const lineChartData = [
-    ["x", "Tesla", "Facebook"],
-    [0, 0, 0],
-    [1, 10, 5],
-    [2, 23, 15],
-    [3, 17, 9],
-    [4, 18, 10],
-    [5, 9, 5],
-    [6, 11, 3],
-    [7, 27, 19],
-  ];
-  const barChartData = dimensions.isMobile
-    ? [
-        ["Year", "Sales", "Expenses", "Profit"],
-        ["2014", 1000, 400, 200],
-        ["2015", 1170, 460, 250],
-        ["2016", 660, 1120, 300],
-        ["2017", 1030, 540, 350],
-      ]
-    : [
-        ["Year", "Sales", "Expenses", "Profit"],
-        ["2014", 1000, 400, 200],
-        ["2015", 1170, 460, 250],
-        ["2016", 660, 1120, 300],
-        ["2017", 1030, 540, 350],
-        ["2014", 1000, 400, 200],
-        ["2015", 1170, 460, 250],
-        ["2016", 660, 1120, 300],
-        ["2017", 1030, 540, 350],
-      ];
-  const pieChartData = [
-    ["Stock", "Total Invested"],
-    ["Tesla", 11],
-    ["Facebook", 5],
-    ["Amazon", 3],
-    ["SONY", 2],
-    ["Microsoft", 7],
-    ["Apple", 2],
-  ];
-  const comboChartData = [
-    ["Month", "Tesla", "Facebook", "Amazon", "SONY", "Microsoft", "Average"],
-    ["2004/05", 165, 938, 522, 998, 450, 614.6],
-    ["2005/06", 135, 1120, 599, 1268, 288, 682],
-    ["2006/07", 157, 1167, 587, 807, 397, 623],
-    ["2007/08", 139, 1110, 615, 968, 215, 609.4],
-  ];
-  const geoChartData = [
-    ["Country", "Revenue from Country"],
-    ["Germany", 1234799],
-    ["United States", 2355664],
-    ["Brazil", 4507000],
-    ["Canada", 1200000],
-    ["France", 6480500],
-    ["RU", 7800045],
-  ];
-  const investments1 = useMemo(() => {
-    if (dimensions.isMobile) {
-      return [
-        ...investmentCardList,
-        {
-          label: "SPKY",
-          fullLabel: "Spooky, Inc",
-          tradingAt: 666.66,
-          percentChange: -0.1,
-          state: InvestmentElementStates.Decrease,
-          logo: <Icon icon="Skull" fontSize={60} />,
-        }
-      ]
-    }
-    return investmentCardList;
-  }, [
-    dimensions
-  ]);
-
-  const investments2 = useMemo(() => {
-    if (dimensions.isMobile) {
-      return [
-        ...investmentCard2List,
-        {
-          label: "WYNE",
-          fullLabel: "Wayne Corp",
-          tradingAt: 345.67,
-          percentChange: 0.01,
-          state: InvestmentElementStates.None,
-          logo: <Icon icon="Bat" fontSize={60} />,
-        }
-      ]
-    }
-    return investmentCard2List;
-  }, [
-    dimensions
-  ]);
   return (
     <>
       <h1 className="text-headline">Dashboard</h1>
       <div className="flexFull threeColumns">
-        {investments1.map((item) => {
-          return <InvestmentCardElement key={`investment-card-${item.label}`} {...item} />;
-        })}
+        {investmentCardList.map((item) => <InvestmentCardElement key={`investment-card-${item.label}`} {...item} />)}
       </div>
       <div className="cardContainer flexFull">
         <div className={"card Down chart"}>
           <h3>Overtime Comparison</h3>
-          <Chart
-            className="chart"
-            chartType="BarChart"
-            loader={<div>Overtime Comparison</div>}
-            data={barChart1Data}
-            width={"100%"}
-            height={"240px"}
-            options={{
-              title: "Overtime Investment Comparison",
-              chartArea: { width: "50%" },
-              isStacked: true,
-              hAxis: {
-                title: "Investment Total",
-                minValue: 0,
-              },
-              vAxis: {
-                title: "Week of",
-              },
-              colors: chartColors,
-            }}
-            // For tests
-            rootProps={{ "data-testid": "3" }}
-          />
+          <BarChart2 />
         </div>
         <div className="card Left chart">
           <h3>Investment Comparison</h3>
-          <Chart
-            className="chart"
-            chartType="LineChart"
-            loader={<div>Loading Chart</div>}
-            data={lineChartData}
-            width={"100%"}
-            height={"240px"}
-            options={{
-              hAxis: {
-                title: "Time",
-              },
-              vAxis: {
-                title: "Popularity",
-              },
-              series: {
-                1: { curveType: "function" },
-              },
-              colors: chartColors,
-            }}
-            rootProps={{ "data-testid": "2" }}
-          />
+          <LineChart />
         </div>
       </div>
       <div className="cardContainer ">
         <div className="card Left chart">
           <h3>Company Performance</h3>
-          <Chart
-            className="chart"
-            chartType="Bar"
-            width={"100%"}
-            height={"240px"}
-            data={barChartData}
-            options={{
-              colors: chartColors,
-              chart: {
-                title: "Facebook Performance",
-                subtitle: "Sales, Expenses, and Profit: 2014-2017",
-              },
-            }}
-          />
+          <BarChart />
         </div>
       </div>
       <div className="flexFull threeColumns">
-        {investments2.map((item) => {
-          return <InvestmentCardElement key={`investment-card-two-${item.label}`} {...item} />;
-        })}
+        {investmentCard2List.map((item) => <InvestmentCardElement key={`investment-card-two-${item.label}`} {...item} />)}
       </div>
       <div className="cardContainer flexFull">
         <div className={"card Down chart"}>
           <h3>Portfolio Distribution</h3>
-          <Chart
-            chartType="PieChart"
-            data={pieChartData}
-            options={{
-              colors: chartColors,
-              title: "Percent Invested per Stock",
-              legend: "none",
-              pieSliceText: "label",
-              slices: {
-                4: { offset: 0.2 },
-                2: { offset: 0.4 },
-              },
-            }}
-            width={"100%"}
-            height={"240px"}
-          />
+          <PieChart />
         </div>
         <div className="card Left chart">
           <h3>Monthly Stock Performance</h3>
-          <Chart
-            chartType="ComboChart"
-            width="100%"
-            height="240px"
-            data={comboChartData}
-            options={{
-              colors: chartColors,
-              title: "Monthly Stock Performance with Average",
-              vAxis: { title: "Cups" },
-              hAxis: { title: "Month" },
-              seriesType: "bars",
-              series: { 5: { type: "line" } },
-            }}
-          />
+          <ComboChart />
         </div>
       </div>
       <div className="cardContainer ">
         <div className="card Left chart">
           <h3>Global Company Performance</h3>
-          <Chart
-            options={{
-              colors: chartColors,
-            }}
-            chartEvents={[
-              {
-                eventName: "select",
-                callback: ({ chartWrapper }) => {
-                  const chart = chartWrapper.getChart();
-                  const selection = chart.getSelection();
-                  if (selection.length === 0) return;
-                  const region = geoChartData[selection[0].row + 1];
-                  console.log("Selected : " + region);
-                },
-              },
-            ]}
-            chartType="GeoChart"
-            width="100%"
-            height="240px"
-            data={geoChartData}
-          />
+          <GeoChart />
         </div>
       </div>
       <div style={{ padding: dimensions.isMobile ? 24 : 8 }} />
-      {/*<TutorialControl />*/}
     </>
   );
 };

@@ -25,8 +25,8 @@ export interface iPageLayout {
 }
 export interface PageLayoutProps {
     pageLayout: iPageLayout;
-    formData: any;
-    handleFormData: any;
+    formData?: any;
+    handleFormData?: any;
     errorFields?: any;
     noPermissionFields?: any;
     disabledFields?: any;
@@ -81,7 +81,7 @@ export const mapInitialFormData = (formLayout: iPageLayout, formData: any) => ch
 
 const PageLayout = ({
     pageLayout, // Required.
-    formData, // Required. A populated object using the mapInitialFormData function, should be passed in already mapped with the formLayout and any initial Data. This fixes the uncontrolled-controlled component bug for react.
+    formData = {}, // Required. A populated object using the mapInitialFormData function, should be passed in already mapped with the formLayout and any initial Data. This fixes the uncontrolled-controlled component bug for react.
     handleFormData, // Required.
     handleSubmit,
     noPermissionFields,
@@ -290,18 +290,17 @@ const PageLayout = ({
             </>
         );
     }, [
-        disabledFields,
-        errorFields,
         formData,
         pageLayout,
         handleChangeReducer,
-        noPermissionFields,
         animate,
         handleCancel,
         handleSubmit,
         undoState,
         hasChanges,
-        redoState
+        redoState,
+        innerHandleSubmit,
+        switchInputProps
     ]);
 
     // A memoized Input element that maps all inputs from formLayout.
@@ -320,7 +319,7 @@ const PageLayout = ({
     const containerClasses = useMemo(() => `page-layout ${pageLayout.className}`, [pageLayout.className]);
     const contentClasses = useMemo(() => `page-layout-input-container ${pageLayout.layoutClassName ?? 'flexColumn'}`, [pageLayout.layoutClassName]);
     // This is extra redundancy. You should have your own loading before this component is even loaded.
-    if (!pageLayout || !formData) return <CircularProgress />;
+    if (!pageLayout) return <CircularProgress />;
 
     const key = `form-layout-${pageLayout.id}`; // Use id because it is required.
     // This is basically a flex direction column form to start. You must define how the inputs and other inputs are layed out below the header. Using View/Section Elements on SwitchInput.jsx

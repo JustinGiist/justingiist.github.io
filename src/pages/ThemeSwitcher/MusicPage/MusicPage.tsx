@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PageLayout, { iPageLayout } from "../../../components/PageLayout/PageLayout";
 import { InputTypes } from "../../../components/PageLayout/SwitchInput";
-// import './MusicPage.scss';
+import './MusicPage.scss';
 
 const pageLayout: iPageLayout = {
     id: 'music-page',

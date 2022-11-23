@@ -1,0 +1,61 @@
+.list-component {
+
+}
+.note-component {
+    display: flex;
+    gap: 4px;
+    flex-wrap: nowrap;
+    padding: 8px 12px;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-light);
+    border-radius: var(--round-medium);
+    background: var(--background-teritary);
+    &:hover {
+        filter: brightness(104%);
+    }
+    .left, .right {
+        display: flex;
+        flex-wrap: nowrap;
+        flex: 1 2;
+        gap: 4px;
+        flex: 2;
+        svg {
+            fill: var(--text-sub-headline);
+        }
+    }
+    .right {
+        width: fit-content;
+        justify-content: flex-end;
+        flex: 1;
+        gap: 8px;
+        svg {
+            fill: var(--background-secondary);
+        }
+    }
+    .note-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        height: fit-content;
+        padding: 8px;
+        border-radius: var(--round-medium);
+        border: none;
+        outline: none;
+        background: transparent;
+        transition: all 0.267s ease;
+        &:hover {
+            background: var(--background-primary);
+        }
+    }
+    .note-checkbox {
+        width: 24px;
+        height: 24px;
+        background: var(--background-primary);
+        border-radius: var(--round-medium);
+        &.selected {
+            background: var(--selected-primary);
+        }
+    }
+}
