@@ -1,8 +1,14 @@
 .mainContent.BlackRed {
     padding: 16px;
+    
     background: var(--background-secondary);
     .card {
         background: var(--background-primary);
         height: 100%;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .mainContent.BlackRed {
+        padding-bottom: 56px;
     }
 }

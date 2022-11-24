@@ -22,3 +22,11 @@
         animation-delay: 0.267s;
     }
 }
+@media only screen and (max-width: 800px) {
+    .modal-container {
+        .modal-content {
+            min-width: 90%;
+            min-height: 240px;
+        }
+    }
+}

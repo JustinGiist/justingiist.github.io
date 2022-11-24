@@ -64,7 +64,9 @@ const chartColors = [
     ["RU", 7800045],
   ];
 
-export const GeoChart = () => (
+export const GeoChart = ({
+    isMobile
+}: ({ isMobile: boolean })) => (
     <Chart
         options={{
             colors: chartColors,
@@ -83,7 +85,7 @@ export const GeoChart = () => (
         ]}
         chartType="GeoChart"
         width="100%"
-        height="240px"
+        height={isMobile ? "280px" : "600px"}
         data={geoChartData}
     />
 );
@@ -121,12 +123,14 @@ export const PieChart = () => (
         height={"240px"}
     />
 );
-export const BarChart = () => (
+export const BarChart = ({
+    isMobile
+}: ({ isMobile: boolean })) => (
     <Chart
         className="chart"
         chartType="Bar"
         width={"100%"}
-        height={"240px"}
+        height={isMobile ? "280px" : "400px"}
         data={barChartData}
         options={{
             colors: chartColors,

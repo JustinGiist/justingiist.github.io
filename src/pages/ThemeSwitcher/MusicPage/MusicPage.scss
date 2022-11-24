@@ -2,3 +2,8 @@
     padding: 16px;
     background-color: var(--background-secondary);
 }
+@media only screen and (max-width: 800px) {
+    .mainContent.Music {
+        padding-bottom: 56px;
+    }
+}

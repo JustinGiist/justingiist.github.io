@@ -181,7 +181,7 @@ const EnterpriseTheme = () => {
       <div className="cardContainer ">
         <div className="card Left chart">
           <h3>Company Performance</h3>
-          <BarChart />
+          <BarChart isMobile={dimensions.isMobile} />
         </div>
       </div>
       <div className="flexFull threeColumns">
@@ -200,7 +200,7 @@ const EnterpriseTheme = () => {
       <div className="cardContainer ">
         <div className="card Left chart">
           <h3>Global Company Performance</h3>
-          <GeoChart />
+          <GeoChart isMobile={dimensions.isMobile} />
         </div>
       </div>
       <div style={{ padding: dimensions.isMobile ? 24 : 8 }} />
