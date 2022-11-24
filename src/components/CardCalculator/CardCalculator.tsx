@@ -48,8 +48,12 @@ const formInputs = (cardData: any) => Object.keys(initialCardValues).map((key: s
 
 const cardPageLayout = (cardData: any) => ({
     id: 'card-calculator',
-    label: 'Card Calculator',
-    className: 'background-transparent',
+    labelProps: {
+        label: 'Card Calculator',
+    },
+    containerProps: {
+        className: 'background-transparent',
+    },
     inputs: formInputs(cardData),
     layoutClassName: 'flexFull'
 });

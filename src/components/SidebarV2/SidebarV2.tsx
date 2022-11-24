@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import './SidebarV2.scss';
 import Icon from '../Icon/Icon';
 import { useNavigate } from 'react-router-dom';
@@ -21,7 +21,7 @@ const SidebarV2 = ({
 }: SidebarV2Props) => {
     const dimensions = useWindowDimensions();
     const navigate = useNavigate();
-    const [selectedSideBar, setSelectedSidebar] = useState('Resume');
+    const selectedSideBar = window.location.href.split('#/')[1];
     const routeArray = Array.from( routes ).map(([key, value]) => key).filter(key => {
         if (dimensions.isMobile) {
             return key !== 'Fragments' && key !== 'Editor';
@@ -29,18 +29,18 @@ const SidebarV2 = ({
         
         return key !== 'Editor'; //Removing the editor for now
     });
-    useEffect(() => {
-        const sameAsUrl = window.location.href.toLocaleLowerCase().indexOf(selectedSideBar.toLocaleLowerCase()) !== -1;
+    const innerSetSidebar = useCallback(async (newSidebarOption) => {
+        const sameAsUrl = selectedSideBar.indexOf(newSidebarOption.toLocaleLowerCase()) !== -1;
         if (!sameAsUrl) {
             setIsMobileOpen(false);
             window.scrollTo(0,0);
-            navigate(`/${selectedSideBar}`);
+            navigate(`/${newSidebarOption}`);
         }
     }, [
-        selectedSideBar,
         navigate,
+        selectedSideBar,
         setIsMobileOpen
-    ])
+    ]);
     return (
         <div
             className={`sidebar-v2 ${dimensions.isMobile ? 'mobile' : ''} ${isMobileOpen ? 'mobileOpen' : ''} ${isCollapsed ? 'collapse' : ''}`}
@@ -49,7 +49,7 @@ const SidebarV2 = ({
             {routeArray && routeArray.length > 0 && routeArray.map((option: string) => (
                 <div 
                 key={`side-bar-button-${option}`}
-                onClick={() => setSelectedSidebar(option)} 
+                onClick={() => innerSetSidebar(option)} 
                 className={"tprc-sidebar-button flex noWrap" + (option === selectedSideBar ? ' selected' : '')}>
                         <Icon icon={option} fontSize={20} data-tip={isCollapsed ? null : option} />
                     <h4>{option}</h4>

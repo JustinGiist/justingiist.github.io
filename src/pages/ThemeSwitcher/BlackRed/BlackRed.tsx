@@ -23,9 +23,13 @@ const tempOptions = [
 ];
 const pageLayout = (openTestModal: () => void) => ({
     id: 'test-0',
-    label: 'Page Label',
-    subLabel: 'This is a page description that will describe what to do on this page, or what this page is about',
-    layoutClassName: 'flex-block',
+    labelProps: {
+      label: 'Page Label',
+      subLabel: 'This is a page description that will describe what to do on this page, or what this page is about',
+    },
+    contentProps: {
+      layoutClassName: 'flex-block',
+    },
     animationClass: 'Down',
     inputs: [
       {

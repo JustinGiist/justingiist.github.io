@@ -5,9 +5,13 @@ import './MusicPage.scss';
 
 const pageLayout: iPageLayout = {
     id: 'music-page',
-    label: 'Music Page',
-    subLabel: 'This page shows off the playlists that I\'ve made!',
-    layoutClassName: 'flex-block',
+    labelProps: {
+        label: 'Music Page',
+        subLabel: 'This page shows off the playlists that I\'ve made!',
+    },
+    contentProps: {
+        layoutClassName: 'flex-block',
+    },
     animationClass: 'Down',
     inputs: [
       {

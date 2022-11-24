@@ -75,9 +75,13 @@ export default ContactPage;
 
 const pageLayout: () => iPageLayout = () => ({
   id: 'contact',
-  label: 'Contact',
-  className: 'background-transparent',
-  layoutStyle: { gap: 24 },
+  labelProps: {
+    label: 'Contact',
+  },
+  contentProps: {
+    className: 'background-transparent',
+    style: { gap: 24 },
+  },
   inputs: [
     {
       id: 'email',

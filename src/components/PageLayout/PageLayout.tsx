@@ -5,16 +5,21 @@ import Icon from "../Icon/Icon";
 import StopNavigation from "./StopNavigation";
 import SwitchInput, { InputPropsButton, InputPropsLink, InputTypes } from "./SwitchInput";
 import UndoRedoComponent from "./UndoRedoComponent";
-
-export interface iPageLayout {
-    id: string;
+export interface iCommonProps {
+    className?: string;
+    layoutClassName?: string;
+    style?: any;
+}
+export interface iLabelProps extends iCommonProps {
     label?: string;
     subLabel?: string;
     icon?: string;
-    className?: string;
-    layoutClassName?: string;
-    layoutStyle?: any;
-    style?: any;
+}
+export interface iPageLayout {
+    id: string;
+    labelProps?: iLabelProps;
+    containerProps?: iCommonProps;
+    contentProps?: iCommonProps;
     animationClass?: string;
     inputs: any[];
     actions?: InputPropsButton[] | InputPropsLink[];
@@ -191,7 +196,8 @@ const PageLayout = ({
         noPermissionFields,
         handleValidation,
         animate,
-        undoState
+        undoState,
+        animationClass: pageLayout.animationClass
     }), [
         handleChangeReducer,
         formData,
@@ -201,27 +207,27 @@ const PageLayout = ({
         noPermissionFields,
         handleValidation,
         animate,
-        undoState
+        undoState,
+        pageLayout.animationClass
     ]);
 
     const header = useMemo(() => {
         if (!pageLayout) return null;
         if (pageLayout.disableHeaderFeature) return null;
         // If all header properties are 'undefined' and disableHeaderFeature is not set, then it doesn't render either.
-        if (pageLayout.disableCancelFeature && pageLayout.disableSaveFeature && !pageLayout.enableUndoRedoFeature && !pageLayout.label && !pageLayout.subLabel && !pageLayout.actions) return null;
-
+        if (pageLayout.disableCancelFeature && pageLayout.disableSaveFeature && !pageLayout.enableUndoRedoFeature && !pageLayout.labelProps && !pageLayout.actions) return null;
         // A Iconized title component that follows our typical styling and partner-coloring. Icon cannot be shown without label.
-        const labelElement = !pageLayout.label ? null : (
+        const labelElement = pageLayout.labelProps?.label && (
             <h2 className="text-headline flex noWrap">
-                {pageLayout.icon && <i className={`fa fa-${pageLayout.icon} iconBoxed`} />}
-                {pageLayout.label}
+                {pageLayout.labelProps?.icon && <i className={`fa fa-${pageLayout.labelProps?.icon} iconBoxed`} />}
+                {pageLayout.labelProps?.label}
             </h2>
         );
 
         // A small section for body text, that can describe a page. Following text-body coloring
-        const subLabelElement = !pageLayout.subLabel ? null : (
+        const subLabelElement = pageLayout.labelProps?.subLabel && (
             <div className="text-body no-select">
-                {pageLayout.subLabel}
+                {pageLayout.labelProps?.subLabel}
             </div>
         );
 
@@ -232,9 +238,9 @@ const PageLayout = ({
             label: 'Actions',
             inputs: pageLayout.actions
         };
-
-        const headerElement = (
-            <div className={`page-layout-header flexColumn ${animate ? 'animate' : 'noAnimate'}`}>
+        const classes = `${pageLayout.labelProps?.layoutClassName ?? 'flexColumn'} ${animate ? 'animate' : 'noAnimate'} ${pageLayout.labelProps?.className} ${pageLayout.animationClass}`;
+        return (
+            <div className={`page-layout-header ${classes}`} style={pageLayout.labelProps?.style}>
                 <div className="flexSB">
                     {labelElement}
                     <div className="flex noWrap">
@@ -269,25 +275,22 @@ const PageLayout = ({
                         )}
                         {pageLayout.actions && pageLayout.actions.length > 1 ? (
                             <SwitchInput
+                                index={0}
                                 input={actionsButtonOptions}
                                 {...switchInputProps}
                             />
-                        ) : pageLayout.actions && pageLayout.actions.map((input: any) => (
+                        ) : pageLayout.actions && pageLayout.actions.map((input: any, i: number) => (
                             <SwitchInput
+                                key={input.id}
+                                index={i}
                                 input={input}
                                 {...switchInputProps}
                             />
                         ))}
                     </div>
                 </div>
-            </div>
-        );
-
-        return (
-            <>
-                {headerElement}
                 {subLabelElement}
-            </>
+            </div>
         );
     }, [
         formData,
@@ -315,9 +318,11 @@ const PageLayout = ({
         pageLayout,
         switchInputProps
     ]);
-
-    const containerClasses = useMemo(() => `page-layout ${pageLayout.className}`, [pageLayout.className]);
-    const contentClasses = useMemo(() => `page-layout-input-container ${pageLayout.layoutClassName ?? 'flexColumn'}`, [pageLayout.layoutClassName]);
+    const containerClasses = useMemo(() => `page-layout ${pageLayout.containerProps?.className}`, [pageLayout.containerProps?.className]);
+    const contentClasses = useMemo(() => `page-layout-input-container ${pageLayout.contentProps?.className} ${pageLayout.contentProps?.layoutClassName ?? 'flexColumn'}`, [
+        pageLayout.contentProps?.className,
+        pageLayout.contentProps?.layoutClassName
+    ]);
     // This is extra redundancy. You should have your own loading before this component is even loaded.
     if (!pageLayout) return <CircularProgress />;
 
@@ -326,7 +331,7 @@ const PageLayout = ({
     return (
         <form id={pageLayout.id} key={key} className={containerClasses}>
             {header}
-            <div className={contentClasses} style={pageLayout.layoutStyle}>
+            <div className={contentClasses} style={pageLayout.contentProps?.style}>
                 {mappedInputs}
             </div>
         </form>

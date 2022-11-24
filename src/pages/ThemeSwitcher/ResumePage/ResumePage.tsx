@@ -186,7 +186,7 @@ const ResumePage = () => {
             <button
               className={"button secondary"}
               onClick={() => {
-                navigate("../" + GlobalThemes.Contact, { replace: true });
+                navigate(`/${GlobalThemes.Contact}`);
               }}
             >
               Contact

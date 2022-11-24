@@ -122,7 +122,7 @@ export interface InputPropsLink extends InputPropsCommon {
 }
 
 export interface SwitchInputProps {
-    index?: number;
+    index: number;
     input: any;
     formData: any;
     handleChangeReducer: any;
@@ -133,6 +133,7 @@ export interface SwitchInputProps {
     validationSchema?: any;
     undoState?: any;
     handleValidation?: () => void;
+    animationClass?: string;
 }
 
 const SwitchInput = ({
@@ -146,7 +147,8 @@ const SwitchInput = ({
     disabledFields,
     animate,
     undoState,
-    handleValidation
+    handleValidation,
+    animationClass
 }: SwitchInputProps) => {
     // Throw on required fields. Id not required on view and section inputTypes.
     if (!input.id && input.type !== InputTypes.view && input.type !== InputTypes.section) throw new Error(`Missing id for SwitchInput input ${input.field} - ${input.label}. Inputs that are NOT inputTypes.view or inputTypes.section, must have an ID property`);
@@ -462,20 +464,24 @@ const SwitchInput = ({
         errorMessage
     ]);
     if (noPermission) return null;
-
+    const animatedStyle = {
+        animationDelay: `${index * 0.1}s`,
+        ...input.style
+    };
     switch (input.type) {
         case InputTypes.view:
         case InputTypes.card:
         case InputTypes.element:
             return (
-                <div className={`flexColumn ${InputTypes[input.type].toString()}`} style={input.style}>
+                <div className={`flexColumn ${InputTypes[input.type].toString()} ${animationClass}`} style={animatedStyle}>
                     {label}
                     {input.subLabel && <div className="text-body">{input.subLabel}</div>}
                     <div className={input.className ?? 'flexColumn'}>
                         {input.type === InputTypes.element && input.element}
-                        {input.type !== InputTypes.element && input.inputs && input.inputs.map((child: any) => (
+                        {input.type !== InputTypes.element && input.inputs && input.inputs.map((child: any, i: number) => (
                             <SwitchInput
                                 key={`child-switch-input-${child.id}`}
+                                index={i}
                                 input={child}
                                 { ...switchInputProps }
                             />
