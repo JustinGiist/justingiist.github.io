@@ -11,7 +11,7 @@ export interface iCommonProps {
     style?: any;
 }
 export interface iLabelProps extends iCommonProps {
-    label?: string;
+    label?: string | Element | Element[] | JSX.Element[] | JSX.Element;
     subLabel?: string;
     icon?: string;
 }
@@ -223,11 +223,12 @@ const PageLayout = ({
             !pageLayout.actions
         ) return null;
         // A Iconized title component that follows our typical styling and partner-coloring. Icon cannot be shown without label.
+        const labelClasses = `flex noWrap ${pageLayout.labelProps?.className}`;
         const labelElement = pageLayout.labelProps?.label && (
-            <h2 className="text-headline flex noWrap">
+            <div className={labelClasses}>
                 {pageLayout.labelProps?.icon && <i className={`fa fa-${pageLayout.labelProps?.icon} iconBoxed`} />}
                 {pageLayout.labelProps?.label}
-            </h2>
+            </div>
         );
 
         // A small section for body text, that can describe a page. Following text-body coloring
@@ -244,56 +245,59 @@ const PageLayout = ({
             label: 'Actions',
             inputs: pageLayout.actions
         };
+        const turnActionButtonsAreaOff = !pageLayout.enableUndoRedoFeature && !handleCancel && !handleSubmit && !pageLayout.actions;
         const classes = `${pageLayout.labelProps?.layoutClassName ?? 'flexColumn'} ${animate ? 'animate' : 'noAnimate'} ${pageLayout.labelProps?.className} ${pageLayout.animationClass}`;
         return (
             <div className={`page-layout-header ${classes}`} style={pageLayout.labelProps?.style}>
                 <div className="flexSB">
                     {labelElement}
-                    <div className="flex noWrap">
-                        {undoState && pageLayout.enableUndoRedoFeature && (
-                            <UndoRedoComponent
-                                undoState={undoState}
-                                formData={formData}
-                                redoState={redoState}
-                                hasChanges={hasChanges}
-                                handleChangeReducer={handleChangeReducer}
-                            />
-                        )}
-                        {handleCancel && !pageLayout.disableCancelFeature && (
-                            <button
-                                className="cancel icon-button"
-                                data-tip="Close and revert changes"
-                                onClick={handleCancel}
-                            >
-                                <Icon icon="Cancel" />
-                            </button>
-                        )}
-                        {handleSubmit && !pageLayout.disableSaveFeature && (
-                            <button
-                                className="submit tprc-icon-button"
-                                onClick={innerHandleSubmit}
-                                data-tip={!hasChanges ? 'Nothing has changed' : 'Save new changes'}
-                                disabled={!hasChanges}
-                                type="submit"
-                            >
-                                <Icon icon="Save" />
-                            </button>
-                        )}
-                        {pageLayout.actions && pageLayout.actions.length > 1 ? (
-                            <SwitchInput
-                                index={0}
-                                input={actionsButtonOptions}
-                                {...switchInputProps}
-                            />
-                        ) : pageLayout.actions && pageLayout.actions.map((input: any, i: number) => (
-                            <SwitchInput
-                                key={input.id}
-                                index={i}
-                                input={input}
-                                {...switchInputProps}
-                            />
-                        ))}
-                    </div>
+                    {!turnActionButtonsAreaOff && (
+                        <div className="flex noWrap">
+                            {undoState && pageLayout.enableUndoRedoFeature && (
+                                <UndoRedoComponent
+                                    undoState={undoState}
+                                    formData={formData}
+                                    redoState={redoState}
+                                    hasChanges={hasChanges}
+                                    handleChangeReducer={handleChangeReducer}
+                                />
+                            )}
+                            {handleCancel && !pageLayout.disableCancelFeature && (
+                                <button
+                                    className="cancel icon-button"
+                                    data-tip="Close and revert changes"
+                                    onClick={handleCancel}
+                                >
+                                    <Icon icon="Cancel" />
+                                </button>
+                            )}
+                            {handleSubmit && !pageLayout.disableSaveFeature && (
+                                <button
+                                    className="submit tprc-icon-button"
+                                    onClick={innerHandleSubmit}
+                                    data-tip={!hasChanges ? 'Nothing has changed' : 'Save new changes'}
+                                    disabled={!hasChanges}
+                                    type="submit"
+                                >
+                                    <Icon icon="Save" />
+                                </button>
+                            )}
+                            {pageLayout.actions && pageLayout.actions.length > 1 ? (
+                                <SwitchInput
+                                    index={0}
+                                    input={actionsButtonOptions}
+                                    {...switchInputProps}
+                                />
+                            ) : pageLayout.actions && pageLayout.actions.map((input: any, i: number) => (
+                                <SwitchInput
+                                    key={input.id}
+                                    index={i}
+                                    input={input}
+                                    {...switchInputProps}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
                 {subLabelElement}
             </div>

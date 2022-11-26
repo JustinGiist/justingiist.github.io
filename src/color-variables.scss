@@ -807,3 +807,13 @@
         --misc-9: #32676e;
     }
 }
+@media only screen and (max-width: 800px) {
+    :root {
+        --font-huge: 32px;
+        --font-xlarge: 28px;
+        --font-large: 24px;
+        --font-medium: 18px;
+        --font-small: 14px;
+        --font-xsmall: 11px;
+    }
+}

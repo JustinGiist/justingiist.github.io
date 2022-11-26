@@ -1,10 +1,13 @@
 #yeti-page {
     height: 100%;
-    overflow: hidden;
-    #header {
-        transform: translateY(8px);
+    .page-layout-header {
+        transform: translateY(24px);
+        justify-content: flex-end;
         svg {
-            flex: 0.4;
+            flex: 0.3;
+            align-self: flex-end;
+            width: min-content;
+            height: min-content;
         }
         .flexColumn {
             flex: 1;
@@ -29,6 +32,13 @@
         rect {
             fill: #4f463e;
         }
+    }
+    #yeti-page-layout {
+        padding-bottom: 56px;
+
+    }
+    #yeti-main-content {
+        gap: 16px;
     }
     .page-layout {
         background: var(--background-secondary);
@@ -59,7 +69,7 @@
           transform: translate3d(var(--left-ini), 0, 0);
         }
         100% {
-          transform: translate3d(var(--left-end), 90vh, 0);
+          transform: translate3d(var(--left-end), 100vh, 0);
         }
       }
       
@@ -75,3 +85,11 @@
         }
       }
 }
+@media only screen and (max-width: 800px) {
+    #yeti-page {
+      .page-layout {
+        padding: 12px;
+        width: 100%;
+      }
+    }
+  }
