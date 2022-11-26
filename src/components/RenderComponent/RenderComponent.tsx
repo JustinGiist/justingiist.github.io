@@ -20,6 +20,7 @@ import BlackRed from "../../pages/ThemeSwitcher/BlackRed/BlackRed";
 import ReactTooltip from "react-tooltip";
 import MusicPage from "../../pages/ThemeSwitcher/MusicPage/MusicPage";
 import NotePage from "../../pages/ThemeSwitcher/NotePage/NotePage";
+import YetiPage from "../YetiPage/YetiPage";
 const RenderComponent = ({ url }: { url: GlobalThemes }) => {
   const { theme, setThemeContext } =
     useContext(ThemeManagerContext);
@@ -38,7 +39,8 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
     [GlobalThemes.BlackRed, <BlackRed />],
     [GlobalThemes.Music, <MusicPage />],
     [GlobalThemes.Fragments, <FragmentsPage />],
-    [GlobalThemes.List, <NotePage />]
+    [GlobalThemes.List, <NotePage />],
+    [GlobalThemes.Yeti, <YetiPage />]
   ]), []);
   const newPage = useMemo(() => routes.get(url), [routes, url]);
   const checkBackground = () => {

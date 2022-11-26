@@ -12,6 +12,18 @@ body {
   line-height: $size;
   color: $color;
 }
+.background-primary {
+  background: var(--background-primary) !important;
+}
+.background-secondary {
+  background: var(--background-secondary) !important;
+}
+.background-teritary {
+  background: var(--background-teritary) !important;
+}
+.background-card {
+  background: var(--background-card) !important;
+}
 h1, .headline.one {
   @include fontMixin(var(--font-huge), 500, var(--text-headline));
 }

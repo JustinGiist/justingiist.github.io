@@ -107,6 +107,10 @@ const App = () => {
               element={<RenderComponent url={GlobalThemes.List} />}
             />
             <Route
+              path={"/" + GlobalThemes.Yeti}
+              element={<RenderComponent url={GlobalThemes.Yeti} />}
+            />
+            <Route
               exact
               path="/"
               element={<RenderComponent url={GlobalThemes.Resume} />}

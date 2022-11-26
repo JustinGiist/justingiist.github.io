@@ -24,7 +24,7 @@ const SidebarV2 = ({
     const selectedSideBar = window.location.href.split('#/')[1];
     const routeArray = Array.from( routes ).map(([key, value]) => key).filter(key => {
         if (dimensions.isMobile) {
-            return key !== 'Fragments' && key !== 'Editor';
+            return key !== 'Fragments' && key !== 'Editor' && key !== 'Yeti';
         }
         
         return key !== 'Editor'; //Removing the editor for now

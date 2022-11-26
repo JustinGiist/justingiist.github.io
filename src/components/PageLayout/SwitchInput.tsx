@@ -473,10 +473,10 @@ const SwitchInput = ({
         case InputTypes.card:
         case InputTypes.element:
             return (
-                <div className={`flexColumn ${InputTypes[input.type].toString()} ${animationClass}`} style={animatedStyle}>
+                <div id={input.id} className={`flexColumn ${input.className} ${InputTypes[input.type].toString()} ${animationClass}`} style={animatedStyle}>
                     {label}
                     {input.subLabel && <div className="text-body">{input.subLabel}</div>}
-                    <div className={input.className ?? 'flexColumn'}>
+                    <div className={input.layoutClassName ?? 'flexColumn'}>
                         {input.type === InputTypes.element && input.element}
                         {input.type !== InputTypes.element && input.inputs && input.inputs.map((child: any, i: number) => (
                             <SwitchInput

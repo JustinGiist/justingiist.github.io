@@ -90,7 +90,8 @@ import {
   StarOutline,
   ContentSave,
   UndoVariant,
-  RedoVariant
+  RedoVariant,
+  Snowflake
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -188,7 +189,8 @@ const GetIcon: any = {
   Cancel: Close,
   Save: ContentSave,
   Undo: UndoVariant,
-  Redo: RedoVariant
+  Redo: RedoVariant,
+  Yeti: Snowflake
 };
 const Icon = ({
   icon,

@@ -1,0 +1,77 @@
+#yeti-page {
+    height: 100%;
+    overflow: hidden;
+    #header {
+        transform: translateY(8px);
+        svg {
+            flex: 0.4;
+        }
+        .flexColumn {
+            flex: 1;
+        }
+    }
+    #yeti-trees {
+        path:nth-child(6) {
+            fill: var(--misc-0);
+        }
+        path:nth-child(7) {
+            fill: var(--misc-1);
+        }
+        path:nth-child(8) {
+            fill: var(--misc-2);
+        }
+        path:nth-child(9) {
+            fill: var(--misc-3);
+        }
+        path:nth-child(10) {
+            fill: var(--misc-4);
+        }
+        rect {
+            fill: #4f463e;
+        }
+    }
+    .page-layout {
+        background: var(--background-secondary);
+        min-height: 100%;
+        flex-grow: 1;
+        padding: 32px 56px;
+        .page-layout-input-container {
+            height: 100%;
+        }
+        .card {
+            flex-grow: 1;
+            &.flat {
+                border: 2px solid var(--input-border);
+            }
+        }
+    }
+    .snowflake {
+        --size: 1vw;
+        width: var(--size);
+        height: var(--size);
+        border-radius: 50%;
+        position: absolute;
+        top: -5vh;
+      }
+      
+      @keyframes snowfall {
+        0% {
+          transform: translate3d(var(--left-ini), 0, 0);
+        }
+        100% {
+          transform: translate3d(var(--left-end), 90vh, 0);
+        }
+      }
+      
+      @for $i from 1 through 50 {
+        .snowflake:nth-child(#{$i}) {
+          --size: #{random(5) * 0.2}vw;
+          --left-ini: #{random(20) - 10}vw;
+          --left-end: #{random(20) - 10}vw;
+          left: #{random(100)}vw;
+          animation: snowfall #{5 + random(10)}s linear infinite;
+          animation-delay: -#{random(10)}s;
+          background: var(--misc-#{$i % 8});
+        }
+      }
+}

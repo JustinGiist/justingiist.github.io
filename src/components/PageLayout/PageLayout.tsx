@@ -215,7 +215,13 @@ const PageLayout = ({
         if (!pageLayout) return null;
         if (pageLayout.disableHeaderFeature) return null;
         // If all header properties are 'undefined' and disableHeaderFeature is not set, then it doesn't render either.
-        if (pageLayout.disableCancelFeature && pageLayout.disableSaveFeature && !pageLayout.enableUndoRedoFeature && !pageLayout.labelProps && !pageLayout.actions) return null;
+        if (
+            (pageLayout.disableCancelFeature || !handleCancel) && 
+            (pageLayout.disableSaveFeature || !handleSubmit) && 
+            !pageLayout.enableUndoRedoFeature && 
+            !pageLayout.labelProps && 
+            !pageLayout.actions
+        ) return null;
         // A Iconized title component that follows our typical styling and partner-coloring. Icon cannot be shown without label.
         const labelElement = pageLayout.labelProps?.label && (
             <h2 className="text-headline flex noWrap">

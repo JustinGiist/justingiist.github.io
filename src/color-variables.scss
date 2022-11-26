@@ -724,4 +724,86 @@
         --misc-8: #edaa2d;
         --misc-9: #dc7cff;
     }
+    .Yeti {
+        // Generic colors
+        --font: "Poppins", sans-serif;
+        --theme-primary: #4cd9d4;
+        --theme-secondary: #fff;
+        --theme-gradient: linear-gradient(-45deg, var(--theme-primary), var(--theme-secondary));
+        --dark: #333;
+        --dark-medium: #666;
+        --dark-light: #999;
+        --light: #fff;
+
+        /* ACTIONS */
+        --action-primary: #fff;
+        --action-secondary: #fff;
+        --action-option: #fff;
+        --action-success: #fff;
+        --action-info: #fff;
+        --action-warning: #fff;
+        --action-error: #fff;
+        --action-cancel: #fff;
+        --action-disabled: #fff;
+
+        /* SELECTED */
+        --selected-primary: #fff;
+        --selected-secondary: #fff;
+        --selected-menu: var(--theme-secondary);
+        --selected-menu-gradient: var(--theme-gradient);
+
+
+        /* SIDEBAR */
+        --sidebar-button: #fff;
+        --sidebar-button-text: #4cd9d4;
+        --sidebar-button-hover: linear-gradient(-90deg, #000000, --theme-secondary);
+        --sidebar-button-hover-text: #fff;
+        --sidebar-button-selected: var(--theme-gradient);
+        --sidebar-button-selected-text: #174544;
+        --sidebar-background: #fff;
+
+        /* TEXT COLORS */
+        --text-headline: #52e2ff;
+        --text-headline-secondary: #417d6a;
+        --text-sub-headline: #61b6c7;
+        --text-body: #008f62;
+        --text-sub-body: #fff;
+        --text-placeholder: #fff;
+        --text-menu: #fff;
+
+        /* INPUT */
+        --input-label: #fff;
+        --input-border: #9ef5ff;
+        --input-placeholder: #fff;
+        --input-text-color: #fff;
+        --input-background: #fff;
+        --input-hover: #fff;
+
+        /* BACKGROUNDS */
+        --background-primary: #edfffe;
+        --background-secondary: #fff;
+        --background-teritary: linear-gradient(90deg, var(--background-secondary), white 100%);
+        --background-card: linear-gradient(180deg, #183c40 40px, var(--background-primary) 44px);
+        --background-modal: #1a001df6;
+        --background-modal-overlay: #00000033;
+        --background-account: var(--theme-gradient);
+        --background-panel: #ffffff;
+
+        /* MISCELLANEOUS */
+        --hover-brightness: 1.2;
+        --shadow-light: #183c4047 0px 2px 8px 0px;
+        --shadow-dark: #183c4047 0px 30px 60px -12px, #183c4061 0px 18px 36px -18px;
+        --shadow-inset: #2c2c2c1c 1px 1px 6px 0px inset, #ffffff1a -1px -1px 6px 1px inset;
+        --hr: #333;
+        --misc-0: #174544;
+        --misc-1: #2e5c5b;
+        --misc-2: #11403f;
+        --misc-3: #2d5054;
+        --misc-4: #183c40;
+        --misc-5: #386a70;
+        --misc-6: #2d5c6e;
+        --misc-7: #385b69;
+        --misc-8: #50707d;
+        --misc-9: #32676e;
+    }
 }
