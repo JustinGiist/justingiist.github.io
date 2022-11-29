@@ -50,12 +50,12 @@ const SidebarV2 = ({
                 <div 
                 key={`side-bar-button-${option}`}
                 onClick={() => innerSetSidebar(option)} 
-                className={"tprc-sidebar-button flex noWrap" + (option === selectedSideBar ? ' selected' : '')}>
+                className={"sidebar-button flex noWrap" + (option === selectedSideBar ? ' selected' : '')}>
                         <Icon icon={option} fontSize={20} data-tip={isCollapsed ? null : option} />
                     <h4>{option}</h4>
                 </div>
             ))}
-            {!dimensions.isMobile && <div className='tprc-sidebar-button pushToBottom' onClick={() => setIsCollapsed(!isCollapsed)}>
+            {!dimensions.isMobile && <div className='sidebar-button pushToBottom' onClick={() => setIsCollapsed(!isCollapsed)}>
                 <Icon icon={isCollapsed ? 'SidebarOpen' : 'SidebarClose'} fontSize={20}/>
             </div>}
         </div>

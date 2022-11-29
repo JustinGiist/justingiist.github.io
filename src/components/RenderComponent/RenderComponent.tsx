@@ -17,7 +17,6 @@ import SidebarV2 from "../SidebarV2/SidebarV2";
 import TopbarV2 from "../TopbarV2/TopbarV2";
 import EditorPage from "../../pages/ThemeSwitcher/EditorPage/EditorPage";
 import BlackRed from "../../pages/ThemeSwitcher/BlackRed/BlackRed";
-import ReactTooltip from "react-tooltip";
 import MusicPage from "../../pages/ThemeSwitcher/MusicPage/MusicPage";
 import NotePage from "../../pages/ThemeSwitcher/NotePage/NotePage";
 import YetiPage from "../YetiPage/YetiPage";
@@ -169,11 +168,6 @@ export const CalculatedScrollComponent = (props: {
       }}
     >
       {props.children}
-      <ReactTooltip
-        effect='solid'
-        delayShow={400}
-        delayUpdate={400}
-      />
     </div>
   );
 };

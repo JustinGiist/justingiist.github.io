@@ -150,6 +150,7 @@
         --background-primary: #fff;
         --background-secondary: #f3f3f3;
         --background-teritary: linear-gradient(0deg, #74e2ff,#d8f6ff 40%);
+        --background-card: linear-gradient(0deg, #74e2ff,#fff 5%);
         --background-modal: #000000f5;
         --background-modal-overlay: #00000033;
         --background-account: var(--theme-gradient);
@@ -621,6 +622,7 @@
         --background-primary: #000000;
         --background-secondary: #0c1c00;
         --background-teritary: linear-gradient(0deg, #74e2ff,#d8f6ff 40%);
+        --background-card: black;
         --background-modal: #000000f5;
         --background-modal-overlay: #00000033;
         --background-account: var(--theme-gradient);
@@ -738,7 +740,7 @@
         /* ACTIONS */
         --action-primary: #fff;
         --action-secondary: #fff;
-        --action-option: #fff;
+        --action-option: #8ff0ff;
         --action-success: #fff;
         --action-info: #fff;
         --action-warning: #fff;
@@ -769,7 +771,7 @@
         --text-body: #008f62;
         --text-sub-body: #fff;
         --text-placeholder: #fff;
-        --text-menu: #fff;
+        --text-menu: #8ff0ff;
 
         /* INPUT */
         --input-label: #fff;

@@ -22,7 +22,7 @@ const VariationComponent = (props: VariationProps) => {
         }
     }
     return (
-        <div className='flex noWrap tprc-editor-variations subHeadlineBold'>
+        <div className='flex noWrap editor-variations subHeadlineBold'>
             <div className='subHeadlineBold textSubHeadline' data-tip={'This controls the ad variations for the editor. Hit the Plus to add a new variation.'}>Variation:</div>
             {variationsList.map(number => (
                 <div 

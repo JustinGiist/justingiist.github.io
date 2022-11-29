@@ -98,13 +98,33 @@ h5, .headline.five {
 .text-input-label {
   @include textMixin(var(--input-label));
 }
+@mixin buttonMixin($backgroundColor, $color) {
+  background: $color;
+  color: $backgroundColor;
+  fill: $backgroundColor;
+  border: 2px solid $backgroundColor;
+  * {
+    color: $backgroundColor;
+    fill: $backgroundColor;
+  }
+  &:hover {
+    background: $backgroundColor;
+    color: $color;
+    fill: $color;
+    * {
+      color: $color;
+      fill: $color;
+    }
+  }
+}
 .button {
-  padding: 4px 24px;
-  min-width: 98px;
+  background: var(--action-option);
+  padding: 2px 12px;
+  min-width: 56px;
+  width: fit-content;
   border-radius: var(--round-small);
-  min-height: 40px;
-  width: auto;
-  max-height: 40px;
+  min-height: 36px;
+  max-height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,7 +136,7 @@ h5, .headline.five {
   color: var(--light);
   transition: all 0.267s ease;
   &:hover {
-    filter: brightness(1.2);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
   }
   &.icon {
     width: fit-content;
@@ -142,27 +162,25 @@ h5, .headline.five {
   border-radius: 100%;
 }
 .button.primary {
-  background: var(--action-primary);
-  color: var(--light);
-  
+  @include buttonMixin(var(--action-primary), white);
 }
 .button.transparent {
   background: transparent;
 }
 .button.secondary {
-  background: var(--action-secondary);
+  @include buttonMixin(var(--action-secondary), white);
 }
 .button.option {
-  background: var(--action-option);
+  @include buttonMixin(var(--action-option), white);
 }
 .button.success {
-  background: var(--action-success);
+  @include buttonMixin(var(--action-success), white);
 }
 .button.info {
-  background: var(--action-info);
+  @include buttonMixin(var(--action-info), white);
 }
 .button.warning {
-  background: var(--action-warning);
+  @include buttonMixin(var(--action-warning), white);
 }
 .background-transparent {
   background: transparent !important;

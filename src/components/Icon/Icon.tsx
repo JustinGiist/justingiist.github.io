@@ -91,7 +91,8 @@ import {
   ContentSave,
   UndoVariant,
   RedoVariant,
-  Snowflake
+  Snowflake,
+  SnowflakeOff
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -190,7 +191,8 @@ const GetIcon: any = {
   Save: ContentSave,
   Undo: UndoVariant,
   Redo: RedoVariant,
-  Yeti: Snowflake
+  Yeti: Snowflake,
+  YetiOff: SnowflakeOff
 };
 const Icon = ({
   icon,

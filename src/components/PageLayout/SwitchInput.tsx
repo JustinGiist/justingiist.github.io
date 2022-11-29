@@ -39,7 +39,7 @@ export interface InputProps {
     valueTo?: (item: any) => any; // A conversion function, that will take the inputted value and convert it to store into formData.
     valueFrom?: (item: any) => any; // A conversion function, that takes the value from formData[input.field] and converts it to be useable in the component.
     valueComparisonFunction?: (item: any) => string | number; // This is for validating objects, gives the validator something to validate against. Must be something that changes.
-    defaultValue: any; // When data gets initially mapped, sets an initial value. Ignored if formData already has data.
+    defaultValue?: any; // When data gets initially mapped, sets an initial value. Ignored if formData already has data.
 }
 
 // InputTypes.view, InputTypes.section
@@ -60,7 +60,7 @@ export interface InputPropsView extends InputProps {
 // InputType.time,
 // InputType.datetime
 export interface InputPropsCommon extends InputProps {
-    field: string; // Required. This is used to track validationModel, errorFields, disabledFields, noPermissionFields and formData.
+    field?: string; // Required. This is used to track validationModel, errorFields, disabledFields, noPermissionFields and formData.
     placeholder?: string;
     tooltip?: string;
     isRequired?: boolean; // Adds Red '*' to the label. You should still validate for required in Joi validationModel.
@@ -70,7 +70,7 @@ export interface InputPropsCommon extends InputProps {
 
 // InputType.bool
 export interface InputPropsBool extends InputProps {
-    field: string; // Required. This is used to track validationModel, errorFields, disabledFields, noPermissionFields and formData.
+    field?: string; // Required. This is used to track validationModel, errorFields, disabledFields, noPermissionFields and formData.
     tooltip?: string;
     groupClassName?: string; // Applied to outer
     className?: string;
@@ -113,12 +113,12 @@ export interface InputPropsMapSelect extends InputPropsCommon {
 // If it does, it creates a buttonDropdown instead.
 // InputType.button
 export interface InputPropsButton extends InputPropsCommon {
-    onClick: (e: any) => void; // This is passed into the input on formLayout creation.
+    onClick?: (e: any) => void; // This is passed into the input on formLayout creation.
     inputs?: (InputPropsButton | InputPropsLink)[]; // For button dropdown
 }
 // InputType.link
 export interface InputPropsLink extends InputPropsCommon {
-    href: string; // Required
+    href?: string; // Required
 }
 
 export interface SwitchInputProps {
@@ -201,10 +201,10 @@ const SwitchInput = ({
         inputTypeValueConversion
     ]);
 
-    const label = useMemo(() => !input.label ? null : (
+    const label = useMemo(() => (
         <div className="switch-input-label flex noWrap text-sub-headline" style={input.labelProps?.style}>
             {input.icon && <Icon icon={input.icon} />}
-            <h3>{input.label}</h3>
+            {input.label && <h3>{input.label}</h3>}
         </div>
     ), [input]);
     
@@ -285,7 +285,14 @@ const SwitchInput = ({
                 );
             case InputTypes.button:
                 return (
-                    <button type="button" className={additionalClasses} onClick={input.onClick}>{input.label}</button>
+                    <button 
+                        type="button" 
+                        className={`button ${input.className} ${additionalClasses}`} 
+                        onClick={input.onClick}
+                        data-tip={memoizedTooltip}
+                    >
+                        {label}
+                    </button>
                 );
             case InputTypes.radio:
                 return (
@@ -327,6 +334,7 @@ const SwitchInput = ({
                     </>
                 );
             case InputTypes.toggleButtonGroup:
+                
                 return (
                     <ToggleButtonGroup
                         value={value}
@@ -334,11 +342,14 @@ const SwitchInput = ({
                         onChange={onChange}
                         aria-label="text alignment"
                         >
-                            {input.options && input.options.map((button: InputPropsButton | InputPropsLink) => (
-                                <ToggleButton key={button.label} value={button.field}>
-                                    {button.label}
-                                </ToggleButton>
-                            ))}
+                            {input.options && input.options.map((button: InputPropsButton | InputPropsLink) => {
+                                if (!button.label) throw new Error('Button had no label');
+                                return (
+                                    <ToggleButton key={button.label} value={button.label}>
+                                        {button.label}
+                                    </ToggleButton>
+                                )
+                            })}
                     </ToggleButtonGroup>
                 )
             case InputTypes.select: 
@@ -496,7 +507,8 @@ const SwitchInput = ({
                     fallback={fallbackComponent(input)}
                 >
                     <div 
-                        className={`switch-input ${InputTypes[input.type].toString()} ${!!disabledMessage ? 'Mui-disabled' : ''} ${!!errorMessage ? 'Mui-error' : ''}`} data-tip={memoizedTooltip}>
+                        id={input.id}
+                        className={`switch-input ${!!disabledMessage ? 'Mui-disabled' : ''} ${!!errorMessage ? 'Mui-error' : ''}`} data-tip={memoizedTooltip}>
                         {floatingElement}
                         {inputElement}
                     </div>

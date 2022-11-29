@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useWindowDimensions } from '../../ThemeManager';
 import PageLayout, { iPageLayout } from '../PageLayout/PageLayout';
 import { InputTypes } from '../PageLayout/SwitchInput';
@@ -6,6 +6,10 @@ import './YetiPage.scss';
 
 const YetiPage = () => {
     const dimensions = useWindowDimensions();
+    const [isSnowing, setIsSnowing] = useState(true);
+    const handleSnowing = useCallback(() => {
+        setIsSnowing(!isSnowing);
+    }, [isSnowing]);
     const yetiPageLayout: iPageLayout = useMemo(() => ({
         id: 'yeti-page-layout',
         labelProps: {
@@ -17,6 +21,16 @@ const YetiPage = () => {
                 </div>
             ]
         },
+        actions: [
+            {
+                id: 'snow-button',
+                icon: isSnowing ? 'Yeti' : 'YetiOff',
+                tooltip: isSnowing ? 'Turn Snow Off' : 'Turn Snow On',
+                onClick: handleSnowing,
+                type: InputTypes.button,
+                className: 'option'
+            }
+        ],
         inputs: [
             {
                 id: 'yeti-main-content',
@@ -54,11 +68,13 @@ const YetiPage = () => {
         ],
 
     }), [
-        dimensions.isMobile
+        dimensions.isMobile,
+        handleSnowing,
+        isSnowing
     ]);
     return (
         <div id="yeti-page">
-            {snowFlakes}
+            {isSnowing && snowFlakes}
             <PageLayout pageLayout={yetiPageLayout} />
         </div>
     )

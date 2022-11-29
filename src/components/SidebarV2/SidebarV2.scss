@@ -19,7 +19,7 @@
     &.collapse {
         padding: 8px;
         width: 48px;
-        .tprc-sidebar-button {
+        .sidebar-button {
             width: 32px;
             height: 32px;
             justify-content: center;
@@ -41,7 +41,7 @@
         min-width: fit-content;
         align-self: flex-end;
     }
-    .tprc-sidebar-button {
+    .sidebar-button {
         color: var(--sidebar-button-text);
         padding: 4px 8px;
         border-radius: var(--round-small);

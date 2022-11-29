@@ -20,7 +20,7 @@ interface RoundButtonProps {
 }
 const RoundButton = (props: RoundButtonProps) => {
     return (
-        <div className={'tprc-button round small ' + (props.class ?? 'cancel')}  onClick={props.action} data-tip={props.tooltip}>
+        <div className={'button round small ' + (props.class ?? 'cancel')}  onClick={props.action} data-tip={props.tooltip}>
             <Icon icon={props.icon ?? 'Check'} fontSize={16} />
         </div>
     );
@@ -51,16 +51,16 @@ const EditorPage = (props: EditorPageProps) => {
         setSelectedFacebookPage(undefined);
     }, [selectedEditorPage]);
     return (
-        <div className={`tprc-test ${theme}`}>
+        <div className={`test ${theme}`}>
             {<SidebarComponent />}
-            <div className='tprc-editor-page'>
-                <div className='tprc-top-nav'>
-                    <div className='tprc-breadcrumbs'>
+            <div className='editor-page'>
+                <div className='top-nav'>
+                    <div className='breadcrumbs'>
                         <div className='subHeadlineBold'>Templates</div>
                         <div className='subHeadlineBold current'><Icon icon="ChevronRight" fontSize={16}/> {campaignTitle}</div>
                     </div>
                     <div className='flex'>
-                        <div className='tprc-button square option' onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+                        <div className='button square option' onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
                             <Icon icon={theme === 'light' ? 'Moon' : 'Sun'} />
                         </div>
                         <div className='account-menu'>
@@ -69,11 +69,11 @@ const EditorPage = (props: EditorPageProps) => {
                     </div>
                     
                 </div>
-                <div className='tprc-editor'>
-                    <div className='tprc-editor-title flexSB'>
+                <div className='editor'>
+                    <div className='editor-title flexSB'>
                         {editCampaign ? (
                             <div className='flex noWrap'>
-                                <input className='tprc-facebook-input headline three' type='text' value={campaignTitle} onChange={(e) => setCampaignTitle(e.target.value)}/>
+                                <input className='facebook-input headline three' type='text' value={campaignTitle} onChange={(e) => setCampaignTitle(e.target.value)}/>
                                 <RoundButton action={() => setEditCampaign(false)} class='cancel' icon='X' tooltip='Cancel &amp; undo changes' />
                                 <RoundButton action={() => setEditCampaign(false)} class='success' icon='Check' tooltip='Save &amp; Close' />
                             </div>
@@ -81,14 +81,14 @@ const EditorPage = (props: EditorPageProps) => {
                             <h3 onClick={() => setEditCampaign(true)} className="text-headline">{campaignTitle}</h3>
                         )}
                         <div className='flex noWrap'>
-                            <button className='tprc-button secondary'><div className='button-text'>Save</div><div className='button-hover-icon'><Icon icon='Check'/></div></button>
-                            <button className='tprc-button primary'><div className='button-text'>Publish</div><div className='button-hover-icon'><Icon icon='Check'/></div></button>
+                            <button className='button secondary'><div className='button-text'>Save</div><div className='button-hover-icon'><Icon icon='Check'/></div></button>
+                            <button className='button primary'><div className='button-text'>Publish</div><div className='button-hover-icon'><Icon icon='Check'/></div></button>
                         </div>
                     </div>
                     <div className='flexSB' style={{ padding: '0 16px'}}>
                         <div style={{ minWidth: 120 }} />
-                        <div className='tprc-editor-options'>
-                            {editorOptions.map(option => <h5 key={`editor-option-${option}`} onClick={() => setSelectedEditorPage(option)} className={'tprc-editor-button ' + (option === selectedEditorPage ? ' selected' : '')}>{option}</h5>)}
+                        <div className='editor-options'>
+                            {editorOptions.map(option => <h5 key={`editor-option-${option}`} onClick={() => setSelectedEditorPage(option)} className={'editor-button ' + (option === selectedEditorPage ? ' selected' : '')}>{option}</h5>)}
                         </div>
                         <div className='flex noWrap' style={{ justifyContent: 'flex-end' }}>
                             <div className='textSubHeadline subHeadlineLight'>Status:</div>
@@ -97,10 +97,10 @@ const EditorPage = (props: EditorPageProps) => {
                     </div>
                     
                     {selectedEditorPage === editorOptions[0] && !isV2 && (
-                        <div className={'tprc-editor-content animateIn' + (selectedFacebookPage === undefined ? '' : ' panelOpen')}>
+                        <div className={'editor-content animateIn' + (selectedFacebookPage === undefined ? '' : ' panelOpen')}>
                             <div className='flexColumn'>
                                 <div className={'descriptionBold ' + (selectedFacebookPage === undefined ? 'fadeIn' : 'fadeOut')}>Please select a region you want to edit</div>
-                                <div className='tprc-editor-facebook'>
+                                <div className='editor-facebook'>
                                     <div className='facebookHeader unselectable'>
                                         <div className='flex noWrap'>
                                             <div className='grey-icon' />
@@ -137,7 +137,7 @@ const EditorPage = (props: EditorPageProps) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='tprc-editor-panel'>
+                            <div className='editor-panel'>
                                 
                                 <div className='flex noWrap'>
                                     {facebookOptions.map(option => <div key={`facebook-option-${option}`} onClick={() => setSelectedFacebookPage(option)} className={'tab' + (option === selectedFacebookPage ? ' selected' : '')}>{option}</div>)}
@@ -168,7 +168,7 @@ const EditorPage = (props: EditorPageProps) => {
                         </div>
                     )}
                     {selectedEditorPage === editorOptions[0] && isV2 && (
-                        <div className={'tprc-editor-content animateIn' + (selectedFacebookPage === undefined ? '' : ' panelOpen')}>
+                        <div className={'editor-content animateIn' + (selectedFacebookPage === undefined ? '' : ' panelOpen')}>
                             <div className='flexColumn'>
                                 <div className={'descriptionBold'}>{selectedFacebookPage === undefined ? <div key={'regionSelection'} className='fadeIn'>Please select a region you want to edit</div> :  <div key={'variationControl'} className='fadeIn'><VariationComponent /></div>}</div>
                                 <EditorV2 handleEditorChange={handleEditorChange} editorData={editorData} selectedFacebookPage={selectedFacebookPage} setSelectedFacebookPage={setSelectedFacebookPage}/>
@@ -187,7 +187,7 @@ const EditorPage = (props: EditorPageProps) => {
                     {selectedEditorPage === editorOptions[4] && (
                         <>
                             <div style={{marginTop: 24}} key={'variationControl'} className='fadeIn'><div style={{height: 24}}/></div>
-                            <div className='tprc-editor-content settings'>
+                            <div className='editor-content settings'>
                                 <h2 className='textHeadlineSecondary'>History</h2>
                                 <DataGrid 
                                     rows={[
@@ -288,13 +288,13 @@ const SidebarComponent = (props: SidebarProps) => {
     const [collapse, setCollapse] = useState(true);
     const [selectedSideBar, setSelectedSidebar] = useState('Customers');
     return (
-        <div className={`tprc-sidebar ${collapse ? 'collapse' : ''}`}>
+        <div className={`sidebar ${collapse ? 'collapse' : ''}`}>
             {collapse ? <img alt="tplogosmall" key='tplogosmall' src={tplogosmall} className='fadeIn' style={{ marginBottom: 32}}/> : <img alt="tplogo" key='tplogo' src={tplogo} className='fadeIn' style={{ marginBottom: 32}}/>}
             {sidebarOptions.map((option: string) => (
                 <div 
                 key={`side-bar-button-${option}`}
                 onClick={() => setSelectedSidebar(option)} 
-                className={"tprc-sidebar-button flex noWrap" + (option === selectedSideBar ? ' selected' : '')}>
+                className={"sidebar-button flex noWrap" + (option === selectedSideBar ? ' selected' : '')}>
                     {collapse ? (
                         <Icon icon={option} fontSize={20} data-tip={option} />
                     ) : (
@@ -303,7 +303,7 @@ const SidebarComponent = (props: SidebarProps) => {
                     <h4>{option}</h4>
                 </div>
             ))}
-            <div className='tprc-sidebar-button pushToBottom' onClick={() => setCollapse(!collapse)}>
+            <div className='sidebar-button pushToBottom' onClick={() => setCollapse(!collapse)}>
                 <Icon icon={collapse ? 'SidebarOpen' : 'SidebarClose'} fontSize={20}/>
             </div>
         </div>
@@ -342,7 +342,7 @@ const InputsMockup = (props: { label: string; inputArray: string[]; }) => {
     return (
         <>
             <div style={{marginTop: 24}} key={'variationControl'} className='fadeIn'><VariationComponent /></div>
-            <div className='tprc-editor-content settings'>
+            <div className='editor-content settings'>
                 <h2 className='textHeadlineSecondary'>{props.label}</h2>
                 <div className='inputsSection flexFull'>
                     {props.inputArray.map((input, i) => {
@@ -370,7 +370,7 @@ const SettingsInputElement = (props: {
     return (
         <div className='flexColumn'>
             <div className='subHeadlineBold textInputLabel'>{props.label}</div>
-            <input type='text' className='tprc-facebook-input' value={value} placeholder={props.label + '...'} onChange={e => setValue(e.target.value)}/>
+            <input type='text' className='facebook-input' value={value} placeholder={props.label + '...'} onChange={e => setValue(e.target.value)}/>
         </div>
     );
 };
@@ -395,7 +395,7 @@ const FacebookInputElement = (props: {
                 </div>
                 {!props.lockToggle ? <div /> : <Icon data-tip='This is a lock' icon={!props.lockValue ? 'LockOpen' : 'Lock'} />}
             </div>
-            <TextField className='tprc-input' onChange={handleChange} variant='outlined' value={props.value} placeholder={props.placeholder} multiline={isMultiline}/>
+            <TextField className='input' onChange={handleChange} variant='outlined' value={props.value} placeholder={props.placeholder} multiline={isMultiline}/>
         </div>
     );
 };
@@ -507,7 +507,7 @@ const EditorV2 = (props: EditorV2Props) => {
     ];
     return (
         <>
-            <div className='tprc-editor-facebook V2'>
+            <div className='editor-facebook V2'>
                 <div className='facebookHeader unselectable'>
                     <div className='flex noWrap'>
                         <div className='grey-icon' />
@@ -574,8 +574,8 @@ const FacebookInputElementV3 = (panelProps: {
 }) => (
     panelProps.facebookOption === panelProps.selectedFacebookPage ? (
         <>
-            {panelProps.multiline && <textarea className='tprc-facebook-input' value={panelProps.value} onChange={(e) => panelProps.handleEditorChange(panelProps.editorString, e.target.value)}/>}
-            {!panelProps.multiline && <input className='tprc-facebook-input' type='text' value={panelProps.value} onChange={(e) => panelProps.handleEditorChange(panelProps.editorString, e.target.value)}/> }
+            {panelProps.multiline && <textarea className='facebook-input' value={panelProps.value} onChange={(e) => panelProps.handleEditorChange(panelProps.editorString, e.target.value)}/>}
+            {!panelProps.multiline && <input className='facebook-input' type='text' value={panelProps.value} onChange={(e) => panelProps.handleEditorChange(panelProps.editorString, e.target.value)}/> }
         </>
     ) : (
         <>
@@ -653,11 +653,11 @@ const PanelEditor = (props: V2PanelEditorProps) => {
                 </div>
                 <div className={`panel-editor-side-content flexColumn ${rightPanelSelected === 'Options' ? 'info' : 'info'}`}>
                     <div className='flex noWrap'>
-                        <input className='tprc-input' style={{ width: 16, height: 16 }} type='checkbox' />
+                        <input className='input' style={{ width: 16, height: 16 }} type='checkbox' />
                         <div className='bodyNormal'>Option 1</div>
                     </div>
                     <div className='flex noWrap'>
-                        <input className='tprc-input' style={{ width: 16, height: 16 }} type='checkbox' />
+                        <input className='input' style={{ width: 16, height: 16 }} type='checkbox' />
                         <div className='bodyNormal'>Option 2</div>
                     </div>
                 </div>
@@ -668,7 +668,7 @@ const PanelEditor = (props: V2PanelEditorProps) => {
             <div 
             data-tip={`Click to use ${assetType} Asset`}
             key={`tooltip-component-${assetType}`}
-            className={`${selectedAssetType === assetType ? 'selected' : ''} tprc-pill `} 
+            className={`${selectedAssetType === assetType ? 'selected' : ''} pill `} 
             onClick={() => {
                 setSelectedAssetType(assetType);
             }}>
@@ -676,7 +676,7 @@ const PanelEditor = (props: V2PanelEditorProps) => {
             </div>
    ));
     return (
-        <div className={`tprc-panel-editor-v2 ${isSelected ? 'selected' : ''}`}>
+        <div className={`panel-editor-v2 ${isSelected ? 'selected' : ''}`}>
             {isSelected && leftPanel}
             <div className='panel-editor-middle'>
                 {isSelected && (
@@ -685,7 +685,7 @@ const PanelEditor = (props: V2PanelEditorProps) => {
                         {props.toggleCTA && (
                             <div 
                             data-tip={showCTA ? 'Click to hide CTA field' : 'Click to show CTA field'}
-                            className={`${showCTA ? 'selected' : ''} tprc-pill `} 
+                            className={`${showCTA ? 'selected' : ''} pill `} 
                             onClick={() => {
                                 setShowCTA(!showCTA);
                                 setCta('Apply Now');
@@ -702,13 +702,13 @@ const PanelEditor = (props: V2PanelEditorProps) => {
                 <div className='panel-editor-content'>
                     <div className={`${props.facebookClass} panel ${props.facebookOption === props.selectedFacebookPage ? ' selected' : ''}`} onClick={() => props.onClick(props.facebookOption)}>
                         <div className='flexColumn'>{contentElements}</div>
-                        {props.toggleCTA && <div className={`tprc-cta-select ${showCTA ? 'show' : 'hide'}`}>
+                        {props.toggleCTA && <div className={`cta-select ${showCTA ? 'show' : 'hide'}`}>
                             {isSelected ? (
                                 <>
                                     <div className='flex noWrap'>
                                         <div className='bodyBold textSubHeadline'>Call To Action</div>
                                     </div>
-                                    <select className='tprc-input' name="CTA" id="cta" value={cta} onChange={(e) => setCta(e.target.value)}>
+                                    <select className='input' name="CTA" id="cta" value={cta} onChange={(e) => setCta(e.target.value)}>
                                         <option value="Apply Now">Apply Now</option>
                                         <option value="Book Now">Book Now</option>
                                         <option value="Buy Now">Buy Now</option>
@@ -717,7 +717,7 @@ const PanelEditor = (props: V2PanelEditorProps) => {
                                     </select>
                                 </>
                             ) : (
-                                <div className='tprc-cta'>{cta}</div>
+                                <div className='cta'>{cta}</div>
                             )}
                         </div>}
                     </div>
@@ -742,7 +742,7 @@ interface PreviewPageProps {
 const PreviewPage = (props: PreviewPageProps) => {
     const facebookPreview = useCallback((type: string) => {
         return (
-            <div className={'tprc-editor-facebook preview ' + (type)}>
+            <div className={'editor-facebook preview ' + (type)}>
                 <div className='facebookHeader'>
                     <div className='flex noWrap'>
                         <div className='grey-icon' />
@@ -766,7 +766,7 @@ const PreviewPage = (props: PreviewPageProps) => {
                             <div className='textBody'>{props.editorData.bottomHeadline}</div>
                             <div className='textSubBody'>{props.editorData.bottomBody}</div>
                         </div>
-                        <div className='tprc-cta'>{props.editorData.cta}</div>
+                        <div className='cta'>{props.editorData.cta}</div>
                     </div>
                     
                 </div>
@@ -827,7 +827,7 @@ interface AssetInputElementProps {
 }
 const AssetInputElement = (props: AssetInputElementProps) => {
     return props.isSelected ? (
-        <div className='tprc-asset-input'>
+        <div className='asset-input'>
             <div className='upload input' data-tip={'Upload an image'}>
                 <Icon icon='Upload' fontSize={120} />
             </div>

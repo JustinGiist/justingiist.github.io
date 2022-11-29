@@ -35,8 +35,8 @@ const UndoRedoComponent = ({
         handleChangeReducer
     ]);
 
-    const undoClasses = `tprc-icon-button ${hasChanges ? 'green' : 'disabled'}`;
-    const redoClasses = `tprc-icon-button ${redoState ? 'green' : 'disabled'}`;
+    const undoClasses = `icon-button ${hasChanges ? 'green' : 'disabled'}`;
+    const redoClasses = `icon-button ${redoState ? 'green' : 'disabled'}`;
 
     return (
         <div

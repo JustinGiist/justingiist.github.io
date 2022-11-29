@@ -41,7 +41,7 @@ const App = () => {
 
   useEffect(() => {
     ReactTooltip.rebuild();
-  })
+  });
 
   return (
     <>
@@ -124,7 +124,11 @@ const App = () => {
         {modalRoot}
         </ModalContext.Provider>
       </ThemeManagerContext.Provider>
-      <ReactTooltip effect="solid"/>
+      <ReactTooltip
+        effect='solid'
+        delayShow={500}
+        delayUpdate={500}
+      />
     </>
   );
 };

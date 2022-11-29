@@ -1,19 +1,22 @@
+
 #yeti-page {
+    position: relative;
+    overflow: hidden;
     height: 100%;
     .page-layout-header {
-        transform: translateY(24px);
         justify-content: flex-end;
-        svg {
-            flex: 0.3;
-            align-self: flex-end;
-            width: min-content;
-            height: min-content;
+        #snow-button {
         }
         .flexColumn {
             flex: 1;
         }
     }
     #yeti-trees {
+        flex: 0.3;
+        align-self: flex-end;
+        width: min-content;
+        height: min-content;
+        transform: translateY(24px);
         path:nth-child(6) {
             fill: var(--misc-0);
         }
@@ -69,7 +72,7 @@
           transform: translate3d(var(--left-ini), 0, 0);
         }
         100% {
-          transform: translate3d(var(--left-end), 100vh, 0);
+          transform: translate3d(var(--left-end), 110vh, 0);
         }
       }
       
