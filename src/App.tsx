@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import ThemeManager, { GlobalThemes } from "./ThemeManager";
 import useModal from "./components/Modal/Modal";
 import ModalContext from "./components/Modal/ModalContext";
+import { Navigate } from "react-router";
 export const ThemeManagerContext = React.createContext<any>(undefined);
 const themeManagerApp = new ThemeManager();
 const App = () => {
@@ -111,13 +112,12 @@ const App = () => {
               element={<RenderComponent url={GlobalThemes.Yeti} />}
             />
             <Route
-              exact
-              path="/"
+              path={"/" + GlobalThemes.Resume}
               element={<RenderComponent url={GlobalThemes.Resume} />}
             />
             <Route
               path="*"
-              element={<RenderComponent url={GlobalThemes.Resume} />}
+              element={<Navigate to="/Resume" replace />}
             />
           </Routes>
         </HashRouter>

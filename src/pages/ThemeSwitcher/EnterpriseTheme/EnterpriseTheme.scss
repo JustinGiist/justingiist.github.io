@@ -1,3 +1,8 @@
+.Enterprise {
+  .card {
+    border: 2px solid #daccb9;
+  }
+}
 .sideBarContainer {
   height: 100%;
   transition: all 0.167s ease-in-out;
@@ -250,18 +255,34 @@ hr {
     margin-top: auto;
   }
   &.Increase {
-    background: linear-gradient(#5ae630, #3dbb16);
+    // background: linear-gradient(#5ae630, #3dbb16);
+    border: 2px solid var(--action-success);
+    * {
+      color: var(--action-success);
+    }
   }
   &.Decrease {
-    background: linear-gradient(#fa9292, #f82f2f);
+    // background: linear-gradient(#fa9292, #f82f2f);
+    border: 2px solid var(--action-error);
+    * {
+      color: var(--action-error);
+    }
   }
   &.None {
-    background: linear-gradient(#ffb77c, #f7903b);
+    // background: linear-gradient(#ffb77c, #f7903b);
+    border: 2px solid var(--input-border);
+    * {
+      color: var(--input-border);
+    }
   }
 }
 .google-visualization-tooltip {
   path {
-    fill: var(--text-headline-secondary);
+    fill: var(--background-secondary);
+    
+  }
+  text {
+    fill: var(--text-body);
   }
 }
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {

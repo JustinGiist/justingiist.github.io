@@ -1,6 +1,7 @@
 import { Checkbox, FormControlLabel, InputAdornment, MenuItem, Radio, RadioGroup, Rating, Slider, Switch, TextField, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { useCallback, useMemo } from "react";
 import { useWindowDimensions } from "../../ThemeManager";
+import CarouselComponent from "../Carousel/Carousel";
 import Icon from "../Icon/Icon";
 import AnimatedCheckmark from "./AnimatedCheckmark/AnimatedCheckmark";
 import ErrorBoundary from "./ErrorBoundary";
@@ -30,7 +31,8 @@ export enum InputTypes {
     slider,
     radio,
     card,
-    element
+    element,
+    carousel
 }
 export interface InputProps {
     id: string;
@@ -202,7 +204,7 @@ const SwitchInput = ({
     ]);
 
     const label = useMemo(() => (
-        <div className="switch-input-label flex noWrap text-sub-headline" style={input.labelProps?.style}>
+        <div className={`switch-input-label flex noWrap ${input.labelProps?.className ?? 'text-sub-headline'}`} style={input.labelProps?.style}>
             {input.icon && <Icon icon={input.icon} />}
             {input.label && <h3>{input.label}</h3>}
         </div>
@@ -252,7 +254,7 @@ const SwitchInput = ({
     const disabledMessage = useMemo(() => (!disabledFields ? undefined : disabledFields[input.field]), [input, disabledFields]); // string value, changes the tooltip and disabled the field.
     const errorMessage = useMemo(() => (!errorFields ? undefined : errorFields[input.field]), [input, errorFields]); // string value, changes the tooltip and errors the field.
     const noPermission = useMemo(() => (!noPermissionFields ? undefined : noPermissionFields[input.field]), [input, noPermissionFields]); // boolean value, if true, field will not even render. (Never let css control visibility, only jsx)
-    const memoizedTooltip = useMemo(() => errorMessage ?? disabledMessage ?? input.tooltip, [errorMessage, disabledMessage, input.tooltip]);
+    const memoizedTooltip= useMemo(() => dimensions.isMobile ? '' : errorMessage ?? disabledMessage ?? input.tooltip, [errorMessage, disabledMessage, input.tooltip]);
 
     const inputElement = useMemo(() => {
         // Sets defaults, we should change this later to be on the inputs themselves. Waste of code.
@@ -262,6 +264,10 @@ const SwitchInput = ({
         const renderDisplay = input.renderDisplay ?? ((item: any) => item && item.label);
 
         switch (input.type) {
+            case InputTypes.carousel:
+                return (
+                    <CarouselComponent id={input.id} items={input.items} />
+                )
             case InputTypes.textOnly:
                 return (
                     <div
@@ -334,7 +340,6 @@ const SwitchInput = ({
                     </>
                 );
             case InputTypes.toggleButtonGroup:
-                
                 return (
                     <ToggleButtonGroup
                         value={value}
@@ -362,7 +367,7 @@ const SwitchInput = ({
                         type={'number'}
                         variant="filled"
                         disabled={!!disabledMessage}
-                        helperText={dimensions.isMobile ? memoizedTooltip : null}
+                        helperText={memoizedTooltip}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }}
@@ -385,7 +390,7 @@ const SwitchInput = ({
                         type={'number'}
                         variant="filled"
                         disabled={!!disabledMessage}
-                        helperText={dimensions.isMobile ? memoizedTooltip : ''}
+                        helperText={memoizedTooltip}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }}
@@ -403,32 +408,31 @@ const SwitchInput = ({
                         type={'number'}
                         variant="filled"
                         disabled={!!disabledMessage}
-                        helperText={dimensions.isMobile ? memoizedTooltip : ''}
+                        helperText={memoizedTooltip}
                         error={!!errorMessage}
                         { ...input.inputProps }
                     />
                 );
             case InputTypes.switch:
-                return (
-                    <FormControlLabel 
-                        disabled={!!disabledMessage} 
-                        control={<Switch
-                            checked={value}
-                            onChange={onChange}
-                            disabled={!!disabledMessage}
-                        />} 
-                        label={input.label} 
+            case InputTypes.checkbox:
+                const boolProps = {
+                    checked: value,
+                    onChange: onChange,
+                    disabled: !!disabledMessage
+                };
+                const boolElement = input.type === InputTypes.switch ? (
+                    <Switch
+                        { ...boolProps }
+                    />
+                ) : (
+                    <Checkbox
+                        { ...boolProps }
                     />
                 );
-            case InputTypes.checkbox:
                 return (
                     <FormControlLabel 
                         disabled={!!disabledMessage} 
-                        control={<Checkbox
-                            checked={value}
-                            onChange={onChange}
-                            disabled={!!disabledMessage}
-                        />} 
+                        control={boolElement} 
                         label={input.label} 
                     />
                 );
@@ -448,7 +452,7 @@ const SwitchInput = ({
                         minRows={isTextArea ? 2 : 1}
                         maxRows={4}
                         style={input.style}
-                        helperText={dimensions.isMobile ? memoizedTooltip : ''}
+                        helperText={memoizedTooltip}
                     />
                 );
             default:

@@ -1,7 +1,18 @@
-
+:root {
+    --snowflake-0: #befffe;
+    --snowflake-1: #abeaff;
+    --snowflake-2: #a5deff;
+    --snowflake-3: #bedcff;
+    --snowflake-4: #96fffd;
+    --snowflake-5: #75ddff;
+    --snowflake-6: #83d2ff;
+    --snowflake-7: #a2cdff;
+    --snowflake-8: #bad2ed;
+    --snowflake-9: #62abff;
+}
 #yeti-page {
+    
     position: relative;
-    overflow: hidden;
     height: 100%;
     .page-layout-header {
         justify-content: flex-end;
@@ -42,6 +53,32 @@
     }
     #yeti-main-content {
         gap: 16px;
+        background: linear-gradient(180deg, #183c40 40px, transparent 44px);
+        border-radius: var(--round-medium);
+        padding: 8px 0;
+        & > .switch-input-label {
+            padding-left: 8px;
+        }
+        .card {
+            & > .text-body {
+                min-height: 48px;
+            }
+        }
+        
+        .carousel-component {
+            width: 100%;
+            .slide {
+                min-height: 240px;
+                max-height: 240px;
+                div {
+                    height: 100%;
+                    img {
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
     }
     .page-layout {
         background: var(--background-secondary);
@@ -54,45 +91,48 @@
         .card {
             flex-grow: 1;
             &.flat {
-                border: 2px solid var(--input-border);
+                border: 2px solid var(--misc-0);
             }
         }
     }
-    .snowflake {
-        --size: 1vw;
-        width: var(--size);
-        height: var(--size);
-        border-radius: 50%;
-        position: absolute;
-        top: -5vh;
-      }
-      
-      @keyframes snowfall {
-        0% {
-          transform: translate3d(var(--left-ini), 0, 0);
-        }
-        100% {
-          transform: translate3d(var(--left-end), 110vh, 0);
-        }
-      }
-      
-      @for $i from 1 through 50 {
-        .snowflake:nth-child(#{$i}) {
-          --size: #{random(5) * 0.2}vw;
-          --left-ini: #{random(20) - 10}vw;
-          --left-end: #{random(20) - 10}vw;
-          left: #{random(100)}vw;
-          animation: snowfall #{5 + random(10)}s linear infinite;
-          animation-delay: -#{random(10)}s;
-          background: var(--misc-#{$i % 8});
-        }
-      }
+    
+}
+.snowflake {
+    --size: 1vw;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    position: fixed;
+    top: -5vh;
+    z-index: var(--layer-5);
+    box-shadow: rgba(255, 255, 255, 0.404) 0 0 8px;
+  }
+  
+  @keyframes snowfall {
+    0% {
+      transform: translate3d(var(--left-ini), 0, 0);
+    }
+    100% {
+      transform: translate3d(var(--left-end), 110vh, 0);
+    }
+  }
+  
+  @for $i from 1 through 50 {
+    .snowflake:nth-child(#{$i}) {
+      --size: #{random(5) * 0.2}vw;
+      --left-ini: #{random(20) - 10}vw;
+      --left-end: #{random(20) - 10}vw;
+      left: #{random(100)}vw;
+      animation: snowfall #{5 + random(10)}s linear infinite;
+      animation-delay: -#{random(10)}s;
+      background: var(--snowflake-#{$i % 8});
+    }
 }
 @media only screen and (max-width: 800px) {
     #yeti-page {
-      .page-layout {
-        padding: 12px;
-        width: 100%;
-      }
+        .page-layout {
+            padding: 12px;
+            width: 100%;
+        }
     }
-  }
+}

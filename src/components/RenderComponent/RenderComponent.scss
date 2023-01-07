@@ -1,3 +1,4 @@
+@import '../../generics.scss';
 :root {
   --theme-white-gradient: linear-gradient(#ffffff, rgba(255, 255, 255, 0));
 }
@@ -69,7 +70,8 @@
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
   .rightContainer {
-    background: linear-gradient(var(--theme-primary), var(--theme-secondary));
+    // background: linear-gradient(var(--theme-primary), var(--theme-secondary));
+    background: var(--background-secondary);
     .scrollComponent.mainContent {
       margin: 0 auto;
       display: flex;
@@ -77,6 +79,10 @@
       row-gap: 16px;
       background: none !important;
       padding: 32px;
+      align-items: center;
+      & > * {
+        max-width: 1200px;
+      }
     }
   }
 }
@@ -192,9 +198,58 @@
 .threeCols {
   grid-template-columns: auto auto auto;
 }
+.carousel-component {
+  width: 100%;
+  * {
+    margin: 0 !important;
+    padding: 0;
+  }
+  .carousel-root {
+    @extend .flexColumn;
+  }
+  .carousel-label {
+    position: absolute;
+    left: 0px;
+    bottom: 16px;
+    background: var(--background-primary);
+    height: fit-content !important;
+    width: fit-content !important;
+    padding: 4px 8px;
+    font-weight: 700;
+    border-top-right-radius: var(--round-medium);
+    border-bottom-right-radius: var(--round-medium);
+  }
+  .slide {
+    border-radius: var(--round-large);
+    overflow: hidden;
+    div {
+      width: 100%;
+      img {
+        @extend .img-common;
+      }
+    }
+  }
+  .thumbs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    .thumb {
+      &.selected {
+        border-color: transparent;
+        border-bottom: 3px solid var(--selected-primary);
+      }
+      img {
+        @extend .img-common;
+      }
+    }
+  }
+}
 .card {
   box-shadow: var(--shadow-light);
+  flex-shrink: 0;
   padding: 12px 16px 24px;
+  position: relative;
   background: var(--background-card);
   border-radius: var(--round-medium);
   display: flex;
@@ -239,6 +294,11 @@
   }
 }
 .chart {
+  text {
+    fill: white;
+    stroke: transparent;
+    stroke-width: 0;
+  }
   :nth-child(2) {
     margin: auto;
     margin-top: 32px;

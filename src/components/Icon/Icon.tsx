@@ -92,7 +92,10 @@ import {
   UndoVariant,
   RedoVariant,
   Snowflake,
-  SnowflakeOff
+  SnowflakeOff,
+  CalendarStar,
+  Newspaper,
+  AccountMultiple
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -192,7 +195,10 @@ const GetIcon: any = {
   Undo: UndoVariant,
   Redo: RedoVariant,
   Yeti: Snowflake,
-  YetiOff: SnowflakeOff
+  YetiOff: SnowflakeOff,
+  Events: CalendarStar,
+  Partners: AccountMultiple,
+  News: Newspaper,
 };
 const Icon = ({
   icon,

@@ -8,7 +8,6 @@ import "./RenderComponent.scss";
 import ResumePage from "../../pages/ThemeSwitcher/ResumePage/ResumePage";
 import OverlayControl from "../OverlayControl/OverlayControl";
 import ContactPage from "../../pages/ThemeSwitcher/ContactPage/ContactPage";
-import SideBar from "../SideBar/SideBar";
 import SalesTheme from "../../pages/ThemeSwitcher/SalesTheme/SalesTheme";
 import DesignBackground from "../BezierBackground/DesignBackground";
 import TestPage from "../../pages/testPage";
@@ -52,19 +51,10 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
         return false;
     }
   };
-  const checkSideBar = () => {
-    switch (url) {
-      case GlobalThemes.Enterprise:
-        return true;
-      default:
-        return false;
-    }
-  };
   const handleMobileOpen = useCallback(() => {
     setIsMobileOpen(!isMobileOpen)
   }, [setIsMobileOpen, isMobileOpen]);
   const showBackground = checkBackground();
-  const showSideBar = checkSideBar();
   useEffect(() => {
     setThemeContext(url);
   });
@@ -81,7 +71,6 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
         </div>
         <div className="rightContainer">
           {!dimensions.isMobile && memoizedTopBar}
-          {showSideBar && <SideBar gooMenu={url === GlobalThemes.Enterprise} />}
           <CalculatedScrollComponent className={"mainContent " + url} hasButtons={false} refresh={[]} sidebarCollapsed={isCollapsed}>
             {!newPage ? <OverlayControl /> : newPage}
           </CalculatedScrollComponent>

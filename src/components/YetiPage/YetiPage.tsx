@@ -3,6 +3,18 @@ import { useWindowDimensions } from '../../ThemeManager';
 import PageLayout, { iPageLayout } from '../PageLayout/PageLayout';
 import { InputTypes } from '../PageLayout/SwitchInput';
 import './YetiPage.scss';
+import lodgeView1 from "../../assets/lodge-view-1.jpg";
+import lodgeView2 from "../../assets/lodge-view-2.jpg";
+import lodgeView3 from "../../assets/lodge-view-3.jpg";
+import mountainView1 from "../../assets/mountain-view-1.jpg";
+import mountainView2 from "../../assets/mountain-view-2.jpeg";
+import mountainView3 from "../../assets/mountain-view-3.jpg";
+import hotel1 from "../../assets/hotel_everest.jpg";
+import hotel2 from "../../assets/hotel_bellevue.jpg";
+import hotel3 from "../../assets/hotel_glacier.jpg";
+import event1 from "../../assets/event-snowboarding.jpg";
+import event2 from "../../assets/event-skying.jpg";
+import event3 from "../../assets/event-tobagan.jpg";
 
 const YetiPage = () => {
     const dimensions = useWindowDimensions();
@@ -35,33 +47,123 @@ const YetiPage = () => {
             {
                 id: 'yeti-main-content',
                 type: InputTypes.view,
-                className: 'card',
                 label: 'Yeti Walk',
+                labelProps: {
+                    className: 'text-headline'
+                },
                 layoutClassName: 'flex-block',
                 inputs: [
                     {
                         id: 'news',
                         type: InputTypes.view,
                         className: 'card flat background-secondary',
-                        label: 'News'
+                        label: 'News',
+                        subLabel: 'Catch up on the latest News and Industry updates',
+                        icon: 'News',
+                        inputs: [
+                            {
+                                id: 'yeti-carousel-1',
+                                type: InputTypes.carousel,
+                                items: [
+                                    {
+                                        label: 'Summer in the Alps',
+                                        render: lodgeView1
+                                    },
+                                    {
+                                        label: 'Convention Space',
+                                        render: lodgeView2
+                                    },
+                                    {
+                                        label: 'Deals on Rooms & more',
+                                        render: lodgeView3
+                                    }
+                                ]
+                            }
+                        ]
                     },
                     {
                         id: 'locations',
                         type: InputTypes.view,
                         className: 'card flat background-secondary',
-                        label: 'Locations'
+                        label: 'Locations',
+                        subLabel: 'Check out the many beautiful Locations that we have to offer',
+                        icon: 'Home',
+                        inputs: [
+                            {
+                                id: 'yeti-carousel-2',
+                                type: InputTypes.carousel,
+                                items: [
+                                    {
+                                        label: 'Alps',
+                                        render: mountainView1
+                                    },
+                                    {
+                                        label: 'Everest',
+                                        render: mountainView2
+                                    },
+                                    {
+                                        label: 'Rockies',
+                                        render: mountainView3
+                                    }
+                                ]
+                            }
+                        ]
                     },
                     {
                         id: 'events',
                         type: InputTypes.view,
                         className: 'card flat background-secondary',
-                        label: 'Events'
+                        label: 'Events',
+                        subLabel: 'A feed of all our latest Events that will have you enthralled',
+                        icon: 'Events',
+                        inputs: [
+                            {
+                                id: 'yeti-carousel-3',
+                                type: InputTypes.carousel,
+                                items: [
+                                    {
+                                        label: 'Snowboarding Championships',
+                                        render: event1
+                                    },
+                                    {
+                                        label: 'Learn to Ski',
+                                        render: event2
+                                    },
+                                    {
+                                        label: 'Slide on Tobagans',
+                                        render: event3
+                                    }
+                                ]
+                            }
+                        ]
                     },
                     {
                         id: 'partners',
                         type: InputTypes.view,
                         className: 'card flat background-secondary',
-                        label: 'Partners'
+                        label: 'Partners',
+                        subLabel: 'Come join us as we showcase our wonderful Partners',
+                        icon: 'Partners',
+                        inputs: [
+                            {
+                                id: 'yeti-carousel-4',
+                                type: InputTypes.carousel,
+                                items: [
+                                    {
+                                        label: 'Hotel Everest',
+                                        render: hotel1
+                                    },
+                                    {
+                                        label: 'Hotel Bellevue',
+                                        render: hotel2
+                                    },
+                                    {
+                                        label: 'Hotel Glacier',
+                                        render: hotel3
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 ]
             }
@@ -73,10 +175,12 @@ const YetiPage = () => {
         isSnowing
     ]);
     return (
-        <div id="yeti-page">
+        <>
             {isSnowing && snowFlakes}
-            <PageLayout pageLayout={yetiPageLayout} />
-        </div>
+            <div id="yeti-page">
+                <PageLayout pageLayout={yetiPageLayout} />
+            </div>
+        </>
     )
 };
 export default YetiPage;
