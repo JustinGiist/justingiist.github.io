@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.3f2a4eba.css",
-    "main.js": "/static/js/main.616cf302.js",
+    "main.css": "/static/css/main.a468b239.css",
+    "main.js": "/static/js/main.3897fd19.js",
     "static/js/618.2c4a5390.chunk.js": "/static/js/618.2c4a5390.chunk.js",
     "static/js/111.bee8aa27.chunk.js": "/static/js/111.bee8aa27.chunk.js",
     "static/js/453.0d642103.chunk.js": "/static/js/453.0d642103.chunk.js",
@@ -18,10 +18,12 @@
     "static/media/candy2.jpg": "/static/media/candy2.078e18522fed25ae5e70.jpg",
     "static/media/mountain-view-1.jpg": "/static/media/mountain-view-1.8725de6d50a279287cb1.jpg",
     "static/media/Nightscary Free Trial.ttf": "/static/media/Nightscary Free Trial.e5bae50c439ffb8111a3.ttf",
+    "static/media/phone-3.jpg": "/static/media/phone-3.41a310c2ac681b717a41.jpg",
     "static/media/lodge-view-1.jpg": "/static/media/lodge-view-1.e1f3ceb8887ac8c1a49d.jpg",
     "static/media/chocolate2.jpg": "/static/media/chocolate2.13fa963db32885903837.jpg",
     "static/media/event-snowboarding.jpg": "/static/media/event-snowboarding.1fa3b5dd1b4b69b71386.jpg",
     "static/media/lodge-view-3.jpg": "/static/media/lodge-view-3.6bb1ee28737cf04e669c.jpg",
+    "static/media/Swoosh2.png": "/static/media/Swoosh2.2ae3c8b79879743e0738.png",
     "static/media/mountain-view-2.jpeg": "/static/media/mountain-view-2.310de30f44c79506e69d.jpeg",
     "static/media/chocolate.jpg": "/static/media/chocolate.6271d3ef9e9c8055ae25.jpg",
     "static/media/hotel_everest.jpg": "/static/media/hotel_everest.a521ca2d3366bf522d6d.jpg",
@@ -31,13 +33,14 @@
     "static/media/chocolate4.jpg": "/static/media/chocolate4.e13d86ccd8bf3ca6ce92.jpg",
     "static/media/candy.jpg": "/static/media/candy.bc617e4c543a1c79d2e4.jpg",
     "static/media/tplogo.png": "/static/media/tplogo.e65bc249aab1ab832457.png",
+    "static/media/phone-2.jpg": "/static/media/phone-2.c9c16202e9fe9026c622.jpg",
     "static/media/candy3.jpg": "/static/media/candy3.d3f8b3fc70e987819fca.jpg",
     "static/media/candyShop.jpeg": "/static/media/candyShop.8ecfedbdd4b15c2ff519.jpeg",
     "static/media/chocolate3.jpg": "/static/media/chocolate3.d9a59bd64ac2d68d5103.jpg",
     "static/media/hotel_bellevue.jpg": "/static/media/hotel_bellevue.03fbd2b92e8d19e9040a.jpg",
     "static/media/hotel_glacier.jpg": "/static/media/hotel_glacier.610731489b11f2cb919d.jpg",
-    "static/media/swoosh-3.jpg": "/static/media/swoosh-3.261df447cc56cc6a6199.jpg",
-    "static/media/swoosh-1.jpg": "/static/media/swoosh-1.2dc2981c940d149559cb.jpg",
+    "static/media/Swoosh.png": "/static/media/Swoosh.210049c62fc73451868d.png",
+    "static/media/phone-1.jpg": "/static/media/phone-1.78d059a69b99cb4ad830.jpg",
     "static/media/SalesRightBackground.svg": "/static/media/SalesRightBackground.60444e94aadc58827b5fc3811ca150a2.svg",
     "static/media/HHouse.svg": "/static/media/HHouse.6479e4b2d17c0627a8bd7c57c04f8af1.svg",
     "static/media/Amazon_logo.svg": "/static/media/Amazon_logo.4f66fa084187f6633d94a8ad8ad20a0e.svg",
@@ -65,14 +68,14 @@
     "static/media/Squiggly.svg": "/static/media/Squiggly.c5ad318c4e06c74f7ffe3e47e5bfcbd1.svg",
     "static/media/microsoft-windows-22.svg": "/static/media/microsoft-windows-22.18c1acd8d78bbec10356513ba98a0d95.svg",
     "static/media/textbox.svg": "/static/media/textbox.cb172bda41092598c6840b0fb7fdf475.svg",
-    "main.3f2a4eba.css.map": "/static/css/main.3f2a4eba.css.map",
-    "main.616cf302.js.map": "/static/js/main.616cf302.js.map",
+    "main.a468b239.css.map": "/static/css/main.a468b239.css.map",
+    "main.3897fd19.js.map": "/static/js/main.3897fd19.js.map",
     "618.2c4a5390.chunk.js.map": "/static/js/618.2c4a5390.chunk.js.map",
     "111.bee8aa27.chunk.js.map": "/static/js/111.bee8aa27.chunk.js.map",
     "453.0d642103.chunk.js.map": "/static/js/453.0d642103.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3f2a4eba.css",
-    "static/js/main.616cf302.js"
+    "static/css/main.a468b239.css",
+    "static/js/main.3897fd19.js"
   ]
 }
