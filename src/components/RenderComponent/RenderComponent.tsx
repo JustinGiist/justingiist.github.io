@@ -14,12 +14,16 @@ import TestPage from "../../pages/testPage";
 import FragmentsPage from "../../pages/ThemeSwitcher/FragmentsPage/FragmentsPage";
 import SidebarV2 from "../SidebarV2/SidebarV2";
 import TopbarV2 from "../TopbarV2/TopbarV2";
-import EditorPage from "../../pages/ThemeSwitcher/EditorPage/EditorPage";
 import BlackRed from "../../pages/ThemeSwitcher/BlackRed/BlackRed";
 import MusicPage from "../../pages/ThemeSwitcher/MusicPage/MusicPage";
 import NotePage from "../../pages/ThemeSwitcher/NotePage/NotePage";
 import YetiPage from "../YetiPage/YetiPage";
-const RenderComponent = ({ url }: { url: GlobalThemes }) => {
+import DesignerPage from "../../pages/ThemeSwitcher/DesignerPage";
+import { useLocation, useNavigate } from "react-router-dom";
+const RenderComponent = () => {
+  const navigate = useNavigate();
+  let location = useLocation();
+  const url = useMemo(() => location?.pathname?.toString().slice(1, location?.pathname?.length), [location.pathname]);
   const { theme, setThemeContext } =
     useContext(ThemeManagerContext);
   const dimensions = useWindowDimensions();
@@ -32,13 +36,13 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
     [GlobalThemes.Sales, <SalesTheme />],
     [GlobalThemes.Enterprise, <EnterpriseTheme />],
     [GlobalThemes.Spooky, <SpookyTheme />],
-    [GlobalThemes.Editor, <EditorPage />],
     [GlobalThemes.Test, <TestPage />],
     [GlobalThemes.BlackRed, <BlackRed />],
     [GlobalThemes.Music, <MusicPage />],
     [GlobalThemes.Fragments, <FragmentsPage />],
     [GlobalThemes.List, <NotePage />],
-    [GlobalThemes.Yeti, <YetiPage />]
+    [GlobalThemes.Yeti, <YetiPage />],
+    [GlobalThemes.Designer, <DesignerPage />]
   ]), []);
   const newPage = useMemo(() => routes.get(url), [routes, url]);
   const checkBackground = () => {
@@ -59,6 +63,13 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
     setThemeContext(url);
   });
   const memoizedTopBar = useMemo(() => <TopbarV2 route={url} handleMobileOpen={handleMobileOpen} isMobileOpen={isMobileOpen}/>, [url, handleMobileOpen, isMobileOpen]);
+  
+  useEffect(() => {
+    if (url === "") {
+      navigate("/" + GlobalThemes.Resume);
+    }
+  }, [url, navigate]);
+
   return (
     <>
       {showBackground && <DesignBackground />}
@@ -67,7 +78,7 @@ const RenderComponent = ({ url }: { url: GlobalThemes }) => {
         className={`renderContainer ${isTopBar ? " horizontal " : " "} ${theme}`}
       >
         <div className="leftContainer">
-          <SidebarV2 setIsMobileOpen={setIsMobileOpen} routes={routes} isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} isMobileOpen={isMobileOpen}/>
+          <SidebarV2 url={url} setIsMobileOpen={setIsMobileOpen} routes={routes} isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} isMobileOpen={isMobileOpen}/>
         </div>
         <div className="rightContainer">
           {!dimensions.isMobile && memoizedTopBar}

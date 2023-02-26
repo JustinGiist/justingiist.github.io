@@ -1,17 +1,17 @@
-import React, {
+import {
   createRef,
   Dispatch,
   forwardRef,
   SetStateAction,
   useContext,
   useEffect,
-  useState,
 } from "react";
 import { ThemeManagerContext } from "../../App";
 import { GlobalThemes } from "../../ThemeManager";
 import Icon from "../Icon/Icon";
 import "./NavButton.scss";
-import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
+
 export interface NavButtonOptions {
   icon?: string;
   label?: string;
@@ -19,6 +19,7 @@ export interface NavButtonOptions {
   secondary?: boolean;
   route?: GlobalThemes;
 }
+
 const NavButton = ({
   options,
   openContext,
@@ -28,17 +29,14 @@ const NavButton = ({
   openContext: boolean;
   setOpenContext: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { themeManager, theme, setThemeContext } =
+  const { theme } =
     useContext(ThemeManagerContext);
   const contextRef = createRef<any>();
-  const navigate = useNavigate();
-  const [isHover, setIsHover] = useState(false);
   let buttonRef = createRef<any>();
   const innerNavigate = () => {
     setOpenContext(false);
-    navigate("../" + options.route, { replace: true });
+    redirect("/" + options.route);
   };
-  var icon = theme === GlobalThemes.Safari ? "Paw" : options.icon;
   const resize = () => {
     if (options.contextItems && openContext === true) {
       var buttonRect = buttonRef.current.getBoundingClientRect();
@@ -77,7 +75,7 @@ const NavButton = ({
     <div
       ref={ref}
       className={
-        " navButton " +
+        "navButton " +
         (options.secondary === true && " secondary") +
         (openContext && options.contextItems ? " open" : "") +
         (theme == options.route ? " active" : "")

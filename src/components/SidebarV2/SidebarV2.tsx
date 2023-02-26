@@ -1,10 +1,11 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import './SidebarV2.scss';
 import Icon from '../Icon/Icon';
 import { useNavigate } from 'react-router-dom';
 import { useWindowDimensions } from '../../ThemeManager';
 
 interface SidebarV2Props {
+    url: string;
     routes: Map<string, any>;
     isCollapsed: boolean;
     setIsCollapsed: (v: boolean) => void;
@@ -13,6 +14,7 @@ interface SidebarV2Props {
 }
 
 const SidebarV2 = ({
+    url,
     routes,
     isCollapsed,
     setIsCollapsed,
@@ -21,7 +23,6 @@ const SidebarV2 = ({
 }: SidebarV2Props) => {
     const dimensions = useWindowDimensions();
     const navigate = useNavigate();
-    const selectedSideBar = window.location.href.split('#/')[1];
     const routeArray = Array.from( routes ).map(([key, value]) => key).filter(key => {
         if (dimensions.isMobile) {
             return key !== 'Fragments' && key !== 'Editor';
@@ -30,7 +31,7 @@ const SidebarV2 = ({
         return key !== 'Editor'; //Removing the editor for now
     });
     const innerSetSidebar = useCallback(async (newSidebarOption) => {
-        const sameAsUrl = selectedSideBar.indexOf(newSidebarOption.toLocaleLowerCase()) !== -1;
+        const sameAsUrl = url.indexOf(newSidebarOption.toLocaleLowerCase()) !== -1;
         if (!sameAsUrl) {
             setIsMobileOpen(false);
             window.scrollTo(0,0);
@@ -38,7 +39,7 @@ const SidebarV2 = ({
         }
     }, [
         navigate,
-        selectedSideBar,
+        url,
         setIsMobileOpen
     ]);
     return (
@@ -50,8 +51,8 @@ const SidebarV2 = ({
                 <div 
                 key={`side-bar-button-${option}`}
                 onClick={() => innerSetSidebar(option)} 
-                className={"sidebar-button flex noWrap" + (option === selectedSideBar ? ' selected' : '')}>
-                        <Icon icon={option} fontSize={20} data-tip={isCollapsed ? null : option} />
+                className={"sidebar-button flex noWrap" + (option === url ? ' selected' : '')}>
+                    <Icon icon={option} fontSize={20} data-tip={isCollapsed ? null : option} />
                     <h4>{option}</h4>
                 </div>
             ))}

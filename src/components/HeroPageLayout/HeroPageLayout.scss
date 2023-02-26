@@ -1,0 +1,198 @@
+@import '../../color-variables.scss';
+@import '../../generics.scss';
+.background-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
+.four-square {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 0px;
+    @extend .image;
+    .square {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+        background: transparent;
+        h2, p {
+            color: white;
+            max-width: 400px;
+            text-align: center;
+            z-index: var(--layer-1);
+        }
+        &.dark {
+            h2, p {
+                color: var(--text-headline) !important;
+            }
+        }
+        &.background-theme-primary {
+            box-shadow: 0 0 6px var(--theme-primary);
+        }
+        &.background-theme-secondary {
+            box-shadow: 0 0 6px var(--theme-secondary);
+        }
+        &.blue {
+            background: var(--misc-1);
+            box-shadow: 0 2px 4px var(--misc-1);
+        }
+        &.orange {
+            background: var(--misc-2);
+            box-shadow: 0 2px 4px var(--misc-2);
+        }
+        &.purple {
+            background: var(--misc-3);
+            box-shadow: 0 2px 4px var(--misc-3);
+        }
+        &.red {
+            background: var(--misc-4);
+            box-shadow: 0 2px 4px var(--misc-4);
+        }
+    }
+}
+.slide-row-component {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    .text {
+        color: #333;
+        width: fit-content;
+        background-color: #ffffffcd;
+        padding: 24px;
+    }
+    div {
+        flex: 1;
+    }
+    .slide-row {
+        height: 50vh;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+    .slide-row:nth-child(1) {
+        animation: fadeSlideRight 2s ease forwards;
+    }
+    .slide-row:nth-child(2) {
+        animation: fadeSlideLeft 2s ease forwards;
+    }
+}
+.left-text-right-image-component {
+    background: radial-gradient(#333, #111);
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    .left-text {
+        padding: 48px 40px;
+        align-items: center;
+        justify-content: center;
+        @extend .flexColumn;
+        gap: 24px;
+        h2 {
+            margin-top: 16px;
+        }
+        #button-left-text {
+            max-width: 240px;
+        }
+        * {
+            color: white;
+        }
+    }
+    .right-image {
+        position: relative;
+        @extend .flexColumn;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        .text {
+            width: 32vw;
+            height: 24vh;
+            border-radius: var(--round-large);
+            box-shadow: var(--shadow-dark);
+            @extend .background-defaults;
+        }
+        div:nth-child(1) {
+            margin-right: 96px;
+        }
+        div:nth-child(2) {
+            margin-right: 48px;
+            animation-delay: 2.5s;
+        }
+        div:nth-child(3) {
+            animation-delay: 5s;
+        }
+    }
+}
+@media only screen and (max-width: 900px), screen and (max-height: 600px) {
+    .four-square {
+        grid-template-columns: auto;
+        height: fit-content;
+        .square {
+            width: 100%;
+            padding: 16px;
+            height: 40vh;
+        }
+    }
+    .slide-row-component {
+        .slide-row {
+            flex-direction: column;
+        }
+        .text {
+            padding: 32px 16px;
+            width: 100%;
+        }
+    }
+    .left-text-right-image-component {
+        padding-top: 24px;
+        flex-direction: column;
+        height: 120vh !important;
+        .left-text {
+            height: 40vh;
+        } 
+        .right-image {
+            height: 80vh;
+            width: 100%;
+        }
+        .right-image {
+            .text {
+                width: 80vw;
+                height: 20vh;
+            }
+            div:nth-child(1) {
+                margin-right: 48px;
+            }
+            div:nth-child(2) {
+                margin-right: 24px;
+                animation-delay: 2.5s;
+            }
+        }
+    }
+}
+
+.floating { 
+    animation-name: floating;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+ 
+@keyframes floating {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, 15px); }
+    100%   { transform: translate(0, -0px); }   
+}

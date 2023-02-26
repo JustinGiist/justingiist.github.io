@@ -22,6 +22,7 @@
     display: flex;
     overflow: hidden;
     flex: 1;
+    background: var(--background-secondary);
     .scrollComponent {
       overflow-x: hidden;
       width: 100%;
@@ -67,11 +68,9 @@
 }
 .Enterprise {
   * {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: monospace;
   }
   .rightContainer {
-    // background: linear-gradient(var(--theme-primary), var(--theme-secondary));
-    background: var(--background-secondary);
     .scrollComponent.mainContent {
       margin: 0 auto;
       display: flex;
@@ -99,9 +98,6 @@
     background: var(--theme-secondary);
     animation: creepyNav 10s infinite;
   }
-  .rightContainer {
-    background: var(--background-secondary);
-  }
 }
 .Safari {
   * {
@@ -121,6 +117,10 @@
 .Resume,
 .Projects,
 .Contact {
+  .card.contact {
+    margin: auto;
+    width: 400px;
+  }
   .parallaxBackground {
     width: 100%;
     height: 100%;
@@ -128,27 +128,8 @@
     z-index: -1;
     overflow: hidden;
   }
-
-  .center-resume-container {
-    max-width: 320px;
-    margin: auto;
-    background: linear-gradient(var(--theme-secondary), #130040);
-    box-shadow: var(--shadow-dark);
-    padding: 16px 32px 32px;
-    border-radius: var(--round-medium);
-    animation: fadeSlideLeft 0.167s forwards;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    h3 {
-      overflow-wrap: break-word;
-    }
-    .button {
-      margin-top: 16px;
-    }
-  }
   * {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Maven Pro', sans-serif;
   }
 }
 .mainContent.Resume,
@@ -161,6 +142,9 @@
   overflow-x: hidden;
 
   .parallax_layer.one {
+    h1, .headline.one {
+      text-align: center;
+    }
     > h1.text-headline {
       margin-top: 20%;
       font-size: 60px;
@@ -246,6 +230,7 @@
   }
 }
 .card {
+  width: 100%;
   box-shadow: var(--shadow-light);
   flex-shrink: 0;
   padding: 12px 16px 24px;
@@ -294,8 +279,11 @@
   }
 }
 .chart {
+  svg > g:last-child() > g > rect:only-of-type { 
+    fill: var(--background-secondary);
+  }
   text {
-    fill: white;
+    fill: var(--light);
     stroke: transparent;
     stroke-width: 0;
   }
@@ -320,6 +308,9 @@
   }
 }
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {
+  .card.contact {
+    width: calc(100% - 16px) !important;
+  }
   .rightContainer {
     padding: 0px !important;
   }

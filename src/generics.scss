@@ -12,6 +12,12 @@ body {
   line-height: $size;
   color: $color;
 }
+.background-theme-primary {
+  background: var(--theme-primary) !important;
+}
+.background-theme-secondary {
+  background: var(--theme-secondary) !important;
+}
 .background-primary {
   background: var(--background-primary) !important;
 }
@@ -31,13 +37,13 @@ h2, .headline.two {
   @include fontMixin(var(--font-xlarge), 600, var(--text-headline));
 }
 h3, .headline.three {
-  @include fontMixin(var(--font-large), 500, var(--text-headline-secondary));
+  @include fontMixin(var(--font-large), 700, var(--text-headline-secondary));
 }
 h4, .headline.four {
-  @include fontMixin(var(--font-medium), 500, var(--text-headline-secondary));
+  @include fontMixin(var(--font-medium), 600, var(--text-headline-secondary));
 }
 h5, .headline.five {
-  @include fontMixin(var(--font-medium), 500, var(--text-headline-secondary));
+  @include fontMixin(var(--font-medium), 700, var(--text-headline-secondary));
 }
 .subHeadlineBold {
   @include fontMixin(var(--font-small), 600, var(--text-sub-headline));
@@ -282,6 +288,18 @@ h5, .headline.five {
   justify-content: flex-start;
   display: flex;
 }
+.noGap {
+  gap: 0px !important;
+}
+.gap4 {
+  gap: 4px !important;
+}
+.gap16 {
+  gap: 16px !important;
+}
+.gap24 {
+  gap: 24px !important;
+}
 .flexColumn{
   width: 100%;
   display: flex;
@@ -309,7 +327,7 @@ h5, .headline.five {
     }
   }
 }
-.flex-block {
+.flex-block, .flex-block-lock {
   width: 100%;
   gap: 32px;
   display: grid;
@@ -334,6 +352,17 @@ h5, .headline.five {
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
+}
+.background-defaults, .image {
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.float-top-right {
+  position: absolute;
+  right: 12px;
+  top: 12px;
 }
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {
   .flex-block {

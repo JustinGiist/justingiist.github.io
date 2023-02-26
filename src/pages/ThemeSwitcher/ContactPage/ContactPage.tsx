@@ -3,6 +3,7 @@ import {
   ParallaxBackgroundCircle,
   ParallaxBackgroundTriangles,
 } from "../../../components/BezierBackground/ParallaxBackground";
+import Icon from "../../../components/Icon/Icon";
 import PageLayout, { iPageLayout } from "../../../components/PageLayout/PageLayout";
 import { InputTypes } from "../../../components/PageLayout/SwitchInput";
 import { useWindowDimensions } from "../../../ThemeManager";
@@ -65,7 +66,11 @@ const ContactPage = () => {
       <div className="parallaxBackground" ref={backgroundRef2}>
         <ParallaxBackgroundCircle />
       </div>
-      <div className="center-resume-container">
+      <div className="card contact">
+        <Icon 
+            icon="Contact" 
+            className="float-top-right resume-card-icon"
+        />
         <PageLayout pageLayout={memoizedPageLayout} />
       </div>
     </>
@@ -88,7 +93,7 @@ const pageLayout: () => iPageLayout = () => ({
       type: InputTypes.textOnly,
       icon: 'Email',
       labelProps: { style: { alignItems: 'center'} },
-      label: 'JustinGistDesigner @gmail.com'
+      label: 'JustinGistDesigner@gmail.com'
     },
     {
       id: 'linkedIn',

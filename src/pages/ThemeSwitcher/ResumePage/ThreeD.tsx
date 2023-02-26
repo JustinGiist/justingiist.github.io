@@ -96,12 +96,11 @@ function shuffle(array: any[]) {
   return array;
 }
 
-interface ThreeDComponentProps {}
 const smoothness = 2;
 const radius0 = 0.02;
 const torusTublarSegments = 75;
 const torusRadialSegments = 64;
-const ThreeDComponent = (props: ThreeDComponentProps) => {
+const ThreeDComponent = () => {
   const origin = {
     x: -8,
     y: 0,

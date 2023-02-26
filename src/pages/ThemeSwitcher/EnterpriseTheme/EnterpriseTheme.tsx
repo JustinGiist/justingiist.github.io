@@ -152,7 +152,7 @@ const EnterpriseTheme = () => {
   }, [dimensions.isMobile]);
 
   const InvestmentCardElement = (props: iInvestmentCard) => (
-    <div className={"investmentCard " + InvestmentElementStates[props.state]}>
+    <div className={"investmentCard Up " + InvestmentElementStates[props.state]}>
       <h2>{props.label}</h2>
       <h4>{props.fullLabel}</h4>
       <h1>{props.tradingAt}</h1>
@@ -162,47 +162,49 @@ const EnterpriseTheme = () => {
       <div className="flex">{props.logo}</div>
     </div>
   );
+  const CardChart = ({
+    label,
+    children
+  }: {
+    label: string;
+    children: any;
+  }) => (
+    <div className={"card Up chart"}>
+        <h3>{label}</h3>
+        {children}
+    </div>
+  );
   return (
     <>
       <h1 className="text-headline">Dashboard</h1>
       <div className="flexFull threeColumns">
         {investmentCardList.map((item) => <InvestmentCardElement key={`investment-card-${item.label}`} {...item} />)}
       </div>
-      <div className="cardContainer flexFull">
-        <div className={"card Down chart"}>
-          <h3>Overtime Comparison</h3>
+      <div className="flexFull">
+        <CardChart label="Overtime Comparison">
           <BarChart2 />
-        </div>
-        <div className="card Left chart">
-          <h3>Investment Comparison</h3>
+        </CardChart>
+        <CardChart label="Investment Comparison">
           <LineChart />
-        </div>
+        </CardChart>
       </div>
-      <div className="cardContainer ">
-        <div className="card Left chart">
-          <h3>Company Performance</h3>
-          <BarChart isMobile={dimensions.isMobile} />
-        </div>
-      </div>
+      <CardChart label="Company Performance">
+        <BarChart isMobile={dimensions.isMobile} />
+      </CardChart>
       <div className="flexFull threeColumns">
         {investmentCard2List.map((item) => <InvestmentCardElement key={`investment-card-two-${item.label}`} {...item} />)}
       </div>
-      <div className="cardContainer flexFull">
-        <div className={"card Down chart"}>
-          <h3>Portfolio Distribution</h3>
+      <div className="flexFull">
+        <CardChart label="Portfolio Distribution">
           <PieChart />
-        </div>
-        <div className="card Left chart">
-          <h3>Monthly Stock Performance</h3>
+        </CardChart>
+        <CardChart label="Monthly Stock Performance">
           <ComboChart />
-        </div>
+        </CardChart>
       </div>
-      <div className="cardContainer ">
-        <div className="card Left chart">
-          <h3>Global Company Performance</h3>
-          <GeoChart isMobile={dimensions.isMobile} />
-        </div>
-      </div>
+      <CardChart label="Global Company Performance">
+        <GeoChart isMobile={dimensions.isMobile} />
+      </CardChart>
       <div style={{ padding: dimensions.isMobile ? 24 : 8 }} />
     </>
   );

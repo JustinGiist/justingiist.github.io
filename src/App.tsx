@@ -2,14 +2,14 @@ import React, { useMemo } from "react";
 import "./App.css";
 import "./styles.scss";
 import "./generics.scss";
-import { Route, Routes, HashRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ReactTooltip from 'react-tooltip';
-import RenderComponent from "./components/RenderComponent/RenderComponent";
 import { useEffect, useState } from "react";
 import ThemeManager, { GlobalThemes } from "./ThemeManager";
 import useModal from "./components/Modal/Modal";
 import ModalContext from "./components/Modal/ModalContext";
-import { Navigate } from "react-router";
+import RenderComponent from "./components/RenderComponent/RenderComponent";
+
 export const ThemeManagerContext = React.createContext<any>(undefined);
 const themeManagerApp = new ThemeManager();
 const App = () => {
@@ -43,6 +43,18 @@ const App = () => {
   useEffect(() => {
     ReactTooltip.rebuild();
   });
+  
+  const routes = Object.keys(GlobalThemes);
+  const router = createBrowserRouter([
+    ...routes.map(path => ({
+      path: path,
+      element: <RenderComponent />
+    })),
+    {
+      path: "*",
+      element: <RenderComponent />,
+    },
+  ]);
 
   return (
     <>
@@ -61,67 +73,13 @@ const App = () => {
         rel="stylesheet"
       ></link>
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet"></link>
+      <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet"></link>
       <ThemeManagerContext.Provider
         value={{ themeManager, theme, setThemeContext }}
       >
         <ModalContext.Provider value={modalContextValue}>
-        <HashRouter>
-          <Routes>
-            <Route
-              path={"/" + GlobalThemes.Contact}
-              element={<RenderComponent url={GlobalThemes.Contact} />}
-            />
-            <Route
-              path={"/" + GlobalThemes.Sales}
-              element={<RenderComponent url={GlobalThemes.Sales} />}
-            />
-            <Route
-              path={"/" + GlobalThemes.Spooky}
-              element={<RenderComponent url={GlobalThemes.Spooky} />}
-            />
-            <Route
-              path={"/" + GlobalThemes.Enterprise}
-              element={<RenderComponent url={GlobalThemes.Enterprise} />}
-            />
-            <Route
-              path={"/" + GlobalThemes.Fragments}
-              element={<RenderComponent url={GlobalThemes.Fragments} />}
-            />
-            <Route
-              path={"/" + GlobalThemes.Editor}
-              element={<RenderComponent url={GlobalThemes.Editor} />}
-            />
-            <Route
-              path={"/" + GlobalThemes.Test}
-              element={<RenderComponent url={GlobalThemes.Test} />}
-            />
-            <Route
-              path={"/" + GlobalThemes.BlackRed}
-              element={<RenderComponent url={GlobalThemes.BlackRed} />}
-            />
-            <Route
-              path={"/" + GlobalThemes.Music}
-              element={<RenderComponent url={GlobalThemes.Music} />}
-            />
-            <Route
-              path={"/" + GlobalThemes.List}
-              element={<RenderComponent url={GlobalThemes.List} />}
-            />
-            <Route
-              path={"/" + GlobalThemes.Yeti}
-              element={<RenderComponent url={GlobalThemes.Yeti} />}
-            />
-            <Route
-              path={"/" + GlobalThemes.Resume}
-              element={<RenderComponent url={GlobalThemes.Resume} />}
-            />
-            <Route
-              path="*"
-              element={<Navigate to="/Resume" replace />}
-            />
-          </Routes>
-        </HashRouter>
-        {modalRoot}
+          <RouterProvider router={router} />
+          {modalRoot}
         </ModalContext.Provider>
       </ThemeManagerContext.Provider>
       <ReactTooltip

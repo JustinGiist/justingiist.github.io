@@ -16,7 +16,7 @@ const pageLayout: iPageLayout = {
     inputs: [
       {
         id: 'warp-drive-playlist-card',
-        type: InputTypes.card,
+        type: InputTypes.view,
         label: 'Warp Drive',
         inputs: [
             {
@@ -38,7 +38,7 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'anime-summer-playlist-card',
-        type: InputTypes.card,
+        type: InputTypes.view,
         label: 'Anime Summer',
         inputs: [
             {
@@ -60,7 +60,7 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'beach-racer-playlist-card',
-        type: InputTypes.card,
+        type: InputTypes.view,
         label: 'Beach Racer',
         inputs: [
             {
@@ -82,7 +82,7 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'workout-jams-playlist-card',
-        type: InputTypes.card,
+        type: InputTypes.view,
         label: 'Workout Jams',
         inputs: [
             {
@@ -104,7 +104,7 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'hazy-homicide-playlist-card',
-        type: InputTypes.card,
+        type: InputTypes.view,
         label: 'A Hazy Homicide',
         inputs: [
             {
@@ -126,7 +126,7 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'arcade-sunrise-playlist-card',
-        type: InputTypes.card,
+        type: InputTypes.view,
         label: 'Arcade Sunrise',
         inputs: [
             {
@@ -148,7 +148,7 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'last-street-racer-playlist-card',
-        type: InputTypes.card,
+        type: InputTypes.view,
         label: 'The Last Street Racer',
         inputs: [
             {
@@ -170,7 +170,7 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'the-badlands-playlist-card',
-        type: InputTypes.card,
+        type: InputTypes.view,
         label: 'The Badlands',
         inputs: [
             {

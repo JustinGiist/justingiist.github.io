@@ -2,79 +2,12 @@
 .Projects,
 .Contact {
   .mainContent {
-    h1, .headline.one {
-      text-align: center;
-    }
     .displayContainer {
       margin-top: 24px;
       h2, .headline.two {
         border-left: var(--text-headline-secondary) 24px solid;
         padding-left: 12px;
       }
-    }
-  }
-}
-.jobElementContainer {
-  width: 100%;
-  li {
-    list-style: none; /* Remove default bullets */
-    display: flex;
-    align-items: center;
-  }
-
-  ul li::before {
-    color: var(--text-body); /* Change the color */
-    font-weight: bold; /* If you want it to be bold */
-    display: inline-block; /* Needed to add space between the bullet and the text */
-    width: 1em; /* Also needed for space (tweak if needed) */
-    margin-left: -1em;
-    margin-right: 1em; /* Also needed for space (tweak if needed) */
-  }
-  .gridContext {
-    margin-top: 48px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    column-gap: 48px;
-  }
-  .fullContext {
-    padding-left: 0;
-    .jobElementContainer {
-      margin-top: 8px;
-    }
-  }
-}
-.displayContainer {
-  li {
-    list-style: none; /* Remove default bullets */
-    display: flex;
-    align-items: center;
-    h1, h2, h3, h4, h5, .headline {
-      text-align: left;
-    }
-  }
-
-  ul li::before {
-    color: var(--text-body); /* Change the color */
-    font-weight: bold; /* If you want it to be bold */
-    display: inline-block; /* Needed to add space between the bullet and the text */
-    width: 1em; /* Also needed for space (tweak if needed) */
-    margin-left: -1em;
-    margin-right: 1em; /* Also needed for space (tweak if needed) */
-  }
-  .gridContext {
-    margin-top: 48px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 232px 232px 232px;
-    column-gap: 48px;
-  }
-  .fullContext {
-    margin-left: 48px;
-    margin-right: 48px;
-    padding-left: 0;
-    .jobElementContainer {
-      margin-top: 8px;
     }
   }
 }
@@ -86,23 +19,28 @@
   margin: 12px 0 24px 0;
   box-shadow: var(--shadow-light);
 }
-.jobImage {
-  max-width: 100%;
-  box-shadow: var(--shadow-dark);
-  border-radius: var(--round-medium);
+.indent-bar {
+  padding-left: 22px;
+  border-left: 6px solid var(--input-border);
+  transform: translateX(-22px);
+  border-radius: var(--round-small);
+}
+.resume-card-icon {
+  fill: var(--theme-secondary) !important;
+  width: 32px !important;
+  height: 32px !important;
 }
 .resume-link {
   width: 100%;
-  //transition: background-color 0.167s ease-in-out;
   padding: 32px;
   transition: all 0.267s ease;
-}
-.resume-link:hover {
-  background: var(--background-secondary);
-  box-shadow: var(--shadow-dark);
-  cursor: pointer;
-  border-radius: var(--round-small);
-  transform: translateY(-2px);
+  &:hover {
+    background: var(--background-secondary);
+    box-shadow: var(--shadow-dark);
+    cursor: pointer;
+    border-radius: var(--round-small);
+    transform: translateY(-2px);
+  }
 }
 .heroGradient {
   background: linear-gradient(
@@ -140,7 +78,6 @@
     margin: auto;
     max-width: 640px;
     width: 100%;
-    text-align: center;
     align-items: center;
     row-gap: 32px;
     display: flex;
@@ -154,7 +91,6 @@
     z-index: 99;
     top: 60px;
     .flex.column {
-      text-align: center;
       margin: auto;
       row-gap: 32px;
       display: flex;
@@ -166,6 +102,7 @@
       font-family: "Jura", sans-serif;
       color: #ffffff;
       font-weight: bold;
+      text-align: center;
       opacity: 0;
       animation: fadeSlideDown 1.067s forwards;
       animation-delay: 0.5s;
@@ -174,16 +111,12 @@
       font-family: "Jura", sans-serif;
       font-size: 40px;
       color: #ffffff;
+      text-align: center;
       font-weight: bold;
       opacity: 0;
       animation: fadeSlideDown 1.067s forwards;
       animation-delay: 1.5s;
     }
-  }
-}
-.hero-section.B {
-  h1, h2, h3, h4, h5, .headline {
-    color: #5d18b6;
   }
 }
 .hero-section.C {
@@ -221,7 +154,6 @@
 }
 .hero-section.White {
   height: 100%;
-  background: var(--background-primary);
   transform: scale(2);
   margin-bottom: 100%;
   svg {

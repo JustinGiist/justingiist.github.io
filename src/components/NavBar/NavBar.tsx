@@ -77,7 +77,7 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
       model[1].contextItems?.push(...[
         {
           icon: "Test",
-          route: GlobalThemes.Editor,
+          route: GlobalThemes.Test,
         },
         {
           icon: "D20",

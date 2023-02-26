@@ -75,7 +75,7 @@ import {
   EyeOff,
   CameraOutline,
   FolderUploadOutline,
-  FileAccountOutline,
+  FileAccount,
   Candycane,
   Domain,
   NotebookEditOutline,
@@ -95,7 +95,11 @@ import {
   SnowflakeOff,
   CalendarStar,
   Newspaper,
-  AccountMultiple
+  AccountMultiple,
+  StarShootingOutline,
+  Web,
+  DesktopClassic,
+  CardAccountMail
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -114,7 +118,7 @@ const GetIcon: any = {
   Tama: Tama,
   ArrowDropDown: ArrowDropDown,
   Invader: Invader,
-  Contact: ContactPhone,
+  Contact: CardAccountMail,
   AcUnit,
   HomeOutline,
   AccountCircleOutline,
@@ -175,7 +179,7 @@ const GetIcon: any = {
   EyeOff,
   Upload: FolderUploadOutline,
   Camera: CameraOutline,
-  Resume: FileAccountOutline,
+  Resume: FileAccount,
   Sales: Candycane,
   Enterprise: Domain,
   Spooky: Skull,
@@ -199,6 +203,10 @@ const GetIcon: any = {
   Events: CalendarStar,
   Partners: AccountMultiple,
   News: Newspaper,
+  Designer: Eye,
+  ShootingStar: StarShootingOutline,
+  Languages: Web,
+  Tech: DesktopClassic
 };
 const Icon = ({
   icon,

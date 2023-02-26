@@ -139,12 +139,12 @@ export enum GlobalThemes {
   Arcade = "Arcade",
   Sales = "Sales",
   Test = "Test",
-  Editor = "Editor",
   Fragments = "Fragments",
   BlackRed = "BlackRed",
   Music = "Music",
   List = "List",
-  Yeti = "Yeti"
+  Yeti = "Yeti",
+  Designer = "Designer"
 }
 export interface ComponentSizingSchema {
   fontXSmall: number;
