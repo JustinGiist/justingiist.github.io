@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.fe065379.css",
-    "main.js": "/static/js/main.60dc3f86.js",
+    "main.css": "/static/css/main.e5ed3def.css",
+    "main.js": "/static/js/main.c8216826.js",
     "static/js/618.ed26a9a4.chunk.js": "/static/js/618.ed26a9a4.chunk.js",
     "static/js/111.bee8aa27.chunk.js": "/static/js/111.bee8aa27.chunk.js",
     "static/js/453.59049ee8.chunk.js": "/static/js/453.59049ee8.chunk.js",
@@ -31,7 +31,6 @@
     "static/media/event-tobagan.jpg": "/static/media/event-tobagan.a5e332097436988118f1.jpg",
     "static/media/chocolate4.jpg": "/static/media/chocolate4.e13d86ccd8bf3ca6ce92.jpg",
     "static/media/candy.jpg": "/static/media/candy.bc617e4c543a1c79d2e4.jpg",
-    "static/media/phone-2.jpg": "/static/media/phone-2.c9c16202e9fe9026c622.jpg",
     "static/media/candy3.jpg": "/static/media/candy3.d3f8b3fc70e987819fca.jpg",
     "static/media/candyShop.jpeg": "/static/media/candyShop.8ecfedbdd4b15c2ff519.jpeg",
     "static/media/chocolate3.jpg": "/static/media/chocolate3.d9a59bd64ac2d68d5103.jpg",
@@ -66,14 +65,14 @@
     "static/media/Squiggly.svg": "/static/media/Squiggly.c5ad318c4e06c74f7ffe3e47e5bfcbd1.svg",
     "static/media/microsoft-windows-22.svg": "/static/media/microsoft-windows-22.18c1acd8d78bbec10356513ba98a0d95.svg",
     "static/media/textbox.svg": "/static/media/textbox.cb172bda41092598c6840b0fb7fdf475.svg",
-    "main.fe065379.css.map": "/static/css/main.fe065379.css.map",
-    "main.60dc3f86.js.map": "/static/js/main.60dc3f86.js.map",
+    "main.e5ed3def.css.map": "/static/css/main.e5ed3def.css.map",
+    "main.c8216826.js.map": "/static/js/main.c8216826.js.map",
     "618.ed26a9a4.chunk.js.map": "/static/js/618.ed26a9a4.chunk.js.map",
     "111.bee8aa27.chunk.js.map": "/static/js/111.bee8aa27.chunk.js.map",
     "453.59049ee8.chunk.js.map": "/static/js/453.59049ee8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fe065379.css",
-    "static/js/main.60dc3f86.js"
+    "static/css/main.e5ed3def.css",
+    "static/js/main.c8216826.js"
   ]
 }
