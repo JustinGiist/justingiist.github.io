@@ -235,7 +235,7 @@ const SideBar = (props: { gooMenu?: boolean }) => {
       <div className="sideBarContent">
         <div className="sideBarHeader">
           <Icon icon={pageIcon} />
-          <div className={"headline " + (open ? " two" : " four")}>
+          <div className={"headline" + (open ? "Two" : "Four")}>
             {pageTitle}
           </div>
         </div>

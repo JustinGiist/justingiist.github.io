@@ -62,7 +62,7 @@
         box-shadow: var(--shadow-light);
         border-radius: var(--round-medium);
       }
-      h1, h2, h3, h4, h5, .headline {
+      h1, h2, h3, h4, h5, .headlineOne, .headlineTwo, .headlineThree, .headlineFour, .headlineFive {
         text-align: center;
       }
     }
@@ -80,7 +80,7 @@
       flex-direction: column;
       gap: 16px;
       align-items: center;
-      h1, h2, h3, h4, h5, .headline {
+      h1, h2, h3, h4, h5, .headlineOne, .headlineTwo, .headlineThree, .headlineFour, .headlineFive {
         text-align: center;
       }
       > h1, .headline.one {
@@ -186,7 +186,7 @@
     #fff5e0 100%
   );
   flex: 0.8;
-  h1, h2, h3, h4, h5, .headline {
+  h1, h2, h3, h4, h5, .headlineOne, .headlineTwo, .headlineThree, .headlineFour, .headlineFive {
     pointer-events: none;
   }
   .addButton {

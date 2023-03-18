@@ -223,7 +223,7 @@ const PageLayout = ({
             !pageLayout.actions
         ) return null;
         // A Iconized title component that follows our typical styling and partner-coloring. Icon cannot be shown without label.
-        const labelClasses = `flex noWrap ${pageLayout.labelProps?.className ?? 'headline two'}`;
+        const labelClasses = `flex noWrap ${pageLayout.labelProps?.className ?? 'headlineTwo'}`;
         const labelElement = pageLayout.labelProps?.label && (
             <div className={labelClasses}>
                 {pageLayout.labelProps?.icon && <i className={`fa fa-${pageLayout.labelProps?.icon} iconBoxed`} />}

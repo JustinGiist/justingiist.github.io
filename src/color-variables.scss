@@ -1,10 +1,14 @@
 :root {
-    --font-huge: 60px;
-    --font-xlarge: 40px;
-    --font-large: 24px;
-    --font-medium: 18px;
-    --font-small: 14px;
-    --font-xsmall: 11px;
+    --animation-time-1: 0.167s;
+    --animation-time-2: 0.267s;
+    --animation-time-3: 0.367s;
+    --font-h1: 48px;
+    --font-h2: 36px;
+    --font-h3: 24px;
+    --font-h4: 20px;
+    --font-h5: 18px;
+    --font-sub-headline: 16px;
+    --font-body: 14px;
     --round-small: 4px;
     --round-medium: 8px;
     --round-large: 12px;
@@ -14,6 +18,7 @@
     --layer-4: 400;
     --layer-5: 500;
     .Resume, .Contact {
+        --font-body: 18px;
         // Generic colors
         --font: "Poppins", sans-serif;
         --theme-primary: #6b71e2;
@@ -811,13 +816,14 @@
         --misc-9: #32676e;
     }
     .Designer {
+        --font-h1: 80px;
+        --font-h2: 60px;
+        --font-h3: 40px;
+        --font-h4: 20px;
+        --font-h5: 18px;
+        --font-sub-headline: 20px;
+        --font-body: 18px;
         // Generic colors
-        --font-huge: 80px;
-        --font-xlarge: 60px;
-        --font-large: 40px;
-        --font-medium: 24px;
-        --font-small: 18px;
-        --font-xsmall: 14px;
         --font: "Poppins", sans-serif;
         --theme-primary: #1e3961;
         --theme-secondary: #000231;

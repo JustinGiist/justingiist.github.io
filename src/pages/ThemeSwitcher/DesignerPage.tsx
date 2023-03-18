@@ -4,12 +4,12 @@ import HeroPageLayout, {
 } from "../../components/HeroPageLayout/HeroPageLayout";
 import swoosh1 from "../../assets/Swoosh2.png";
 import swoosh3 from "../../assets/Swoosh.png";
-import phone1 from "../../assets/phone-1.jpg";
+import dashboardMockup from "../../assets/Dashboard_mockup.png";
 import phone2 from "../../assets/Racing-Mockup.png";
 import phone3 from "../../assets/Three-Phones-Mockup.png";
 
 const imageList = [
-  phone1,
+  dashboardMockup,
   phone2,
   phone3
 ];

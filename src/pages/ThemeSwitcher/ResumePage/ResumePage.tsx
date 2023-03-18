@@ -4,6 +4,7 @@ import tacoImage from "../../../assets/taco.jpg";
 import hallowImage from "../../../assets/hallow.jpg";
 import threePhones from "../../../assets/Three-Phones-Mockup.png";
 import racingPhones from "../../../assets/Racing-Mockup.png";
+import dashboardMockup from "../../../assets/Dashboard_mockup.png";
 import ParallaxBackground from "../../../components/BezierBackground/ParallaxBackground";
 import { GlobalThemes } from "../../../ThemeManager";
 import { useNavigate } from "react-router-dom";
@@ -13,12 +14,12 @@ import HeroPageLayout, { iHeroPageLayout } from "../../../components/HeroPageLay
 const ThreeDComponentLazy = React.lazy(() => import("./ThreeD"));
 const ResumePage = () => {
   const navigate = useNavigate();
-  const experienceList: string[] = [
-    "Worked with Product and Engineering to completely refactor the Frontend Design & codebase of a leading FaceBook Advertising Platform SPA.",
+  const experienceList: any[] = [
+    "As Lead UX Designer at a Tech Consulting Firm, I oversaw many Companies & Clients. Responsibilities included creating Figma mock-ups, documenting user-flows and developing enterprise-level production-ready features. I handled end-to-end design, implementation and coordination with multiple departments within each business.",
+    <div>Redesigned <a href="https://www.tigerpistol.com/brand-platform-overview/" target="_blank" rel="noopener noreferrer">TigerPistol's DIFY</a> Advertising Platform, improving mobile friendliness, completely refactoring old code base to React, enhancing internal component libraries, reducing CSS by 50%, and developed a brand new Editor System (The main User Interface behind their Ad Platform).</div>,
+    <div>Developed Order Software for <a href="https://www.livantaqio.com/en" target="_blank" rel="noopener noreferrer">Livanta</a> that enabled contractors to create in-house requisitions that flowed through an Approval System. The software also automatically processed the order, generated all relevant tax forms, receipts, and billed company accounts.</div>,
     "Developed the UI/UX Frontend Experience for a Fintech Investment SPA. Built a React & React-Native Solution that split logic and display codebases.",
-    "Using SyncFusion XLISO excel conversion library, converting financial data into Excel Government Tax Documents. Simplifying a week-long process, to a click of a button.",
-    "Designed UI for an Angular PDF Editor. Animated and developed various menus, navigational tools, and custom icons.",
-    "Communicated with top level clients, including CFO of a Global Medical Company and many CEOs, accurately creating Mockups, Documentation and developing neccessary components for Juniors.",
+    "Using SyncFusion XLISO excel conversion library, converted financial data into Excel Government Tax Documents. Simplifying a week-long process, to a click of a button."
   ];
   const languagesList: string[] = [
     "JavaScript",
@@ -229,6 +230,16 @@ const ResumePage = () => {
                 style: {
                   height: 360,
                   backgroundImage: `url(${racingPhones})`
+                }
+              }
+            },
+            {
+              id: 'phone-mockup-2',
+              commonProps: {
+                className: 'image',
+                style: {
+                  height: 460,
+                  backgroundImage: `url(${dashboardMockup})`
                 }
               }
             }

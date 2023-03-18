@@ -113,7 +113,7 @@ const CartComponent = (props: iCart) => {
                     return (
                       <div
                         key={`context-option-${item.label}`}
-                        className="contextMenuItem headline six"
+                        className="contextMenuItem headlineSix"
                         onClick={() => {
                           setOpenContext(false);
                           item.action();

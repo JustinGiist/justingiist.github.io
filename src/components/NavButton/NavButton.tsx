@@ -88,7 +88,7 @@ const NavButton = ({
         }
       }}
     >
-      <div className={"navButtonLabel headline six"}>
+      <div className={"navButtonLabel headlineSix"}>
         {options.label || options.route}
       </div>
       {options.contextItems && (

@@ -28,7 +28,7 @@ const SidebarV2 = ({
             return key !== 'Fragments' && key !== 'Editor';
         }
         
-        return key !== 'Editor'; //Removing the editor for now
+        return key !== 'Editor' && key !== 'Test' && key !== 'List'; //Removing the editor for now
     });
     const innerSetSidebar = useCallback(async (newSidebarOption) => {
         const sameAsUrl = url.indexOf(newSidebarOption.toLocaleLowerCase()) !== -1;

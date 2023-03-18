@@ -1,16 +1,9 @@
 @import './color-variables.scss';
-h1, h2, h3, h4, h5,.headline {
+h1, h2, h3, h4, h5, .headlineOne, .headlineTwo, .headlineThree, .headlineFour, .headlineFive {
   margin: 0;
 }
 body {
   overflow: hidden;
-}
-@mixin fontMixin($size, $weight, $color) {
-  font-size: $size;
-  font-weight: $weight;
-  letter-spacing: 0;
-  line-height: $size;
-  color: $color;
 }
 .background-theme-primary {
   background: var(--theme-primary) !important;
@@ -30,50 +23,8 @@ body {
 .background-card {
   background: var(--background-card) !important;
 }
-h1, .headline.one {
-  @include fontMixin(var(--font-huge), 500, var(--text-headline));
-}
-h2, .headline.two {
-  @include fontMixin(var(--font-xlarge), 600, var(--text-headline));
-}
-h3, .headline.three {
-  @include fontMixin(var(--font-large), 700, var(--text-headline-secondary));
-}
-h4, .headline.four {
-  @include fontMixin(var(--font-medium), 600, var(--text-headline-secondary));
-}
-h5, .headline.five {
-  @include fontMixin(var(--font-medium), 700, var(--text-headline-secondary));
-}
-.subHeadlineBold {
-  @include fontMixin(var(--font-small), 600, var(--text-sub-headline));
-}
-.subHeadlineMedium {
-  @include fontMixin(var(--font-small), 500, var(--text-sub-headline));
-}
-.subHeadlineLight {
-  @include fontMixin(var(--font-small), 400, var(--text-sub-headline));
-}
-.bodyBold {
-  @include fontMixin(var(--font-xsmall), 600, var(--text-body));
-}
-.bodyMedium {
-  @include fontMixin(var(--font-xsmall), 500, var(--text-body));
-}
-.bodyLight {
-  @include fontMixin(var(--font-xsmall), 400, var(--text-body));
-}
 
-.inputName {
-  font-size: var(--font-medium);
-  line-height: 16px;
-}
-.link {
-  color: var(--action-secondary);
-  &:hover {
-    cursor: pointer;
-  }
-}
+// Text Colors
 @mixin textMixin($color) {
   color: $color;
   * {
@@ -103,6 +54,69 @@ h5, .headline.five {
 }
 .text-input-label {
   @include textMixin(var(--input-label));
+}
+
+// Main Font classes
+@mixin fontMixin($size, $weight) {
+  font-size: $size;
+  font-weight: $weight;
+  letter-spacing: 0;
+  line-height: calc($size + 6px);
+}
+h1, .headlineOne {
+  @include fontMixin(var(--font-h1), 500);
+  @extend .text-headline;
+}
+h2, .headlineTwo {
+  @include fontMixin(var(--font-h2), 500);
+  @extend .text-headline;
+}
+h3, .headlineThree {
+  @include fontMixin(var(--font-h3), 500);
+  @extend .text-headline;
+}
+h4, .headlineFour {
+  @include fontMixin(var(--font-h4), 500);
+  @extend .text-headline;
+}
+h5, .headlineFive {
+  @include fontMixin(var(--font-h5), 500);
+  @extend .text-headline;
+}
+.subHeadlineBold {
+  @include fontMixin(var(--font-sub-headline), 600);
+  @extend .text-sub-headline;
+}
+.subHeadlineMedium {
+  @include fontMixin(var(--font-sub-headline), 500);
+  @extend .text-sub-headline;
+}
+.subHeadlineLight {
+  @include fontMixin(var(--font-sub-headline), 400);
+  @extend .text-sub-headline;
+}
+.bodyBold {
+  @include fontMixin(var(--font-body), 600);
+  @extend .text-body;
+}
+.bodyMedium {
+  @include fontMixin(var(--font-body), 500);
+  @extend .text-body;
+}
+.bodyLight {
+  @include fontMixin(var(--font-body), 400);
+  @extend .text-body;
+}
+
+.inputName {
+  font-size: var(--font-medium);
+  line-height: 16px;
+}
+.link {
+  color: var(--action-secondary);
+  &:hover {
+    cursor: pointer;
+  }
 }
 @mixin buttonMixin($backgroundColor, $color) {
   background: $color;

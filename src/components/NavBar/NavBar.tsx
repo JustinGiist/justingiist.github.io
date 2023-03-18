@@ -119,7 +119,7 @@ const NavBar = ({ isTopBar }: { isTopBar?: boolean }) => {
     <div className={"navBar horizontal "}>
       {dimensions.isMobile ? null : (
         <div
-          className="headline five navBarLabel text-headline"
+          className="headlineFive navBarLabel text-headline"
           style={{ display: "flex" }}
         >
           {"Portfolio - "}

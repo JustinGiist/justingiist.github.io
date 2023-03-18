@@ -87,7 +87,7 @@ const SwitchHeroComponent = ({
                     <>
                         {heroComponent.subLabel && <h5>{heroComponent.subLabel}</h5>}
                         {heroComponent.label && <h2>{heroComponent.label}</h2>}
-                        {heroComponent.body && <div className="text-body">{heroComponent.body}</div>}
+                        {heroComponent.body && <div className="text-body bodyMedium">{heroComponent.body}</div>}
                         {heroComponent.components && heroComponent.components.length > 0 && <SwitchHeroComponent heroComponent={heroComponent.components[0]}/>}
                     </>
                 );
