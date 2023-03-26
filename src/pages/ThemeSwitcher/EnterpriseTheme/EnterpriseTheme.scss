@@ -1,6 +1,9 @@
 .Enterprise {
   .card {
     border: 2px solid #daccb9;
+    text {
+      fill: var(--light);
+    }
   }
 }
 .sideBarContainer {
@@ -279,10 +282,9 @@ hr {
 .google-visualization-tooltip {
   path {
     fill: var(--background-secondary);
-    
   }
   text {
-    fill: var(--text-body);
+    fill: var(--light);
   }
 }
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {

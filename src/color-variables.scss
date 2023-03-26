@@ -102,7 +102,7 @@
     .Enterprise {
         // Generic colors
         --font: "Poppins", sans-serif;
-        --theme-primary: #56c1ff;
+        --theme-primary: #bdaf9c;
         --theme-secondary: #a1ecff;
         --theme-gradient: linear-gradient(-45deg, var(--theme-primary), var(--theme-secondary));
         --dark: #333;
@@ -900,6 +900,87 @@
         --misc-7: #2cdfdf;
         --misc-8: #edaa2d;
         --misc-9: #dc7cff;
+    }
+    .Heroes {
+        // Generic colors
+        --font: "Poppins", sans-serif;
+        --theme-primary: #bdaf9c;
+        --theme-secondary: #a1ecff;
+        --theme-gradient: linear-gradient(-45deg, var(--theme-primary), var(--theme-secondary));
+        --dark: #333;
+        --light: #f3f3f3;
+
+        /* ACTIONS */
+        --action-primary: #03adfc;
+        --action-secondary: #006abc;
+        --action-option: #00d8e3;
+        --action-success: #37e666;
+        --action-info: #50d6ff;
+        --action-warning: #fddd48;
+        --action-error: #ff8080;
+        --action-cancel: #5b5b5b;
+        --action-disabled: #cdcdcd;
+
+        /* SELECTED */
+        --selected-primary: #75b2e1;
+        --selected-secondary: #ffad42;
+        --selected-menu: var(--theme-secondary);
+        --selected-menu-gradient: var(--theme-gradient);
+
+
+        /* SIDEBAR */
+        --sidebar-button: #fff0da;
+        --sidebar-button-text: #666;
+        --sidebar-button-hover: linear-gradient(-90deg, #000000, --theme-secondary);
+        --sidebar-button-hover-text: #fff;
+        --sidebar-button-selected: #daccb9;
+        --sidebar-button-selected-text: #444;
+        --sidebar-background: rgb(0, 0, 0);
+
+        /* TEXT COLORS */
+        --text-headline: #111;
+        --text-headline-secondary: #222;
+        --text-sub-headline: #007fa6;
+        --text-body: #333;
+        --text-sub-body: #444;
+        --text-placeholder: #999;
+        --text-menu: #777;
+
+        /* INPUT */
+        --input-label: #002745;
+        --input-border: #a4d0ff;
+        --input-placeholder: #b4bdc5;
+        --input-text-color: #1d9bff;
+        --input-background: #f8fcff;
+        --input-hover: #c4dcff;
+
+        /* BACKGROUNDS */
+        --background-primary: #fff;
+        --background-secondary: radial-gradient(#61c5ff, #12a8ff);
+        --background-teritary: linear-gradient(0deg, #74e2ff,#d8f6ff 40%);
+        --background-card: transparent;
+        --background-modal: #fff;
+        --background-modal-overlay: #00000033;
+        --background-account: var(--theme-gradient);
+        --background-panel: #ffffff;
+
+        /* MISCELLANEOUS */
+        --hover-brightness: 1.2;
+        --shadow-light: #00000033 0px 2px 8px 0px;
+        --shadow-dark: #32325d40 0px 30px 60px -12px, #0000004d 0px 18px 36px -18px;
+        --shadow-inset: #2c2c2c1c 1px 1px 6px 0px inset, #ffffff1a -1px -1px 6px 1px inset;
+        --hr: #333;
+        --misc-0: #90fc7d;
+        --misc-1: #5bceff;
+        --misc-2: #edaa2d;
+        --misc-3: #dc7cff;
+        --misc-4: #ff3a75;
+        --misc-5: #7560ff;
+        --misc-6: #f25b35;
+        --misc-7: #2cdfdf;
+        --misc-8: #edaa2d;
+        --misc-9: #dc7cff;
+        
     }
 }
 @media only screen and (max-width: 800px) {

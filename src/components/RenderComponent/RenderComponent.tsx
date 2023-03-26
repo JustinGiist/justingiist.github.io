@@ -20,6 +20,7 @@ import NotePage from "../../pages/ThemeSwitcher/NotePage/NotePage";
 import YetiPage from "../YetiPage/YetiPage";
 import DesignerPage from "../../pages/ThemeSwitcher/DesignerPage";
 import { useLocation, useNavigate } from "react-router-dom";
+import HeroPage from "../../pages/HeroPage/HeroPage";
 const RenderComponent = () => {
   const navigate = useNavigate();
   let location = useLocation();
@@ -42,7 +43,8 @@ const RenderComponent = () => {
     [GlobalThemes.Fragments, <FragmentsPage />],
     [GlobalThemes.List, <NotePage />],
     [GlobalThemes.Yeti, <YetiPage />],
-    [GlobalThemes.Designer, <DesignerPage />]
+    [GlobalThemes.Designer, <DesignerPage />],
+    [GlobalThemes.Heroes, <HeroPage />]
   ]), []);
   const newPage = useMemo(() => routes.get(url), [routes, url]);
   const checkBackground = () => {

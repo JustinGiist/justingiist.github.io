@@ -1,7 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useWindowDimensions } from '../../ThemeManager';
-import PageLayout, { iPageLayout } from '../PageLayout/PageLayout';
-import { InputTypes } from '../PageLayout/SwitchInput';
 import './YetiPage.scss';
 import lodgeView1 from "../../assets/lodge-view-1.jpg";
 import lodgeView2 from "../../assets/lodge-view-2.jpg";
@@ -15,6 +13,15 @@ import hotel3 from "../../assets/hotel_glacier.jpg";
 import event1 from "../../assets/event-snowboarding.jpg";
 import event2 from "../../assets/event-skying.jpg";
 import event3 from "../../assets/event-tobagan.jpg";
+import Headline from '../Text/Headline';
+import ColumnLayout from '../Layouts/ColumnLayout';
+import Body from '../Text/Body';
+import CarouselComponent from '../Carousel/Carousel';
+import RowLayout from '../Layouts/RowLayout';
+import BlockLayout from '../Layouts/BlockLayout';
+import { FakeLoader } from '../Loading/Loading';
+import { Button } from '@mui/material';
+import Icon from '../Icon/Icon';
 
 const YetiPage = () => {
     const dimensions = useWindowDimensions();
@@ -22,163 +29,112 @@ const YetiPage = () => {
     const handleSnowing = useCallback(() => {
         setIsSnowing(!isSnowing);
     }, [isSnowing]);
-    const yetiPageLayout: iPageLayout = useMemo(() => ({
-        id: 'yeti-page-layout',
-        labelProps: {
-            label: [
-                <TreesSvg isMobile={dimensions.isMobile} />,
-                <div className="flexColumn">
-                    <h1>Yeti Walk</h1>
-                    <h4>Yeti Walk is an ongoing Global Movement to get explorers connected with the latest and greatest Frozen Travel Destinations</h4>
-                </div>
-            ]
-        },
-        actions: [
-            {
-                id: 'snow-button',
-                icon: isSnowing ? 'Yeti' : 'YetiOff',
-                tooltip: isSnowing ? 'Turn Snow Off' : 'Turn Snow On',
-                onClick: handleSnowing,
-                type: InputTypes.button,
-                className: 'option'
-            }
-        ],
-        inputs: [
-            {
-                id: 'yeti-main-content',
-                type: InputTypes.view,
-                label: 'Yeti Walk',
-                labelProps: {
-                    className: 'text-headline'
-                },
-                layoutClassName: 'flex-block',
-                inputs: [
-                    {
-                        id: 'news',
-                        type: InputTypes.view,
-                        className: 'card flat background-secondary',
-                        label: 'News',
-                        subLabel: 'Catch up on the latest News and Industry updates',
-                        icon: 'News',
-                        inputs: [
-                            {
-                                id: 'yeti-carousel-1',
-                                type: InputTypes.carousel,
-                                items: [
-                                    {
-                                        label: 'Summer in the Alps',
-                                        render: lodgeView1
-                                    },
-                                    {
-                                        label: 'Convention Space',
-                                        render: lodgeView2
-                                    },
-                                    {
-                                        label: 'Deals on Rooms & more',
-                                        render: lodgeView3
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        id: 'locations',
-                        type: InputTypes.view,
-                        className: 'card flat background-secondary',
-                        label: 'Locations',
-                        subLabel: 'Check out the many beautiful Locations that we have to offer',
-                        icon: 'Home',
-                        inputs: [
-                            {
-                                id: 'yeti-carousel-2',
-                                type: InputTypes.carousel,
-                                items: [
-                                    {
-                                        label: 'Alps',
-                                        render: mountainView1
-                                    },
-                                    {
-                                        label: 'Everest',
-                                        render: mountainView2
-                                    },
-                                    {
-                                        label: 'Rockies',
-                                        render: mountainView3
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        id: 'events',
-                        type: InputTypes.view,
-                        className: 'card flat background-secondary',
-                        label: 'Events',
-                        subLabel: 'A feed of all our latest Events that will have you enthralled',
-                        icon: 'Events',
-                        inputs: [
-                            {
-                                id: 'yeti-carousel-3',
-                                type: InputTypes.carousel,
-                                items: [
-                                    {
-                                        label: 'Snowboarding Championships',
-                                        render: event1
-                                    },
-                                    {
-                                        label: 'Learn to Ski',
-                                        render: event2
-                                    },
-                                    {
-                                        label: 'Slide on Tobagans',
-                                        render: event3
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        id: 'partners',
-                        type: InputTypes.view,
-                        className: 'card flat background-secondary',
-                        label: 'Partners',
-                        subLabel: 'Come join us as we showcase our wonderful Partners',
-                        icon: 'Partners',
-                        inputs: [
-                            {
-                                id: 'yeti-carousel-4',
-                                type: InputTypes.carousel,
-                                items: [
-                                    {
-                                        label: 'Hotel Everest',
-                                        render: hotel1
-                                    },
-                                    {
-                                        label: 'Hotel Bellevue',
-                                        render: hotel2
-                                    },
-                                    {
-                                        label: 'Hotel Glacier',
-                                        render: hotel3
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
-        ],
 
-    }), [
-        dimensions.isMobile,
-        handleSnowing,
-        isSnowing
-    ]);
+    const carouselOne = [
+        {
+            label: 'Summer in the Alps',
+            render: lodgeView1
+        },
+        {
+            label: 'Convention Space',
+            render: lodgeView2
+        },
+        {
+            label: 'Deals on Rooms & more',
+            render: lodgeView3
+        }
+    ];
+    const carouselTwo = [
+        {
+            label: 'Alps',
+            render: mountainView1
+        },
+        {
+            label: 'Everest',
+            render: mountainView2
+        },
+        {
+            label: 'Rockies',
+            render: mountainView3
+        }
+    ];
+    const carouselThree = [
+        {
+            label: 'Snowboarding Championships',
+            render: event1
+        },
+        {
+            label: 'Learn to Ski',
+            render: event2
+        },
+        {
+            label: 'Slide on Tobagans',
+            render: event3
+        }
+    ];
+    const carouselFour = [
+        {
+            label: 'Hotel Everest',
+            render: hotel1
+        },
+        {
+            label: 'Hotel Bellevue',
+            render: hotel2
+        },
+        {
+            label: 'Hotel Glacier',
+            render: hotel3
+        }
+    ];
+
     return (
         <>
             {isSnowing && snowFlakes}
             <div id="yeti-page">
-                <PageLayout pageLayout={yetiPageLayout} />
+                <RowLayout noWrapping>
+                    <TreesSvg isMobile={dimensions.isMobile} />
+                    <ColumnLayout style={{ padding: '32px 32px 32px 0' }}>
+                        <Headline size={1}>Yeti Walk</Headline>
+                        <Headline size={4} secondary>Yeti Walk is an ongoing Global Movement to get explorers connected with the latest and greatest Frozen Travel Destinations</Headline>
+                    </ColumnLayout>
+                    <Button
+                        id="snow-button"
+                        onClick={handleSnowing}
+                        data-tip={isSnowing ? 'Turn Snow Off' : 'Turn Snow On'}
+                    >
+                        <Icon icon={isSnowing ? 'Yeti' : 'YetiOff'} />
+                    </Button>
+                </RowLayout>
+                <BlockLayout style={{ padding: 8, paddingBottom: 64 }}>
+                    <ColumnLayout isCard className="flat background-secondary">
+                        <Headline size={3} secondary>News</Headline>
+                        <Body>Check out the many beautiful Locations that we have to offer</Body>
+                        <FakeLoader>
+                            <CarouselComponent id="carouselOne" items={carouselOne} />
+                        </FakeLoader>
+                    </ColumnLayout>
+                    <ColumnLayout isCard className="flat background-secondary">
+                        <Headline size={3} secondary>Locations</Headline>
+                        <Body>Catch up on the latest News and industry updates</Body>
+                        <FakeLoader>
+                            <CarouselComponent id="carouselTwo" items={carouselTwo} />
+                        </FakeLoader>
+                    </ColumnLayout>
+                    <ColumnLayout isCard className="flat background-secondary">
+                        <Headline size={3} secondary>Events</Headline>
+                        <Body>A feed of all our latest Events that will have you enthralled</Body>
+                        <FakeLoader>
+                            <CarouselComponent id="carouselThree" items={carouselThree} />
+                        </FakeLoader>
+                    </ColumnLayout>
+                    <ColumnLayout isCard className="flat background-secondary">
+                        <Headline size={3} secondary>Partners</Headline>
+                        <Body>Come join us as we showcase our wonderful Partners</Body>
+                        <FakeLoader>
+                            <CarouselComponent id="carouselFour" items={carouselFour} />
+                        </FakeLoader>
+                    </ColumnLayout>
+                </BlockLayout>
             </div>
         </>
     )
@@ -186,8 +142,8 @@ const YetiPage = () => {
 export default YetiPage;
 
 const TreesSvg = ({ isMobile }: { isMobile?: boolean }) => {
-    const width = 'min-content'; // !isMobile ? 235 : 100;
-    const height = 'min-content'; // !isMobile ? 300 : 100;
+    const width = !isMobile ? 235 : 100;
+    const height = !isMobile ? 300 : 100;
     return (
         <svg id="yeti-trees" viewBox="25.452 10.873 378.394 480" width={width} height={height}>
             <rect x="66.742" y="367.081" width="29.412" height="134.615" ></rect>

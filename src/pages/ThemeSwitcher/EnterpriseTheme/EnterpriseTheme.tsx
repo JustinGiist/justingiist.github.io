@@ -5,6 +5,8 @@ import {
 import "./EnterpriseTheme.scss";
 import Icon from "../../../components/Icon/Icon";
 import { BarChart, BarChart2, ComboChart, GeoChart, LineChart, PieChart } from "./EnterpriseCharts";
+import ColumnLayout from "../../../components/Layouts/ColumnLayout";
+import Headline from "../../../components/Text/Headline";
 const TeslaLogo = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -153,58 +155,54 @@ const EnterpriseTheme = () => {
 
   const InvestmentCardElement = (props: iInvestmentCard) => (
     <div className={"investmentCard Up " + InvestmentElementStates[props.state]}>
-      <h2>{props.label}</h2>
-      <h4>{props.fullLabel}</h4>
-      <h1>{props.tradingAt}</h1>
-      <h3>
-        {getPercentSymbolValue(props.percentChange)}
-      </h3>
-      <div className="flex">{props.logo}</div>
-    </div>
-  );
-  const CardChart = ({
-    label,
-    children
-  }: {
-    label: string;
-    children: any;
-  }) => (
-    <div className={"card Up chart"}>
-        <h3>{label}</h3>
-        {children}
+      {props.label && <Headline size={2}>{props.label}</Headline>}
+      {props.fullLabel && <Headline size={4}>{props.fullLabel}</Headline>}
+      {props.tradingAt && <Headline size={1}>{props.tradingAt}</Headline>}
+      {props.percentChange && (
+        <Headline size={3}>
+          {getPercentSymbolValue(props.percentChange)}
+        </Headline>
+      )}
+      {props.logo && <div className="flex">{props.logo}</div>}
     </div>
   );
   return (
     <>
-      <h1 className="text-headline">Dashboard</h1>
+      <Headline size={1}>Dashboard</Headline>
       <div className="flexFull threeColumns">
         {investmentCardList.map((item) => <InvestmentCardElement key={`investment-card-${item.label}`} {...item} />)}
       </div>
       <div className="flexFull">
-        <CardChart label="Overtime Comparison">
+        <ColumnLayout isCard className="Up">
+          <Headline size={3}>Overtime Comparison</Headline>
           <BarChart2 />
-        </CardChart>
-        <CardChart label="Investment Comparison">
+        </ColumnLayout>
+        <ColumnLayout isCard className="Up">
+          <Headline size={3}>Investment Comparison</Headline>
           <LineChart />
-        </CardChart>
+        </ColumnLayout>
       </div>
-      <CardChart label="Company Performance">
+      <ColumnLayout isCard className="Up">
+        <Headline size={3}>Company Performance</Headline>
         <BarChart isMobile={dimensions.isMobile} />
-      </CardChart>
+      </ColumnLayout>
       <div className="flexFull threeColumns">
         {investmentCard2List.map((item) => <InvestmentCardElement key={`investment-card-two-${item.label}`} {...item} />)}
       </div>
       <div className="flexFull">
-        <CardChart label="Portfolio Distribution">
+        <ColumnLayout isCard className="Up">
+          <Headline size={3}>Portfolio Distribution</Headline>
           <PieChart />
-        </CardChart>
-        <CardChart label="Monthly Stock Performance">
+        </ColumnLayout>
+        <ColumnLayout isCard className="Up">
+          <Headline size={3}>Monthly Stock Performance</Headline>
           <ComboChart />
-        </CardChart>
+        </ColumnLayout>
       </div>
-      <CardChart label="Global Company Performance">
+      <ColumnLayout isCard className="Up">
+        <Headline size={3}>Global Company Performance</Headline>
         <GeoChart isMobile={dimensions.isMobile} />
-      </CardChart>
+      </ColumnLayout>
       <div style={{ padding: dimensions.isMobile ? 24 : 8 }} />
     </>
   );

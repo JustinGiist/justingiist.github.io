@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import {
   ParallaxBackgroundCircle,
   ParallaxBackgroundTriangles,
@@ -10,9 +10,6 @@ import { useWindowDimensions } from "../../../ThemeManager";
 import "./ContactPage.scss";
 
 const ContactPage = () => {
-  const memoizedPageLayout = useMemo(() => {
-    return pageLayout();
-  }, []);
   const dimensions = useWindowDimensions();
   const backgroundRef = useRef<any>(null);
   const backgroundRef2 = useRef<any>(null);
@@ -71,7 +68,7 @@ const ContactPage = () => {
             icon="Contact" 
             className="float-top-right resume-card-icon"
         />
-        <PageLayout pageLayout={memoizedPageLayout} />
+        <PageLayout pageLayout={pageLayout()} />
       </div>
     </>
   );

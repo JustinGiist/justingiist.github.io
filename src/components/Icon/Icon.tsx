@@ -99,7 +99,8 @@ import {
   StarShootingOutline,
   Web,
   DesktopClassic,
-  CardAccountMail
+  CardAccountMail,
+  RocketLaunchOutline
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -206,7 +207,8 @@ const GetIcon: any = {
   Designer: Eye,
   ShootingStar: StarShootingOutline,
   Languages: Web,
-  Tech: DesktopClassic
+  Tech: DesktopClassic,
+  Heroes: RocketLaunchOutline
 };
 const Icon = ({
   icon,

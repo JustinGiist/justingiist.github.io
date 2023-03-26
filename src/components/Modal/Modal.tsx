@@ -109,9 +109,9 @@ const useModal = () => {
     }), [modalRoot]);
 
     const closeModal = useCallback(() => {
-        if (!activeModal) return;
-        activeModal.handleClose(null);
-    }, [activeModal]);
+        setIsOpen(false);
+        setActiveModal(undefined);
+    }, []);
 
     return {
         modalRoot,

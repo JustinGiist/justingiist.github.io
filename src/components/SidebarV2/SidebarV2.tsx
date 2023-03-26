@@ -25,7 +25,7 @@ const SidebarV2 = ({
     const navigate = useNavigate();
     const routeArray = Array.from( routes ).map(([key, value]) => key).filter(key => {
         if (dimensions.isMobile) {
-            return key !== 'Fragments' && key !== 'Editor';
+            return key !== 'Fragments' && key !== 'Editor' && key !== 'Test' && key !== 'List';
         }
         
         return key !== 'Editor' && key !== 'Test' && key !== 'List'; //Removing the editor for now

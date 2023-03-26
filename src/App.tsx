@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import "./App.css";
 import "./styles.scss";
 import "./generics.scss";
+import "./inputs.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ReactTooltip from 'react-tooltip';
 import { useEffect, useState } from "react";
@@ -74,6 +75,10 @@ const App = () => {
       ></link>
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet"></link>
       <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet"></link>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Bangers&display=swap"
+        rel="stylesheet"
+      />
       <ThemeManagerContext.Provider
         value={{ themeManager, theme, setThemeContext }}
       >

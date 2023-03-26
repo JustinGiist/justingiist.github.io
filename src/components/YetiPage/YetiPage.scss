@@ -11,23 +11,23 @@
     --snowflake-9: #62abff;
 }
 #yeti-page {
-    
     position: relative;
     height: 100%;
-    .page-layout-header {
-        justify-content: flex-end;
-        #snow-button {
-        }
-        .flexColumn {
-            flex: 1;
+    .card {
+        flex-grow: 1;
+        &.flat {
+            border: 2px solid var(--misc-0);
         }
     }
+    #snow-button {
+        position: absolute;
+        right: 8px;
+        top: 8px;
+    }
     #yeti-trees {
-        flex: 0.3;
         align-self: flex-end;
         width: min-content;
         height: min-content;
-        transform: translateY(24px);
         path:nth-child(6) {
             fill: var(--misc-0);
         }
@@ -47,55 +47,22 @@
             fill: #4f463e;
         }
     }
-    #yeti-page-layout {
-        padding-bottom: 56px;
-
-    }
-    #yeti-main-content {
-        gap: 16px;
-        background: linear-gradient(180deg, #183c40 40px, transparent 44px);
-        border-radius: var(--round-medium);
-        padding: 8px 0;
-        & > .switch-input-label {
-            padding-left: 8px;
-        }
-        .card {
-            & > .text-body {
-                min-height: 48px;
-            }
-        }
         
-        .carousel-component {
-            width: 100%;
-            .slide {
-                min-height: 240px;
-                max-height: 240px;
-                div {
+    .carousel-component {
+        width: 100%;
+        max-height: 320px;
+        .slide {
+            min-height: 240px;
+            max-height: 240px;
+            div {
+                height: 100%;
+                img {
                     height: 100%;
-                    img {
-                        height: 100%;
-                        object-fit: cover;
-                    }
+                    object-fit: cover;
                 }
             }
         }
     }
-    .page-layout {
-        background: var(--background-secondary);
-        min-height: 100%;
-        flex-grow: 1;
-        padding: 32px 56px;
-        .page-layout-input-container {
-            height: 100%;
-        }
-        .card {
-            flex-grow: 1;
-            &.flat {
-                border: 2px solid var(--misc-0);
-            }
-        }
-    }
-    
 }
 .snowflake {
     --size: 1vw;

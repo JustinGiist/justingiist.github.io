@@ -1,5 +1,5 @@
 @import './color-variables.scss';
-h1, h2, h3, h4, h5, .headlineOne, .headlineTwo, .headlineThree, .headlineFour, .headlineFive {
+p, h1, h2, h3, h4, h5, .headlineOne, .headlineTwo, .headlineThree, .headlineFour, .headlineFive {
   margin: 0;
 }
 body {
@@ -314,7 +314,7 @@ h5, .headlineFive {
 .gap24 {
   gap: 24px !important;
 }
-.flexColumn{
+.flexColumn, .flex-column {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -372,6 +372,21 @@ h5, .headlineFive {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+.clickable {
+  &:hover {
+    cursor: pointer;
+  }
+}
+.image {
+  width: 100%;
+  height: 100%;
+}
+.image-library {
+  justify-content: center;
+  img {
+    max-height: 296px;
+  }
 }
 .float-top-right {
   position: absolute;

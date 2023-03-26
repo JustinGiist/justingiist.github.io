@@ -12,11 +12,13 @@
     animation: fadeIn 0.267s ease forwards;
     .modal-content {
         position: relative;
+        margin: 8px;
         padding: 12px 24px 24px;
         background: var(--background-modal);
         border-radius: var(--round-medium);
         min-width: 480px;
         min-height: 120px;
+        max-height: 90%;
         opacity: 0;
         animation: fadeSlideDown 0.267s ease forwards;
         animation-delay: 0.267s;
@@ -24,9 +26,12 @@
 }
 @media only screen and (max-width: 800px) {
     .modal-container {
+        align-items: flex-start;
         .modal-content {
             min-width: 90%;
             min-height: 240px;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
     }
 }

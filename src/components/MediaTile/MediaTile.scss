@@ -1,0 +1,63 @@
+$tile-media-width: 227px;
+$tile-section-padding: 4px 8px;
+.media-tile {
+    background: var(--background-primary);
+    border-radius: var(--round-medium);
+    box-shadow: var(--shadow-light);
+    width: $tile-media-width;
+    max-height: 396px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.267s ease;
+    position: relative;
+    overflow: hidden;
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-dark);
+    }
+    .media-tile-overlay {
+        position: absolute;
+    }
+    .fa-star {
+        color: var(--partner-color);
+    }
+    .media-tile-top {
+        width: 100%;
+        padding: $tile-section-padding;
+        * {
+            align-items: center;
+        }
+    }
+    .media-tile-middle {
+        position: relative;
+        width: 100%;
+        .tprc.thumbnail-list-item-container {
+            margin: 0 !important; // This is removing css that should not be there.
+            width: 100%;
+        }
+        img {
+            height: inherit;
+        }
+    }
+    .media-tile-bottom {
+        width: 100%;
+        padding: $tile-section-padding;
+    }
+}
+@media screen and (max-width: 900px) {
+    .media-tile {
+        width: calc(50% - (16px + 32px)) !important;
+        .media-tile-top, .media-tile-middle, .media-tile-bottom, .tprc.thumbnail-list-item-container, .thumbnail-list-item {
+            width: 100% !important;
+            .thumbnail-list-item > img {
+                width: inherit;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .media-tile {
+        width: 100% !important;
+    }
+}

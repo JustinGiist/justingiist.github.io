@@ -1,0 +1,101 @@
+.heroCard {
+  * {
+    font-family: "Bangers", cursive !important;
+  }
+  > .headlineOne {
+    transform: translateY(-48px);
+    background-color: var(--theme-teritary);
+    border-radius: var(--round-small);
+    padding: 2px 8px;
+    width: fit-content;
+    position: absolute;
+    color: white;
+  }
+  .top {
+    display: grid;
+    column-gap: 24px;
+    grid-template-columns: 45% 45%;
+    .heroCardItem {
+      &.powers {
+        .flex {
+          padding: 4px 8px;
+        }
+      }
+      .headlineOne {
+        color: var(--theme-error);
+      }
+    }
+    .heroCardImage {
+      max-height: 320px;
+      min-width: 100%;
+      border-radius: var(--round-medium);
+      overflow: hidden;
+      box-shadow: var(--theme-shadow-light);
+      display: flex;
+      background-color: var(--theme-error);
+
+      img {
+        max-height: 320px;
+        margin: 0 auto;
+      }
+    }
+    .flex {
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: var(--round-small);
+      .subHeadlineMedium {
+        text-transform: capitalize;
+      }
+      &.green {
+        color: white;
+        background-color: var(--action-success);
+      }
+      &.orange {
+        color: white;
+        background-color: var(--action-warning);
+      }
+      &.red {
+        color: white;
+        background-color: var(--action-error);
+      }
+    }
+  }
+
+  .heroCardContent {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 400px;
+    .heroCardItem {
+      max-width: 600px;
+      .headlineOne {
+        color: var(--action-error);
+      }
+      .subHeadlineMedium {
+        text-transform: capitalize;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .heroCard {
+    > .headlineOne {
+      position: relative !important;
+      transform: translateY(-16px);
+    }
+  }
+  .heroCardContent {
+    grid-template-columns: auto !important;
+    grid-template-rows: auto !important;
+    overflow-y: hidden !important;
+    max-height: fit-content !important;
+  }
+  .top {
+    grid-template-columns: auto !important;
+    row-gap: 16px;
+    .heroCardImage {
+      margin: auto;
+    }
+  }
+}

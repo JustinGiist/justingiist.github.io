@@ -144,7 +144,8 @@ export enum GlobalThemes {
   Music = "Music",
   List = "List",
   Yeti = "Yeti",
-  Designer = "Designer"
+  Designer = "Designer",
+  Heroes = "Heroes"
 }
 export interface ComponentSizingSchema {
   fontXSmall: number;
