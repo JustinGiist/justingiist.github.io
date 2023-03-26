@@ -14,14 +14,14 @@ import HeroPageLayout, { iHeroPageLayout } from "../../../components/HeroPageLay
 const ThreeDComponentLazy = React.lazy(() => import("./ThreeD"));
 const ResumePage = () => {
   const navigate = useNavigate();
-  const experienceList: any[] = [
+  const experienceList: any[] = useMemo(() => [
     "As Lead UX Designer at a Tech Consulting Firm, I oversaw many Companies & Clients. Responsibilities included creating Figma mock-ups, documenting user-flows and developing enterprise-level production-ready features. I handled end-to-end design, implementation and coordination with multiple departments within each business.",
     <div>Redesigned <a href="https://www.tigerpistol.com/brand-platform-overview/" target="_blank" rel="noopener noreferrer">TigerPistol's DIFY</a> Advertising Platform, improving mobile friendliness, completely refactoring old code base to React, enhancing internal component libraries, reducing CSS by 50%, and developed a brand new Editor System (The main User Interface behind their Ad Platform).</div>,
     <div>Developed Order Software for <a href="https://www.livantaqio.com/en" target="_blank" rel="noopener noreferrer">Livanta</a> that enabled contractors to create in-house requisitions that flowed through an Approval System. The software also automatically processed the order, generated all relevant tax forms, receipts, and billed company accounts.</div>,
     "Developed the UI/UX Frontend Experience for a Fintech Investment SPA. Built a React & React-Native Solution that split logic and display codebases.",
     "Using SyncFusion XLISO excel conversion library, converted financial data into Excel Government Tax Documents. Simplifying a week-long process, to a click of a button."
-  ];
-  const languagesList: string[] = [
+  ], []);
+  const languagesList: string[] = useMemo(() => [
     "JavaScript",
     "TypeScript",
     "HTML5",
@@ -32,8 +32,8 @@ const ResumePage = () => {
     "XAML",
     ".Net Core",
     "C++"
-  ];
-  const techList: string[] = [
+  ], []);
+  const techList: string[] = useMemo(() => [
     "React",
     "React-Native",
     "Angular",
@@ -63,7 +63,7 @@ const ResumePage = () => {
     "PostGres",
     "Storybook",
     "Knockout"
-  ];
+  ], []);
   const experienceHeroPageLayout: iHeroPageLayout = useMemo(
     () => ({
       components: [
@@ -90,7 +90,7 @@ const ResumePage = () => {
         }
       ]
     }),
-    []
+    [experienceList]
   );
   const languagesHeroPageLayout: iHeroPageLayout = useMemo(
     () => ({
@@ -115,7 +115,7 @@ const ResumePage = () => {
         }
       ]
     }),
-    []
+    [languagesList]
   );
   const techHeroPageLayout: iHeroPageLayout = useMemo(
     () => ({
@@ -140,7 +140,7 @@ const ResumePage = () => {
         }
       ]
     }),
-    []
+    [techList]
   );
   const project1HeroPageLayout: iHeroPageLayout = useMemo(
     () => ({
@@ -268,10 +268,20 @@ const ResumePage = () => {
           <Suspense fallback={<OverlayControl />}>
             <div className="titleContainer">
               <div className="flex column">
-                <h1>
+                <h1
+                  id="title"
+                  data-walkthrough-step="1"
+                  data-walkthrough-label="My Name"
+                  data-walkthrough-description="This On-Boarding component will help you traverse the different parts of my website!"
+                >
                   Justin Gist
                 </h1>
-                <h2>
+                <h2
+                  id="designer"
+                  data-walkthrough-step="2"
+                  data-walkthrough-label="My Career Title"
+                  data-walkthrough-description="Through years of dedication and persistent efforts, I have honed my craft as a UI/UX designer, developing a comprehensive skill set that enables me to create valuable and engaging user experiences. My unwavering commitment to delivering exceptional design solutions, combined with a deep understanding of user needs, has established me as a highly proficient and sought-after professional in the field."                  
+                >
                   UI/UX Designer
                 </h2>
               </div>
@@ -281,7 +291,9 @@ const ResumePage = () => {
         </div>
         <div className="heroGradient" />
         <div className="hero-section B">
-          <div className="center">
+          <div 
+            className="center"
+          >
             <HeroPageLayout heroPageLayout={experienceHeroPageLayout} />
           </div>
         </div>

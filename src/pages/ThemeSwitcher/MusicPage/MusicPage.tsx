@@ -15,6 +15,9 @@ const pageLayout: iPageLayout = {
     inputs: [
       {
         id: 'warp-drive-playlist-card',
+        "data-walkthrough-step": "1",
+        "data-walkthrough-label": "Always Flowing",
+        "data-walkthrough-description": "These tracks are always on the move, keeping your mind flowing through the cosmos.",
         type: InputTypes.view,
         label: 'Warp Drive',
         inputs: [
@@ -39,6 +42,9 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'anime-summer-playlist-card',
+        "data-walkthrough-step": "2",
+        "data-walkthrough-label": "Summer in Japan",
+        "data-walkthrough-description": "This playlist is trying to capture the fun, sun & amazing sites of japan in the summer.",
         type: InputTypes.view,
         label: 'Anime Summer',
         inputs: [
@@ -63,6 +69,9 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'beach-racer-playlist-card',
+        "data-walkthrough-step": "3",
+        "data-walkthrough-label": "CTR, Outrun, Mario-Kart, Jet-Set Radio",
+        "data-walkthrough-description": "If these names mean anything to you, then you will get the genre of this playlist.",
         type: InputTypes.view,
         label: 'Beach Racer',
         inputs: [
@@ -87,6 +96,9 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'workout-jams-playlist-card',
+        "data-walkthrough-step": "4",
+        "data-walkthrough-label": "Pump up the Jam",
+        "data-walkthrough-description": "Steady, bumping tracks to keep yourself moving to.",
         type: InputTypes.view,
         label: 'Workout Jams',
         inputs: [
@@ -111,6 +123,9 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'hazy-homicide-playlist-card',
+        "data-walkthrough-step": "5",
+        "data-walkthrough-label": "Sitting in a Hazy Fog",
+        "data-walkthrough-description": "Something to just chill in the background, sittin in a room.",
         type: InputTypes.view,
         label: 'A Hazy Homicide',
         inputs: [
@@ -135,6 +150,9 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'arcade-sunrise-playlist-card',
+        "data-walkthrough-step": "6",
+        "data-walkthrough-label": "Pixel rays shine",
+        "data-walkthrough-description": "Capturing the peace and tranquility found in the forest and taverns of RPGs.",
         type: InputTypes.view,
         label: 'Arcade Sunrise',
         inputs: [
@@ -159,6 +177,9 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'last-street-racer-playlist-card',
+        "data-walkthrough-step": "7",
+        "data-walkthrough-label": "Petal to the Metal",
+        "data-walkthrough-description": "This one is my fast pace metal style playlist for driving fast",
         type: InputTypes.view,
         label: 'The Last Street Racer',
         inputs: [
@@ -183,6 +204,9 @@ const pageLayout: iPageLayout = {
       },
       {
         id: 'the-badlands-playlist-card',
+        "data-walkthrough-step": "8",
+        "data-walkthrough-label": "A local's tale",
+        "data-walkthrough-description": "The songs to weave stories, dreams and terrifying things to.",
         type: InputTypes.view,
         label: 'The Badlands',
         inputs: [

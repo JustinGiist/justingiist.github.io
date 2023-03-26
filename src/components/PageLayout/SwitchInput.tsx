@@ -488,7 +488,15 @@ const SwitchInput = ({
         case InputTypes.card:
         case InputTypes.element:
             return (
-                <div id={input.id} className={`flexColumn ${input.className} ${InputTypes[input.type].toString()} ${animationClass}`} style={animatedStyle}>
+                <div 
+                    id={input.id} 
+                    className={`flexColumn ${input.className} ${InputTypes[input.type].toString()} ${animationClass}`} 
+                    style={animatedStyle}
+                    data-walkthrough-step={input["data-walkthrough-step"]}
+                    data-walkthrough-label={input["data-walkthrough-label"]}
+                    data-walkthrough-description={input["data-walkthrough-description"]}
+        
+                >
                     {label}
                     {input.subLabel && <div className="text-body">{input.subLabel}</div>}
                     <div className={input.layoutClassName ?? 'flexColumn'}>

@@ -21,6 +21,7 @@ import YetiPage from "../YetiPage/YetiPage";
 import DesignerPage from "../../pages/ThemeSwitcher/DesignerPage";
 import { useLocation, useNavigate } from "react-router-dom";
 import HeroPage from "../../pages/HeroPage/HeroPage";
+import Walkthrough from "../Walkthrough/Walkthrough";
 const RenderComponent = () => {
   const navigate = useNavigate();
   let location = useLocation();
@@ -74,6 +75,7 @@ const RenderComponent = () => {
 
   return (
     <>
+      <Walkthrough />
       {showBackground && <DesignBackground />}
       <div id="animationOverlay" className={`animationOverlay ${theme}`}></div>
       <div
