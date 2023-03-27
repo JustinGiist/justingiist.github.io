@@ -169,10 +169,22 @@ const EnterpriseTheme = () => {
   return (
     <>
       <Headline size={1}>Dashboard</Headline>
-      <div className="flexFull threeColumns">
+      <div 
+        className="flexFull threeColumns"
+        id="Investments"
+        data-walkthrough-step="1"
+        data-walkthrough-label="Investments"
+        data-walkthrough-description="Here is a list of your top investments." 
+      >
         {investmentCardList.map((item) => <InvestmentCardElement key={`investment-card-${item.label}`} {...item} />)}
       </div>
-      <div className="flexFull">
+      <div 
+        className="flexFull"
+        id="investment-comparison"
+        data-walkthrough-step="2"
+        data-walkthrough-label="Comparisons"
+        data-walkthrough-description="Here you will see your Investment comparisons via Overtime and Popularity" 
+      >
         <ColumnLayout isCard className="Up">
           <Headline size={3}>Overtime Comparison</Headline>
           <BarChart2 />
@@ -182,14 +194,33 @@ const EnterpriseTheme = () => {
           <LineChart />
         </ColumnLayout>
       </div>
-      <ColumnLayout isCard className="Up">
+      <ColumnLayout 
+        isCard 
+        className="Up"
+        id="company-comparison"
+        data-walkthrough-step="3"
+        data-walkthrough-label="Performance by Company"
+        data-walkthrough-description="Here you can see the overall investment and how they perform per company." 
+      >
         <Headline size={3}>Company Performance</Headline>
         <BarChart isMobile={dimensions.isMobile} />
       </ColumnLayout>
-      <div className="flexFull threeColumns">
+      <div 
+        className="flexFull threeColumns"
+        id="investments-2"
+        data-walkthrough-step="4"
+        data-walkthrough-label="Investments"
+        data-walkthrough-description="Here is another list of your top investments." 
+      >
         {investmentCard2List.map((item) => <InvestmentCardElement key={`investment-card-two-${item.label}`} {...item} />)}
       </div>
-      <div className="flexFull">
+      <div 
+        className="flexFull"
+        id="portfolio-comparison"
+        data-walkthrough-step="5"
+        data-walkthrough-label="Comparisons"
+        data-walkthrough-description="Here you can compare your investments by your entire portfolio. You can also see performance on a monthly basis." 
+      >
         <ColumnLayout isCard className="Up">
           <Headline size={3}>Portfolio Distribution</Headline>
           <PieChart />
@@ -199,7 +230,14 @@ const EnterpriseTheme = () => {
           <ComboChart />
         </ColumnLayout>
       </div>
-      <ColumnLayout isCard className="Up">
+      <ColumnLayout 
+        isCard 
+        className="Up"
+        id="global-comparison"
+        data-walkthrough-step="6"
+        data-walkthrough-label="Global Performance"
+        data-walkthrough-description="This chart shows your investments performance on a global scale, being able to see how they are doing per country." 
+      >
         <Headline size={3}>Global Company Performance</Headline>
         <GeoChart isMobile={dimensions.isMobile} />
       </ColumnLayout>

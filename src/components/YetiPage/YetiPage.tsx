@@ -106,28 +106,56 @@ const YetiPage = () => {
                     </Button>
                 </RowLayout>
                 <BlockLayout style={{ padding: 8, paddingBottom: 64 }}>
-                    <ColumnLayout isCard className="flat background-secondary">
+                    <ColumnLayout 
+                        isCard 
+                        className="flat background-secondary"
+                        id="news"
+                        data-walkthrough-step="1"
+                        data-walkthrough-label="Resort News"
+                        data-walkthrough-description="Get the latest in news and updates here. Read articles and get familiar with the sights you'll be experiencing when you go there!"                        
+                    >
                         <Headline size={3} secondary>News</Headline>
                         <Body>Check out the many beautiful Locations that we have to offer</Body>
                         <FakeLoader>
                             <CarouselComponent id="carouselOne" items={carouselOne} />
                         </FakeLoader>
                     </ColumnLayout>
-                    <ColumnLayout isCard className="flat background-secondary">
+                    <ColumnLayout 
+                        isCard 
+                        className="flat background-secondary"
+                        id="locations"
+                        data-walkthrough-step="2"
+                        data-walkthrough-label="Know where to go"
+                        data-walkthrough-description="View all the breath taking sights and gorgoeous lodging, and then book your stay so you can see it yourself!"     
+                    >
                         <Headline size={3} secondary>Locations</Headline>
                         <Body>Catch up on the latest News and industry updates</Body>
                         <FakeLoader>
                             <CarouselComponent id="carouselTwo" items={carouselTwo} />
                         </FakeLoader>
                     </ColumnLayout>
-                    <ColumnLayout isCard className="flat background-secondary">
+                    <ColumnLayout 
+                        isCard 
+                        className="flat background-secondary"
+                        id="events"
+                        data-walkthrough-step="3"
+                        data-walkthrough-label="Competitions & Events"
+                        data-walkthrough-description="Be on the pulse of all the latest & greatest events the snow has to offer!" 
+                    >
                         <Headline size={3} secondary>Events</Headline>
                         <Body>A feed of all our latest Events that will have you enthralled</Body>
                         <FakeLoader>
                             <CarouselComponent id="carouselThree" items={carouselThree} />
                         </FakeLoader>
                     </ColumnLayout>
-                    <ColumnLayout isCard className="flat background-secondary">
+                    <ColumnLayout 
+                        isCard 
+                        className="flat background-secondary"
+                        id="partners"
+                        data-walkthrough-step="4"
+                        data-walkthrough-label="Visit our friends!"
+                        data-walkthrough-description="A section dedicated to our wonderful partners, as well as friends. We welcome you to enjoy all they have to offer." 
+                    >
                         <Headline size={3} secondary>Partners</Headline>
                         <Body>Come join us as we showcase our wonderful Partners</Body>
                         <FakeLoader>

@@ -75,23 +75,24 @@ const RenderComponent = () => {
 
   return (
     <>
-      <Walkthrough />
-      {showBackground && <DesignBackground />}
-      <div id="animationOverlay" className={`animationOverlay ${theme}`}></div>
-      <div
-        className={`renderContainer ${isTopBar ? " horizontal " : " "} ${theme}`}
-      >
-        <div className="leftContainer">
-          <SidebarV2 url={url} setIsMobileOpen={setIsMobileOpen} routes={routes} isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} isMobileOpen={isMobileOpen}/>
+      <Walkthrough>
+        {showBackground && <DesignBackground />}
+        <div id="animationOverlay" className={`animationOverlay ${theme}`}></div>
+        <div
+          className={`renderContainer ${isTopBar ? " horizontal " : " "} ${theme}`}
+        >
+          <div className="leftContainer">
+            <SidebarV2 url={url} setIsMobileOpen={setIsMobileOpen} routes={routes} isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} isMobileOpen={isMobileOpen}/>
+          </div>
+          <div className="rightContainer">
+            {!dimensions.isMobile && memoizedTopBar}
+            <CalculatedScrollComponent className={"mainContent " + url} hasButtons={false} refresh={[]} sidebarCollapsed={isCollapsed}>
+              {!newPage ? <OverlayControl /> : newPage}
+            </CalculatedScrollComponent>
+            {dimensions.isMobile && memoizedTopBar}
+          </div>
         </div>
-        <div className="rightContainer">
-          {!dimensions.isMobile && memoizedTopBar}
-          <CalculatedScrollComponent className={"mainContent " + url} hasButtons={false} refresh={[]} sidebarCollapsed={isCollapsed}>
-            {!newPage ? <OverlayControl /> : newPage}
-          </CalculatedScrollComponent>
-          {dimensions.isMobile && memoizedTopBar}
-        </div>
-      </div>
+      </Walkthrough>
     </>
   );
 };

@@ -35,6 +35,9 @@ const pageLayout = (openTestModal: () => void) => ({
       {
         id: 'test-1',
         type: InputTypes.card,
+        "data-walkthrough-step": "1",
+        "data-walkthrough-label": "Test section 1",
+        "data-walkthrough-description": "This is a test of form component functionality." ,
         label: 'Card 1',
         inputProps: {
           className: 'flexColumn'
@@ -77,6 +80,9 @@ const pageLayout = (openTestModal: () => void) => ({
       {
         id: 'test-2',
         type: InputTypes.card,
+        "data-walkthrough-step": "2",
+        "data-walkthrough-label": "Test section 2",
+        "data-walkthrough-description": "This is a test of form component functionality." ,
         label: 'Card 2',
         inputProps: {
           className: 'flexColumn'
@@ -112,6 +118,9 @@ const pageLayout = (openTestModal: () => void) => ({
       {
         id: 'test',
         type: InputTypes.card,
+        "data-walkthrough-step": "3",
+        "data-walkthrough-label": "Test section 3",
+        "data-walkthrough-description": "This is a test of form component functionality." ,
         label: 'Card 3',
         inputProps: {
           className: 'flexColumn'
@@ -141,6 +150,9 @@ const pageLayout = (openTestModal: () => void) => ({
       {
         id: 'card-4',
         type: InputTypes.card,
+        "data-walkthrough-step": "4",
+        "data-walkthrough-label": "Test section 4",
+        "data-walkthrough-description": "This is a test of form component functionality." ,
         label: 'Card 4',
         inputs: [
           {

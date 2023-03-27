@@ -280,7 +280,7 @@ const ResumePage = () => {
                   id="designer"
                   data-walkthrough-step="2"
                   data-walkthrough-label="My Career Title"
-                  data-walkthrough-description="Through years of dedication and persistent efforts, I have honed my craft as a UI/UX designer, developing a comprehensive skill set that enables me to create valuable and engaging user experiences. My unwavering commitment to delivering exceptional design solutions, combined with a deep understanding of user needs, has established me as a highly proficient and sought-after professional in the field."                  
+                  data-walkthrough-description="Through years of dedication and persistent efforts, I have honed my craft as a UI/UX designer, developing a comprehensive skill set that enables me to create valuable and engaging user experiences."                  
                 >
                   UI/UX Designer
                 </h2>

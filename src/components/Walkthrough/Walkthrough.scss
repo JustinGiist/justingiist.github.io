@@ -1,9 +1,13 @@
+@import '../../generics.scss';
 .jdgd-walkthrough-component {
 
 }
-.jdgd-walkthrough-button {
-    position: fixed;
-    right: 24px;
-    bottom: 40px;
-    z-index: var(--layer-5);
+.react-joyride__tooltip {
+    button {
+        @extend .button;
+        @extend .primary;
+    }
+    button[aria-label="next"] {
+        background: var(--action-primary) !important;
+    }
 }

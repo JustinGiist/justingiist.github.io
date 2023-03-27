@@ -347,6 +347,8 @@ h5, .headlineFive {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(calc(50% - 16px), 1fr) );
   grid-column: 1/-1;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .img-common {
   width: 100%;
