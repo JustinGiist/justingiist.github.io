@@ -2,7 +2,6 @@ import React, { useMemo } from "react";
 import "./App.css";
 import "./styles.scss";
 import "./generics.scss";
-import "./inputs.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ReactTooltip from 'react-tooltip';
 import { useEffect, useState } from "react";

@@ -1,13 +1,6 @@
 @import '../../generics.scss';
-.jdgd-walkthrough-component {
+@import '../../color-variables.scss';
 
-}
-.react-joyride__tooltip {
-    button {
-        @extend .button;
-        @extend .primary;
-    }
-    button[aria-label="next"] {
-        background: var(--action-primary) !important;
-    }
+.jdgd-walkthrough-component {
+    
 }

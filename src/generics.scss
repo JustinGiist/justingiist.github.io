@@ -1,7 +1,7 @@
 @import './color-variables.scss';
-p, h1, h2, h3, h4, h5, .headlineOne, .headlineTwo, .headlineThree, .headlineFour, .headlineFive {
-  margin: 0;
-}
+@import './inputs.scss';
+@import './buttons.scss';
+@import './texts.scss';
 body {
   overflow: hidden;
 }
@@ -24,88 +24,14 @@ body {
   background: var(--background-card) !important;
 }
 
-// Text Colors
-@mixin textMixin($color) {
-  color: $color;
-  * {
-    color: $color;
-  }
-}
-.text-headline {
-  @include textMixin(var(--text-headline));
-}
-.text-headline-secondary {
-  @include textMixin(var(--text-headline-secondary));
-}
-.text-sub-headline {
-  @include textMixin(var(--text-sub-headline));
-}
-.text-body {
-  @include textMixin(var(--text-body));
-}
-.text-sub-body {
-  @include textMixin(var(--text-sub-body));
-}
-.text-placeholder {
-  @include textMixin(var(--text-placeholder));
-}
-.text-menu {
-  @include textMixin(var(--text-menu));
-}
-.text-input-label {
-  @include textMixin(var(--input-label));
-}
-
-// Main Font classes
-@mixin fontMixin($size, $weight) {
-  font-size: $size;
-  font-weight: $weight;
-  letter-spacing: 0;
-  line-height: calc($size + 6px);
-}
-h1, .headlineOne {
-  @include fontMixin(var(--font-h1), 500);
-  @extend .text-headline;
-}
-h2, .headlineTwo {
-  @include fontMixin(var(--font-h2), 500);
-  @extend .text-headline;
-}
-h3, .headlineThree {
-  @include fontMixin(var(--font-h3), 500);
-  @extend .text-headline;
-}
-h4, .headlineFour {
-  @include fontMixin(var(--font-h4), 500);
-  @extend .text-headline;
-}
-h5, .headlineFive {
-  @include fontMixin(var(--font-h5), 500);
-  @extend .text-headline;
-}
-.subHeadlineBold {
-  @include fontMixin(var(--font-sub-headline), 600);
-  @extend .text-sub-headline;
-}
-.subHeadlineMedium {
-  @include fontMixin(var(--font-sub-headline), 500);
-  @extend .text-sub-headline;
-}
-.subHeadlineLight {
-  @include fontMixin(var(--font-sub-headline), 400);
-  @extend .text-sub-headline;
-}
-.bodyBold {
-  @include fontMixin(var(--font-body), 600);
-  @extend .text-body;
-}
-.bodyMedium {
-  @include fontMixin(var(--font-body), 500);
-  @extend .text-body;
-}
-.bodyLight {
-  @include fontMixin(var(--font-body), 400);
-  @extend .text-body;
+.react-joyride__tooltip {
+    button {
+        @extend .button;
+        @extend .primary;
+    }
+    button[aria-label="next"] {
+        background: var(--action-primary) !important;
+    }
 }
 
 .inputName {
@@ -117,93 +43,6 @@ h5, .headlineFive {
   &:hover {
     cursor: pointer;
   }
-}
-@mixin buttonMixin($backgroundColor, $color) {
-  background: $color;
-  color: $backgroundColor;
-  fill: $backgroundColor;
-  border: 2px solid $backgroundColor;
-  * {
-    color: $backgroundColor;
-    fill: $backgroundColor;
-  }
-  &:hover {
-    background: $backgroundColor;
-    color: $color;
-    fill: $color;
-    * {
-      color: $color;
-      fill: $color;
-    }
-  }
-}
-.button {
-  background: var(--action-option);
-  padding: 2px 12px;
-  min-width: 56px;
-  width: fit-content;
-  border-radius: var(--round-small);
-  min-height: 36px;
-  max-height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  line-height: 16px;
-  letter-spacing: 0px;
-  font-weight: 400;
-  border: none;
-  color: var(--light);
-  transition: all 0.267s ease;
-  &:hover {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
-  }
-  &.icon {
-    width: fit-content;
-    height: fit-content;
-    min-width: fit-content;
-    min-height: fit-content;
-    border: none !important;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-  }
-  &:hover {
-    cursor: pointer;
-  }
-}
-.button.circle {
-  min-width: 60px;
-  max-height: 60px;
-  height: 60px;
-  padding: 8px;
-  border-radius: 100%;
-}
-.button.primary {
-  @include buttonMixin(var(--action-primary), white);
-}
-.button.transparent {
-  background: transparent;
-}
-.button.secondary {
-  @include buttonMixin(var(--action-secondary), white);
-}
-.button.option {
-  @include buttonMixin(var(--action-option), white);
-}
-.button.success {
-  @include buttonMixin(var(--action-success), white);
-}
-.button.info {
-  @include buttonMixin(var(--action-info), white);
-}
-.button.warning {
-  @include buttonMixin(var(--action-warning), white);
-}
-.background-transparent {
-  background: transparent !important;
 }
 .disabled {
   background: var(--action-disabled);

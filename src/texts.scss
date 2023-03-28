@@ -1,0 +1,87 @@
+
+p, h1, h2, h3, h4, h5, .headlineOne, .headlineTwo, .headlineThree, .headlineFour, .headlineFive {
+    margin: 0;
+}
+// Text Colors
+@mixin textMixin($color) {
+    color: $color;
+    * {
+      color: $color;
+    }
+}
+.text-headline {
+    @include textMixin(var(--text-headline));
+}
+.text-headline-secondary {
+    @include textMixin(var(--text-headline-secondary));
+}
+.text-sub-headline {
+    @include textMixin(var(--text-sub-headline));
+}
+.text-body {
+    @include textMixin(var(--text-body));
+}
+.text-sub-body {
+    @include textMixin(var(--text-sub-body));
+}
+.text-placeholder {
+    @include textMixin(var(--text-placeholder));
+}
+.text-menu {
+    @include textMixin(var(--text-menu));
+}
+.text-input-label {
+    @include textMixin(var(--input-label));
+}
+  
+  // Main Font classes
+@mixin fontMixin($size, $weight) {
+    font-size: $size;
+    font-weight: $weight;
+    letter-spacing: 0;
+    line-height: calc($size + 6px);
+}
+h1, .headlineOne {
+    @include fontMixin(var(--font-h1), 500);
+    @extend .text-headline;
+}
+h2, .headlineTwo {
+    @include fontMixin(var(--font-h2), 500);
+    @extend .text-headline;
+}
+h3, .headlineThree {
+    @include fontMixin(var(--font-h3), 500);
+    @extend .text-headline;
+}
+h4, .headlineFour {
+    @include fontMixin(var(--font-h4), 500);
+    @extend .text-headline;
+}
+h5, .headlineFive {
+    @include fontMixin(var(--font-h5), 500);
+    @extend .text-headline;
+}
+.subHeadlineBold {
+    @include fontMixin(var(--font-sub-headline), 600);
+    @extend .text-sub-headline;
+}
+.subHeadlineMedium {
+    @include fontMixin(var(--font-sub-headline), 500);
+    @extend .text-sub-headline;
+}
+.subHeadlineLight {
+    @include fontMixin(var(--font-sub-headline), 400);
+    @extend .text-sub-headline;
+}
+.bodyBold {
+    @include fontMixin(var(--font-body), 600);
+    @extend .text-body;
+}
+.bodyMedium {
+    @include fontMixin(var(--font-body), 500);
+    @extend .text-body;
+}
+.bodyLight {
+    @include fontMixin(var(--font-body), 400);
+    @extend .text-body;
+}

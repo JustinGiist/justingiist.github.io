@@ -1,5 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
-import ReactJoyride from "react-joyride";
+import { Button } from "@material-ui/core";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import ReactJoyride, { BeaconRenderProps } from "react-joyride";
+import Icon from "../Icon/Icon";
+import Body from "../Text/Body";
+import Headline from "../Text/Headline";
 import SubHeadline from "../Text/SubHeadline";
 import './Walkthrough.scss';
 
@@ -20,9 +24,9 @@ const Walkthrough: React.FC<any> = ({ children }) => {
             const description = node.getAttribute("data-walkthrough-description") || "";
             const content = (
                 <>
-                    <h2>{label}</h2>
+                    <Headline size={4}>{label}</Headline>
                     <SubHeadline>Step: {step}</SubHeadline>
-                    <p>{description}</p>
+                    <Body>{description}</Body>
                 </>
             );
             newSteps.push({ target: `#${target}`, content });
@@ -47,6 +51,19 @@ const Walkthrough: React.FC<any> = ({ children }) => {
         }, 2100);
         return () => clearTimeout(timeout);
     }, [children]);
+
+    const Beacon = useCallback((props: any) => {
+        return (
+            <Button
+                className="ball"
+                aria-label={props['aria-label']}
+                onClick={props.onClick}
+                data-tip={'Start Tour'}
+            >
+                <Icon icon="QuestionMark" />
+            </Button>
+        );
+    }, []);
     
     return (
         <>
@@ -57,6 +74,7 @@ const Walkthrough: React.FC<any> = ({ children }) => {
                     run={runWalkthrough}
                     continuous
                     callback={updateStepIndex}
+                    beaconComponent={Beacon}
                 />
             )}
             {children}
