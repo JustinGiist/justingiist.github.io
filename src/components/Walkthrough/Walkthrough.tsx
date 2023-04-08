@@ -48,7 +48,7 @@ const Walkthrough: React.FC<any> = ({ children }) => {
         setRunWalkthrough(false);
         const timeout = setTimeout(() => {
             updateSteps();
-        }, 2100);
+        }, 5000);
         return () => clearTimeout(timeout);
     }, [children]);
 

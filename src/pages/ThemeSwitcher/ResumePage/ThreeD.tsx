@@ -20,6 +20,7 @@ import {
   SphereGeometry,
   TorusGeometry,
 } from "three";
+import { useWindowDimensions } from "../../../ThemeManager";
 extend({ EffectComposer, RenderPass, UnrealBloomPass });
 
 enum CityBlockType {
@@ -101,6 +102,7 @@ const radius0 = 0.02;
 const torusTublarSegments = 75;
 const torusRadialSegments = 64;
 const ThreeDComponent = () => {
+  const { isMobile } = useWindowDimensions();
   const origin = {
     x: -8,
     y: 0,
@@ -160,42 +162,43 @@ const ThreeDComponent = () => {
     }, [matrix]);
     return <>{mapElement}</>;
   };
+  const shadowSize = 152;
 
   return (
     <Canvas
       id="threeD"
       linear
       camera={{
-        rotation: new Euler(0, 0, 0),
-        position: [0, 10, 37],
+        rotation: new Euler(-0.2, 0, 0),
+        position: isMobile ? [0, 7, 30] : [0, 5, 25],
         castShadow: true,
       }}
       shadows={true}
-      style={{ minHeight: 400, background: "#000000" }}
+      style={{ minHeight: 400, background: "transparent" }}
     >
       <Main>
         <directionalLight
-          position={[40, 10, 20]}
+          position={[20, 10, 20]}
           castShadow={true}
-          shadow-mapSize-height={512}
-          shadow-mapSize-width={512}
-          color={"#000ce8"}
+          shadow-mapSize-height={shadowSize}
+          shadow-mapSize-width={shadowSize}
+          color={"#2632ff"}
           intensity={0.8}
         />
         <directionalLight
-          position={[-40, 10, 20]}
+          position={[-20, 10, 20]}
           castShadow={true}
-          shadow-mapSize-height={512}
-          shadow-mapSize-width={512}
+          shadow-mapSize-height={shadowSize}
+          shadow-mapSize-width={shadowSize}
           color={"#9c008c"}
           intensity={1}
         />
         <directionalLight
           position={[0, 10, -40]}
           castShadow={false}
-          shadow-mapSize-height={512}
-          shadow-mapSize-width={512}
-          color={"#173dfc"}
+          shadow-mapSize-height={shadowSize}
+          shadow-mapSize-width={shadowSize}
+          color={"#c9ccff"}
           intensity={0.5}
         />
         <Spinner>
@@ -304,7 +307,7 @@ const TorusElement = () => {
   ]);
   const origin = useMemo(() => ({
     x: 0,
-    y: -3,
+    y: -2,
     z: 0,
     s: 10,
   }), []);

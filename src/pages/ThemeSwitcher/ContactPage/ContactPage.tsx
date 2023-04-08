@@ -4,108 +4,34 @@ import {
   ParallaxBackgroundTriangles,
 } from "../../../components/BezierBackground/ParallaxBackground";
 import Icon from "../../../components/Icon/Icon";
+import ColumnLayout from "../../../components/Layouts/ColumnLayout";
 import PageLayout, { iPageLayout } from "../../../components/PageLayout/PageLayout";
 import { InputTypes } from "../../../components/PageLayout/SwitchInput";
+import Body from "../../../components/Text/Body";
+import Headline from "../../../components/Text/Headline";
 import { useWindowDimensions } from "../../../ThemeManager";
 import "./ContactPage.scss";
 
 const ContactPage = () => {
-  const dimensions = useWindowDimensions();
-  const backgroundRef = useRef<any>(null);
-  const backgroundRef2 = useRef<any>(null);
-  const parallax = useCallback((event: any) => {
-    if (dimensions.isMobile) {
-      if (backgroundRef.current && backgroundRef2.current) {
-        backgroundRef.current.style.transform = ` scale(1.2)`;
-        backgroundRef2.current.style.transform = ` scale(1.2)`;
-      }
-    } else {
-      let scale = false;
-      if (window.innerHeight <= 1000 || window.innerWidth >= 1000) scale = true;
-      if (backgroundRef.current) {
-        const position = 1;
-        const x = (window.innerWidth - event.pageX * position) / 100;
-        const y = (window.innerHeight - event.pageY * position) / 100;
-
-        backgroundRef.current.style.transform =
-          `translateX(${x}px) translateY(${y}px) ` +
-          (scale ? ` scale(1.5)` : ``);
-      }
-      if (backgroundRef2.current) {
-        const position = 2;
-        const x = (window.innerWidth - event.pageX * position) / 100;
-        const y = (window.innerHeight - event.pageY * position) / 100;
-
-        backgroundRef2.current.style.transform =
-          `translateX(${x}px) translateY(${y}px) ` +
-          (scale ? ` scale(1.5)` : ``);
-      }
-    }
-  }, [
-    dimensions.isMobile
-  ]);
-  useEffect(() => {
-    document.addEventListener("mousemove", parallax);
-    if (dimensions.isMobile) {
-      parallax({});
-    }
-    //return document.removeEventListener("mousemove", parallax);
-  }, [
-    dimensions.isMobile,
-    parallax
-  ]);
-
+  const style = ({
+    display: 'flex',
+    alignItems: 'center',
+    gap: 4
+  });
+  //* Experience */
   return (
-    <>
-      <div className="parallaxBackground" ref={backgroundRef}>
-        <ParallaxBackgroundTriangles />
-      </div>
-      <div className="parallaxBackground" ref={backgroundRef2}>
-        <ParallaxBackgroundCircle />
-      </div>
-      <div className="card contact">
+    <div className="centerContent" style={{ width: '100vw', height: '100vh', padding: 32 }}>
+      <ColumnLayout gap={24} isCard>
         <Icon 
-            icon="Contact" 
-            className="float-top-right resume-card-icon"
+            icon={'Contact'} 
+            className={'float-top-right resume-card-icon'}
         />
-        <PageLayout pageLayout={pageLayout()} />
-      </div>
-    </>
+        <Headline>Contact</Headline>
+        <Headline truncate secondary size={4} style={style}><Icon icon="Email" /> JustinGistDesigner@gmail.com</Headline>
+        <Headline truncate secondary size={4} style={style}><Icon icon="Linkedin" /> LinkedIn Profile</Headline>
+        <Headline truncate secondary size={4} style={style}><Icon icon="Phone" /> (407)-929-3184</Headline>
+      </ColumnLayout>
+    </div>
   );
 };
 export default ContactPage;
-
-const pageLayout: () => iPageLayout = () => ({
-  id: 'contact',
-  labelProps: {
-    label: 'Contact',
-  },
-  contentProps: {
-    className: 'background-transparent',
-    style: { gap: 24 },
-  },
-  inputs: [
-    {
-      id: 'email',
-      type: InputTypes.textOnly,
-      icon: 'Email',
-      labelProps: { style: { alignItems: 'center'} },
-      label: 'JustinGistDesigner@gmail.com'
-    },
-    {
-      id: 'linkedIn',
-      type: InputTypes.link,
-      icon: 'Linkedin',
-      label: 'My LinkedIn Profile',
-      labelProps: { style: { alignItems: 'center'} },      
-      href: 'https://linkedin.com/in/justin-gist-270862b2/'
-    },
-    {
-      id: 'phone',
-      type: InputTypes.textOnly,
-      icon: 'Phone',
-      labelProps: { style: { alignItems: 'center'} },
-      label: '(407)-929-3184'
-    }
-  ]
-});

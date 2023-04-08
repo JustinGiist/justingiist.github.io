@@ -6,7 +6,7 @@
     width: 32px !important;
     height: 32px !important;
     border-radius: 50% !important;
-    background-color: #ff4b3b !important;
+    background-color: #2b87ff !important;
     animation: bounce 0.5s;
     animation-direction: alternate;
     animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
@@ -19,9 +19,11 @@
 @keyframes bounce {
     from {
         transform: translate3d(0, 0, 0);
+        opacity: 0.9;
     }
     to {
         transform: translate3d(0, 8px, 0);
+        opacity: 0.6;
     }
 }
 /* Prefix Support */
@@ -41,7 +43,7 @@
         transform: translate3d(0, 0, 0);
     }
     to {
-        -webkit-transform: translate3d(0, 200px, 0);
+        -webkit-transform: translate3d(0, 8px, 0);
         transform: translate3d(0, 8px, 0);
     }
 }

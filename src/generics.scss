@@ -39,7 +39,7 @@ body {
   line-height: 16px;
 }
 .link {
-  color: var(--action-secondary);
+  color: var(--action-info) !important;
   &:hover {
     cursor: pointer;
   }
@@ -141,6 +141,16 @@ body {
   justify-content: flex-start;
   display: flex;
 }
+.centerContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .noGap {
   gap: 0px !important;
 }
@@ -158,7 +168,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .flexSB {
   width: 100%;
@@ -222,6 +232,7 @@ body {
 .image {
   width: 100%;
   height: 100%;
+  border: none;
 }
 .image-library {
   justify-content: center;
@@ -235,7 +246,7 @@ body {
   top: 12px;
 }
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {
-  .flex-block {
+  .flex-block:not(.noMobile) {
     grid-template-columns: auto;
   }
   .flexFull {

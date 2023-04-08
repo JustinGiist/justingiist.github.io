@@ -93,7 +93,6 @@ const HeroPage = () => {
             <Headline size={1}>
                 Hall of Heroes
             </Headline>
-            
             <TextField
                 onChange={onChange}
                 label="Search"

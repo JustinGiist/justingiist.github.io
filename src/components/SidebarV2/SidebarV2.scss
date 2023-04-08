@@ -48,21 +48,21 @@
         align-items: center;
         cursor: pointer;
         transition: all 0.267s ease;
-        h4, .headline.four {
+        * {
             color: var(--sidebar-button-text);
             transition: color 0.267s ease;
         }
-        &:hover, &.selected {
+        &:hover {
             background: var(--sidebar-button-hover);
-            color: var(--sidebar-button-selected-text);
-            h4, .headline.four {
-                color: var(--sidebar-button-selected-text);
+            color: var(--sidebar-button-hover-text);
+            * {
+                color: var(--sidebar-button-hover-text);
             }
         }
         &.selected{
             background: var(--sidebar-button-selected);
             color: var(--sidebar-button-selected-text);
-            h4, .headline.four {
+            * {
                 color: var(--sidebar-button-selected-text);
             }
         }

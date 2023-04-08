@@ -1,16 +1,22 @@
-import { Suspense, useMemo } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import "./ResumePage.scss";
 import tacoImage from "../../../assets/taco.jpg";
 import hallowImage from "../../../assets/hallow.jpg";
 import threePhones from "../../../assets/Three-Phones-Mockup.png";
 import racingPhones from "../../../assets/Racing-Mockup.png";
 import dashboardMockup from "../../../assets/Dashboard_mockup.png";
-import ParallaxBackground from "../../../components/BezierBackground/ParallaxBackground";
 import { GlobalThemes } from "../../../ThemeManager";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import ColumnLayout from "../../../components/Layouts/ColumnLayout";
+import Headline from "../../../components/Text/Headline";
+import Body from "../../../components/Text/Body";
+import BlockLayout from "../../../components/Layouts/BlockLayout";
+import RowLayout from "../../../components/Layouts/RowLayout";
+import SubHeadline from "../../../components/Text/SubHeadline";
 import OverlayControl from "../../../components/OverlayControl/OverlayControl";
-import HeroPageLayout, { iHeroPageLayout } from "../../../components/HeroPageLayout/HeroPageLayout";
+import Icon from "../../../components/Icon/Icon";
+import Stars from "./Stars";
 const ThreeDComponentLazy = React.lazy(() => import("./ThreeD"));
 const ResumePage = () => {
   const navigate = useNavigate();
@@ -64,281 +70,161 @@ const ResumePage = () => {
     "Storybook",
     "Knockout"
   ], []);
-  const experienceHeroPageLayout: iHeroPageLayout = useMemo(
-    () => ({
-      components: [
-        {
-          label: "Experience",
-          id: "experience",
-          type: "container",
-          commonProps: {
-            className: 'card gap24',
-            layoutClassName: 'flexColumn gap16'
-          },
-          iconProps: {
-            icon: 'ShootingStar',
-            className: 'float-top-right resume-card-icon'
-          },
-          components: experienceList.map((experience, i) => ({
-              id: `experience-${i}`,
-              body: experience,
-              type: "text",
-              commonProps: {
-                className: 'indent-bar'
-              }
-          }))
-        }
-      ]
-    }),
-    [experienceList]
-  );
-  const languagesHeroPageLayout: iHeroPageLayout = useMemo(
-    () => ({
-      components: [
-        {
-          label: "Languages",
-          id: "language",
-          type: "container",
-          commonProps: {
-            className: 'card gap24',
-            layoutClassName: 'flex-block-lock'
-          },
-          iconProps: {
-            icon: 'Languages',
-            className: 'float-top-right resume-card-icon'
-          },
-          components: languagesList.map((lang, i) => ({
-              id: `language-${i}`,
-              body: lang,
-              type: "text",
-          }))
-        }
-      ]
-    }),
-    [languagesList]
-  );
-  const techHeroPageLayout: iHeroPageLayout = useMemo(
-    () => ({
-      components: [
-        {
-          label: "Technology",
-          id: "tech",
-          type: "container",
-          commonProps: {
-            className: 'card gap24',
-            layoutClassName: 'flex-block-lock'
-          },
-          iconProps: {
-            icon: 'Tech',
-            className: 'float-top-right resume-card-icon'
-          },
-          components: techList.map((tech, i) => ({
-              id: `tech-${i}`,
-              body: tech,
-              type: "text",
-          }))
-        }
-      ]
-    }),
-    [techList]
-  );
-  const project1HeroPageLayout: iHeroPageLayout = useMemo(
-    () => ({
-      components: [
-        {
-          label: "Tacopocalypse",
-          subLabel: "2016",
-          body: "Contract Game project with Cherry Pie Games. Produced Foley Sound Design, Mixed and Edited all tracks. Mixed in Ableton Live and recorded using a range of field microphones.",
-          id: "project-1",
-          type: "container",
-          onClick: () => {
-            window.open('https://store.steampowered.com/app/416530/Tacopocalypse/', "_blank");
-          },
-          commonProps: {
-            className: 'card',
-          },
-          components: [
-            {
-              id: 'image-taco',
-              commonProps: {
-                className: 'image',
-                style: {
-                  height: 240,
-                  backgroundImage: `url(${tacoImage})`
-                }
-              }
-            }
-          ]
-        }
-      ]
-    }),
-    []
-  );
-  const project2HeroPageLayout: iHeroPageLayout = useMemo(
-    () => ({
-      components: [
-        {
-          label: "Hallow",
-          subLabel: "2015",
-          body: "48 Hour Spooky Game Jam Winner using Leap Motion Controller from UltraLeap. Created immersive screams and haunting sounds. Mixed in Ableton Live and recorded using a range of field microphones.",
-          id: "project-2",
-          type: "container",
-          onClick: () => {
-            window.open('https://killerham.itch.io/hollow', "_blank");
-          },
-          commonProps: {
-            className: 'card',
-          },
-          components: [
-            {
-              id: 'image-hallow',
-              commonProps: {
-                className: 'image',
-                style: {
-                  height: 240,
-                  backgroundImage: `url(${hallowImage})`
-                }
-              }
-            }
-          ]
-        }
-      ]
-    }),
-    []
-  );
-  const project3HeroPageLayout: iHeroPageLayout = useMemo(
-    () => ({
-      components: [
-        {
-          id: "mockups",
-          type: "container",
-          components: [
-            {
-              id: 'phone-mockup-1',
-              commonProps: {
-                className: 'image',
-                style: {
-                  height: 360,
-                  backgroundImage: `url(${threePhones})`
-                }
-              }
-            },
-            {
-              id: 'phone-mockup-2',
-              commonProps: {
-                className: 'image',
-                style: {
-                  height: 360,
-                  backgroundImage: `url(${racingPhones})`
-                }
-              }
-            },
-            {
-              id: 'phone-mockup-2',
-              commonProps: {
-                className: 'image',
-                style: {
-                  height: 460,
-                  backgroundImage: `url(${dashboardMockup})`
-                }
-              }
-            }
-          ]
-        }
-      ]
-    }),
-    []
-  );
   return (
-    <>
-      <div className="parallax_layer two">
-        <div className="hero-section White"></div>
-        <div className="hero-section White">
-          <ParallaxBackground />
-        </div>
-        <div className="hero-section White">
-          <ParallaxBackground />
-        </div>
-        <div className="hero-section White">
-          <ParallaxBackground />
-        </div>
-      </div>
-      <div className="parallax_layer one">
-        <div className="hero-section column" style={{ background: "black" }}>
-          <Suspense fallback={<OverlayControl />}>
-            <div className="titleContainer">
-              <div className="flex column">
-                <h1
-                  id="title"
-                  data-walkthrough-step="1"
-                  data-walkthrough-label="My Name"
-                  data-walkthrough-description="This On-Boarding component will help you traverse the different parts of my website!"
-                >
-                  Justin Gist
-                </h1>
-                <h2
-                  id="designer"
-                  data-walkthrough-step="2"
-                  data-walkthrough-label="My Career Title"
-                  data-walkthrough-description="Through years of dedication and persistent efforts, I have honed my craft as a UI/UX designer, developing a comprehensive skill set that enables me to create valuable and engaging user experiences."                  
-                >
-                  UI/UX Designer
-                </h2>
-              </div>
-            </div>
-            {<ThreeDComponentLazy />}
-          </Suspense>
-        </div>
-        <div className="heroGradient" />
-        <div className="hero-section B">
-          <div 
-            className="center"
-          >
-            <HeroPageLayout heroPageLayout={experienceHeroPageLayout} />
-          </div>
-        </div>
-        <div className="hero-section B">
-          <div className="center">
-            <HeroPageLayout heroPageLayout={languagesHeroPageLayout} />
-          </div>
-        </div>
-        <div className="hero-section B">
-          <div className="center">
-            <HeroPageLayout heroPageLayout={techHeroPageLayout} />
-          </div>
-        </div>
-        <h1 style={{ marginTop: 120, marginBottom: -60 }} className="text-sub-headline">Mockups</h1>
-        <div className="hero-section B">
-          <div className="center">
-            <HeroPageLayout heroPageLayout={project3HeroPageLayout} />
-          </div>
-        </div>
-        <h1 style={{ marginTop: 120, marginBottom: -60 }} className="text-sub-headline">Projects</h1>
-        <div className="hero-section B">
-          <div className="center">
-            <HeroPageLayout heroPageLayout={project1HeroPageLayout} />
-          </div>
-        </div>
-        <div className="hero-section B">
-          <div className="center">
-            <HeroPageLayout heroPageLayout={project2HeroPageLayout} />
-          </div>
-        </div>
-        <div className="hero-section C" style={{ padding: 0 }}>
-          <div className="center">
-            <h1 className="text-headline">Like my designs?</h1>
-            <button
-              className={"button secondary"}
-              onClick={() => {
-                navigate(`/${GlobalThemes.Contact}`);
-              }}
-            >
-              Contact
-            </button>
-          </div>
-        </div>
-      </div>
-    </>
+    <ColumnLayout gap={156} style={{ alignItems: 'center', padding: '32px', flexWrap: 'nowrap' }}>
+      <ColumnLayout gap={32} className="titleContainer">
+        <Headline
+          id="title"
+          data-walkthrough-step="1"
+          data-walkthrough-label="My Name"
+          data-walkthrough-description="This On-Boarding component will help you traverse the different parts of my website!"
+        >
+          Justin Gist
+        </Headline>
+        <Headline
+          id="designer"
+          size={2}
+          data-walkthrough-step="2"
+          data-walkthrough-label="Career"
+          data-walkthrough-description="Over the course of my professional tenure, I have devoted myself to the practice of UI/UX design, steadily refining my abilities to cultivate a versatile and holistic proficiency that empowers me to produce meaningful and captivating user interfaces."                  
+        >
+          UI/UX Designer
+        </Headline>
+        <Suspense fallback={<OverlayControl />}>
+          <ThreeDComponentLazy />
+        </Suspense>
+      </ColumnLayout>
+      
+      {/* Experience */}
+      <ColumnLayout gap={16} isCard
+        id="experience"
+        data-walkthrough-step="3"
+        data-walkthrough-label="Years of expertise"
+        data-walkthrough-description="This section highlights select projects that I have conceptualized and executed among many others."
+      >
+        <Icon 
+            icon={'ShootingStar'} 
+            className={'float-top-right resume-card-icon'}
+        />
+        <Headline secondary size={3}>Experience</Headline>
+        {experienceList.map(experience => (
+          <Body key={experience}>{experience}</Body>
+        ))}
+      </ColumnLayout>
+
+      {/* Languages */}
+      <ColumnLayout gap={16} isCard
+        id="languages"
+        data-walkthrough-step="4"
+        data-walkthrough-label="List of Languages"
+        data-walkthrough-description="This section details my proficiency in prominent programming and markup languages."
+      >
+        <Icon 
+            icon={'Languages'} 
+            className={'float-top-right resume-card-icon'}
+        />
+        <Headline secondary size={3}>Languages</Headline>
+        <BlockLayout noMobile>
+          {languagesList.map(lang => (
+            <Body key={lang}>{lang}</Body>
+          ))}
+        </BlockLayout>
+      </ColumnLayout>
+
+      {/* Technology */}
+      <ColumnLayout gap={16} isCard
+        id="technology"
+        data-walkthrough-step="5"
+        data-walkthrough-label="List of technologies"
+        data-walkthrough-description="This section outlines various technologies I have utilized to effectively execute numerous tasks and designs."
+      >
+        <Icon 
+            icon={'Tech'} 
+            className={'float-top-right resume-card-icon'}
+        />
+        <Headline secondary size={3}>Technology</Headline>
+        <BlockLayout noMobile>
+          {techList.map(tech => (
+            <Body key={tech}>{tech}</Body>
+          ))}
+        </BlockLayout>
+      </ColumnLayout>
+
+      <Headline
+        id="mockups"
+        data-walkthrough-step="6"
+        data-walkthrough-label="Mockups"
+        data-walkthrough-description="This section provides an overview of diverse mobile and web design mockups."
+      >
+        Mockups
+      </Headline>
+      
+      <img className="dashboardImage image" style={{
+        backgroundImage: `url(${threePhones})`
+      }} />
+      <img className="dashboardImage image" style={{
+        backgroundImage: `url(${racingPhones})`
+      }} />
+      <img className="dashboardImage image" style={{
+        backgroundImage: `url(${dashboardMockup})`
+      }} />
+
+      <Headline
+        id="projects"
+        data-walkthrough-step="7"
+        data-walkthrough-label="Projects"
+        data-walkthrough-description="This section provides an account of my prior project experience."
+      >
+        Projects
+      </Headline>
+
+      {/* Tacopocalypse */}
+      <ColumnLayout gap={16} isCard onClick={() => {
+        window.open('https://store.steampowered.com/app/416530/Tacopocalypse/', "_blank");
+      }}>
+        <RowLayout layoutClass="flexSB">
+          <Headline secondary size={3}>Tacopocalypse</Headline>
+          <SubHeadline>2016</SubHeadline>
+        </RowLayout>
+        <Body>Contract Game project with Cherry Pie Games. Produced Foley Sound Design, Mixed and Edited all tracks. Mixed in Ableton Live and recorded using a range of field microphones.</Body>
+        <img className="image" style={{
+          height: 240,
+          backgroundImage: `url(${tacoImage})`
+        }} />
+      </ColumnLayout>
+
+      {/* Hallow */}
+      <ColumnLayout gap={16} isCard onClick={() => {
+        window.open('https://killerham.itch.io/hollow', "_blank");
+      }}>
+        <RowLayout layoutClass="flexSB">
+          <Headline secondary size={3}>Hallow</Headline>
+          <SubHeadline>2015</SubHeadline>
+        </RowLayout>
+        <Body>48 Hour Spooky Game Jam Winner using Leap Motion Controller from UltraLeap. Created immersive screams and haunting sounds. Mixed in Ableton Live and recorded using a range of field microphones.</Body>
+        <img className="image" style={{
+          height: 240,
+          backgroundImage: `url(${hallowImage})`
+        }} />
+      </ColumnLayout>
+
+      <ColumnLayout gap={16} style={{ alignItems: 'center' }}
+        id="contact"
+        data-walkthrough-step="7"
+        data-walkthrough-label="Contact Me"
+        data-walkthrough-description="This button will take you to my contact page! Thanks for looking through this On-Boarding Experience!"
+      >
+        <Headline size={2} className="text-headline">Like my designs?</Headline>
+        <button
+          className={"button secondary"}
+          onClick={() => {
+            navigate(`/${GlobalThemes.Contact}`);
+          }}
+        >
+          Contact
+        </button>
+      </ColumnLayout>
+    </ColumnLayout>
   );
 };
 export default ResumePage;

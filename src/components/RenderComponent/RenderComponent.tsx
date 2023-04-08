@@ -10,6 +10,7 @@ import OverlayControl from "../OverlayControl/OverlayControl";
 import ContactPage from "../../pages/ThemeSwitcher/ContactPage/ContactPage";
 import SalesTheme from "../../pages/ThemeSwitcher/SalesTheme/SalesTheme";
 import DesignBackground from "../BezierBackground/DesignBackground";
+import backgroundImage from "../../assets/Background.jpg";
 import TestPage from "../../pages/testPage";
 import FragmentsPage from "../../pages/ThemeSwitcher/FragmentsPage/FragmentsPage";
 import SidebarV2 from "../SidebarV2/SidebarV2";
@@ -22,6 +23,10 @@ import DesignerPage from "../../pages/ThemeSwitcher/DesignerPage";
 import { useLocation, useNavigate } from "react-router-dom";
 import HeroPage from "../../pages/HeroPage/HeroPage";
 import Walkthrough from "../Walkthrough/Walkthrough";
+import Stars from "../../pages/ThemeSwitcher/ResumePage/Stars";
+import SpaceNews from "../../pages/ThemeSwitcher/SpaceNews/SpaceNews";
+import BobsBurgers from "../../pages/ThemeSwitcher/BobsBurgers/BobsBurgers";
+import ListOfSpells from "../../pages/FifthEdition/ListOfSpells";
 const RenderComponent = () => {
   const navigate = useNavigate();
   let location = useLocation();
@@ -45,7 +50,10 @@ const RenderComponent = () => {
     [GlobalThemes.List, <NotePage />],
     [GlobalThemes.Yeti, <YetiPage />],
     [GlobalThemes.Designer, <DesignerPage />],
-    [GlobalThemes.Heroes, <HeroPage />]
+    [GlobalThemes.Heroes, <HeroPage />],
+    [GlobalThemes.SpaceNews, <SpaceNews />],
+    [GlobalThemes.Burgers, <BobsBurgers />],
+    [GlobalThemes.DND, <ListOfSpells />]
   ]), []);
   const newPage = useMemo(() => routes.get(url), [routes, url]);
   const checkBackground = () => {
@@ -73,11 +81,19 @@ const RenderComponent = () => {
     }
   }, [url, navigate]);
 
+  const showStars = (url === GlobalThemes.Resume || url === GlobalThemes.Contact || url === GlobalThemes.SpaceNews);
+
+  const backgroundStyle = !showStars ? {} : ({
+    backgroundImage: `url(${backgroundImage})`
+  });
+  
   return (
     <>
       <Walkthrough>
         {showBackground && <DesignBackground />}
-        <div id="animationOverlay" className={`animationOverlay ${theme}`}></div>
+        <div id="animationOverlay" className={`animationOverlay ${theme}`} style={backgroundStyle}>
+          {showStars && <Stars />}
+        </div>
         <div
           className={`renderContainer ${isTopBar ? " horizontal " : " "} ${theme}`}
         >

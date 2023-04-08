@@ -1,14 +1,24 @@
+$max-image-width: 460px;
+$max-image-height: 320px;
 .Resume,
-.Projects,
 .Contact {
-  .mainContent {
-    .displayContainer {
-      margin-top: 24px;
-      h2, .headline.two {
-        border-left: var(--text-headline-secondary) 24px solid;
-        padding-left: 12px;
-      }
-    }
+  .dashboardImage {
+    min-height: 240px;
+    width: 100%;
+    height: 100%;
+    max-width: $max-image-width;
+    max-height: $max-image-height;
+    border-radius: var(--round-large);
+    box-shadow: var(--shadow-dark);
+  }
+  .card {
+    max-width: 720px;
+  }
+  .button.secondary {
+    font-size: 48px;
+    padding: 20px 32px;
+    min-height: 88px !important;
+    margin-bottom: 156px;
   }
 }
 .line {
@@ -26,7 +36,7 @@
   border-radius: var(--round-small);
 }
 .resume-card-icon {
-  fill: var(--theme-secondary) !important;
+  fill: var(--text-headline-secondary) !important;
   width: 32px !important;
   height: 32px !important;
 }
@@ -61,103 +71,31 @@
   height: 400px;
   width: 100%;
 }
-.hero-section {
-  height: 100%;
-  min-height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+#threeD {
+  opacity: 0;
+  animation: fadeSlideDown 1.067s forwards;
+  animation-delay: 1.5s;
+  max-height: 240px;
+  max-width: 80vw;
+}
+.titleContainer {
+  text-align: center;
+  flex-wrap: nowrap;
+  min-height: 100vh;
+  align-items: center;
   display: flex;
-  #threeD {
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  h1, .headline.one {
     opacity: 0;
     animation: fadeSlideDown 1.067s forwards;
-    animation-delay: 2.5s;
+    animation-delay: 0.5s;
   }
-  .center {
-    margin: auto;
-    max-width: 640px;
-    width: 100%;
-    align-items: center;
-    row-gap: 32px;
-    display: flex;
-    flex-direction: column;
-    border-radius: var(--round-large);
-  }
-  .titleContainer {
-    width: 100%;
-    display: flex;
-    position: absolute;
-    z-index: 99;
-    top: 60px;
-    .flex.column {
-      margin: auto;
-      row-gap: 32px;
-      display: flex;
-      flex-direction: column;
-      border-radius: var(--round-large);
-    }
-    h1, .headline.one {
-      font-size: 60px;
-      font-family: "Jura", sans-serif;
-      color: #ffffff;
-      font-weight: bold;
-      text-align: center;
-      opacity: 0;
-      animation: fadeSlideDown 1.067s forwards;
-      animation-delay: 0.5s;
-    }
-    h2, .headline.two {
-      font-family: "Jura", sans-serif;
-      font-size: 40px;
-      color: #ffffff;
-      text-align: center;
-      font-weight: bold;
-      opacity: 0;
-      animation: fadeSlideDown 1.067s forwards;
-      animation-delay: 1.5s;
-    }
-  }
-}
-.hero-section.C {
-  background: linear-gradient(var(--theme-secondary), #130040);
-  box-shadow: 0px 0px 32px rgba(0, 5, 92, 0.32),
-    0px 0px 64px rgba(8, 0, 46, 0.42);
-  .center {
-    .resume-link:hover {
-      background: var(--light);
-      .headline.textTeritary {
-        color: var(--dark) !important;
-      }
-      .text-headline {
-        color: var(--text-sub-headline) !important;
-      }
-    }
-    .text-headline {
-      color: var(--text-sub-headline) !important;
-    }
-    li {
-      .textTeritary {
-        color: var(--light) !important;
-      }
-    }
-  }
-}
-.hero-section.darkPurple {
-  background: #14001c;
-}
-.hero-section.Purple {
-  height: 100%;
-  background: var(--theme-secondary);
-  transform: scale(2);
-  margin-bottom: 100%;
-}
-.hero-section.White {
-  height: 100%;
-  transform: scale(2);
-  margin-bottom: 100%;
-  svg {
-    transform: scale(2);
+  h2, .headline.two {
+    opacity: 0;
+    animation: fadeSlideDown 1.067s forwards;
+    animation-delay: 1s;
   }
 }
 .contactButton {
@@ -191,7 +129,6 @@
 }
 h1.text-headline {
   font-family: "Jura", sans-serif;
-  font-size: 40px;
 }
 .spin {
   animation: spin 10s infinite ease;

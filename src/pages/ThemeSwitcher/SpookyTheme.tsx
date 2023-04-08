@@ -3,6 +3,9 @@ import Icon from "../../components/Icon/Icon";
 import Rainimation from "../../components/Rainimation/Rainimation";
 import { useWindowDimensions } from "../../ThemeManager";
 import "./SpookyTheme.scss";
+import Headline from "../../components/Text/Headline";
+import SubHeadline from "../../components/Text/SubHeadline";
+import Body from "../../components/Text/Body";
 enum SpookyPages {
   Tickets,
   Tours,
@@ -147,24 +150,24 @@ const SpookyTheme = () => {
         <div className="spookyIcon bottomRight">
           <Icon icon={options.iconRight} />
         </div>
-        <h1 className="text-headline">{options.label}</h1>
-        <h4 className="text-sub-headline">{options.bodyText}</h4>
+        <Headline>{options.label}</Headline>
+        <SubHeadline>{options.bodyText}</SubHeadline>
         {options.context &&
           options.context.map((item, i) => {
             return (
               <div key={`spooky-context-item-${item.label}`} className="context">
-                <h2 className="text-headline">{item.label}</h2>
-                <h4 className="text-body">
+                <Headline size={3}>{item.label}</Headline>
+                <Body>
                   {item.bodyText}
-                </h4>
+                </Body>
                 {options.context && i !== options.context.length - 1 && <hr />}
                 {item.bulletList &&
                   item.bulletList.map((item) => {
                     return (
                       <div key={`bullet-item-${item}`} className="bullet">
-                        <h3 className="text-body">
+                        <Body>
                           {item}
-                        </h3>
+                        </Body>
                       </div>
                     );
                   })}
@@ -174,46 +177,43 @@ const SpookyTheme = () => {
         {options.bulletList &&
           options.bulletList.map((item) => {
             return (
-                <h1 key={`spooky-bullet-item-${item}`} className="">{item}</h1>
+                <Headline key={`spooky-bullet-item-${item}`}>{item}</Headline>
             );
           })}
         {options.label === "Tickets" && (
           <div className="ticketContainer">
             <div className="ticket">
-              <h3 className="text-sub-headline">Spooky Tour</h3>
-              <h1 className="text-headline">19.95</h1>
-              <h5
-                className="text-body"
+              <SubHeadline className="text-sub-headline">Spooky Tour</SubHeadline>
+              <Headline>19.95</Headline>
+              <Body
                 onClick={() => {
                   changePage(SpookyPages.Tours);
                 }}
               >
                 Read More
-              </h5>
+              </Body>
             </div>
             <div className="ticket primary">
-              <h3 className="text-sub-headline">Ghoul Tour</h3>
-              <h1 className="text-headline">49.95</h1>
-              <h5
-                className="text-body"
+              <SubHeadline>Ghoul Tour</SubHeadline>
+              <Headline>49.95</Headline>
+              <Body
                 onClick={() => {
                   changePage(SpookyPages.Tours);
                 }}
               >
                 Read More
-              </h5>
+              </Body>
             </div>
             <div className="ticket">
-              <h3 className="text-sub-headline">Nightmare Tour</h3>
-              <h1 className="text-headline">29.95</h1>
-              <h5
-                className="text-body"
+              <SubHeadline>Nightmare Tour</SubHeadline>
+              <Headline>29.95</Headline>
+              <Body
                 onClick={() => {
                   changePage(SpookyPages.Tours);
                 }}
               >
                 Read More
-              </h5>
+              </Body>
             </div>
           </div>
         )}

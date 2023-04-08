@@ -3,17 +3,19 @@ import React from 'react';
 interface InputGroupProps extends React.ComponentPropsWithoutRef<"input"> {
     size?: number;
     secondary?: boolean;
+    truncate?: boolean;
     children: any;
 }
 const Headline = ({
     size, // number 1 - 5
     secondary,
+    truncate,
     children,
     ...rest // This includes things like id, style, className, everything a regular component can use.
 } : InputGroupProps) => {
     const innerParams = ({
         ...rest,
-        className: `${secondary ? 'text-headline-secondary' : 'text-headline'} ${rest?.className ?? ''}`
+        className: `${secondary ? 'text-headline-secondary' : 'text-headline'} ${rest?.className ?? ''} ${truncate ? 'truncate' : ''}`
     });
     switch (size) {
         case 2:

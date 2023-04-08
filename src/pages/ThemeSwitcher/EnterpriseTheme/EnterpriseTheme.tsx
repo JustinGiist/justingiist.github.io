@@ -7,6 +7,8 @@ import Icon from "../../../components/Icon/Icon";
 import { BarChart, BarChart2, ComboChart, GeoChart, LineChart, PieChart } from "./EnterpriseCharts";
 import ColumnLayout from "../../../components/Layouts/ColumnLayout";
 import Headline from "../../../components/Text/Headline";
+import RowLayout from "../../../components/Layouts/RowLayout";
+import { Button } from "@material-ui/core";
 const TeslaLogo = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +170,13 @@ const EnterpriseTheme = () => {
   );
   return (
     <>
-      <Headline size={1}>Dashboard</Headline>
+      <RowLayout className="flexSB">
+        <Headline size={1}>Dashboard</Headline>
+        <RowLayout noWrapping>
+          <Button data-tip="Account" className="button icon primary"><Icon icon="Account" /></Button>
+          <Button data-tip="Settings" className="button icon primary"><Icon icon="Settings" /></Button>
+        </RowLayout>
+      </RowLayout>
       <div 
         className="flexFull threeColumns"
         id="Investments"

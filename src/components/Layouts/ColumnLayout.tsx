@@ -11,17 +11,17 @@ const ColumnLayout = ({
     isCard,
     gap,
     children,
-    ...params // This includes things like id, style, className, everything a regular component can use.
+    ...rest // This includes things like id, style, className, everything a regular component can use.
 } : InputGroupProps) => {
     const memoParams = useMemo(() => ({
-        ...params,
+        ...rest,
         style: {
-            ...params?.style,
+            ...rest?.style,
             gap: gap
         },
-        className: `${layoutClass ?? 'flex-column'} ${params?.className ?? ''} ${isCard ? 'card' : ''}`
+        className: `${layoutClass ?? 'flex-column'} ${rest?.className ?? ''} ${isCard ? 'card' : ''}`
     }), [
-        params,
+        rest,
         layoutClass,
         isCard
     ]);

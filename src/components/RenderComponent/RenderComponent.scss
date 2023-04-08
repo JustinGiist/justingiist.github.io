@@ -9,6 +9,9 @@
   pointer-events: none;
   z-index: 9999;
   overflow: hidden;
+  &.Resume, &.Contact, &.SpaceNews {
+    z-index: -1;
+  }
 }
 .renderContainer {
   display: flex;
@@ -29,6 +32,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
   }
 }
@@ -77,8 +81,7 @@
       flex-direction: column;
       row-gap: 16px;
       background: none !important;
-      padding: 32px;
-      align-items: center;
+      padding: 24px 32px;
       & > * {
         max-width: 1200px;
       }
@@ -87,10 +90,10 @@
 }
 .Spooky {
   * {
-    font-family: "Nightscary Free Trial";
+    font-family: "Nightscary Free Trial", cursive;
 
     .button,
-    h1, h2, h3, h4, h5, .headlineOne, .headlineTwo, .headlineThree, .headlineFour, .headlineFive {
+    h1, h2, h3, h4, h5, .headlineOne, .headlineTwo, .headlineThree, .headlineFour, .headlineFive, .text-sub-headline, .text-body {
       font-family: "Luxurious Roman", cursive !important;
     }
   }
@@ -116,61 +119,18 @@
 }
 .Resume,
 .Projects,
-.Contact {
+.Contact,
+.SpaceNews {
   .card.contact {
     margin: auto;
     width: 400px;
   }
-  .parallaxBackground {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: -1;
-    overflow: hidden;
+  .rightContainer {
+    background: transparent !important;
   }
   * {
     font-family: 'Maven Pro', sans-serif;
   }
-}
-.mainContent.Resume,
-.mainContent.Projects,
-.mainContent.Contact {
-  background: none !important;
-  padding: 0 !important;
-  perspective: 1px;
-  height: 100%;
-  overflow-x: hidden;
-
-  .parallax_layer.one {
-    h1, .headline.one {
-      text-align: center;
-    }
-    > h1.text-headline {
-      margin-top: 20%;
-      font-size: 60px;
-      font-family: "Jura", sans-serif;
-    }
-  }
-}
-.mainContent.Contact {
-  overflow-y: hidden !important;
-  display: flex;
-}
-.parallax_layer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-.parallax_layer.one {
-  transform: translateZ(0);
-}
-.parallax_layer.two {
-  transform: translateZ(-1px);
-}
-.parallax_layer.three {
-  transform: translateZ(-2px);
 }
 .cardContainer {
   width: 100%;
@@ -233,13 +193,11 @@
   width: 100%;
   box-shadow: var(--shadow-light);
   flex-shrink: 0;
-  padding: 12px 16px 24px;
+  padding: 12px 16px;
   position: relative;
   background: var(--background-card);
   border-radius: var(--round-medium);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  height: fit-content;
   .flat {
     box-shadow: none;
   }
@@ -303,11 +261,6 @@
   height: 100%;
 }
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {
-  .parallax_layer.two {
-    transform: translateZ(-1px) scale(2);
-  }
-}
-@media only screen and (max-width: 900px), screen and (max-height: 600px) {
   .card.contact {
     width: calc(100% - 16px) !important;
   }
@@ -323,9 +276,6 @@
       }
     }
   }
-  .parallax_layer.two {
-    transform: translateZ(-1px) scale(2);
-  }
   .gridContext {
     grid-template-columns: auto auto !important;
     row-gap: 32px;
@@ -335,15 +285,5 @@
     justify-content: center;
     align-items: flex-start;
     width: 90% !important;
-  }
-
-  .hero-section {
-    width: 100%;
-    .center {
-      padding: 16px !important;
-      .link {
-        padding: 8px !important;
-      }
-    }
   }
 }

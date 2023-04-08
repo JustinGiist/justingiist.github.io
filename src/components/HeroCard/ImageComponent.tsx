@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import Icon from "../Icon/Icon";
 import { iHero } from "./HeroCard";
+import ImageVideo from "../ImageVideo";
 interface ImageComponentProps {
   hero: iHero;
   onClick?: () => void;
@@ -10,7 +11,7 @@ const ImageComponent = (props: ImageComponentProps) => {
   const className = `image ${props?.onClick ? 'clickable' : ''}`;
   const imageElement = useMemo(() => {
     return !error ? (
-      <img alt={props.hero.name} onClick={props.onClick} className={className} src={props.hero.image.url} onError={() => setError(true)} />
+      <ImageVideo alt={props.hero.name} onClick={props.onClick} className={className} src={props.hero.image.url} onError={() => setError(true)} />
     ) : (
       <div className="noImageWrapper">
         <Icon icon="NoImage" />
