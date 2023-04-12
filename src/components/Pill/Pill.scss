@@ -1,0 +1,143 @@
+@import '../../color-variables.scss';
+.tprc-pill, .pill {
+    display: flex;
+    align-items: center;
+    padding: 2px 16px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: var(--round-large) !important;
+    width: fit-content;
+    min-width: 64px;
+    text-align: center;
+    display: flex;
+    font-weight: 600;
+    justify-content: center;
+    column-gap: 4px;
+    height: 28px;
+    min-height: 28px;
+    transition: all 0.167s ease;
+    box-shadow: none;
+    * {
+      transition: all 0.067s ease;
+    }
+    position: relative;
+    &.slender {
+      padding: 1px 8px !important;
+      font-weight: 600;
+      font-size: 10px;
+      height: 24px !important;
+      min-height: 24px !important;
+    }
+    .pill-label {
+      font-size: 15px !important;
+      line-height: 14px !important;
+      display: flex;
+      align-items: center;
+    }
+    i {
+        position: absolute;
+        top: 5px;
+        left: 7px;
+        pointer-events: none;
+        font-size: 16px;
+        line-height: 16px;
+        width: 16px;
+        height: 16px;
+    }
+    i + .pill-label {
+        transform: translateX(10px);
+    }
+    &.active {
+      color: var(--white);
+      animation: flippy 0.267s forwards;
+    }
+    &:hover {
+      color: var(--white);
+      cursor: pointer;
+    }
+}
+@mixin pillColoringTP($color) {
+    border-color: $color;
+    &.active {
+      background: $color !important;
+    }
+    &.pillSelected {
+      background: $color !important;
+      color: var(--white) !important;
+    }
+    &.pillUnselected {
+      background: var(--white) !important;
+      color: $color !important;
+    }
+    &.selected-primary {
+      border-color: transparent;
+      background: var(--selected-primary) !important;
+      color: $white;
+    }
+    &.selected-secondary {
+      border-color: transparent;
+      background: var(--selected-secondary) !important;
+      color: $white;
+    }
+    &:hover {
+      background: lighten($color, 5%) !important;
+      color: var(--white) !important;
+    }
+}
+@mixin pillColoring($color) {
+  border-color: $color !important;
+  background: #fff !important;
+  color: $color !important;
+  &.active, &.pillSelected, &.fill {
+    background: $color !important;
+    color: #fff !important;
+  }
+  @media only screen and (min-width: 900px) {
+    &:hover {
+      background: $color !important;
+      color: #fff !important;
+    }
+  }
+}
+.pill.Success, .pill.success {
+  @include pillColoring(var(--action-success));
+}
+.pill.Info, .pill.info {
+  @include pillColoring(var(--action-info));
+}
+.pill.Warning, .pill.warning {
+  @include pillColoring(var(--action-warning));
+}
+.pill.Error, .pill.error {
+  @include pillColoring(var(--action-error));
+}
+.pill-0 {
+  @include pillColoring(var(--misc-0));
+}
+.pill-1 {
+  @include pillColoring(var(--misc-1));
+}
+.pill-2 {
+  @include pillColoring(var(--misc-2));
+}
+.pill-3 {
+  @include pillColoring(var(--misc-3));
+}
+.pill-4 {
+  @include pillColoring(var(--misc-4));
+}
+.pill-5 {
+  @include pillColoring(var(--misc-5));
+}
+.pill-6 {
+  @include pillColoring(var(--misc-6));
+}
+.pill-7 {
+  @include pillColoring(var(--misc-7));
+}
+.pill-8 {
+  @include pillColoring(var(--misc-8));
+}
+.pill-9 {
+  @include pillColoring(var(--misc-9));
+}

@@ -1,9 +1,17 @@
 .tabs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    gap: 16px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    @media (max-width: 900px) {
+        padding-bottom: 4px; // This is to make room for the scrollbar on the bottom
+    }
+    &-scroller {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: max-content;
+        gap: 16px;
+    }
     &-item {
         padding: 4px 8px;
         border-radius: 24px;
@@ -13,6 +21,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        width: max-content;
         gap: 4px;
         &::after {
             content: "";
@@ -27,7 +36,7 @@
             color: var(--selected-menu);
             &::after{
                 width: 100%;
-                background: var(--selected-menu-gradient);
+                background: var(--selected-menu-underline);
             }
         }
         &:hover{

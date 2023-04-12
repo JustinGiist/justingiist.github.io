@@ -44,7 +44,7 @@ const SidebarV2 = ({
     ]);
     return (
         <div
-            className={`sidebar-v2 ${dimensions.isMobile ? 'mobile' : ''} ${isMobileOpen ? 'mobileOpen' : ''} ${isCollapsed ? 'collapse' : ''}`}
+            className={`sidebar-v2 ${dimensions.isMobile ? 'mobile rounded-scroll' : ''} ${isMobileOpen ? 'mobileOpen' : ''} ${isCollapsed ? 'collapse' : ''}`}
         >
             <Icon icon={'JGLogo'} fontSize={32} viewBox={"0.056 -4.465 49.866 62.211"} />
             {routeArray && routeArray.length > 0 && routeArray.map((option: string) => (

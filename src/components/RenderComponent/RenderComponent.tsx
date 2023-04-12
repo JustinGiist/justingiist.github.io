@@ -26,7 +26,8 @@ import Walkthrough from "../Walkthrough/Walkthrough";
 import Stars from "../../pages/ThemeSwitcher/ResumePage/Stars";
 import SpaceNews from "../../pages/ThemeSwitcher/SpaceNews/SpaceNews";
 import BobsBurgers from "../../pages/ThemeSwitcher/BobsBurgers/BobsBurgers";
-import ListOfSpells from "../../pages/FifthEdition/ListOfSpells";
+import DndMain from "../../pages/FifthEdition/DnDMain";
+import MagicSchools from "../../pages/FifthEdition/MagicSchools";
 const RenderComponent = () => {
   const navigate = useNavigate();
   let location = useLocation();
@@ -46,14 +47,14 @@ const RenderComponent = () => {
     [GlobalThemes.Test, <TestPage />],
     [GlobalThemes.BlackRed, <BlackRed />],
     [GlobalThemes.Music, <MusicPage />],
-    [GlobalThemes.Fragments, <FragmentsPage />],
+    // [GlobalThemes.Fragments, <FragmentsPage />],
     [GlobalThemes.List, <NotePage />],
     [GlobalThemes.Yeti, <YetiPage />],
     [GlobalThemes.Designer, <DesignerPage />],
     [GlobalThemes.Heroes, <HeroPage />],
     [GlobalThemes.SpaceNews, <SpaceNews />],
     [GlobalThemes.Burgers, <BobsBurgers />],
-    [GlobalThemes.DND, <ListOfSpells />]
+    [GlobalThemes.DND, <DndMain />]
   ]), []);
   const newPage = useMemo(() => routes.get(url), [routes, url]);
   const checkBackground = () => {
@@ -183,7 +184,7 @@ export const CalculatedScrollComponent = (props: {
     <div
       ref={resizeRef}
       id="scrollComponent"
-      className={`scrollComponent ${props.className}`}
+      className={`scrollComponent rounded-scroll ${props.className}`}
       style={{
         overflowY: props.overflowHidden ? "hidden" : "auto",
       }}

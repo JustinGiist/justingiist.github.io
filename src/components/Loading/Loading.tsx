@@ -49,7 +49,7 @@ const Loading = ({
     return (
         <div {...rest} className={`loadingComponent ${useBackground ? 'loading-background' : ''} ${small ? 'small' : ''}`}>
             <div className="flexColumn">
-                {label && <Headline size={2}>{label}</Headline>}
+                {label && <Headline size={3}>{label}</Headline>}
                 {subLabel && <SubHeadline>{subLabel}</SubHeadline>}
                 {loadingAnim}
             </div>

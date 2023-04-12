@@ -63,17 +63,8 @@
   }
 
   .heroCardContent {
-    overflow-y: auto;
-    overflow-x: hidden;
-    max-height: 400px;
     .heroCardItem {
       max-width: 600px;
-      .headlineOne {
-        color: var(--action-error);
-      }
-      .subHeadlineMedium {
-        text-transform: capitalize;
-      }
     }
   }
 }

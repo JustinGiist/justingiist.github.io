@@ -43,8 +43,8 @@ function ModalRoot({ isOpen, activeModal }: iModalRoot) {
         handleClose(result);
     }, [handleClose]);
     const genericClasses = `modal-container ${theme}`;
-    const memoizedClasses = !props ? genericClasses : `${genericClasses} ${props.className}`;
-    const memoizedContentClasses = !props ? 'modal-content' : `modal-content ${props.contentClassName || ''}`;
+    const memoizedClasses = `${genericClasses} ${props?.className}`;
+    const memoizedContentClasses = `modal-content rounded-scroll ${props?.contentClassName || ''}`;
     const memoizedStyle = !props ? {} : props.style;
     const childrenWithProps = React.Children.map(children, child => {
         // Checking isValidElement is the safe way and avoids a

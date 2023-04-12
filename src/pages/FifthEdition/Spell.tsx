@@ -2,14 +2,20 @@ import React, { useEffect, useState } from 'react';
 import ColumnLayout from '../../components/Layouts/ColumnLayout';
 import Headline from '../../components/Text/Headline';
 import Body from '../../components/Text/Body';
-import { Loading } from 'mdi-material-ui';
+import Loading from '../../components/Loading/Loading';
 import RowLayout from '../../components/Layouts/RowLayout';
 import { Button, ButtonBase } from '@material-ui/core';
 import BlockLayout from '../../components/Layouts/BlockLayout';
 import SubHeadline from '../../components/Text/SubHeadline';
+import stringUtils from '../../utils/stringUtils';
+import Pill from '../../components/Pill/Pill';
+import { getSchoolColor } from './MagicSchools';
+import { ValueLabel } from './DnDMain';
 
-type SpellProps = {
-    spellName: string;
+interface SpellProps extends React.ComponentPropsWithoutRef<"input"> {
+    spellInfo?: iSpell;
+    categories?: any[];
+    search?: string;
 };
 
 export interface iSpell {
@@ -31,32 +37,20 @@ export interface iSpell {
     };
 };
 
-const Spell: React.FC<SpellProps> = ({ spellName }) => {
-    const [spellInfo, setSpellInfo] = useState<iSpell>();
+const Spell: React.FC<SpellProps> = ({ spellInfo, search, categories, ...rest }) => {
     const [showMore, setShowMore] = useState(false);
-
-    useEffect(() => {
-      const fetchSpell = async () => {
-        try {
-          const response = await fetch(`https://www.dnd5eapi.co/api/spells/${spellName}`);
-          if (response?.status === 404) throw new Error();
-          const data = await response.json();
-          setSpellInfo(data);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      fetchSpell();
-    }, [spellName]);
 
     if (!spellInfo) {
         return <Loading />;
     }
     const buttonLabel = showMore ? 'Show Less' : 'Show More';
+    const categorySelected = (categories && categories.length > 0) && categories.filter(cat => cat.name === spellInfo?.school.name).length > 0;
+    const label = search ? stringUtils.highlight(spellInfo.name, search) : spellInfo.name;
+    const schoolName = spellInfo.school.name
     return (
-        <ColumnLayout isCard>
-            <RowLayout className="flexSB">
-                <Headline secondary size={3}>{spellInfo.name}</Headline>
+        <ColumnLayout isCard style={rest?.style} gap={4}>
+            <RowLayout className="flexSB" noWrapping>
+                <Headline secondary size={3}>{label}</Headline>
                 <Button
                     aria-label={buttonLabel}
                     onClick={() => setShowMore(!showMore)}
@@ -64,21 +58,21 @@ const Spell: React.FC<SpellProps> = ({ spellName }) => {
                     {buttonLabel}
                 </Button>
             </RowLayout>
-            {spellInfo.school && <SubHeadline>{spellInfo.school.name}</SubHeadline>}
-            {spellInfo.desc && <Body>{spellInfo.desc[0]}</Body>}
+            {spellInfo.school && <Pill id={spellInfo.index} label={schoolName} enableIcons enableCheckMark isSelected={categorySelected} className={`slender disabled-pointer-events fill pill-${getSchoolColor(schoolName)}`} />}
+            {spellInfo.desc && <Body truncateNumber={showMore ? undefined : 124}>{spellInfo.desc[0]}</Body>}
             {!showMore ? null : (
                 <>
-                    <BlockLayout gap={16}>
-                        <SpellLabel label="Casting Time: " value={spellInfo.casting_time} />
-                        <SpellLabel label="Range: " value={spellInfo.range} />
-                        <SpellLabel label="Components: " value={spellInfo.components} />
-                        <SpellLabel label="Material: " value={spellInfo.material} />
-                        <SpellLabel label="Duration: " value={spellInfo.duration} />
-                        <SpellLabel label="Concentration: " value={spellInfo.concentration} />
-                        <SpellLabel label="Ritual: " value={spellInfo.ritual} />
+                    <BlockLayout noMobile gap={16}>
+                        <ValueLabel label="Casting Time: " value={spellInfo.casting_time} />
+                        <ValueLabel label="Range: " value={spellInfo.range} />
+                        <ValueLabel label="Material: " value={spellInfo.material} />
+                        <ValueLabel label="Components: " value={spellInfo.components} />
+                        <ValueLabel label="Duration: " value={spellInfo.duration} />
+                        <ValueLabel label="Concentration: " value={spellInfo.concentration} />
+                        <ValueLabel label="Ritual: " value={spellInfo.ritual} />
                     </BlockLayout>
                     {spellInfo.higher_level && spellInfo.higher_level.length > 0 && (
-                        <SpellLabel label="At Higher Levels: " value={spellInfo.higher_level.map(level => <Body>{level}</Body>)} />
+                        <ValueLabel label="At Higher Levels: " value={spellInfo.higher_level.map(level => <Body>{level}</Body>)} />
                     )}
                 </>
             )}
@@ -87,19 +81,3 @@ const Spell: React.FC<SpellProps> = ({ spellName }) => {
 };
 
 export default Spell;
-
-const SpellLabel = ({ label, value }: any) => {
-    if (!value && !(typeof value === "boolean")) return null;
-    const valueElement = () => {
-        if (typeof value === "boolean") {
-            return !value ? "No" : "Yes";
-        }
-        return value;
-    }
-    return (
-        <ColumnLayout gap={4}>
-            <SubHeadline>{label}</SubHeadline>
-            <Body>{valueElement()}</Body>
-        </ColumnLayout>
-    );
-}

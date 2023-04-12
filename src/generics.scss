@@ -49,59 +49,6 @@ body {
   pointer-events: none;
   color: var(--text-placeholder);
 }
-@mixin pillColoring($color) {
-  border-color: $color !important;
-  background: $color !important;
-  color: white !important;
-  &.active {
-    background: $color !important;
-  }
-  &:hover {
-    background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0.02) 100%) !important;
-  }
-}
-.pill.Success {
-  @include pillColoring(var(--action-success));
-}
-.pill.Info {
-  @include pillColoring(var(--action-info));
-}
-.pill.Warning {
-  @include pillColoring(var(--action-warning));
-}
-.pill.Error {
-  @include pillColoring(var(--action-error));
-}
-.pill-0 {
-  @include pillColoring(var(--misc-0));
-}
-.pill-1 {
-  @include pillColoring(var(--misc-1));
-}
-.pill-2 {
-  @include pillColoring(var(--misc-2));
-}
-.pill-3 {
-  @include pillColoring(var(--misc-3));
-}
-.pill-4 {
-  @include pillColoring(var(--misc-4));
-}
-.pill-5 {
-  @include pillColoring(var(--misc-5));
-}
-.pill-6 {
-  @include pillColoring(var(--misc-6));
-}
-.pill-7 {
-  @include pillColoring(var(--misc-7));
-}
-.pill-8 {
-  @include pillColoring(var(--misc-8));
-}
-.pill-9 {
-  @include pillColoring(var(--misc-9));
-}
 .hidden {
   display: none !important;
 }
@@ -196,8 +143,6 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(calc(50% - 16px), 1fr) );
   grid-column: 1/-1;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 .img-common {
   width: 100%;
@@ -217,6 +162,12 @@ body {
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
+}
+.disabled-pointer-events {
+  pointer-events: none !important;
+}
+.__react_component_tooltip {
+  max-width: 364px;
 }
 .background-defaults, .image {
   object-fit: cover;
@@ -244,6 +195,33 @@ body {
   position: absolute;
   right: 12px;
   top: 12px;
+}
+
+.rounded-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+    &::-webkit-scrollbar {
+        width: 0.6em;
+        padding: 5px;
+        margin-right: 3px;
+        cursor: pointer;
+    }
+
+    &::-webkit-scrollbar-track {
+        margin: 5px;
+        -webkit-box-shadow: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--action-disabled);
+        border-radius: 10px;
+        margin-right: 5px !important;
+        outline: none;
+
+        // &:hover {
+        //     background-color: lighten(var(--action-disabled), 10%);
+        // }
+    }
 }
 @media only screen and (max-width: 900px), screen and (max-height: 600px) {
   .flex-block:not(.noMobile) {
@@ -274,5 +252,8 @@ body {
     > .button {
       width: 100%;
     }
+  }
+  .truncate {
+    max-width: 296px;
   }
 }

@@ -11,6 +11,7 @@ import TabsComponent from '../../components/TabsComponent/TabsComponent';
 import Headline from '../../components/Text/Headline';
 import SubHeadline from '../../components/Text/SubHeadline';
 import './HeroPage.scss';
+import stringUtils from '../../utils/stringUtils';
 
 const HeroPage = () => {
     const { openModal, closeModal } = useContext(ModalContext);
@@ -72,8 +73,9 @@ const HeroPage = () => {
         const middleSection = (
             <ImageComponent hero={hero} onClick={() => setActiveHero(hero)}/>
         );
+        const label = search ? stringUtils.highlight(hero.name, search) : hero.name;
         const bottomSection = (
-            <Headline size={3}>{hero.name ?? "No Hero Name"}</Headline>
+            <Headline size={3}>{label ?? "No Hero Name"}</Headline>
         );
         return (
             <MediaTile

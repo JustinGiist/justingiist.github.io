@@ -48,7 +48,7 @@ const SwitchHeroComponent = ({
                 return heroComponent.components?.map(component => {
                     const classes = `square ${component.commonProps?.className}`;
                     return (
-                        <div className={classes}>
+                        <div key={component.id} className={classes}>
                             <h2>{component.label}</h2>
                             <p className="text-body bodyBold">{component.subLabel}</p>
                         </div>
@@ -106,7 +106,7 @@ const SwitchHeroComponent = ({
                         {heroComponent.body && <div className="text-body">{heroComponent.body}</div>}
                         <div className={heroComponent?.commonProps?.layoutClassName ?? 'flexColumn'}>
                             {heroComponent.components && heroComponent.components.length > 0 && heroComponent.components.map(component => (
-                                <SwitchHeroComponent heroComponent={component}/>
+                                <SwitchHeroComponent key={component.id} heroComponent={component}/>
                             ))} 
                         </div>
                     </>

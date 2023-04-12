@@ -187,4 +187,4 @@ const TreesSvg = ({ isMobile }: { isMobile?: boolean }) => {
         </svg>
     );
 }
-const snowFlakes = Array.apply(null, Array(100)).map(item => <div className="snowflake" />);
+const snowFlakes = Array.apply(null, Array(100)).map((item, i) => <div key={`${item?.toString()}-${i}`} className="snowflake" />);

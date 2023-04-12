@@ -102,7 +102,8 @@ import {
   CardAccountMail,
   RocketLaunchOutline,
   Cog,
-  AutoFix
+  AutoFix,
+  ImageOffOutline
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -214,7 +215,8 @@ const GetIcon: any = {
   Heroes: Newspaper,
   Settings: Cog,
   Burgers: Hamburger,
-  DnD: AutoFix
+  DnD: AutoFix,
+  Empty: ImageOffOutline
 };
 const Icon = ({
   icon,

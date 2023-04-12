@@ -12,6 +12,7 @@
         left: -100%;
         z-index: var(--layer-4);
         width: 100%;
+        padding-bottom: 60px;
         &.mobileOpen {
             left: 0%;
         }
