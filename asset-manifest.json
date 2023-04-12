@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.15249999.css",
-    "main.js": "/static/js/main.ec737020.js",
+    "main.css": "/static/css/main.c1a9f327.css",
+    "main.js": "/static/js/main.f6994c18.js",
     "static/js/618.5ca25b0b.chunk.js": "/static/js/618.5ca25b0b.chunk.js",
     "static/js/111.bee8aa27.chunk.js": "/static/js/111.bee8aa27.chunk.js",
     "static/js/453.59049ee8.chunk.js": "/static/js/453.59049ee8.chunk.js",
@@ -66,14 +66,14 @@
     "static/media/Squiggly.svg": "/static/media/Squiggly.c5ad318c4e06c74f7ffe3e47e5bfcbd1.svg",
     "static/media/microsoft-windows-22.svg": "/static/media/microsoft-windows-22.18c1acd8d78bbec10356513ba98a0d95.svg",
     "static/media/textbox.svg": "/static/media/textbox.cb172bda41092598c6840b0fb7fdf475.svg",
-    "main.15249999.css.map": "/static/css/main.15249999.css.map",
-    "main.ec737020.js.map": "/static/js/main.ec737020.js.map",
+    "main.c1a9f327.css.map": "/static/css/main.c1a9f327.css.map",
+    "main.f6994c18.js.map": "/static/js/main.f6994c18.js.map",
     "618.5ca25b0b.chunk.js.map": "/static/js/618.5ca25b0b.chunk.js.map",
     "111.bee8aa27.chunk.js.map": "/static/js/111.bee8aa27.chunk.js.map",
     "453.59049ee8.chunk.js.map": "/static/js/453.59049ee8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.15249999.css",
-    "static/js/main.ec737020.js"
+    "static/css/main.c1a9f327.css",
+    "static/js/main.f6994c18.js"
   ]
 }
