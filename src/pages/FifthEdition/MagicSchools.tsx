@@ -1,15 +1,13 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import Spell, { iSpell } from './Spell';
+import { useCallback, useEffect, useState } from 'react';
+import Spell from './Spell';
 import Loading from '../../components/Loading/Loading';
 import BlockLayout from '../../components/Layouts/BlockLayout';
-import { TextField } from '@material-ui/core';
+import { FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
 import ColumnLayout from '../../components/Layouts/ColumnLayout';
 import Headline from '../../components/Text/Headline';
-import stringUtils from '../../utils/stringUtils';
 import RowLayout from '../../components/Layouts/RowLayout';
-import Pill from '../../components/Pill/Pill';
 import ReactTooltip from 'react-tooltip';
-import { DndAPIResult } from './DndInterfaces';
+import { iSpell } from './DndInterfaces';
 
 export const getSchoolColor = (schoolName: string) => {
     switch (schoolName) {
@@ -33,124 +31,65 @@ export const getSchoolColor = (schoolName: string) => {
     return 0;
 }
 
-interface iMagicSchool extends DndAPIResult {
-    desc?: string;
-}
-
-const MagicSchools: React.FC = () => {
+const MagicSchools = ({
+    magicSchools,
+    spells,
+    spellMap
+}: any) => {
     const [search, setSearch] = useState('');
-    const [magicSchools, setMagicSchools] = useState<iMagicSchool[]>([]);
-    const [categories, setCategories] = useState<DndAPIResult[]>([]);
-    const [spells, setSpells] = useState<iSpell[]>([]);
-    const [spellMap, setSpellMap] = useState<Map<string, iSpell> | undefined>();
+    const [selectedSchool, setSelectedCategory] = useState<string>('none');
+    const [selectedLevel, setSelectedLevel] = useState<string>('none');
 
-    const handleCategory = useCallback((school: DndAPIResult) => {
-        const alreadyExists = categories.find(i => i.index === school.index);
-        if (alreadyExists) {
-            setCategories(prev => prev.filter(i => i.index !== school.index));
-        } else {
-            setCategories(prev => ([
-                ...prev,
-                school
-            ]));
-        }
-    }, [
-        categories
-    ]);
+    const handleCategory = useCallback((e: any) => {
+        setSelectedCategory(e.target.value)
+    }, []);
+
+    const handleLevel = useCallback((e: any) => {
+        setSelectedLevel(e.target.value)
+    }, []);
     
     const onChange = useCallback((e) => {
         setSearch(e.target.value);
     }, []);
 
     useEffect(() => {
-        const fetchMagicSchool = async (schoolName: string) => {
-          try {
-            const response = await fetch(`https://www.dnd5eapi.co/api/magic-schools/${schoolName}`);
-            if (response?.status === 404) throw new Error();
-            const data = await response.json();
-            return data;
-          } catch (error) {
-            console.error(error);
-          }
-        };
-        const fetchMagicSchools = async () => {
-            try {
-                const response = await fetch('https://www.dnd5eapi.co/api/magic-schools');
-                const data = await response.json();
-                const getAllSchoolData = async () => {
-                    const promises: any[] = [];
-                    data.results.forEach((spellResponse: DndAPIResult) => {
-                        promises.push(fetchMagicSchool(spellResponse.index));
-                    });
-                    return Promise.all(promises);
-                };
-                const schoolResults = await getAllSchoolData();
-                setMagicSchools(schoolResults);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchMagicSchools();
-        const fetchSpell = async (spellName: string) => {
-          try {
-            const response = await fetch(`https://www.dnd5eapi.co/api/spells/${spellName}`);
-            if (response?.status === 404) throw new Error();
-            const data = await response.json();
-            return data;
-          } catch (error) {
-            console.error(error);
-          }
-        };
-        const fetchSpells = async () => {
-            try {
-                const response = await fetch('https://www.dnd5eapi.co/api/spells');
-                const data = await response.json();
-                const results = data.results;
-                setSpells(results);
-                const getAllSpellData = async () => {
-                    const promises: any[] = [];
-                    results.forEach((spellResponse: DndAPIResult) => {
-                        promises.push(fetchSpell(spellResponse.index));
-                    });
-                    return Promise.all(promises);
-                };
-                const spellResults = await getAllSpellData();
-                const newSpellMap = new Map();
-                spellResults.forEach(spell => newSpellMap.set(spell.index, spell));
-                setSpellMap(newSpellMap);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchSpells();
-    }, []);
-
-    useEffect(() => {
         ReactTooltip.rebuild();
     });
-
-    if (magicSchools.length === 0) {
-        return <Loading />;
-    }
 
     return (
         <ColumnLayout style={{ padding: '12px 16px 60px' }}>
             <Headline size={1}>Magic Schools</Headline>
             <RowLayout>
-                {magicSchools.map((school, i) => {
-                    const isSelected = categories.filter(cat => cat.name === school.name).length > 0;
-                    return (
-                        <Pill 
-                            id={school.index} 
-                            key={school.index} 
-                            tooltip={school.desc}
-                            isSelected={isSelected} 
-                            label={school.name} 
-                            onClick={() => handleCategory(school)} 
-                            index={i}
-                        />
-                    );
-                })}
+                <FormControl style={{ minWidth: 126 }}>
+                    <InputLabel id="magic-school-select-label">Magic School</InputLabel>
+                    {!magicSchools ? <Loading /> : (
+                        <Select
+                            labelId='magic-school-select-label'
+                            id="magic-school-select"
+                            value={selectedSchool}
+                            label="Age"
+                            onChange={handleCategory}
+                        >
+                            <MenuItem value={'none'}>None</MenuItem>
+                            {magicSchools.map((school: any, i: number) => <MenuItem value={school.index}>{school.name}</MenuItem>)}
+                        </Select>
+                    )}
+                </FormControl>
+                <FormControl style={{ minWidth: 80 }}>
+                    <InputLabel id="level-select-label">Level</InputLabel>
+                    {!magicSchools ? <Loading /> : (
+                        <Select
+                            labelId='level-select-label'
+                            id="level-select"
+                            value={selectedLevel}
+                            label="Age"
+                            onChange={handleLevel}
+                        >
+                            <MenuItem value={'none'}>None</MenuItem>
+                            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((level) => <MenuItem key={`${level}-option`} value={level}>{level.toString()}</MenuItem>)}
+                        </Select>
+                    )}
+                </FormControl>
             </RowLayout>
             <TextField
                 onChange={onChange}
@@ -160,22 +99,25 @@ const MagicSchools: React.FC = () => {
                 className="jdgd-input"
             />
             <BlockLayout>
-                {!spellMap ? <Loading /> : spells.filter((spell: iSpell) => { // Filter by category
-                    if (!categories || categories.length === 0) return true; 
-                    const spellCategory = spellMap.get(spell.index)?.school?.name;
+                {!spellMap || !spells ? <Loading /> : spells.filter((spell: iSpell) => { // Filter by category
+                    if (!selectedSchool || selectedSchool === 'none') return true; 
+                    const spellCategory = spellMap.get(spell.index)?.school?.index;
                     if (!spellCategory) return false;
-                    const showSpell = categories.filter(cat => cat.name === spellCategory).length > 0;
-                    return showSpell;
+                    return selectedSchool === spellCategory;
+                }).filter((spell: iSpell) => { // Filter by category
+                    if (selectedLevel === 'none') return true; 
+                    const spellLevel = spellMap.get(spell.index)?.level;
+                    return selectedLevel === spellLevel;
                 }).filter((spell: iSpell) => { // Filter by search
                     if (search === "") return true;
                     if (!spell) return false;
                     const regex = new RegExp(`${search}`, 'gmi');
                     const match = regex.test(spell.name);
                     return match;
-                }).map(spell => {
+                }).map((spell: iSpell) => {
                     const spellInfo = spellMap.get(spell.index);
                     return (
-                        <Spell key={spell.index} categories={categories} spellInfo={spellInfo} search={search} />
+                        <Spell key={spell.index} selectedSchool={selectedSchool} selectedLevel={selectedLevel} spellInfo={spellInfo} search={search} />
                     );
                 })}
             </BlockLayout>

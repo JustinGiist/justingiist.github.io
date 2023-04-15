@@ -29,6 +29,8 @@ const Loading = ({
             return <Icon icon={icon} className={icon} />;
         }
         switch (useLoadingAnimation) {
+            case 2:
+                return barLoader;
             case 1:
                 const numOfCells = 4;
                 const cells = [];
@@ -40,7 +42,7 @@ const Loading = ({
                 return <div className="mosaic-loader">{cells}</div>;
             case 0: // Mosaic
             default:
-                return barLoader;
+                return <div className="lds-ripple"><div></div><div></div></div>;
         }
     }, [
         icon,

@@ -4,6 +4,7 @@ interface InputGroupProps extends React.ComponentPropsWithoutRef<"input"> {
     layoutClass?: string;
     noWrapping?: boolean;
     isCard?: boolean;
+    gap?: number;
     children: any;
 }
 const RowLayout = forwardRef<any, InputGroupProps>((props, ref) => {
@@ -11,14 +12,19 @@ const RowLayout = forwardRef<any, InputGroupProps>((props, ref) => {
         layoutClass,
         noWrapping,
         isCard,
+        gap,
         children,
-        ...params // This includes things like id, style, className, everything a regular component can use.
+        ...rest // This includes things like id, style, className, everything a regular component can use.
     } = props;
     const memoParams = useMemo(() => ({
-        ...params,
-        className: `${layoutClass ?? 'flex'} ${!noWrapping ? '' : 'noWrap'} ${params?.className ?? ''} ${isCard ? 'card' : ''}`
+        ...rest,
+        style: {
+            ...rest?.style,
+            gap: gap
+        },
+        className: `${layoutClass ?? 'flex'} ${!noWrapping ? '' : 'noWrap'} ${rest?.className ?? ''} ${isCard ? 'card' : ''}`
     }), [
-        params,
+        rest,
         layoutClass,
         noWrapping,
         isCard

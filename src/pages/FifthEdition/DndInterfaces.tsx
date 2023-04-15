@@ -102,3 +102,55 @@ export interface Speed {
     climb?: string;
 }
   
+export interface iMagicSchool extends DndAPIResult {
+    desc?: string;
+}
+
+export interface SpellProps extends React.ComponentPropsWithoutRef<"input"> {
+    spellInfo?: iSpell;
+    selectedSchool?: string;
+    selectedLevel?: number | string;
+    search?: string;
+};
+
+export interface iSpell {
+    index: string;
+    name: string;
+    desc: string[];
+    higher_level: string[];
+    range: string;
+    components: string[];
+    material: string;
+    ritual: boolean;
+    duration: string;
+    concentration: boolean;
+    casting_time: string;
+    level: number;
+    school: DndAPIResult;
+};
+
+export interface iEquipment {
+    desc: string[];
+    special: string[];
+    index: string;
+    name: string;
+    equipment_category: {
+      index: string;
+      name: string;
+      url: string;
+    };
+    gear_category: {
+      index: string;
+      name: string;
+      url: string;
+    };
+    cost: {
+      quantity: number;
+      unit: string;
+    };
+    weight: number;
+    url: string;
+    contents: any[]; // not sure what type contents should be
+    properties: any[]; // not sure what type properties should be
+}
+  

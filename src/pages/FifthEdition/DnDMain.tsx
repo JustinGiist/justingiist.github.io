@@ -1,10 +1,13 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import ColumnLayout from '../../components/Layouts/ColumnLayout';
 import TabsComponent from '../../components/TabsComponent/TabsComponent';
 import MagicSchools from './MagicSchools';
 import MonstersList from './Monsters';
 import SubHeadline from '../../components/Text/SubHeadline';
 import Body from '../../components/Text/Body';
+import DndData from './DndData';
+import Equipments from './Equipment';
+import './DndMain.scss';
 
 export const ValueLabel = ({ label, value }: any) => {
     if (!value && !(typeof value === "boolean")) return null;
@@ -26,23 +29,60 @@ const DndMain = () => {
     const [tabs] = useState(Object.keys(DndPages));
     const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
+    const {
+        monsters,
+        monsterTypes,
+        magicSchools,
+        spells,
+        spellMap,
+        classes,
+        equipments,
+        races,
+        rules,
+        currencyTypes,
+        equipmentCategories
+    } = DndData();
+
     const page = useMemo(() => {
         switch (selectedTab) {
             case 'magic-schools':
-                return <MagicSchools />;
-            case 'character':
+                return (
+                    <MagicSchools 
+                        magicSchools={magicSchools}
+                        spells={spells}
+                        spellMap={spellMap}
+                    />
+                );
             case 'classes':
             case 'equipment':
+                return <Equipments equipments={equipments} currencyTypes={currencyTypes} equipmentCategories={equipmentCategories} />
             case 'monsters':
-                return <MonstersList />;
+                return (
+                    <MonstersList 
+                        monsters={monsters} 
+                        monsterTypes={monsterTypes}
+                    />
+                );
             case 'races':
             case 'rules':
+            case 'character':
                 return <div>{DndPages[selectedTab].label}</div>;
             default:
                 return null;
         }
     }, [
-        selectedTab
+        selectedTab,
+        monsters,
+        magicSchools,
+        spells,
+        spellMap,
+        classes,
+        equipments,
+        races,
+        rules,
+        monsterTypes,
+        currencyTypes,
+        equipmentCategories
     ]);
 
     return (

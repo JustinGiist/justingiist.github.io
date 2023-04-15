@@ -1,11 +1,13 @@
 @import './Ripple.scss';
 @import './BarLoader.scss';
+@import './Beacon.scss';
 .loadingComponent {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 16px;
+    min-height: 120px;
     .flexColumn {
         align-items: center;
         justify-content: center;

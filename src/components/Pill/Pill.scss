@@ -17,19 +17,19 @@
     min-height: 28px;
     transition: all 0.167s ease;
     box-shadow: none;
+    text-transform: capitalize;
     * {
       transition: all 0.067s ease;
     }
     position: relative;
     &.slender {
-      padding: 1px 8px !important;
+      padding: 1px 6px 0px 6px !important;
       font-weight: 600;
-      font-size: 10px;
       height: 24px !important;
       min-height: 24px !important;
     }
     .pill-label {
-      font-size: 15px !important;
+      font-size: 14px !important;
       line-height: 14px !important;
       display: flex;
       align-items: center;
@@ -98,6 +98,9 @@
       color: #fff !important;
     }
   }
+}
+.pill.None, .pill.None {
+  @include pillColoring(var(--action-option));
 }
 .pill.Success, .pill.success {
   @include pillColoring(var(--action-success));

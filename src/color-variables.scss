@@ -1105,13 +1105,13 @@
         --sidebar-background: #34004b;
 
         /* TEXT COLORS */
-        --text-headline: #fff;
+        --text-headline: #333;
         --text-headline-secondary: #3c7a35;
         --text-sub-headline: #7c4e1e;
         --text-body: #333;
         --text-sub-body: #7b7b7b;
         --text-placeholder: #929292;
-        --text-menu: #f6f6f6;
+        --text-menu: #333;
 
         /* INPUT */
         --input-label: #002745;
@@ -1122,11 +1122,11 @@
         --input-hover: #c4dcff;
 
         /* BACKGROUNDS */
-        --background-primary: #fff;
-        --background-secondary: #977a9b;
+        --background-primary: #f3f3f3;
+        --background-secondary: #f1dbbf;
         --background-teritary: linear-gradient(0deg, #74e2ff,#d8f6ff 40%);
         --background-modal: #ffffff;
-        --background-card: #f1dbbf;
+        --background-card: #fff;
         --background-modal-overlay: #00000033;
         --background-account: var(--theme-gradient);
         --background-panel: #ffffff;

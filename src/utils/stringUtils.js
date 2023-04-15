@@ -74,13 +74,13 @@ const regexEscape = v => v.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 function highlight(s, search, highlightClass = 'text-selected') {
     if (!s) throw new Error('Cannot highlight without a string!');
     return reactStringReplace(s, search, (match, i) => (
-        <span class={highlightClass}>{match}</span>
+        <span className={highlightClass}>{match}</span>
     ));
 }
 function filterBySearch(s, search) {
     if (search === '') return true;
-    if (!s) return false;
-    const regex = new RegExp(`${search}`, 'gmi');
+    if (!s?.toString()) return false;
+    const regex = new RegExp(`${regexEscape(search)}`, 'gmi');
     return regex.test(s);
 }
 

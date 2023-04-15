@@ -1,54 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ColumnLayout from '../../components/Layouts/ColumnLayout';
 import Headline from '../../components/Text/Headline';
 import BlockLayout from '../../components/Layouts/BlockLayout';
-import Body from '../../components/Text/Body';
-import { TextField } from '@material-ui/core';
+import { FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
 import stringUtils from '../../utils/stringUtils';
 import Loading from '../../components/Loading/Loading';
 import RowLayout from '../../components/Layouts/RowLayout';
 import ImageVideo from '../../components/ImageVideo';
-import { DndAPIResult, Monster, getDndUrl } from './DndInterfaces';
+import { Monster, getDndUrl } from './DndInterfaces';
 import { ValueLabel } from './DnDMain';
+import SubHeadline from '../../components/Text/SubHeadline';
+import Pill from '../../components/Pill/Pill';
 
-const MonstersList: React.FC = () => {
-  const [monsters, setMonsters] = useState<Monster[]>([]);
+const sizeArray = ['Gargantuan', 'Huge', 'Large', 'Medium', 'Small', 'Tiny'];
+
+const MonstersList = ({ monsters, monsterTypes }: { monsters?: Monster[], monsterTypes?: string[] }) => {
   const [search, setSearchTerm] = useState<string>('');
-  const [loading, setLoading] = useState(false);
+  const [selectedSize, setSelectedSize] = useState<string>('None');
+  const [selectedType, setSelectedType] = useState<string>('None');
 
-  useEffect(() => {
-    const fetchMonster = async (monsterName: string) => {
-      try {
-        const response = await fetch(getDndUrl(`/api/monsters/${monsterName}`));
-        if (response?.status === 404) throw new Error();
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    const fetchMonsters = async () => {
-        setLoading(true);
-        try {
-            const url = getDndUrl(`/api/monsters`);
-            const response = await fetch(url);
-            const data = await response.json();
-            const getAllMonsterData = async () => {
-                const promises: any[] = [];
-                data.results.forEach((monsterResponse: DndAPIResult) => {
-                    promises.push(fetchMonster(monsterResponse.index));
-                });
-                return Promise.all(promises);
-            };
-            const monsterResults = await getAllMonsterData();
-            setMonsters(monsterResults);
-        } catch (e) {
-            console.error(e);
-        } finally {
-            setLoading(false);
-        }
-    };
-    fetchMonsters();
+  const handleSize = useCallback((e: any) => {
+    setSelectedSize(e?.target?.value);
+  }, []);
+
+  const handleType = useCallback((e: any) => {
+    setSelectedType(e?.target?.value);
   }, []);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,10 +32,35 @@ const MonstersList: React.FC = () => {
   };
   const imageStyle = ({ border: '2px solid #333', borderRadius: 8, overflow: 'hidden' });
 
-  if (loading) return <Loading />;
   return (
         <ColumnLayout style={{ padding: '12px 12px 60px' }}>
             <Headline size={1}>Monsters List</Headline>
+            <RowLayout>
+                <FormControl style={{ minWidth: 126 }}>
+                    <InputLabel id="size-select-label">Size</InputLabel>
+                    <Select
+                        labelId='size-select-label'
+                        id="size-select"
+                        value={selectedSize}
+                        onChange={handleSize}
+                    >
+                        <MenuItem value={'None'}>None</MenuItem>
+                        {sizeArray.map((size: string) => <MenuItem value={size}>{size}</MenuItem>)}
+                    </Select>
+                </FormControl>
+                <FormControl style={{ minWidth: 126 }}>
+                    <InputLabel id="type-select-label">Type</InputLabel>
+                    <Select
+                        labelId='type-select-label'
+                        id="type-select"
+                        value={selectedType}
+                        onChange={handleType}
+                    >
+                        <MenuItem value={'None'}>None</MenuItem>
+                        {!monsterTypes ? <Loading /> : monsterTypes.map((type: string) => <MenuItem value={type}>{type}</MenuItem>)}
+                    </Select>
+                </FormControl>
+            </RowLayout>
             <TextField
                 onChange={handleSearch}
                 label="Search"
@@ -68,23 +69,28 @@ const MonstersList: React.FC = () => {
                 className="jdgd-input"
             />
             <BlockLayout>
-                {monsters.filter(m => stringUtils.filterBySearch(m.name, search)).map((monster) => {
-                    const label = search ? stringUtils.highlight(monster.name, search) : monster.name;
-                    const url = !monster.image ? undefined : getDndUrl(monster.image);
-                    return (
-                        <RowLayout isCard key={monster.name}>
-                            <ColumnLayout>
-                                <Headline secondary size={3}>{label}</Headline>
-                                <ValueLabel label="Size: " value={monster.size} />
-                                <ValueLabel label="Type: " value={monster.type} />
-                                <ValueLabel label="Alignment: " value={monster.alignment} />
-                            </ColumnLayout>
-                            {url && (
-                                <ImageVideo src={url} alt={monster.name} maxHeight="280px" height="280px" maxWidth="180px" style={imageStyle}/>
-                            )}
-                        </RowLayout>
-                    );
-                })}
+                {!monsters ? <Loading /> : monsters
+                    .filter((m: Monster) => stringUtils.filterBySearch(m.type, selectedType === 'None' ? '' : selectedType))
+                    .filter((m: Monster) => stringUtils.filterBySearch(m.size, selectedSize === 'None' ? '' : selectedSize))
+                    .filter((m: Monster) => stringUtils.filterBySearch(m.name, search)).map((monster: Monster) => {
+                        const label = search ? stringUtils.highlight(monster.name, search) : monster.name;
+                        const url = !monster.image ? undefined : getDndUrl(monster.image);
+                        const sizeSelected = selectedSize === monster.size;
+                        const typeSelected = selectedType === monster.type;
+                        return (
+                            <RowLayout className='flexSB noWrap' isCard key={monster.name}>
+                                <ColumnLayout>
+                                    <Headline secondary size={3}>{label}</Headline>
+                                    <RowLayout>
+                                        <Pill className="None slender">CR: {monster.challenge_rating}</Pill>
+                                        <Pill className={`${sizeSelected ? 'pill-9' : 'None'} slender`}>{monster.size}</Pill>
+                                        <Pill className={`${typeSelected ? 'pill-8' : 'None'} slender`}>{monster.type}</Pill>
+                                    </RowLayout>
+                                    <ValueLabel label="Alignment" value={monster.alignment}/>
+                                </ColumnLayout>
+                            </RowLayout>
+                        );
+                    })}
             </BlockLayout>
             </ColumnLayout>
   );

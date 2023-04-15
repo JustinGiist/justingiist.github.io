@@ -20,7 +20,6 @@ const Pill = ({
     onClick, // You should pass the data in the onClick, don't make this manage data. This control should be stateless.
     children
 }: any) => {
-    if (!id) throw new Error('Missing id for pill');
     const [isHover, setIsHover] = useState(false);
     const memoSelected = useMemo(() => {
         if (isSelected === undefined) return true; // Return true because we want background to be filled in normally. Enabled - Background Filled w/ Pill Color, Disabled - Background White
@@ -83,8 +82,10 @@ const Pill = ({
             onBlur={onOut}
         >
             {memoizedIcon}
-            {label && <div className="pill-label">{label}</div>}
-            {children}
+            <div className="pill-label">
+                {label}
+                {children}
+            </div>
         </button>
     );
 };
