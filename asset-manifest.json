@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.70c55216.css",
-    "main.js": "/static/js/main.33698d0d.js",
+    "main.css": "/static/css/main.1020a1cc.css",
+    "main.js": "/static/js/main.0d0dbd36.js",
     "static/js/618.5ca25b0b.chunk.js": "/static/js/618.5ca25b0b.chunk.js",
     "static/js/111.bee8aa27.chunk.js": "/static/js/111.bee8aa27.chunk.js",
     "static/js/453.59049ee8.chunk.js": "/static/js/453.59049ee8.chunk.js",
@@ -25,7 +25,6 @@
     "static/media/chocolate2.jpg": "/static/media/chocolate2.13fa963db32885903837.jpg",
     "static/media/event-snowboarding.jpg": "/static/media/event-snowboarding.1fa3b5dd1b4b69b71386.jpg",
     "static/media/lodge-view-3.jpg": "/static/media/lodge-view-3.6bb1ee28737cf04e669c.jpg",
-    "static/media/Swoosh2.png": "/static/media/Swoosh2.2ae3c8b79879743e0738.png",
     "static/media/mountain-view-2.jpeg": "/static/media/mountain-view-2.310de30f44c79506e69d.jpeg",
     "static/media/chocolate.jpg": "/static/media/chocolate.6271d3ef9e9c8055ae25.jpg",
     "static/media/hotel_everest.jpg": "/static/media/hotel_everest.a521ca2d3366bf522d6d.jpg",
@@ -38,7 +37,6 @@
     "static/media/chocolate3.jpg": "/static/media/chocolate3.d9a59bd64ac2d68d5103.jpg",
     "static/media/hotel_bellevue.jpg": "/static/media/hotel_bellevue.03fbd2b92e8d19e9040a.jpg",
     "static/media/hotel_glacier.jpg": "/static/media/hotel_glacier.610731489b11f2cb919d.jpg",
-    "static/media/Swoosh.png": "/static/media/Swoosh.210049c62fc73451868d.png",
     "static/media/SalesRightBackground.svg": "/static/media/SalesRightBackground.60444e94aadc58827b5fc3811ca150a2.svg",
     "static/media/HHouse.svg": "/static/media/HHouse.6479e4b2d17c0627a8bd7c57c04f8af1.svg",
     "static/media/Amazon_logo.svg": "/static/media/Amazon_logo.4f66fa084187f6633d94a8ad8ad20a0e.svg",
@@ -66,14 +64,14 @@
     "static/media/Squiggly.svg": "/static/media/Squiggly.c5ad318c4e06c74f7ffe3e47e5bfcbd1.svg",
     "static/media/microsoft-windows-22.svg": "/static/media/microsoft-windows-22.18c1acd8d78bbec10356513ba98a0d95.svg",
     "static/media/textbox.svg": "/static/media/textbox.cb172bda41092598c6840b0fb7fdf475.svg",
-    "main.70c55216.css.map": "/static/css/main.70c55216.css.map",
-    "main.33698d0d.js.map": "/static/js/main.33698d0d.js.map",
+    "main.1020a1cc.css.map": "/static/css/main.1020a1cc.css.map",
+    "main.0d0dbd36.js.map": "/static/js/main.0d0dbd36.js.map",
     "618.5ca25b0b.chunk.js.map": "/static/js/618.5ca25b0b.chunk.js.map",
     "111.bee8aa27.chunk.js.map": "/static/js/111.bee8aa27.chunk.js.map",
     "453.59049ee8.chunk.js.map": "/static/js/453.59049ee8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.70c55216.css",
-    "static/js/main.33698d0d.js"
+    "static/css/main.1020a1cc.css",
+    "static/js/main.0d0dbd36.js"
   ]
 }
