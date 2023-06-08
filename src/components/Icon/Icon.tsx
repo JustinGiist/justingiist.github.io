@@ -103,7 +103,13 @@ import {
   RocketLaunchOutline,
   Cog,
   AutoFix,
-  ImageOffOutline
+  ImageOffOutline,
+  DramaMasks,
+  Pencil,
+  EmoticonHappyOutline,
+  EmoticonSadOutline,
+  EmoticonFrownOutline,
+  EmoticonLolOutline
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -196,7 +202,7 @@ const GetIcon: any = {
   Play,
   Pause,
   List: Note,
-  Edit: NoteEdit,
+  Edit: Pencil,
   Star: StarOutline,
   Cancel: Close,
   Save: ContentSave,
@@ -216,7 +222,12 @@ const GetIcon: any = {
   Settings: Cog,
   Burgers: Hamburger,
   DnD: AutoFix,
-  Empty: ImageOffOutline
+  Empty: ImageOffOutline,
+  Social: DramaMasks,
+  Happy: EmoticonHappyOutline,
+  Sad: EmoticonSadOutline,
+  Scared: EmoticonFrownOutline,
+  Funny: EmoticonLolOutline,
 };
 const Icon = ({
   icon,

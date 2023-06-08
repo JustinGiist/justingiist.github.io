@@ -262,7 +262,17 @@ export interface Combo {
     subClasses: string[];
 };
 export const CombosMap = new Map<ComboName, Combo>([
-    [ComboName.DoubleStrike, {name: 'Double Strike', level: ComboLevel.One, description: 'Strike an enemy with two furious attacks', damage: 'Weapon + 2', effect: 'Strike an enemy with two furious attacks! During the damage step, deal the damage twice, in two seperate damage steps.', subClasses: [HunterSubClass.Predator]} as Combo],
+    [
+        ComboName.DoubleStrike, 
+        {
+            name: 'Double Strike', 
+            level: ComboLevel.One, 
+            description: 'Strike an enemy with two furious attacks', 
+            damage: 'Weapon + 2', 
+            effect: 'Strike an enemy with two furious attacks! During the damage step, deal the damage twice, in two seperate damage steps.', 
+            subClasses: [HunterSubClass.Predator]
+        } as Combo
+    ],
     [ComboName.Dash, {name: 'Dash', level: ComboLevel.One, description: 'Dash and strike multiple enemies', damage: 'Prime + 2', effect: '', subClasses: [BrawlerSubClass.Technique]} as Combo],
     [ComboName.TwinViper, {name: 'Twin Viper', level: ComboLevel.One, description: '', damage: 'Prime + 2', effect: '', subClasses: [HunterSubClass.Predator]} as Combo],
     [ComboName.PocketSand, {name: 'Pocket Sand', level: ComboLevel.One, description: 'Throw sand at your enemies eyes', damage: 'Prime + 2', effect: '', subClasses: [CorsairSubClass.PirateOfTheSkye]} as Combo],

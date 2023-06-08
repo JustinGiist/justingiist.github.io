@@ -53,7 +53,7 @@ const SidebarV2 = ({
                 onClick={() => innerSetSidebar(option)} 
                 className={"sidebar-button flex noWrap" + (option === url ? ' selected' : '')}>
                     <Icon icon={option} fontSize={20} data-tip={isCollapsed ? null : option} />
-                    <h4>{option}</h4>
+                    <div className='buttonMedium'>{option}</div>
                 </div>
             ))}
             {!dimensions.isMobile && <div className='sidebar-button pushToBottom' onClick={() => setIsCollapsed(!isCollapsed)}>

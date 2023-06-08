@@ -14,10 +14,10 @@ const TabsComponent = ({
     selectedTab,
     setSelectedTab,
     renderCallback,
-    className
+    ...rest
 }: TabsComponentProps) => {
     return (
-        <div className={`tabs ${className}`}>
+        <div className={`tabs rounded-scroll ${rest?.className}`}>
             <div className="tabs-scroller">
                 {tabs.map(page => (
                     <div

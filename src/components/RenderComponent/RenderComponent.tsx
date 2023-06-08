@@ -28,6 +28,7 @@ import SpaceNews from "../../pages/ThemeSwitcher/SpaceNews/SpaceNews";
 import BobsBurgers from "../../pages/ThemeSwitcher/BobsBurgers/BobsBurgers";
 import DndMain from "../../pages/FifthEdition/DnDMain";
 import MagicSchools from "../../pages/FifthEdition/MagicSchools";
+import SocialPage from "../../pages/SocialPage/SocialPage";
 const RenderComponent = () => {
   const navigate = useNavigate();
   let location = useLocation();
@@ -47,14 +48,14 @@ const RenderComponent = () => {
     [GlobalThemes.Test, <TestPage />],
     [GlobalThemes.BlackRed, <BlackRed />],
     [GlobalThemes.Music, <MusicPage />],
-    // [GlobalThemes.Fragments, <FragmentsPage />],
+    [GlobalThemes.Fragments, <FragmentsPage />],
     [GlobalThemes.List, <NotePage />],
     [GlobalThemes.Yeti, <YetiPage />],
-    [GlobalThemes.Designer, <DesignerPage />],
     [GlobalThemes.Heroes, <HeroPage />],
     [GlobalThemes.SpaceNews, <SpaceNews />],
     [GlobalThemes.Burgers, <BobsBurgers />],
-    [GlobalThemes.DND, <DndMain />]
+    [GlobalThemes.DND, <DndMain />],
+    [GlobalThemes.Social, <SocialPage />]
   ]), []);
   const newPage = useMemo(() => routes.get(url), [routes, url]);
   const checkBackground = () => {
@@ -68,8 +69,8 @@ const RenderComponent = () => {
     }
   };
   const handleMobileOpen = useCallback(() => {
-    setIsMobileOpen(!isMobileOpen)
-  }, [setIsMobileOpen, isMobileOpen]);
+    setIsMobileOpen(prev => !prev)
+  }, [setIsMobileOpen]);
   const showBackground = checkBackground();
   useEffect(() => {
     setThemeContext(url);

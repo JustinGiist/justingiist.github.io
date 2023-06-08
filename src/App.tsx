@@ -13,24 +13,6 @@ import RenderComponent from "./components/RenderComponent/RenderComponent";
 export const ThemeManagerContext = React.createContext<any>(undefined);
 const themeManagerApp = new ThemeManager();
 const App = () => {
-  /*
-  const findMedianSortedArrays = (nums1: number[], nums2: number[]): number => {
-    let mergeArray = [...nums1, ...nums2];
-    let sortedArray = mergeArray.sort();
-    let length = mergeArray.length;
-    if (length === 1) {
-      return mergeArray[0];
-    } else if (length % 2 === 0) {
-      console.log((mergeArray[length / 2 - 1] + mergeArray[length / 2]) / 2);
-      return (mergeArray[length / 2] + mergeArray[length / 2 + 1]) / 2;
-    } else {
-      console.log(mergeArray[length / 2 - 0.5]);
-      return mergeArray[length / 2 - 0.5];
-    }
-  };
-  */
-  //findMedianSortedArrays([2, 3], [1, 4, 10]);
-
   const [themeManager] =
     useState<ThemeManager>(themeManagerApp);
   const [theme, setTheme] = useState(GlobalThemes.Resume);
@@ -78,6 +60,7 @@ const App = () => {
         href="https://fonts.googleapis.com/css2?family=Bangers&display=swap"
         rel="stylesheet"
       />
+      <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
       <ThemeManagerContext.Provider
         value={{ themeManager, theme, setThemeContext }}
       >

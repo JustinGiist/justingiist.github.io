@@ -1,5 +1,14 @@
 .jdgd-input {
-    .MuiInputBase-root {
-        background-color: var(--background-primary) !important;
+    position: relative;
+    min-width: 120px;
+    *, *::after, *::before {
+        color: var(--input-label) !important;
+        border-color: var(--input-border) !important;
+    }
+    &.MuiInput-underline::before {
+        border-color: var(--input-border) !important;
+    }
+    .MuiFormLabel-root.Mui-focused {
+        color: var(--input-label) !important;
     }
 }

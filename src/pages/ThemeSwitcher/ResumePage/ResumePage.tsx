@@ -17,7 +17,7 @@ import SubHeadline from "../../../components/Text/SubHeadline";
 import OverlayControl from "../../../components/OverlayControl/OverlayControl";
 import Icon from "../../../components/Icon/Icon";
 import Stars from "./Stars";
-const ThreeDComponentLazy = React.lazy(() => import("./ThreeD"));
+const ThreeDComponentLazy = React.lazy(() => import("./GlobeElement"));
 const ResumePage = () => {
   const navigate = useNavigate();
   const experienceList: any[] = useMemo(() => [

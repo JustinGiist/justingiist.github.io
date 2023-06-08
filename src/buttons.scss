@@ -1,25 +1,19 @@
 @import './Buttons/Beacon.scss';
 
 @mixin buttonMixin($backgroundColor, $color) {
-    background: $color;
-    color: $backgroundColor;
-    fill: $backgroundColor;
-    border: 2px solid $backgroundColor;
+    background: $backgroundColor !important;
+    color: $color !important;
+    fill: $color !important;
     * {
-      color: $backgroundColor;
-      fill: $backgroundColor;
-    }
-    &:hover {
-      background: $backgroundColor;
       color: $color;
       fill: $color;
-      * {
-        color: $color;
-        fill: $color;
-      }
     }
-  }
-  .button {
+
+    &:hover {
+        background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.25) 0, rgba(255, 255, 255, 0.25) 100%) !important;
+    }
+}
+.button {
     background: var(--action-option);
     padding: 2px 12px;
     min-width: 56px;
@@ -87,4 +81,10 @@
   }
   .background-transparent {
     background: transparent !important;
+  }
+  .button.Mui-disabled {
+    color: var(--action-disabled) !important;
+    background: var(--action-disabled) !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
   }

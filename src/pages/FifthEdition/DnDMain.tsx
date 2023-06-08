@@ -8,6 +8,11 @@ import Body from '../../components/Text/Body';
 import DndData from './DndData';
 import Equipments from './Equipment';
 import './DndMain.scss';
+import Classes from './Classes';
+import Races from './Races';
+import Rules from './Rules';
+import Loading from '../../components/Loading/Loading';
+import Character from './Character';
 
 export const ValueLabel = ({ label, value }: any) => {
     if (!value && !(typeof value === "boolean")) return null;
@@ -26,7 +31,7 @@ export const ValueLabel = ({ label, value }: any) => {
 }
 
 const DndMain = () => {
-    const [tabs] = useState(Object.keys(DndPages));
+    const [tabs] = useState(Object.keys(DndPages).filter(key => key !== 'character')); // Removed character because boring
     const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
     const {
@@ -40,7 +45,10 @@ const DndMain = () => {
         races,
         rules,
         currencyTypes,
-        equipmentCategories
+        equipmentCategories,
+        crArray,
+        durations,
+        conditions
     } = DndData();
 
     const page = useMemo(() => {
@@ -51,9 +59,16 @@ const DndMain = () => {
                         magicSchools={magicSchools}
                         spells={spells}
                         spellMap={spellMap}
+                        durations={durations}
                     />
                 );
             case 'classes':
+                return (
+                    <Classes 
+                        classes={classes} 
+                        equipments={equipments}
+                    />
+                );
             case 'equipment':
                 return <Equipments equipments={equipments} currencyTypes={currencyTypes} equipmentCategories={equipmentCategories} />
             case 'monsters':
@@ -61,12 +76,27 @@ const DndMain = () => {
                     <MonstersList 
                         monsters={monsters} 
                         monsterTypes={monsterTypes}
+                        crArray={crArray}
                     />
                 );
             case 'races':
+                if (!rules) return <Loading />;
+                return <Races races={races} />;
             case 'rules':
+                if (!rules) return <Loading />;
+                return <Rules rules={rules} />;
             case 'character':
-                return <div>{DndPages[selectedTab].label}</div>;
+                return (
+                    <Character 
+                        conditions={conditions} 
+                        classes={classes} 
+                        equipments={equipments}
+                        magicSchools={magicSchools}
+                        spells={spells}
+                        spellMap={spellMap}
+                        races={races}
+                    />
+                );
             default:
                 return null;
         }
@@ -82,11 +112,14 @@ const DndMain = () => {
         rules,
         monsterTypes,
         currencyTypes,
-        equipmentCategories
+        equipmentCategories,
+        crArray,
+        durations,
+        conditions
     ]);
 
     return (
-        <ColumnLayout gap={16}>
+        <ColumnLayout gap={16} addSectionPadding>
             <TabsComponent
                 tabs={tabs} 
                 renderCallback={(item: string) => DndPages[item].label}

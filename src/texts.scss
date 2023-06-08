@@ -88,3 +88,15 @@ h5, .headlineFive {
     @include fontMixin(var(--font-body), 400);
     @extend .text-body;
 }
+.buttonBold {
+    @include fontMixin(var(--font-button), 600);
+    @extend .text-body;
+}
+.buttonMedium {
+    @include fontMixin(var(--font-button), 500);
+    @extend .text-body;
+}
+.buttonLight {
+    @include fontMixin(var(--font-button), 400);
+    @extend .text-body;
+}

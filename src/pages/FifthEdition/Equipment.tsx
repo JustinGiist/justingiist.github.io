@@ -48,7 +48,7 @@ const Equipments = ({
     });
 
     return (
-        <ColumnLayout style={{ padding: '12px 16px 60px' }}>
+        <ColumnLayout>
             <Headline size={1}>Equipment</Headline>
             <RowLayout>
                 <TextField
@@ -56,14 +56,16 @@ const Equipments = ({
                     label="Weight"
                     value={selectedWeight}
                     variant="standard"
+                    className="jdgd-input"
                 />
                 <TextField
                     onChange={handleCost}
                     label="Cost"
                     value={selectedCost}
                     variant="standard"
+                    className="jdgd-input"
                 />
-                <FormControl style={{ minWidth: 80 }}>
+                <FormControl className="jdgd-input" style={{ minWidth: 80 }}>
                     <InputLabel id="currency-select-label">Currency</InputLabel>
                     <Select
                         labelId='currency-select-label'
@@ -75,7 +77,7 @@ const Equipments = ({
                         {!currencyTypes ? <Loading /> : currencyTypes.map((price: string) => <MenuItem value={price}>{price}</MenuItem>)}
                     </Select>
                 </FormControl>
-                <FormControl style={{ minWidth: 80 }}>
+                <FormControl className="jdgd-input" style={{ minWidth: 80 }}>
                     <InputLabel id="category-select-label">Category</InputLabel>
                     <Select
                         labelId='category-select-label'
@@ -133,15 +135,23 @@ const Equipment = ({
   const costSelected = selectedCost === equipment.cost.quantity?.toString();
   const currencySelected = selectedCurrency?.toLowerCase() === equipment.cost.unit;
   const weightSelected = selectedWeight === equipment.weight?.toString();
-  const catSelected = selectedCategory === equipment.equipment_category.name;
+  const equipmentCategory = equipment.equipment_category.name;
+  const catSelected = selectedCategory === equipmentCategory;
   const label = search ? stringUtils.highlight(equipment.name, search) : equipment.name;
+  const isWeapon = equipmentCategory === 'Weapon';
   return (
     <ColumnLayout isCard>
       <Headline secondary size={3}>{label}</Headline>
       <RowLayout>
-          <Pill className={`${weightSelected ? 'pill-8' : 'None'} slender`}>{equipment.weight} lb</Pill>
-          <Pill className={`${currencySelected || costSelected ? `pill-9` : 'None'} slender`}>{equipment.cost.quantity} {equipment.cost.unit}</Pill>
-          <Pill className={`${catSelected ? 'pill-8' : 'None'} slender`}>{equipment.equipment_category.name}</Pill>
+          <Pill className={`${weightSelected ? 'pill-7' : 'None'} slender`}>{equipment.weight} lb</Pill>
+          <Pill className={`${currencySelected || costSelected ? `pill-8` : 'None'} slender`}>{equipment.cost.quantity} {equipment.cost.unit}</Pill>
+          <Pill className={`${catSelected ? 'pill-9' : 'None'} slender`}>{equipmentCategory}</Pill>
+          {isWeapon && equipment.weapon_category && (
+            <Pill className={`None slender`}>{equipment.weapon_category}</Pill>
+          )}
+          {isWeapon && equipment.weapon_range && (
+            <Pill className={`None slender`}>{equipment.weapon_range}</Pill>
+          )}
       </RowLayout>
       {equipment.desc && <Body>{stringUtils.truncate(equipment.desc.join(' '), 126)}</Body>}
       {equipment.gear_category && (

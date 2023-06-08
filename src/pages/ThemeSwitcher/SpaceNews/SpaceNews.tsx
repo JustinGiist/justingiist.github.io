@@ -24,7 +24,7 @@ const SpaceNews = () => {
      getData();
   }, [getData]);
   return (
-    <ColumnLayout style={{ padding: '12px 16px 60px' }}>
+    <ColumnLayout addSectionPadding>
         <Headline>Space News</Headline>
         <BlockLayout>
             {data && data.map((article) => (

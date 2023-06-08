@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { DndAPIResult, Monster, getDndUrl, iMagicSchool, iSpell } from './DndInterfaces';
+import { sortNumbers } from '../../utils/numberUtils';
 
 const resolveAllDndPromises = async (array: any[], fetchMethod: any) => {
     const promises: any[] = [];
@@ -33,8 +34,10 @@ const fetchAllDndRequest = async (url: string) => {
 const DndData = () => {
     const [monsters, setMonsters] = useState<Monster[] | undefined>(undefined);
     const [monsterTypes, setMonsterTypes] = useState<string[] | undefined>(undefined);
+    const [crArray, setCRArray] = useState<string[] | undefined>(undefined);
     const [magicSchools, setMagicSchools] = useState<iMagicSchool[] | undefined>(undefined);
     const [spells, setSpells] = useState<iSpell[] | undefined>(undefined);
+    const [durations, setDurations] = useState<any[] | undefined>(undefined);
     const [spellMap, setSpellMap] = useState<Map<string, iSpell> | undefined>(undefined);
     const [classes, setClasses] = useState<any[] | undefined>(undefined);
     const [equipments, setEquipments] = useState<any[] | undefined>(undefined);
@@ -42,6 +45,7 @@ const DndData = () => {
     const [currencyTypes] = useState<string[] | undefined>(['Cp', 'Sp', 'Gp']);
     const [races, setRaces] = useState<any[] | undefined>(undefined);
     const [rules, setRules] = useState<any[] | undefined>(undefined);
+    const [conditions, setConditions] = useState<any[] | undefined>(undefined);
     
     // Monsters
     const fetchMonster = useCallback(async (monsterName: string) => fetchDndRequest(`/api/monsters/${monsterName}`), []);
@@ -55,6 +59,15 @@ const DndData = () => {
             listOfTypes.push(m.type);
         });
         setMonsterTypes(listOfTypes);
+
+        const listOfCR: string[] = [];
+        await monsterResults.forEach((m) => {
+            const alreadyExists = listOfCR.find(i => i === m.challenge_rating.toString());
+            if (alreadyExists) return;
+            listOfCR.push(m.challenge_rating.toString());
+        });
+        setCRArray(sortNumbers(listOfCR));
+
         setMonsters(monsterResults);
     }, [fetchMonster]);
 
@@ -67,6 +80,7 @@ const DndData = () => {
     const fetchMagicSchools = useCallback(async () => {
         const results = await fetchAllDndRequest(`/api/magic-schools`);
         const schoolResults = await resolveAllDndPromises(results, fetchMagicSchool);
+
         setMagicSchools(schoolResults);
     }, [fetchMagicSchool]);
 
@@ -84,6 +98,14 @@ const DndData = () => {
             const newSpellMap = new Map();
             spellResults.forEach(spell => newSpellMap.set(spell.index, spell));
             setSpellMap(newSpellMap);
+        
+            const listOfDurations: string[] = [];
+            await spellResults.forEach((s) => {
+                const alreadyExists = listOfDurations.find(i => i === s.duration);
+                if (alreadyExists) return;
+                listOfDurations.push(s.duration);
+            });
+            setDurations(listOfDurations.sort());
         } catch (error) {
             console.error(error);
         }
@@ -138,15 +160,38 @@ const DndData = () => {
 
     // Rules
     const fetchRule = useCallback(async (s: string) => fetchDndRequest(`/api/rules/${s}`), []);
+    const fetchRuleSubSection = useCallback(async (api: string) => fetchDndRequest(`${api}`), []);
     const fetchRules = useCallback(async () => {
         const results = await fetchAllDndRequest(`/api/rules`);
         const rResults = await resolveAllDndPromises(results, fetchRule);
-        setRules(rResults);
-    }, [fetchRule]);
+        const subSectionPromises: any[] = [];
+        rResults.forEach(result => {
+            if (result.subsections) {
+                result.subsections.forEach((subSection: any) => {
+                    subSectionPromises.push(fetchRuleSubSection(subSection.url));
+                });
+            }
+        });
+        const sResults = await Promise.all(subSectionPromises);
+        setRules(sResults);
+    }, [fetchRule, fetchRuleSubSection]);
 
     useEffect(() => {
         fetchRules();
     }, [fetchRules]);
+
+    
+    // Condition
+    const fetchCondition = useCallback(async (s: string) => fetchDndRequest(`/api/condition/${s}`), []);
+    const fetchConditions = useCallback(async () => {
+        const results = await fetchAllDndRequest(`/api/condition`);
+        const cResults = await resolveAllDndPromises(results, fetchCondition);
+        setConditions(cResults);
+    }, [fetchCondition]);
+
+    useEffect(() => {
+        fetchConditions();
+    }, [fetchConditions]);
 
     return ({
         monsters,
@@ -159,7 +204,10 @@ const DndData = () => {
         races,
         rules,
         currencyTypes,
-        equipmentCategories
+        equipmentCategories,
+        crArray,
+        durations,
+        conditions
     });
 }
 

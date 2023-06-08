@@ -1,0 +1,63 @@
+$tile-media-width: 227px;
+$tile-media-width-large: 356px;
+$tile-section-padding: 4px 8px;
+.tile {
+    background: var(--background-card);
+    border-radius: var(--round-medium);
+    box-shadow: var(--shadow-light);
+    width: $tile-media-width;
+    max-width: $tile-media-width-large;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.267s ease;
+    position: relative;
+    &.large {
+        width: $tile-media-width-large;
+    }
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-dark);
+    }
+    .tile-overlay {
+        position: absolute;
+    }
+    .fa-star {
+        color: var(--partner-color);
+    }
+    .tile-top {
+        width: 100%;
+        padding: $tile-section-padding;
+    }
+    .tile-middle {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        flex: 1;
+        .tprc.thumbnail-list-item-container {
+            margin: 0 !important; // This is removing css that should not be there.
+            width: 100%;
+        }
+        img {
+            height: inherit;
+        }
+    }
+    .tile-bottom {
+        width: 100%;
+        padding: $tile-section-padding;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .tile {
+        width: calc(50% - (16px + 32px)) !important;
+        .tile-top, .tile-middle, .tile-bottom, .tprc.thumbnail-list-item-container, .thumbnail-list-item {
+            width: 100% !important;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .tile {
+        width: 100% !important;
+    }
+}

@@ -71,20 +71,54 @@ function truncate(s, length) {
 
 const regexEscape = v => v.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 
+function regexReplace(string, search, replacement = '``$&``') {
+    const regexPattern = new RegExp(`${regexEscape(search)}`, 'gmi');
+    return string.replace(regexPattern, replacement);
+}
+
 function highlight(s, search, highlightClass = 'text-selected') {
     if (!s) throw new Error('Cannot highlight without a string!');
     return reactStringReplace(s, search, (match, i) => (
         <span className={highlightClass}>{match}</span>
     ));
 }
-function filterBySearch(s, search) {
+function markdownHighlight(s, search) {
+    if (!s) throw new Error('Cannot highlight without a string!');
+    if (search === '') return s;
+    return regexReplace(s, search.trim());
+}
+function filterBySearch(s, search, exact) {
     if (search === '') return true;
     if (!s?.toString()) return false;
+    if (exact) {
+        const exactRegex = new RegExp(`^${regexEscape(search)}$`);
+        return exactRegex.test(s);
+    }
     const regex = new RegExp(`${regexEscape(search)}`, 'gmi');
     return regex.test(s);
 }
 
-export default {
+const splitByNCharacters = (str, chunkLength) => {
+    var chunks = [];
+
+    for (var i = 0, charsLength = str.length; i < charsLength; i += chunkLength) {
+        chunks.push(str.substring(i, i + chunkLength));
+    }
+
+    return chunks;
+}
+
+const splitByWords = (str) => {
+    const result = [];
+    const splitParagraphs = str?.split("\n");
+    splitParagraphs.forEach((p) => {
+        if (p === '') result.push('\n');
+        else p.split(' ').map(s => result.push(s));
+    });
+    return result;
+}
+
+const stringUtilsExport = {
     trim,
     splitAndToUpper,
     join,
@@ -94,5 +128,10 @@ export default {
     capitalize,
     truncate,
     highlight,
-    filterBySearch
+    markdownHighlight,
+    filterBySearch,
+    splitByNCharacters,
+    splitByWords
 };
+
+export default stringUtilsExport;

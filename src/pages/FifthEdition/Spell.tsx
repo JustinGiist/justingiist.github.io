@@ -13,7 +13,7 @@ import { ValueLabel } from './DnDMain';
 import { SpellProps } from './DndInterfaces';
 import SubHeadline from '../../components/Text/SubHeadline';
 
-const Spell: React.FC<SpellProps> = ({ spellInfo, search, selectedSchool, selectedLevel, ...rest }) => {
+const Spell: React.FC<SpellProps> = ({ spellInfo, search, selectedSchool, selectedLevel, selectedDuration, ...rest }) => {
     const [showMore, setShowMore] = useState(false);
 
     if (!spellInfo) {
@@ -24,7 +24,7 @@ const Spell: React.FC<SpellProps> = ({ spellInfo, search, selectedSchool, select
 
     const schoolSelected = selectedSchool === spellInfo?.school.index;
     const levelSelected = selectedLevel === spellInfo.level;
-    const durationSelected = false;
+    const durationSelected = selectedDuration === spellInfo.duration;
 
     return (
         <ColumnLayout isCard style={rest?.style} gap={4}>
@@ -40,7 +40,7 @@ const Spell: React.FC<SpellProps> = ({ spellInfo, search, selectedSchool, select
             <RowLayout>
                 <Pill className={`${schoolSelected ? `pill-${getSchoolColor(spellInfo.school.name)}` : 'None'} slender`}>{spellInfo.school.name}</Pill>
                 <Pill className={`${levelSelected ? 'pill-8' : 'None'} slender`}>Level: {spellInfo.level}</Pill>
-                <Pill className={`${durationSelected ? 'pill-8' : 'None'} slender`}>{spellInfo.duration}</Pill>
+                <Pill className={`${durationSelected ? 'pill-9' : 'None'} slender`}>{spellInfo.duration}</Pill>
             </RowLayout>
             {spellInfo.desc && <Body truncateNumber={showMore ? undefined : 124}>{spellInfo.desc[0]}</Body>}
             {!showMore ? null : (

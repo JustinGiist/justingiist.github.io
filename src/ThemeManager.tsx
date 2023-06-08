@@ -148,7 +148,8 @@ export enum GlobalThemes {
   Heroes = "Heroes",
   SpaceNews = "SpaceNews",
   Burgers = "Burgers",
-  DND = "DnD"
+  DND = "DnD",
+  Social = "Social"
 }
 export interface ComponentSizingSchema {
   fontXSmall: number;

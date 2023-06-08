@@ -110,6 +110,7 @@ export interface SpellProps extends React.ComponentPropsWithoutRef<"input"> {
     spellInfo?: iSpell;
     selectedSchool?: string;
     selectedLevel?: number | string;
+    selectedDuration?: string;
     search?: string;
 };
 
@@ -153,4 +154,50 @@ export interface iEquipment {
     contents: any[]; // not sure what type contents should be
     properties: any[]; // not sure what type properties should be
 }
+
+export interface iRace {
+    name: string;
+    speed: number;
+    ability_bonuses: {
+      name: string;
+      bonus: number;
+    }[];
+    alignment: string;
+    age: string;
+    size: string;
+    size_description: string;
+    starting_proficiencies: {
+      name: string;
+    }[];
+    languages: {
+      name: string;
+    }[];
+    language_desc: string;
+    traits: {
+      name: string;
+      desc: string;
+    }[];
+    subraces: {
+      name: string;
+      desc: string;
+    }[];
+};
+
+export interface Section {
+  name: string;
+  index: string;
+  url: string;
+};
+
+export interface RuleSection {
+    name: string;
+    index: string;
+    desc: string;
+    subsections: Section[];
+    url: string;
+};
+  
+export interface RuleSectionProps {
+    ruleSection: RuleSection;
+};
   

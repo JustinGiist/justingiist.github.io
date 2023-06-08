@@ -1,3 +1,20 @@
 .MuiListItem-root, .MuiSelect-root {
     text-transform: capitalize;
 }
+.rule-section {
+    h1, h2, h3, h4, h5 {
+        &:not(:first-child) {
+            margin-top: 16px;
+        }
+    }
+    th, td {
+        padding: 1px 8px 1px 4px;
+        text-align: left;
+    }
+    code {
+        color: var(--selected-primary);
+        font-weight: bold;
+        font-style: normal !important;
+        font-family: inherit !important;
+    }
+}

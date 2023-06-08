@@ -9,6 +9,7 @@
     --font-h5: 18px;
     --font-sub-headline: 16px;
     --font-body: 14px;
+    --font-button: 16px;
     --round-small: 4px;
     --round-medium: 8px;
     --round-large: 12px;
@@ -109,7 +110,7 @@
         --light: #f3f3f3;
 
         /* ACTIONS */
-        --action-primary: #03adfc;
+        --action-primary: #004768;
         --action-secondary: #006abc;
         --action-option: #00d8e3;
         --action-success: #37e666;
@@ -138,8 +139,8 @@
         /* TEXT COLORS */
         --text-headline: #c7bee6;
         --text-headline-secondary: #daccb9;
-        --text-sub-headline: #333;
-        --text-body: #333;
+        --text-sub-headline: #c6c6c6;
+        --text-body: #ffffff;
         --text-sub-body: #7b7b7b;
         --text-placeholder: #929292;
         --text-menu: #626262;
@@ -958,7 +959,7 @@
         --background-primary: #fff;
         --background-secondary: radial-gradient(#61c5ff, #12a8ff);
         --background-teritary: linear-gradient(0deg, #74e2ff,#d8f6ff 40%);
-        --background-card: transparent;
+        --background-card: #fff;
         --background-modal: #fff;
         --background-modal-overlay: #00000033;
         --background-account: var(--theme-gradient);
@@ -1076,7 +1077,7 @@
         --light: #f3f3f3;
 
         /* ACTIONS */
-        --action-primary: #5f0074;
+        --action-primary: #e56d6d;
         --action-secondary: #006abc;
         --action-option: #585858;
         --action-success: #37e666;
@@ -1090,43 +1091,42 @@
         /* SELECTED */
         --selected-primary: #75b2e1;
         --selected-secondary: #ffad42;
-        --selected-menu: var(--theme-secondary);
+        --selected-menu: #BC0F0F;
         --selected-menu-gradient: var(--theme-gradient);
-        --selected-menu-underline: var(--theme-secondary);
-
+        --selected-menu-underline: #BC0F0F;
 
         /* SIDEBAR */
         --sidebar-button: #34004b;
-        --sidebar-button-text: #5da9ff;
-        --sidebar-button-hover: linear-gradient(-90deg, #000000, --theme-secondary);
+        --sidebar-button-text: #fff;
+        --sidebar-button-hover: #555;
         --sidebar-button-hover-text: #fff;
-        --sidebar-button-selected: var(--theme-gradient);
-        --sidebar-button-selected-text: #fff;
-        --sidebar-background: #34004b;
+        --sidebar-button-selected: #f3f3f3;
+        --sidebar-button-selected-text: #333;
+        --sidebar-background: #222;
 
         /* TEXT COLORS */
-        --text-headline: #333;
-        --text-headline-secondary: #3c7a35;
-        --text-sub-headline: #7c4e1e;
+        --text-headline: #BC0F0F;
+        --text-headline-secondary: #b35555;
+        --text-sub-headline: #8841ad;
         --text-body: #333;
         --text-sub-body: #7b7b7b;
         --text-placeholder: #929292;
-        --text-menu: #333;
+        --text-menu: #fff;
 
         /* INPUT */
-        --input-label: #002745;
-        --input-border: #a4d0ff;
-        --input-placeholder: #b4bdc5;
+        --input-label: #e56d6d;
+        --input-border: #e56d6d;
+        --input-placeholder: #e56d6d;
         --input-text-color: #1d9bff;
         --input-background: #f8fcff;
         --input-hover: #c4dcff;
 
         /* BACKGROUNDS */
-        --background-primary: #f3f3f3;
-        --background-secondary: #f1dbbf;
+        --background-primary: #333;
+        --background-secondary: #333;
         --background-teritary: linear-gradient(0deg, #74e2ff,#d8f6ff 40%);
         --background-modal: #ffffff;
-        --background-card: #fff;
+        --background-card: #c9c9c9;
         --background-modal-overlay: #00000033;
         --background-account: var(--theme-gradient);
         --background-panel: #ffffff;
@@ -1147,6 +1147,94 @@
         --misc-7: #109191;
         --misc-8: #edaa2d;
         --misc-9: #dc7cff;
+    }
+    .Social {
+        --font-h1: 48px;
+        --font-h2: 36px;
+        --font-h3: 32px;
+        --font-h4: 26px;
+        --font-h5: 24px;
+        --font-sub-headline: 22px;
+        --font-body: 16px;
+        // Generic colors
+        --font: "Poppins", sans-serif;
+        --theme-primary: #c7bee6;
+        --theme-secondary: #a1ecff;
+        --theme-gradient: linear-gradient(-45deg, var(--theme-primary), var(--theme-secondary));
+        --dark: #333;
+        --light: #f3f3f3;
+
+        /* ACTIONS */
+        --action-primary: #004768;
+        --action-secondary: #006abc;
+        --action-option: #00d8e3;
+        --action-success: #37e666;
+        --action-info: #50d6ff;
+        --action-warning: #fddd48;
+        --action-error: #f15555;
+        --action-cancel: #5b5b5b;
+        --action-disabled: #cdcdcd;
+
+        /* SELECTED */
+        --selected-primary: #75b2e1;
+        --selected-secondary: #ffad42;
+        --selected-menu: var(--theme-secondary);
+        --selected-menu-gradient: var(--theme-gradient);
+
+
+        /* SIDEBAR */
+        --sidebar-button: #012154;
+        --sidebar-button-text: #7987a2;
+        --sidebar-button-hover: #727799;
+        --sidebar-button-hover-text: #fff;
+        --sidebar-button-selected: #a1a9da;
+        --sidebar-button-selected-text: #444;
+        --sidebar-background: rgb(0, 0, 0);
+
+        /* TEXT COLORS */
+        --text-headline: #666;
+        --text-headline-secondary: #888;
+        --text-sub-headline: #444;
+        --text-body: #222;
+        --text-sub-body: #7b7b7b;
+        --text-placeholder: #929292;
+        --text-menu: #626262;
+
+        /* INPUT */
+        --input-label: #fff;
+        --input-border: #fff;
+        --input-placeholder: #b4bdc5;
+        --input-text-color: #1d9bff;
+        --input-background: #f8fcff;
+        --input-hover: #c4dcff;
+
+        /* BACKGROUNDS */
+        --background-primary: #fff;
+        --background-secondary: #f1ece0;
+        --background-teritary: #111;
+        --background-card: #fff;
+        --background-modal: #000000f5;
+        --background-modal-overlay: #00000033;
+        --background-account: var(--theme-gradient);
+        --background-panel: #f3f3f3;
+
+        /* MISCELLANEOUS */
+        --hover-brightness: 1.2;
+        --shadow-light: #00000033 0px 2px 8px 0px;
+        --shadow-dark: #32325d40 0px 8px 12px -4px, #0000004d 0px 4px 8px -4px;
+        --shadow-inset: #2c2c2c1c 1px 1px 6px 0px inset, #ffffff1a -1px -1px 6px 1px inset;
+        --hr: #333;
+        --misc-0: #90fc7d;
+        --misc-1: #5bceff;
+        --misc-2: #edaa2d;
+        --misc-3: #dc7cff;
+        --misc-4: #ff3a75;
+        --misc-5: #7560ff;
+        --misc-6: #f25b35;
+        --misc-7: #2cdfdf;
+        --misc-8: #edaa2d;
+        --misc-9: #dc7cff;
+        
     }
 }
 @media only screen and (max-width: 800px) {

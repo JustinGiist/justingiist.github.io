@@ -86,7 +86,7 @@ const BobsBurgers = () => {
     ]);
 
     return (
-        <ColumnLayout style={{ padding: 16 }}>
+        <ColumnLayout addSectionPadding>
             <Headline size={1}>Bob's Burgers Characters:</Headline>
             <TextField
                 onChange={onChange}

@@ -14,10 +14,11 @@ import Pill from '../../components/Pill/Pill';
 
 const sizeArray = ['Gargantuan', 'Huge', 'Large', 'Medium', 'Small', 'Tiny'];
 
-const MonstersList = ({ monsters, monsterTypes }: { monsters?: Monster[], monsterTypes?: string[] }) => {
+const MonstersList = ({ monsters, monsterTypes, crArray }: { monsters?: Monster[], monsterTypes?: string[], crArray?: string[] }) => {
   const [search, setSearchTerm] = useState<string>('');
   const [selectedSize, setSelectedSize] = useState<string>('None');
   const [selectedType, setSelectedType] = useState<string>('None');
+  const [selectedCR, setSelectedCR] = useState<string>('None');
 
   const handleSize = useCallback((e: any) => {
     setSelectedSize(e?.target?.value);
@@ -27,16 +28,31 @@ const MonstersList = ({ monsters, monsterTypes }: { monsters?: Monster[], monste
     setSelectedType(e?.target?.value);
   }, []);
 
+  const handleCR = useCallback((e: any) => {
+    setSelectedCR(e?.target?.value);
+  }, []);
+
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
-  const imageStyle = ({ border: '2px solid #333', borderRadius: 8, overflow: 'hidden' });
 
   return (
-        <ColumnLayout style={{ padding: '12px 12px 60px' }}>
+        <ColumnLayout>
             <Headline size={1}>Monsters List</Headline>
             <RowLayout>
-                <FormControl style={{ minWidth: 126 }}>
+                <FormControl className="jdgd-input">
+                    <InputLabel id="cr-select-label">CR</InputLabel>
+                    <Select
+                        labelId='cr-select-label'
+                        id="cr-select"
+                        value={selectedCR}
+                        onChange={handleCR}
+                    >
+                        <MenuItem value={'None'}>None</MenuItem>
+                        {!crArray ? <Loading /> : crArray.map((cr: string) => <MenuItem value={cr}>{cr}</MenuItem>)}
+                    </Select>
+                </FormControl>
+                <FormControl className="jdgd-input">
                     <InputLabel id="size-select-label">Size</InputLabel>
                     <Select
                         labelId='size-select-label'
@@ -48,7 +64,7 @@ const MonstersList = ({ monsters, monsterTypes }: { monsters?: Monster[], monste
                         {sizeArray.map((size: string) => <MenuItem value={size}>{size}</MenuItem>)}
                     </Select>
                 </FormControl>
-                <FormControl style={{ minWidth: 126 }}>
+                <FormControl className="jdgd-input">
                     <InputLabel id="type-select-label">Type</InputLabel>
                     <Select
                         labelId='type-select-label'
@@ -72,19 +88,21 @@ const MonstersList = ({ monsters, monsterTypes }: { monsters?: Monster[], monste
                 {!monsters ? <Loading /> : monsters
                     .filter((m: Monster) => stringUtils.filterBySearch(m.type, selectedType === 'None' ? '' : selectedType))
                     .filter((m: Monster) => stringUtils.filterBySearch(m.size, selectedSize === 'None' ? '' : selectedSize))
+                    .filter((m: Monster) => stringUtils.filterBySearch(m.challenge_rating, selectedCR === 'None' ? '' : selectedCR, true))
                     .filter((m: Monster) => stringUtils.filterBySearch(m.name, search)).map((monster: Monster) => {
                         const label = search ? stringUtils.highlight(monster.name, search) : monster.name;
                         const url = !monster.image ? undefined : getDndUrl(monster.image);
                         const sizeSelected = selectedSize === monster.size;
                         const typeSelected = selectedType === monster.type;
+                        const crSelected = selectedCR === monster.challenge_rating.toString();
                         return (
                             <RowLayout className='flexSB noWrap' isCard key={monster.name}>
                                 <ColumnLayout>
                                     <Headline secondary size={3}>{label}</Headline>
                                     <RowLayout>
-                                        <Pill className="None slender">CR: {monster.challenge_rating}</Pill>
-                                        <Pill className={`${sizeSelected ? 'pill-9' : 'None'} slender`}>{monster.size}</Pill>
-                                        <Pill className={`${typeSelected ? 'pill-8' : 'None'} slender`}>{monster.type}</Pill>
+                                        <Pill className={`${crSelected ? 'pill-7' : 'None'} slender`}>CR: {monster.challenge_rating}</Pill>
+                                        <Pill className={`${sizeSelected ? 'pill-8' : 'None'} slender`}>{monster.size}</Pill>
+                                        <Pill className={`${typeSelected ? 'pill-9' : 'None'} slender`}>{monster.type}</Pill>
                                     </RowLayout>
                                     <ValueLabel label="Alignment" value={monster.alignment}/>
                                 </ColumnLayout>

@@ -8,6 +8,7 @@ import Headline from '../../components/Text/Headline';
 import RowLayout from '../../components/Layouts/RowLayout';
 import ReactTooltip from 'react-tooltip';
 import { iSpell } from './DndInterfaces';
+import stringUtils from '../../utils/stringUtils';
 
 export const getSchoolColor = (schoolName: string) => {
     switch (schoolName) {
@@ -34,11 +35,13 @@ export const getSchoolColor = (schoolName: string) => {
 const MagicSchools = ({
     magicSchools,
     spells,
-    spellMap
+    spellMap,
+    durations
 }: any) => {
     const [search, setSearch] = useState('');
-    const [selectedSchool, setSelectedCategory] = useState<string>('none');
-    const [selectedLevel, setSelectedLevel] = useState<string>('none');
+    const [selectedSchool, setSelectedCategory] = useState<string>('None');
+    const [selectedLevel, setSelectedLevel] = useState<string>('None');
+    const [selectedDuration, setSelectedDuration] = useState<string>('None');
 
     const handleCategory = useCallback((e: any) => {
         setSelectedCategory(e.target.value)
@@ -46,6 +49,10 @@ const MagicSchools = ({
 
     const handleLevel = useCallback((e: any) => {
         setSelectedLevel(e.target.value)
+    }, []);
+
+    const handleDuration = useCallback((e: any) => {
+        setSelectedDuration(e.target.value)
     }, []);
     
     const onChange = useCallback((e) => {
@@ -57,38 +64,47 @@ const MagicSchools = ({
     });
 
     return (
-        <ColumnLayout style={{ padding: '12px 16px 60px' }}>
+        <ColumnLayout>
             <Headline size={1}>Magic Schools</Headline>
             <RowLayout>
-                <FormControl style={{ minWidth: 126 }}>
+                <FormControl className="jdgd-input">
                     <InputLabel id="magic-school-select-label">Magic School</InputLabel>
-                    {!magicSchools ? <Loading /> : (
-                        <Select
-                            labelId='magic-school-select-label'
-                            id="magic-school-select"
-                            value={selectedSchool}
-                            label="Age"
-                            onChange={handleCategory}
-                        >
-                            <MenuItem value={'none'}>None</MenuItem>
-                            {magicSchools.map((school: any, i: number) => <MenuItem value={school.index}>{school.name}</MenuItem>)}
-                        </Select>
-                    )}
+                    <Select
+                        labelId='magic-school-select-label'
+                        id="magic-school-select"
+                        value={selectedSchool}
+                        label="Age"
+                        onChange={handleCategory}
+                    >
+                        <MenuItem value={'None'}>None</MenuItem>
+                        {!magicSchools ? <Loading /> : magicSchools.map((school: any, i: number) => <MenuItem value={school.index}>{school.name}</MenuItem>)}
+                    </Select>
                 </FormControl>
-                <FormControl style={{ minWidth: 80 }}>
+                <FormControl className="jdgd-input">
                     <InputLabel id="level-select-label">Level</InputLabel>
-                    {!magicSchools ? <Loading /> : (
-                        <Select
-                            labelId='level-select-label'
-                            id="level-select"
-                            value={selectedLevel}
-                            label="Age"
-                            onChange={handleLevel}
-                        >
-                            <MenuItem value={'none'}>None</MenuItem>
-                            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((level) => <MenuItem key={`${level}-option`} value={level}>{level.toString()}</MenuItem>)}
-                        </Select>
-                    )}
+                    <Select
+                        labelId='level-select-label'
+                        id="level-select"
+                        value={selectedLevel}
+                        label="Age"
+                        onChange={handleLevel}
+                    >
+                        <MenuItem value={'None'}>None</MenuItem>
+                        {!magicSchools ? <Loading /> : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((level) => <MenuItem key={`${level}-option`} value={level}>{level.toString()}</MenuItem>)}
+                    </Select>
+                </FormControl>
+                <FormControl className="jdgd-input">
+                    <InputLabel id="duration-select-label">Duration</InputLabel>
+                    <Select
+                        labelId='duration-select-label'
+                        id="duration-select"
+                        value={selectedDuration}
+                        label="Age"
+                        onChange={handleDuration}
+                    >
+                        <MenuItem value={'None'}>None</MenuItem>
+                        {!durations || !magicSchools ? <Loading /> : durations.map((duration: string) => <MenuItem key={`${duration}-option`} value={duration}>{duration}</MenuItem>)}
+                    </Select>
                 </FormControl>
             </RowLayout>
             <TextField
@@ -100,24 +116,28 @@ const MagicSchools = ({
             />
             <BlockLayout>
                 {!spellMap || !spells ? <Loading /> : spells.filter((spell: iSpell) => { // Filter by category
-                    if (!selectedSchool || selectedSchool === 'none') return true; 
+                    if (!selectedSchool || selectedSchool === 'None') return true; 
                     const spellCategory = spellMap.get(spell.index)?.school?.index;
                     if (!spellCategory) return false;
                     return selectedSchool === spellCategory;
                 }).filter((spell: iSpell) => { // Filter by category
-                    if (selectedLevel === 'none') return true; 
+                    if (selectedLevel === 'None') return true; 
                     const spellLevel = spellMap.get(spell.index)?.level;
                     return selectedLevel === spellLevel;
-                }).filter((spell: iSpell) => { // Filter by search
-                    if (search === "") return true;
-                    if (!spell) return false;
-                    const regex = new RegExp(`${search}`, 'gmi');
-                    const match = regex.test(spell.name);
-                    return match;
-                }).map((spell: iSpell) => {
+                })
+                .filter((s: iSpell) => stringUtils.filterBySearch(spellMap.get(s.index)?.duration, selectedDuration === 'None' ? '' : selectedDuration, true))
+                .filter((s: iSpell) => stringUtils.filterBySearch(s.name, search))
+                .map((spell: iSpell) => {
                     const spellInfo = spellMap.get(spell.index);
                     return (
-                        <Spell key={spell.index} selectedSchool={selectedSchool} selectedLevel={selectedLevel} spellInfo={spellInfo} search={search} />
+                        <Spell 
+                            key={spell.index} 
+                            selectedSchool={selectedSchool} 
+                            selectedLevel={selectedLevel}
+                            selectedDuration={selectedDuration} 
+                            spellInfo={spellInfo} 
+                            search={search} 
+                        />
                     );
                 })}
             </BlockLayout>
