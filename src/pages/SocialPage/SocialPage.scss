@@ -3,25 +3,27 @@
       gap: 32px;
       .social-tile-container {
         position: relative;
+        display: flex;
+        flex-wrap: nowrap;
+        &-menu {
+            height: 100%;
+            border-radius: 0 var(--round-medium) var(--round-medium) 0;
+            background: var(--background-panel);
+            width: 0px;
+            opacity: 0;
+            transition: var(--animation-time-1) ease;
+            padding: 8px 0;
+            pointer-events: none;
+        }
         &.show {
             .tile {
                 border-radius: var(--round-medium) 0 0 var(--round-medium);
             }
             .social-tile-container-menu {
+                pointer-events: all;
+                width: 48px;
                 opacity: 1;
             }
-        }
-        &-menu {
-            left: 100%;
-            top: 0;
-            position: absolute;
-            height: 100%;
-            border-radius: 0 var(--round-medium) var(--round-medium) 0;
-            background: var(--background-panel);
-            width: 48px;
-            opacity: 0;
-            transition: var(--animation-time-1);
-            padding: 8px 0;
         }
       }
       .tile {

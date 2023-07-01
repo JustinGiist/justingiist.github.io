@@ -49,7 +49,7 @@ const MonstersList = ({ monsters, monsterTypes, crArray }: { monsters?: Monster[
                         onChange={handleCR}
                     >
                         <MenuItem value={'None'}>None</MenuItem>
-                        {!crArray ? <Loading /> : crArray.map((cr: string) => <MenuItem value={cr}>{cr}</MenuItem>)}
+                        {!crArray ? <Loading /> : crArray.map((cr: string) => <MenuItem key={cr} value={cr}>{cr}</MenuItem>)}
                     </Select>
                 </FormControl>
                 <FormControl className="jdgd-input">
@@ -61,7 +61,7 @@ const MonstersList = ({ monsters, monsterTypes, crArray }: { monsters?: Monster[
                         onChange={handleSize}
                     >
                         <MenuItem value={'None'}>None</MenuItem>
-                        {sizeArray.map((size: string) => <MenuItem value={size}>{size}</MenuItem>)}
+                        {sizeArray.map((size: string) => <MenuItem key={size} value={size}>{size}</MenuItem>)}
                     </Select>
                 </FormControl>
                 <FormControl className="jdgd-input">
@@ -73,7 +73,7 @@ const MonstersList = ({ monsters, monsterTypes, crArray }: { monsters?: Monster[
                         onChange={handleType}
                     >
                         <MenuItem value={'None'}>None</MenuItem>
-                        {!monsterTypes ? <Loading /> : monsterTypes.map((type: string) => <MenuItem value={type}>{type}</MenuItem>)}
+                        {!monsterTypes ? <Loading /> : monsterTypes.map((type: string) => <MenuItem key={type} value={type}>{type}</MenuItem>)}
                     </Select>
                 </FormControl>
             </RowLayout>
@@ -96,7 +96,7 @@ const MonstersList = ({ monsters, monsterTypes, crArray }: { monsters?: Monster[
                         const typeSelected = selectedType === monster.type;
                         const crSelected = selectedCR === monster.challenge_rating.toString();
                         return (
-                            <RowLayout className='flexSB noWrap' isCard key={monster.name}>
+                            <RowLayout className='flexSB noWrap' isCard key={monster?.index}>
                                 <ColumnLayout>
                                     <Headline secondary size={3}>{label}</Headline>
                                     <RowLayout>

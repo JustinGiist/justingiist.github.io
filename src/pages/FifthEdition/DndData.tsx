@@ -182,9 +182,10 @@ const DndData = () => {
 
     
     // Condition
-    const fetchCondition = useCallback(async (s: string) => fetchDndRequest(`/api/condition/${s}`), []);
+    const fetchCondition = useCallback(async (s: string) => fetchDndRequest(`/api/conditions/${s}`), []);
     const fetchConditions = useCallback(async () => {
-        const results = await fetchAllDndRequest(`/api/condition`);
+        const results = await fetchAllDndRequest(`/api/conditions`);
+        if (!results) return;
         const cResults = await resolveAllDndPromises(results, fetchCondition);
         setConditions(cResults);
     }, [fetchCondition]);

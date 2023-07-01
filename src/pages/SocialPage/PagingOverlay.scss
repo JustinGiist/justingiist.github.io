@@ -1,0 +1,32 @@
+$outer-padding: 16px;
+$component-width: 96px;
+.paging-overlay {
+    position: relative;
+    height: 100%;
+    padding-bottom: 40px;
+    .button {
+        padding: 0 !important;
+        display: flex;
+        align-items: flex-end;
+        background: transparent !important;
+        color: #666;
+        position: absolute;
+        width: $component-width;
+        height: 100%;
+        min-height: 100%;
+        transition: all var(--animation-time-1) ease;
+        &:hover {
+            background: var(--background-modal-overlay) !important;
+        }
+        svg {
+            width: 32px;
+            height: 32px;
+        }
+        &.left {
+            left: 0;
+        }
+        &.right {
+            left: calc(100% - #{$component-width});
+        }
+    }
+}

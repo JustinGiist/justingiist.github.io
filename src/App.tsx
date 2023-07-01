@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import "./App.css";
 import "./styles.scss";
 import "./generics.scss";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 import ReactTooltip from 'react-tooltip';
 import { useEffect, useState } from "react";
 import ThemeManager, { GlobalThemes } from "./ThemeManager";
@@ -27,7 +27,7 @@ const App = () => {
   });
   
   const routes = Object.keys(GlobalThemes);
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     ...routes.map(path => ({
       path: path,
       element: <RenderComponent />

@@ -64,7 +64,7 @@ const ClassReveal = ({
             </RowLayout>
             {show && (
                 <BlockLayout noMobile style={{ padding: 8 }}>
-                    {Array.isArray(array) && array.map((i: any) => <Body key={i?.equipment?.name}>{i?.equipment?.name ?? i?.name}</Body>)}
+                    {Array.isArray(array) && array.map((i: any) => <Body key={i?.equipment?.name ?? i?.name}>{i?.equipment?.name ?? i?.name}</Body>)}
                 </BlockLayout>
             )}
         </ColumnLayout>

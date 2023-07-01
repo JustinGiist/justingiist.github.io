@@ -159,8 +159,8 @@ export interface iRace {
     name: string;
     speed: number;
     ability_bonuses: {
-      name: string;
-      bonus: number;
+        ability_score: DndAPIResult;
+        bonus: number;
     }[];
     alignment: string;
     age: string;

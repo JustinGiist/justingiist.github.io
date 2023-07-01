@@ -1,9 +1,9 @@
-import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import { Suspense, useMemo } from "react";
 import "./ResumePage.scss";
 import tacoImage from "../../../assets/taco.jpg";
 import hallowImage from "../../../assets/hallow.jpg";
 import threePhones from "../../../assets/Three-Phones-Mockup.png";
-import racingPhones from "../../../assets/Racing-Mockup.png";
+import racingPhones from "../../../assets/Racing-Mockup.avif";
 import dashboardMockup from "../../../assets/Dashboard_mockup.png";
 import { GlobalThemes } from "../../../ThemeManager";
 import { useNavigate } from "react-router-dom";
@@ -16,14 +16,15 @@ import RowLayout from "../../../components/Layouts/RowLayout";
 import SubHeadline from "../../../components/Text/SubHeadline";
 import OverlayControl from "../../../components/OverlayControl/OverlayControl";
 import Icon from "../../../components/Icon/Icon";
-import Stars from "./Stars";
+
 const ThreeDComponentLazy = React.lazy(() => import("./GlobeElement"));
+
 const ResumePage = () => {
   const navigate = useNavigate();
   const experienceList: any[] = useMemo(() => [
     "As Lead UX Designer at a Tech Consulting Firm, I oversaw many Companies & Clients. Responsibilities included creating Figma mock-ups, documenting user-flows and developing enterprise-level production-ready features. I handled end-to-end design, implementation and coordination with multiple departments within each business.",
-    <div>Redesigned <a href="https://www.tigerpistol.com/brand-platform-overview/" target="_blank" rel="noopener noreferrer">TigerPistol's DIFY</a> Advertising Platform, improving mobile friendliness, completely refactoring old code base to React, enhancing internal component libraries, reducing CSS by 50%, and developed a brand new Editor System (The main User Interface behind their Ad Platform).</div>,
-    <div>Developed Order Software for <a href="https://www.livantaqio.com/en" target="_blank" rel="noopener noreferrer">Livanta</a> that enabled contractors to create in-house requisitions that flowed through an Approval System. The software also automatically processed the order, generated all relevant tax forms, receipts, and billed company accounts.</div>,
+    `Redesigned ${<a href="https://www.tigerpistol.com/brand-platform-overview/" target="_blank" rel="noopener noreferrer">TigerPistol's DIFY</a>} Advertising Platform, improving mobile friendliness, completely refactoring old code base to React, enhancing internal component libraries, reducing CSS by 50%, and developed a brand new Editor System (The main User Interface behind their Ad Platform).`,
+    `Developed Order Software for ${<a href="https://www.livantaqio.com/en" target="_blank" rel="noopener noreferrer">Livanta</a>} that enabled contractors to create in-house requisitions that flowed through an Approval System. The software also automatically processed the order, generated all relevant tax forms, receipts, and billed company accounts.`,
     "Developed the UI/UX Frontend Experience for a Fintech Investment SPA. Built a React & React-Native Solution that split logic and display codebases.",
     "Using SyncFusion XLISO excel conversion library, converted financial data into Excel Government Tax Documents. Simplifying a week-long process, to a click of a button."
   ], []);
@@ -107,8 +108,8 @@ const ResumePage = () => {
             className={'float-top-right resume-card-icon'}
         />
         <Headline secondary size={3}>Experience</Headline>
-        {experienceList.map(experience => (
-          <Body key={experience}>{experience}</Body>
+        {experienceList.map((experience, i) => (
+          <Body key={`${i}-experience`}>{experience}</Body>
         ))}
       </ColumnLayout>
 

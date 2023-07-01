@@ -49,10 +49,10 @@ const SubClassCombosObj = SubClassCombos();
 const ClassPage = ({ classPage }:{ classPage: iClassPage }) => {
     const [selectedMenu, setSelectedMenu] = useState('combos');
     const combosElement = () => {
-        const comboArray = Object.keys(classPage.subClasses).map(combo => {
+        const comboArray = Object.keys(classPage.subClasses).map(subClassName => {
             const levelsArray = Object.keys(ComboLevel).filter((v) => isNaN(Number(v)));
             const levelsElement = levelsArray.map((level: string) => {
-                const subClassComboArray = SubClassCombosObj.searchForSubClassArray(classPage.subClasses[combo]);
+                const subClassComboArray = SubClassCombosObj.searchForSubClassArray(classPage.subClasses[subClassName]);
                 return (
                     <div key={`levels-element-${level}`} className={'subClassTab ' + level}>
                         <div className='subClassTabLevel subText'>{'Level ' + getNumber(level)}</div>
@@ -60,8 +60,8 @@ const ClassPage = ({ classPage }:{ classPage: iClassPage }) => {
                     </div>
                 );  
             });
-            return <div className='flexColumn'>
-                <h3 className='text-headline'>{classPage.subClasses[combo]}</h3>
+            return <div key={subClassName} className='flexColumn'>
+                <h3 className='text-headline'>{classPage.subClasses[subClassName]}</h3>
                 {levelsElement}
             </div>;
         });
@@ -74,7 +74,7 @@ const ClassPage = ({ classPage }:{ classPage: iClassPage }) => {
     const levelsElement = () => {
         const gridHeader = <div className='levelHeader'><h5>Level Gained at this Level</h5></div>;
         const gridRows = classPage.levels.map((levelDescription: string, index: number) => {
-            return <div key={`grid-row-${levelDescription}`} className='row'><div className='subHeadlineBold'>{index + 1}</div><div className='subHeadlineMedium'>{levelDescription}</div></div>
+            return <div key={`grid-row-${levelDescription}-${index}`} className='row'><div className='subHeadlineBold'>{index + 1}</div><div className='subHeadlineMedium'>{levelDescription}</div></div>
         })
         return (
             <div className='levelTable'>

@@ -1,4 +1,5 @@
 import reactStringReplace from 'react-string-replace';
+import Body from '../components/Text/Body';
 
 // Trim a specific character from the start and end of a string
 function trim(str, char) {
@@ -113,9 +114,18 @@ const splitByWords = (str) => {
     const splitParagraphs = str?.split("\n");
     splitParagraphs.forEach((p) => {
         if (p === '') result.push('\n');
-        else p.split(' ').map(s => result.push(s));
+        else p.split(' ').forEach(s => result.push(s));
     });
     return result;
+}
+const splitByWordsToElements = (str, paragraphsPerPage = 3) => {
+    const pages = [];
+    const splitParagraphs = str?.split("\n").filter(s => s.length > 0).map(p => <Body key={p.slice(0,26)}>{p}</Body>);
+    while (splitParagraphs.length > 0) {
+            const page = splitParagraphs.splice(0, paragraphsPerPage);
+            pages.push(page);
+    }
+    return pages;
 }
 
 const stringUtilsExport = {
@@ -131,7 +141,8 @@ const stringUtilsExport = {
     markdownHighlight,
     filterBySearch,
     splitByNCharacters,
-    splitByWords
+    splitByWords,
+    splitByWordsToElements
 };
 
 export default stringUtilsExport;

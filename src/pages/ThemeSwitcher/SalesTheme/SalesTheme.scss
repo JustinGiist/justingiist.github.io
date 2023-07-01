@@ -1,6 +1,6 @@
 .mainContent.Sales {
+  @extend .animatedBackgroundGradient;
   padding: 0px !important;
-  background: none !important;
   position: relative;
   display: flex;
   height: 100%;
@@ -824,4 +824,29 @@
       }
     }
   }
+}
+$background-gradient: repeating-linear-gradient(
+  -90deg,
+  #ffffff 0%,
+  #f0fffd 25%,
+  #f9fffe 50%,
+  #fff1f5 75%,
+  #ffffff 100%
+);
+@keyframes animatedBackgroundGraidentKeyFrame {
+  0% {
+    background-position: -90% center;
+  }
+  50% {
+    background-position: 90% center;
+  }
+  100% {
+    background-position: -90% center;
+  }
+}
+.animatedBackgroundGradient {
+  background-image: $background-gradient;
+  background-size: 300%;
+  background-repeat: repeat-x;
+  animation: animatedBackgroundGraidentKeyFrame 60s ease-in-out infinite;
 }

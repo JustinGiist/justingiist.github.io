@@ -5,11 +5,10 @@ import { FormControl, InputLabel, MenuItem, Select, TextField } from '@material-
 import ColumnLayout from '../../components/Layouts/ColumnLayout';
 import Headline from '../../components/Text/Headline';
 import ReactTooltip from 'react-tooltip';
-import { iEquipment, iSpell } from './DndInterfaces';
+import { iEquipment } from './DndInterfaces';
 import Body from '../../components/Text/Body';
 import stringUtils from '../../utils/stringUtils';
 import RowLayout from '../../components/Layouts/RowLayout';
-import SubHeadline from '../../components/Text/SubHeadline';
 import Pill from '../../components/Pill/Pill';
 
 const Equipments = ({
@@ -74,7 +73,7 @@ const Equipments = ({
                         onChange={handleCurrency}
                     >
                         <MenuItem value={'None'}>None</MenuItem>
-                        {!currencyTypes ? <Loading /> : currencyTypes.map((price: string) => <MenuItem value={price}>{price}</MenuItem>)}
+                        {!currencyTypes ? <Loading /> : currencyTypes.map((price: string) => <MenuItem key={price} value={price}>{price}</MenuItem>)}
                     </Select>
                 </FormControl>
                 <FormControl className="jdgd-input" style={{ minWidth: 80 }}>
@@ -86,7 +85,7 @@ const Equipments = ({
                         onChange={handleCategory}
                     >
                         <MenuItem value={'None'}>None</MenuItem>
-                        {!equipmentCategories ? <Loading /> : equipmentCategories.map((cat: string) => <MenuItem value={cat}>{cat}</MenuItem>)}
+                        {!equipmentCategories ? <Loading /> : equipmentCategories.map((cat: string) => <MenuItem key={cat} value={cat}>{cat}</MenuItem>)}
                     </Select>
                 </FormControl>
             </RowLayout>
@@ -107,7 +106,7 @@ const Equipments = ({
                   .map((equipment: iEquipment) => {
                       return (
                           <Equipment 
-                            key={equipment.index} 
+                            key={`${equipment?.index}-${equipment?.name}`} 
                             equipment={equipment} 
                             search={search} 
                             selectedCost={selectedCost}

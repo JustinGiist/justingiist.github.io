@@ -27,7 +27,8 @@ const Races = ({
                 </Select>
             </FormControl>
             <ColumnLayout>
-                {races.filter((r: iRace) => r.name === selectedTab).map((race: iRace) => (
+            {races.filter((r: iRace) => r.name === selectedTab).map((race: iRace) => {
+                return (
                     <ColumnLayout isCard key={race.name}>
                         <h2>{race.name}</h2>
                         {race.speed && <p>Speed: {race.speed}</p>}
@@ -36,8 +37,8 @@ const Races = ({
                             <p>Ability Bonuses:</p>
                             <ul>
                             {race.ability_bonuses.map((abilityBonus) => (
-                                <li key={abilityBonus.name}>
-                                {abilityBonus.name}: {abilityBonus.bonus}
+                                <li key={abilityBonus.ability_score.index}>
+                                    {abilityBonus.ability_score.name}: {abilityBonus.bonus}
                                 </li>
                             ))}
                             </ul>
@@ -47,60 +48,61 @@ const Races = ({
                         {race.age && <p>Age: {race.age}</p>}
                         {race.size && <p>Size: {race.size}</p>}
                         {race.size_description && (
-                        <p>Size Description: {race.size_description}</p>
+                            <p>Size Description: {race.size_description}</p>
                         )}
                         {race.starting_proficiencies && (
-                        <div>
-                            <p>Starting Proficiencies:</p>
-                            <ul>
-                            {race.starting_proficiencies.map((startingProficiency) => (
-                                <li key={startingProficiency.name}>
-                                {startingProficiency.name}
-                                </li>
-                            ))}
-                            </ul>
-                        </div>
+                            <div>
+                                <p>Starting Proficiencies:</p>
+                                <ul>
+                                {race.starting_proficiencies.map((startingProficiency) => (
+                                    <li key={startingProficiency.name}>
+                                        {startingProficiency.name}
+                                    </li>
+                                ))}
+                                </ul>
+                            </div>
                         )}
                         {race.languages && (
-                        <div>
-                            <p>Languages:</p>
-                            <ul>
-                            {race.languages.map((language) => (
-                                <li key={language.name}>{language.name}</li>
-                            ))}
-                            </ul>
-                        </div>
+                            <div>
+                                <p>Languages:</p>
+                                <ul>
+                                {race.languages.map((language) => (
+                                    <li key={language.name}>{language.name}</li>
+                                ))}
+                                </ul>
+                            </div>
                         )}
                         {race.language_desc && (
-                        <p>Language Description: {race.language_desc}</p>
+                            <p>Language Description: {race.language_desc}</p>
                         )}
                         {race.traits && (
-                        <div>
-                            <p>Traits:</p>
-                            <ul>
-                            {race.traits.map((trait) => (
-                                <li key={trait.name}>
-                                {trait.name}: {trait.desc}
-                                </li>
-                            ))}
-                            </ul>
-                        </div>
+                            <div>
+                                <p>Traits:</p>
+                                <ul>
+                                {race.traits.map((trait) => (
+                                    <li key={trait.name}>
+                                        {trait.name}: {trait.desc}
+                                    </li>
+                                ))}
+                                </ul>
+                            </div>
                         )}
                         {race.subraces && race.subraces.length > 0 && (
-                        <div>
-                            <p>Subraces:</p>
-                            <ul>
-                            {race.subraces.map((subrace) => (
-                                <li key={subrace.name}>
-                                <h3>{subrace.name}</h3>
-                                <p>{subrace.desc}</p>
-                                </li>
-                            ))}
-                            </ul>
-                        </div>
+                            <div>
+                                <p>Subraces:</p>
+                                <ul>
+                                {race.subraces.map((subrace) => (
+                                    <li key={subrace.name}>
+                                        <h3>{subrace.name}</h3>
+                                        <p>{subrace.desc}</p>
+                                    </li>
+                                ))}
+                                </ul>
+                            </div>
                         )}
                     </ColumnLayout>
-                ))}
+                );
+            })}
             </ColumnLayout>
         </ColumnLayout>
     );

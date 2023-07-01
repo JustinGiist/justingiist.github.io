@@ -11,6 +11,8 @@ import Icon from '../../components/Icon/Icon';
 import { iPost, posts } from './SocialData';
 import stringUtilsExport from '../../utils/stringUtils';
 import SubHeadline from '../../components/Text/SubHeadline';
+import { useWindowDimensions } from '../../ThemeManager';
+import PagingOverlay from './PagingOverlay';
 
 const SocialPage = () => {
     
@@ -29,7 +31,7 @@ const SocialPage = () => {
             >
                 <Headline size={2}>Your Feed</Headline>
                 <TileLayout className='social'>
-                    {posts?.map((post) => <Post post={post} />)}
+                    {posts?.map((post) => <Post key={`${post.id}-post-id`} post={post} />)}
                 </TileLayout>
             </ColumnLayout>
         </>
@@ -37,13 +39,14 @@ const SocialPage = () => {
 };
 export default SocialPage;
 
-const totalAllowedWordsPerPage = 200;
-
 const Post = ({
     post
 }: {
     post: iPost
 }) => {
+    const dimensions = useWindowDimensions();
+    const totalAllowedWordsPerPage = dimensions?.isMobile ? 100 : 200;
+
     const [selectedPage, setSelectedPage] = useState(0);
     const [visitedLastPage, setVisitedLastPage] = useState(false);
     const words = post?.body?.split(' ');
@@ -51,104 +54,72 @@ const Post = ({
     const onFirstPage = selectedPage === 0;
     const onLastPage = selectedPage === numOfPages - 1;
 
+    const totalParagraphsPerPage = dimensions?.isMobile ? 2 : 3;
+
     useEffect(() => {
         if (onLastPage) {
             setVisitedLastPage(true);
         }
     }, [onLastPage]);
 
-    const pages = useMemo(() => {
-        const result = [];
-        let tempListOfWords = stringUtilsExport.splitByWords(post?.body); 
-        for (let i = 0; i < numOfPages; i++) {
-            const page = tempListOfWords.splice(0, totalAllowedWordsPerPage);
-            result.push(page);
-        }
-        return result;
-    }, [
-        numOfPages,
-        post?.body
+    const pages = useMemo(() => stringUtilsExport.splitByWordsToElements(post?.body, totalParagraphsPerPage), [
+        post?.body,
+        totalParagraphsPerPage
     ]);
 
-    const page = useMemo(() => {
-        return pages[selectedPage].map((word, i) => {
-            if (word === '\n') return [<br />, <br />];
-            else {
-                let result = `${word}`;
-                if (i !== pages[selectedPage].length - 1) {
-                    result += ' ';
-                }
-                return result;
-            }
-        });
-    }, [
+    const page = useMemo(() => pages[selectedPage], [
         pages,
         selectedPage
     ]);
-    
     const topSection = (
         <RowLayout layoutClass='flexSB' noWrapping>
             <ColumnLayout gap={4}>
                 <Headline size={3}>{post.label}</Headline>
+                <Body className='text-sub-body'>Page {selectedPage + 1} / {numOfPages}</Body>
             </ColumnLayout>
-            <div />
-        </RowLayout>
-    );
-
-    const middleSection = (
-        <Body className='bodyBold'>
-            {page}
-            {!onLastPage && <span className='text-placeholder'>... (next page)</span>}
-        </Body>
-    );
-
-    const prevOnClick = !onFirstPage ? () => setSelectedPage(prev => prev - 1) : () => {};
-    const nextOnClick = !onLastPage ? () => setSelectedPage(prev => prev + 1) : () => {};
-    const bottomSection = (
-        <RowLayout layoutClass='flexSB'>
             <RowLayout noWrapping style={{ alignItems: 'center' }}>
                 <Button className='button secondary icon circle' data-tip="Go to account">
                     <Icon icon='Account'/>
                 </Button>
-                <SubHeadline>{post.userId}</SubHeadline>
-            </RowLayout>
-            <RowLayout noWrapping gap={16}>
-                <Headline secondary size={4}>Page {selectedPage + 1} / {numOfPages}</Headline>
-                <Button
-                    onClick={prevOnClick}
-                    disabled={onFirstPage}
-                    className='button secondary'
-                >Prev</Button>
-                <Button
-                    onClick={nextOnClick}
-                    disabled={onLastPage}
-                    className='button primary'
-                >Next</Button>
+                {!dimensions.isMobile && <SubHeadline>{post.userId}</SubHeadline>}
             </RowLayout>
         </RowLayout>
     );
 
+    const middleSection = (
+        <PagingOverlay 
+            onLastPage={onLastPage}
+            onFirstPage={onFirstPage}
+            setSelectedPage={setSelectedPage}
+        >
+            <ColumnLayout>
+                {page}
+                {!onLastPage && <span className='text-placeholder'>... (next page)</span>}
+            </ColumnLayout>
+        </PagingOverlay>
+    );
+
     const menu = (
         <ColumnLayout gap={16} className={`social-tile-container-menu`}>
-            <Button className='button icon circle' data-tip="Go to account">
+            <Button className='button icon circle' data-tip="Edit">
                 <Icon icon='Edit'/>
             </Button>
-            <Button className='button icon circle' data-tip="Go to account">
+            <Button className='button icon circle' data-tip="Favorite">
                 <Icon icon='Star'/>
             </Button>
-            <Button className='button icon circle' data-tip="Go to account">
+            <Button className='button icon circle' data-tip="Reaction: Happy">
                 <Icon icon='Happy'/>
             </Button>
-            <Button className='button icon circle' data-tip="Go to account">
+            <Button className='button icon circle' data-tip="Reaction: Sad">
                 <Icon icon='Sad'/>
             </Button>
-            <Button className='button icon circle' data-tip="Go to account">
+            <Button className='button icon circle' data-tip="Reaction: Scared">
                 <Icon icon='Scared'/>
             </Button>
-            <Button className='button icon circle' data-tip="Go to account">
+            <Button className='button icon circle' data-tip="Reaction: Funny">
                 <Icon icon='Funny'/>
             </Button>
-            <Button className='button icon circle' data-tip="Go to account">
+            <Button className='button icon circle' data-tip="Delete">
                 <Icon icon='Delete'/>
             </Button>
         </ColumnLayout>
@@ -156,14 +127,13 @@ const Post = ({
 
     return (
         <div className={`social-tile-container ${visitedLastPage ? 'show' : ''}`}>
-            {menu}
             <Tile 
                 key={post.id} 
                 className="large"
                 topSection={topSection}
                 middleSection={middleSection}
-                bottomSection={bottomSection}
             />
+            {menu}
         </div>
     )
 };

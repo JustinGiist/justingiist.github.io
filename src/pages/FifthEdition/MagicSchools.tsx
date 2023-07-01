@@ -77,7 +77,7 @@ const MagicSchools = ({
                         onChange={handleCategory}
                     >
                         <MenuItem value={'None'}>None</MenuItem>
-                        {!magicSchools ? <Loading /> : magicSchools.map((school: any, i: number) => <MenuItem value={school.index}>{school.name}</MenuItem>)}
+                        {!magicSchools ? <Loading /> : magicSchools.map((school: any, i: number) => <MenuItem key={school?.index} value={school.index}>{school.name}</MenuItem>)}
                     </Select>
                 </FormControl>
                 <FormControl className="jdgd-input">
@@ -90,7 +90,9 @@ const MagicSchools = ({
                         onChange={handleLevel}
                     >
                         <MenuItem value={'None'}>None</MenuItem>
-                        {!magicSchools ? <Loading /> : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((level) => <MenuItem key={`${level}-option`} value={level}>{level.toString()}</MenuItem>)}
+                        {!magicSchools ? <Loading /> : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((level) => (
+                            <MenuItem key={`${level}-option`} value={level}>{level.toString()}</MenuItem>
+                        ))}
                     </Select>
                 </FormControl>
                 <FormControl className="jdgd-input">
@@ -103,7 +105,9 @@ const MagicSchools = ({
                         onChange={handleDuration}
                     >
                         <MenuItem value={'None'}>None</MenuItem>
-                        {!durations || !magicSchools ? <Loading /> : durations.map((duration: string) => <MenuItem key={`${duration}-option`} value={duration}>{duration}</MenuItem>)}
+                        {!durations || !magicSchools ? <Loading /> : durations.map((duration: string) => (
+                            <MenuItem key={`${duration}-option`} value={duration}>{duration}</MenuItem>
+                        ))}
                     </Select>
                 </FormControl>
             </RowLayout>

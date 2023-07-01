@@ -109,7 +109,9 @@ import {
   EmoticonHappyOutline,
   EmoticonSadOutline,
   EmoticonFrownOutline,
-  EmoticonLolOutline
+  EmoticonLolOutline,
+  ArrowLeft,
+  ArrowRight
 } from "mdi-material-ui";
 
 import { GlobalThemes } from "../../ThemeManager";
@@ -228,6 +230,8 @@ const GetIcon: any = {
   Sad: EmoticonSadOutline,
   Scared: EmoticonFrownOutline,
   Funny: EmoticonLolOutline,
+  ArrowLeft,
+  ArrowRight
 };
 const Icon = ({
   icon,
