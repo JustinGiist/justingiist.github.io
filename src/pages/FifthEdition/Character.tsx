@@ -14,7 +14,8 @@ const Character = ({
     magicSchools,
     spells,
     spellMap,
-    races
+    races,
+    actions
 }: any) => {
     const [formData, setFormData] = useState<any>({
         characterName: '',

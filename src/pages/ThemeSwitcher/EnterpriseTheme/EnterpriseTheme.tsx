@@ -1,14 +1,22 @@
-import { useMemo } from "react";
+import React, { Suspense, useMemo } from "react";
 import {
   useWindowDimensions,
 } from "../../../ThemeManager";
 import "./EnterpriseTheme.scss";
 import Icon from "../../../components/Icon/Icon";
-import { BarChart, BarChart2, ComboChart, GeoChart, LineChart, PieChart } from "./EnterpriseCharts";
 import ColumnLayout from "../../../components/Layouts/ColumnLayout";
 import Headline from "../../../components/Text/Headline";
 import RowLayout from "../../../components/Layouts/RowLayout";
 import { Button } from "@material-ui/core";
+import Loading from "../../../components/Loading/Loading";
+
+const BarChart = React.lazy(() => import("./EnterpriseCharts/BarChart"));
+const GeoChart = React.lazy(() => import("./EnterpriseCharts/GeoChart"));
+const ComboChart = React.lazy(() => import("./EnterpriseCharts/ComboChart"));
+const PieChart = React.lazy(() => import("./EnterpriseCharts/PieChart"));
+const LineChart = React.lazy(() => import("./EnterpriseCharts/LineChart"));
+const BarChart2 = React.lazy(() => import("./EnterpriseCharts/BarChart2"));
+
 const TeslaLogo = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -195,11 +203,15 @@ const EnterpriseTheme = () => {
       >
         <ColumnLayout isCard className="Up">
           <Headline size={3}>Overtime Comparison</Headline>
-          <BarChart2 />
+          <Suspense fallback={<Loading />}>
+            <BarChart2 />
+          </Suspense>
         </ColumnLayout>
         <ColumnLayout isCard className="Up">
           <Headline size={3}>Investment Comparison</Headline>
-          <LineChart />
+          <Suspense fallback={<Loading />}>
+            <LineChart />
+          </Suspense>
         </ColumnLayout>
       </div>
       <ColumnLayout 
@@ -211,7 +223,9 @@ const EnterpriseTheme = () => {
         data-walkthrough-description="Here you can see the overall investment and how they perform per company." 
       >
         <Headline size={3}>Company Performance</Headline>
-        <BarChart isMobile={dimensions.isMobile} />
+        <Suspense fallback={<Loading />}>
+          <BarChart isMobile={dimensions.isMobile} />
+        </Suspense>
       </ColumnLayout>
       <div 
         className="flexFull threeColumns"
@@ -231,11 +245,15 @@ const EnterpriseTheme = () => {
       >
         <ColumnLayout isCard className="Up">
           <Headline size={3}>Portfolio Distribution</Headline>
-          <PieChart />
+          <Suspense fallback={<Loading />}>
+            <PieChart />
+          </Suspense>
         </ColumnLayout>
         <ColumnLayout isCard className="Up">
           <Headline size={3}>Monthly Stock Performance</Headline>
-          <ComboChart />
+          <Suspense fallback={<Loading />}>
+            <ComboChart />
+          </Suspense>
         </ColumnLayout>
       </div>
       <ColumnLayout 
@@ -247,7 +265,9 @@ const EnterpriseTheme = () => {
         data-walkthrough-description="This chart shows your investments performance on a global scale, being able to see how they are doing per country." 
       >
         <Headline size={3}>Global Company Performance</Headline>
-        <GeoChart isMobile={dimensions.isMobile} />
+        <Suspense fallback={<Loading />}>
+          <GeoChart isMobile={dimensions.isMobile} />
+        </Suspense>
       </ColumnLayout>
       <div style={{ padding: dimensions.isMobile ? 24 : 8 }} />
     </>

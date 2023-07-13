@@ -4,7 +4,7 @@ import Headline from '../Text/Headline';
 import SubHeadline from '../Text/SubHeadline';
 import './Loading.scss';
 
-const fakeLoadingTime = 2000;
+const fakeLoadingTime = 200;
 
 interface LoadingProps extends React.ComponentPropsWithoutRef<"input"> {
     icon?: string;

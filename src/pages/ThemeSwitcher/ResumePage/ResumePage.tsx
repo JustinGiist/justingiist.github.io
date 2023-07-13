@@ -1,10 +1,10 @@
 import { Suspense, useMemo } from "react";
 import "./ResumePage.scss";
-import tacoImage from "../../../assets/taco.jpg";
-import hallowImage from "../../../assets/hallow.jpg";
-import threePhones from "../../../assets/Three-Phones-Mockup.png";
+import tacoImage from "../../../assets/taco.avif";
+import hallowImage from "../../../assets/hallow.avif";
+import threePhones from "../../../assets/Three-Phones-Mockup.avif";
 import racingPhones from "../../../assets/Racing-Mockup.avif";
-import dashboardMockup from "../../../assets/Dashboard_mockup.png";
+import dashboardMockup from "../../../assets/Dashboard_mockup.avif";
 import { GlobalThemes } from "../../../ThemeManager";
 import { useNavigate } from "react-router-dom";
 import React from "react";
@@ -160,13 +160,13 @@ const ResumePage = () => {
         Mockups
       </Headline>
       
-      <img className="dashboardImage image" style={{
+      <img loading="lazy" className="dashboardImage image" style={{
         backgroundImage: `url(${threePhones})`
       }} />
-      <img className="dashboardImage image" style={{
+      <img loading="lazy" className="dashboardImage image" style={{
         backgroundImage: `url(${racingPhones})`
       }} />
-      <img className="dashboardImage image" style={{
+      <img loading="lazy" className="dashboardImage image" style={{
         backgroundImage: `url(${dashboardMockup})`
       }} />
 
@@ -188,7 +188,7 @@ const ResumePage = () => {
           <SubHeadline>2016</SubHeadline>
         </RowLayout>
         <Body>Contract Game project with Cherry Pie Games. Produced Foley Sound Design, Mixed and Edited all tracks. Mixed in Ableton Live and recorded using a range of field microphones.</Body>
-        <img className="image" style={{
+        <img loading="lazy" className="image" style={{
           height: 240,
           backgroundImage: `url(${tacoImage})`
         }} />
@@ -203,7 +203,7 @@ const ResumePage = () => {
           <SubHeadline>2015</SubHeadline>
         </RowLayout>
         <Body>48 Hour Spooky Game Jam Winner using Leap Motion Controller from UltraLeap. Created immersive screams and haunting sounds. Mixed in Ableton Live and recorded using a range of field microphones.</Body>
-        <img className="image" style={{
+        <img loading="lazy" className="image" style={{
           height: 240,
           backgroundImage: `url(${hallowImage})`
         }} />

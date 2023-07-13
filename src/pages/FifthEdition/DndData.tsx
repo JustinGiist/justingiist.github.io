@@ -32,6 +32,13 @@ const fetchAllDndRequest = async (url: string) => {
 }
 
 const DndData = () => {
+    const [monstersLoading, setMonstersLoading] = useState(false);
+    const [spellsLoading, setSpellsLoading] = useState(false);
+    const [magicSchoolsLoading, setMagicSchoolsLoading] = useState(false);
+    const [classesLoading, setClassesLoading] = useState(false);
+    const [racesLoading, setRacesLoading] = useState(false);
+    const [rulesLoading, setRulesLoading] = useState(false);
+    const [equipmentsLoading, setEquipmentsLoading] = useState(false);
     const [monsters, setMonsters] = useState<Monster[] | undefined>(undefined);
     const [monsterTypes, setMonsterTypes] = useState<string[] | undefined>(undefined);
     const [crArray, setCRArray] = useState<string[] | undefined>(undefined);
@@ -50,6 +57,7 @@ const DndData = () => {
     // Monsters
     const fetchMonster = useCallback(async (monsterName: string) => fetchDndRequest(`/api/monsters/${monsterName}`), []);
     const fetchMonsters = useCallback(async () => {
+        await setMonstersLoading(true);
         const results = await fetchAllDndRequest(`/api/monsters`);
         const monsterResults = await resolveAllDndPromises(results, fetchMonster);
         const listOfTypes: string[] = [];
@@ -69,29 +77,25 @@ const DndData = () => {
         setCRArray(sortNumbers(listOfCR));
 
         setMonsters(monsterResults);
+        setMonstersLoading(false);
     }, [fetchMonster]);
-
-    useEffect(() => {
-        fetchMonsters();
-    }, [fetchMonsters]);
 
     // Magic Schools
     const fetchMagicSchool = useCallback(async (schoolName: string) => fetchDndRequest(`/api/magic-schools/${schoolName}`), []);
     const fetchMagicSchools = useCallback(async () => {
+        await setMagicSchoolsLoading(true);
         const results = await fetchAllDndRequest(`/api/magic-schools`);
         const schoolResults = await resolveAllDndPromises(results, fetchMagicSchool);
 
         setMagicSchools(schoolResults);
+        setMagicSchoolsLoading(false);
     }, [fetchMagicSchool]);
-
-    useEffect(() => {
-        fetchMagicSchools();
-    }, [fetchMagicSchools]);
 
     // Spells
     const fetchSpell = useCallback(async (spellName: string) => fetchDndRequest(`/api/spells/${spellName}`), []);
     const fetchSpells = useCallback(async () => {
         try {
+            await setSpellsLoading(true);
             const results = await fetchAllDndRequest(`/api/spells`);
             setSpells(results);
             const spellResults = await resolveAllDndPromises(results, fetchSpell);
@@ -108,28 +112,25 @@ const DndData = () => {
             setDurations(listOfDurations.sort());
         } catch (error) {
             console.error(error);
+        } finally {
+            setSpellsLoading(false);
         }
     }, [fetchSpell]);
-
-    useEffect(() => {
-        fetchSpells();
-    }, [fetchSpells]);
 
     // Classes
     const fetchClass = useCallback(async (s: string) => fetchDndRequest(`/api/classes/${s}`), []);
     const fetchClasses = useCallback(async () => {
+        await setClassesLoading(true);
         const results = await fetchAllDndRequest(`/api/classes`);
         const classResults = await resolveAllDndPromises(results, fetchClass);
         setClasses(classResults);
+        setClassesLoading(false);
     }, [fetchClass]);
-
-    useEffect(() => {
-        fetchClasses();
-    }, [fetchClasses]);
 
     // Equipment
     const fetchEquipment = useCallback(async (s: string) => fetchDndRequest(`/api/equipment/${s}`), []);
     const fetchEquipments = useCallback(async () => {
+        await setEquipmentsLoading(true);
         const results = await fetchAllDndRequest(`/api/equipment`);
         const eResults = await resolveAllDndPromises(results, fetchEquipment);
         const listOfTypes: string[] = [];
@@ -140,28 +141,24 @@ const DndData = () => {
         });
         setEquipmentCategories(listOfTypes);
         setEquipments(eResults);
+        setEquipmentsLoading(false);
     }, [fetchEquipment]);
-
-    useEffect(() => {
-        fetchEquipments();
-    }, [fetchEquipments]);
 
     // Races
     const fetchRace = useCallback(async (s: string) => fetchDndRequest(`/api/races/${s}`), []);
     const fetchRaces = useCallback(async () => {
+        await setRacesLoading(true);
         const results = await fetchAllDndRequest(`/api/races`);
         const rResults = await resolveAllDndPromises(results, fetchRace);
         setRaces(rResults);
+        setRacesLoading(false);
     }, [fetchRace]);
-
-    useEffect(() => {
-        fetchRaces();
-    }, [fetchRaces]);
 
     // Rules
     const fetchRule = useCallback(async (s: string) => fetchDndRequest(`/api/rules/${s}`), []);
     const fetchRuleSubSection = useCallback(async (api: string) => fetchDndRequest(`${api}`), []);
     const fetchRules = useCallback(async () => {
+        await setRulesLoading(true);
         const results = await fetchAllDndRequest(`/api/rules`);
         const rResults = await resolveAllDndPromises(results, fetchRule);
         const subSectionPromises: any[] = [];
@@ -174,13 +171,9 @@ const DndData = () => {
         });
         const sResults = await Promise.all(subSectionPromises);
         setRules(sResults);
+        setRulesLoading(false);
     }, [fetchRule, fetchRuleSubSection]);
 
-    useEffect(() => {
-        fetchRules();
-    }, [fetchRules]);
-
-    
     // Condition
     const fetchCondition = useCallback(async (s: string) => fetchDndRequest(`/api/conditions/${s}`), []);
     const fetchConditions = useCallback(async () => {
@@ -190,11 +183,14 @@ const DndData = () => {
         setConditions(cResults);
     }, [fetchCondition]);
 
-    useEffect(() => {
-        fetchConditions();
-    }, [fetchConditions]);
-
     return ({
+        monstersLoading,
+        spellsLoading,
+        magicSchoolsLoading,
+        classesLoading,
+        racesLoading,
+        rulesLoading,
+        equipmentsLoading,
         monsters,
         monsterTypes,
         magicSchools,
@@ -208,7 +204,17 @@ const DndData = () => {
         equipmentCategories,
         crArray,
         durations,
-        conditions
+        conditions,
+        actions: {
+            fetchMonsters,
+            fetchMagicSchools,
+            fetchSpells,
+            fetchClasses,
+            fetchEquipments,
+            fetchRaces,
+            fetchRules,
+            fetchConditions
+        }
     });
 }
 

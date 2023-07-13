@@ -14,7 +14,7 @@ import Pill from '../../components/Pill/Pill';
 
 const sizeArray = ['Gargantuan', 'Huge', 'Large', 'Medium', 'Small', 'Tiny'];
 
-const MonstersList = ({ monsters, monsterTypes, crArray }: { monsters?: Monster[], monsterTypes?: string[], crArray?: string[] }) => {
+const MonstersList = ({ monsters, monsterTypes, crArray, actions, monstersLoading }: any) => {
   const [search, setSearchTerm] = useState<string>('');
   const [selectedSize, setSelectedSize] = useState<string>('None');
   const [selectedType, setSelectedType] = useState<string>('None');
@@ -35,6 +35,10 @@ const MonstersList = ({ monsters, monsterTypes, crArray }: { monsters?: Monster[
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
+
+  useEffect(() => {
+    if (!monsters && !monstersLoading) actions?.fetchMonsters();
+  }, [monsters, actions]);
 
   return (
         <ColumnLayout>

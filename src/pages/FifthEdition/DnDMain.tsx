@@ -35,6 +35,13 @@ const DndMain = () => {
     const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
     const {
+        monstersLoading,
+        spellsLoading,
+        magicSchoolsLoading,
+        classesLoading,
+        racesLoading,
+        rulesLoading,
+        equipmentsLoading,
         monsters,
         monsterTypes,
         magicSchools,
@@ -48,7 +55,8 @@ const DndMain = () => {
         equipmentCategories,
         crArray,
         durations,
-        conditions
+        conditions,
+        actions
     } = DndData();
 
     const page = useMemo(() => {
@@ -60,6 +68,9 @@ const DndMain = () => {
                         spells={spells}
                         spellMap={spellMap}
                         durations={durations}
+                        actions={actions}
+                        spellsLoading={spellsLoading}
+                        magicSchoolsLoading={magicSchoolsLoading}
                     />
                 );
             case 'classes':
@@ -67,24 +78,35 @@ const DndMain = () => {
                     <Classes 
                         classes={classes} 
                         equipments={equipments}
+                        actions={actions}
+                        classesLoading={classesLoading}
+                        equipmentsLoading={equipmentsLoading}
                     />
                 );
             case 'equipment':
-                return <Equipments equipments={equipments} currencyTypes={currencyTypes} equipmentCategories={equipmentCategories} />
+                return (
+                    <Equipments 
+                        equipments={equipments} 
+                        currencyTypes={currencyTypes} 
+                        equipmentCategories={equipmentCategories} 
+                        actions={actions}
+                        equipmentsLoading={equipmentsLoading}
+                    />
+                );
             case 'monsters':
                 return (
                     <MonstersList 
                         monsters={monsters} 
                         monsterTypes={monsterTypes}
                         crArray={crArray}
+                        actions={actions}
+                        monstersLoading={monstersLoading}
                     />
                 );
             case 'races':
-                if (!rules) return <Loading />;
-                return <Races races={races} />;
+                return <Races races={races} actions={actions} racesLoading={racesLoading} />;
             case 'rules':
-                if (!rules) return <Loading />;
-                return <Rules rules={rules} />;
+                return <Rules rules={rules} actions={actions} rulesLoading={rulesLoading} />;
             case 'character':
                 return (
                     <Character 
@@ -95,6 +117,7 @@ const DndMain = () => {
                         spells={spells}
                         spellMap={spellMap}
                         races={races}
+                        actions={actions}
                     />
                 );
             default:
@@ -115,7 +138,8 @@ const DndMain = () => {
         equipmentCategories,
         crArray,
         durations,
-        conditions
+        conditions,
+        actions
     ]);
 
     return (

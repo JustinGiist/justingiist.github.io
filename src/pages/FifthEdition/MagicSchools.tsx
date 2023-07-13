@@ -36,7 +36,10 @@ const MagicSchools = ({
     magicSchools,
     spells,
     spellMap,
-    durations
+    durations,
+    actions,
+    magicSchoolsLoading,
+    spellsLoading
 }: any) => {
     const [search, setSearch] = useState('');
     const [selectedSchool, setSelectedCategory] = useState<string>('None');
@@ -62,6 +65,11 @@ const MagicSchools = ({
     useEffect(() => {
         ReactTooltip.rebuild();
     });
+
+    useEffect(() => {
+      if (!magicSchools && !magicSchoolsLoading) actions?.fetchMagicSchools();
+      if (!spells && !spellsLoading) actions?.fetchSpells();
+    }, [magicSchools, spells, actions]);
 
     return (
         <ColumnLayout>

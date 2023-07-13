@@ -10,7 +10,7 @@ import OverlayControl from "../OverlayControl/OverlayControl";
 import ContactPage from "../../pages/ThemeSwitcher/ContactPage/ContactPage";
 import SalesTheme from "../../pages/ThemeSwitcher/SalesTheme/SalesTheme";
 import DesignBackground from "../BezierBackground/DesignBackground";
-import backgroundImage from "../../assets/Background.jpg";
+import backgroundImage from "../../assets/Background.avif";
 import TestPage from "../../pages/testPage";
 import FragmentsPage from "../../pages/ThemeSwitcher/FragmentsPage/FragmentsPage";
 import SidebarV2 from "../SidebarV2/SidebarV2";
@@ -19,7 +19,6 @@ import BlackRed from "../../pages/ThemeSwitcher/BlackRed/BlackRed";
 import MusicPage from "../../pages/ThemeSwitcher/MusicPage/MusicPage";
 import NotePage from "../../pages/ThemeSwitcher/NotePage/NotePage";
 import YetiPage from "../YetiPage/YetiPage";
-import DesignerPage from "../../pages/ThemeSwitcher/DesignerPage";
 import { useLocation, useNavigate } from "react-router-dom";
 import HeroPage from "../../pages/HeroPage/HeroPage";
 import Walkthrough from "../Walkthrough/Walkthrough";
@@ -27,8 +26,8 @@ import Stars from "../../pages/ThemeSwitcher/ResumePage/Stars";
 import SpaceNews from "../../pages/ThemeSwitcher/SpaceNews/SpaceNews";
 import BobsBurgers from "../../pages/ThemeSwitcher/BobsBurgers/BobsBurgers";
 import DndMain from "../../pages/FifthEdition/DnDMain";
-import MagicSchools from "../../pages/FifthEdition/MagicSchools";
 import SocialPage from "../../pages/SocialPage/SocialPage";
+
 const RenderComponent = () => {
   const navigate = useNavigate();
   let location = useLocation();

@@ -14,7 +14,9 @@ import Pill from '../../components/Pill/Pill';
 const Equipments = ({
     equipments,
     currencyTypes,
-    equipmentCategories
+    equipmentCategories,
+    actions,
+    equipmentsLoading
 }: any) => {
     const [search, setSearch] = useState('');
     const [selectedWeight, setSelectedWeight] = useState('');
@@ -45,6 +47,10 @@ const Equipments = ({
     useEffect(() => {
         ReactTooltip.rebuild();
     });
+
+    useEffect(() => {
+      if (!equipments && !equipmentsLoading) actions?.fetchEquipments();
+    }, [equipments, actions]);
 
     return (
         <ColumnLayout>

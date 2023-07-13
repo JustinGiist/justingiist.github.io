@@ -4,14 +4,14 @@ import candy from "../../../assets/candy.jpg";
 import candy2 from "../../../assets/candy2.jpg";
 import candy3 from "../../../assets/candy3.jpg";
 import candy4 from "../../../assets/candy4.jpg";
-import chocolate from "../../../assets/chocolate.jpg";
+import chocolate from "../../../assets/chocolate.avif";
 import cakeBalls from "../../../assets/cakeBalls.jpg";
 import candyShop from "../../../assets/candyShop.jpeg";
 import candyShop2 from "../../../assets/candyShop2.jpg";
 import candyShop3 from "../../../assets/candyShop3.jpg";
-import chocolate2 from "../../../assets/chocolate2.jpg";
-import chocolate3 from "../../../assets/chocolate3.jpg";
-import chocolate4 from "../../../assets/chocolate4.jpg";
+import chocolate2 from "../../../assets/chocolate2.avif";
+import chocolate3 from "../../../assets/chocolate3.avif";
+import chocolate4 from "../../../assets/chocolate4.avif";
 import { nanoid } from "nanoid";
 import "./SalesTheme.scss";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
@@ -201,8 +201,8 @@ const SalesTheme = () => {
                   brought all their favorite treats along with them!
                 </h4>
               </div>
-              <img alt="lolipop" src={lolipop} />
-              <img alt="candy" src={candy} />
+              <img loading="lazy" alt="lolipop" src={lolipop} />
+              <img loading="lazy" alt="candy" src={candy} />
               <div className="flexColumn">
                 <h1 className="text-headline">Kid's Day</h1>
                 <h3 className="text-sub-headline">
@@ -229,8 +229,8 @@ const SalesTheme = () => {
                   for you to come in and taste!
                 </h4>
               </div>
-              <img alt="chocolate" src={chocolate} />
-              <img alt="cakeBalls" src={cakeBalls} />
+              <img loading="lazy" alt="chocolate" src={chocolate} />
+              <img loading="lazy" alt="cakeBalls" src={cakeBalls} />
               <div className="flexColumn">
                 <h1 className="text-headline">
                   Cake Ball Decorating
@@ -346,7 +346,7 @@ const SalesTheme = () => {
               </div>
             </div>
             <div className="pictureContent">
-              <img alt="candyShop" src={candyShop} />
+              <img loading="lazy" alt="candyShop" src={candyShop} />
               <div className="flexColumn">
                 <h4 className="text-body">
                   In November 2008, Karen Keber opened up Candy Shop in Market
@@ -370,8 +370,8 @@ const SalesTheme = () => {
                   people don't even know exist.
                 </h4>
               </div>
-              <img alt="candyShop2" src={candyShop2} />
-              <img alt="candyShop3" src={candyShop3} />
+              <img loading="lazy" alt="candyShop2" src={candyShop2} />
+              <img loading="lazy" alt="candyShop3" src={candyShop3} />
               <div className="flexColumn">
                 <h4 className="text-body">
                   In August of 2014, Karen and her new husband Matt Sutton
@@ -457,7 +457,8 @@ const CandyCard = ({
                 </h4>
               </div>
             </div>
-            <img
+            <img 
+              loading="lazy"
               src={item.img}
               key={getRandomKey()}
               alt={item.title}

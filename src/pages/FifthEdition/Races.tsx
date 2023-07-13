@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { iRace } from './DndInterfaces';
 import BlockLayout from '../../components/Layouts/BlockLayout';
 import ColumnLayout from '../../components/Layouts/ColumnLayout';
@@ -7,10 +7,17 @@ import Headline from '../../components/Text/Headline';
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 const Races = ({
-    races
+    races,
+    actions,
+    racesLoading
 }: any) => {
-    const [selectedTab, setSelectedTab] = useState(races[0].name);
+    const [selectedTab, setSelectedTab] = useState(races ? races[0].name : '');
 
+    useEffect(() => {
+      if (!races && !racesLoading) actions?.fetchRaces();
+    }, [races, actions]);
+
+    if (!races) return <Loading />;
     return (
         <ColumnLayout>
             <Headline size={1}>Races</Headline>

@@ -1,16 +1,25 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import ColumnLayout from '../../components/Layouts/ColumnLayout';
 import Headline from '../../components/Text/Headline';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
 import stringUtils from '../../utils/stringUtils';
+import Loading from '../../components/Loading/Loading';
 
 const Rules = ({
     rules,
+    actions,
+    rulesLoading
 }: any) => {
-    const [selectedTab, setSelectedTab] = useState(rules[0].index);
-    const selectedRules = useMemo(() => rules.find((i: any) => i.index === selectedTab), [selectedTab, rules]);
+    const [selectedTab, setSelectedTab] = useState(rules ? rules[0].index : '');
+    const selectedRules = useMemo(() => rules?.find((i: any) => i.index === selectedTab), [selectedTab, rules]);
+
+    useEffect(() => {
+      if (!rules && !rulesLoading) actions?.fetchRules();
+    }, [rules, actions]);
+
+    if (!rules) return <Loading />;
     return (
         <ColumnLayout>
             <Headline>Rules</Headline>

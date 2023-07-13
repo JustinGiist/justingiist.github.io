@@ -5,9 +5,6 @@
   display: flex;
   height: 100%;
   overflow: hidden !important;
-  * {
-    text-align: center !important;
-  }
   .salesContainer {
     height: 100%;
     width: 100%;
@@ -763,12 +760,6 @@
       .cartChildren {
         max-height: 100%;
       }
-    }
-    h1, .headline.one {
-      font-size: 60px !important;
-    }
-    h2, .headline.two {
-      font-size: 48px !important;
     }
     .cartBall.animate {
       left: 80% !important;

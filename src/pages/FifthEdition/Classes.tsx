@@ -1,7 +1,7 @@
 import { Button, FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import ColumnLayout from "../../components/Layouts/ColumnLayout";
 import Loading from "../../components/Loading/Loading";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Headline from "../../components/Text/Headline";
 import SubHeadline from "../../components/Text/SubHeadline";
 import RowLayout from "../../components/Layouts/RowLayout";
@@ -11,12 +11,21 @@ import { useWindowDimensions } from "../../ThemeManager";
 
 const Classes = ({
     classes,
-    equipments
+    equipments,
+    actions,
+    classesLoading,
+    equipmentsLoading
 }: any) => {
     const [selectedClass, setSelectedClass] = useState('barbarian');
     const handleClass = useCallback((e) => {
         setSelectedClass(e?.target?.value);
     }, []);
+
+    useEffect(() => {
+        if (!classes && !classesLoading) actions?.fetchClasses();
+        if (!equipments && !equipmentsLoading) actions?.fetchEquipments();
+    }, [classes, equipments, actions]);
+
     if (!classes || !equipments) return <Loading />;
     const classInfo = classes.find((i: any) => i.index === selectedClass);
     return (
