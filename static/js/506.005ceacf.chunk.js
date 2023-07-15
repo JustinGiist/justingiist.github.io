@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[506],{7506:function(t,e,r){r.r(e),r.d(e,{ComboChart:function(){return n}});var s=r(9195),i=r(7642),o=r(6174),a=r(9343),n=function(){return(0,a.jsx)(i.Z,{chartType:"ComboChart",width:"100%",loader:(0,a.jsx)(s.Z,{}),height:"240px",data:o.Lj,options:{colors:o.vK,title:"Monthly Stock Performance with Average",vAxis:{title:"Cups"},hAxis:{title:"Month"},seriesType:"bars",series:{5:{type:"line"}}}})};e.default=n}}]);
+//# sourceMappingURL=506.005ceacf.chunk.js.map

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[573],{4573:function(e,t,n){n.r(t),n.d(t,{PieChart:function(){return p}});var r=n(9195),s=n(7642),a=n(6174),i=n(9343),p=function(){return(0,i.jsx)(s.Z,{chartType:"PieChart",data:a.p2,loader:(0,i.jsx)(r.Z,{}),options:{colors:a.vK,title:"Percent Invested per Stock",legend:"none",pieSliceText:"label",slices:{4:{offset:.2},2:{offset:.4}}},width:"100%",height:"240px"})};t.default=p}}]);
+//# sourceMappingURL=573.570da76a.chunk.js.map

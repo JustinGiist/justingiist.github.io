@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[869],{4869:function(t,e,a){a.r(e),a.d(e,{LineChart:function(){return o}});var i=a(9195),r=a(7642),s=a(6174),n=a(9343),o=function(){return(0,n.jsx)(r.Z,{className:"chart",chartType:"LineChart",loader:(0,n.jsx)(i.Z,{}),data:s.qz,width:"100%",height:"240px",options:{hAxis:{title:"Time"},vAxis:{title:"Popularity"},series:{1:{curveType:"function"}},colors:s.vK},rootProps:{"data-testid":"2"}})};e.default=o}}]);
+//# sourceMappingURL=869.657e4c6f.chunk.js.map

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[813],{3813:function(e,t,a){a.r(t);var r=a(9195),c=a(7642),n=a(6174),o=a(9343);t.default=function(e){var t=e.isMobile;return(0,o.jsx)(c.Z,{options:{colors:n.vK},loader:(0,o.jsx)(r.Z,{}),chartEvents:[{eventName:"select",callback:function(e){var t=e.chartWrapper.getChart().getSelection();if(0!==t.length){var a=n.O$[t[0].row+1];console.log("Selected : "+a)}}}],chartType:"GeoChart",width:"100%",height:t?"280px":"600px",data:n.O$})}}}]);
+//# sourceMappingURL=813.ed9e2bbc.chunk.js.map
